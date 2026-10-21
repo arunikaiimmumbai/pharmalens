@@ -33,9 +33,9 @@ def company_chooser(key: str) -> None:
     k = D.kpi_table()
     st.markdown(
         '<div class="card" style="text-align:center;padding:22px 18px;margin:6px 0 18px 0">'
-        '<div style="font-size:1.25rem;font-weight:800;color:#0A2A66">Choose a company to open this page</div>'
-        '<div class="muted" style="margin-top:6px">Click a card below, use the drop-down above, '
-        'or set the Focus company in the sidebar so every page opens on it.</div></div>',
+        '<div style="font-size:1.25rem;font-weight:800;color:#0A2A66">👈 Select a company from the Focus company menu on the left</div>'
+        '<div class="muted" style="margin-top:6px">This page shows one company at a time. '
+        'You can also click one of the cards below.</div></div>',
         unsafe_allow_html=True)
     cols = st.columns(3)
     for i, c in enumerate(D.companies()):

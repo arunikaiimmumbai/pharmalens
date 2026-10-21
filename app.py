@@ -7,6 +7,13 @@ import streamlit as st
 st.set_page_config(page_title="Pha-inance Lens · Pharma Intelligence", page_icon="🧬", layout="wide",
                    initial_sidebar_state="expanded")
 
+import sys  # noqa: E402
+
+# Always load the newest app files. Streamlit Cloud can keep an old copy of a module in memory
+# after a git push, which mixes old and new code. Dropping our own modules forces a fresh import.
+for _m in [m for m in sys.modules if m in ("core", "views") or m.startswith(("core.", "views."))]:
+    del sys.modules[_m]
+
 from core import data as D  # noqa: E402
 from core import theme as T  # noqa: E402
 from views import (analyst, command, company, news, pnl, ratios, regulatory, sources,  # noqa: E402
@@ -58,5 +65,8 @@ try:
 except Exception:  # page reruns use BaseException, so they pass through untouched
     import traceback
     traceback.print_exc()  # full detail stays in the server logs
-    st.warning("This page hit a temporary problem. Please refresh the browser. "
-               "If it keeps happening, choose another company or page and come back.")
+    if st.session_state.get("focus") is None:
+        st.info("👈 Please select a company from the **Focus company** menu on the left to open this page.")
+    else:
+        st.info("This page could not load just now. Please refresh the browser, or pick another company "
+                "from the **Focus company** menu on the left.")
