@@ -181,7 +181,7 @@ def pill(text: str, kind: str = "") -> str:
 def footer(meta: dict) -> None:
     st.markdown(
         f"""<div class="foot">Prepared by <b>{meta['author']}</b> · {meta['program']} · Mentor: <b>{meta['mentor']}</b> ·
-        Data as of {meta['as_of']} · {meta['basis']} Public information only; not investment advice.</div>""",
+        {meta['basis']} Public information only; not investment advice.</div>""",
         unsafe_allow_html=True,
     )
 

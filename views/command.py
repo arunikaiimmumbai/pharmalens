@@ -27,7 +27,7 @@ def render():
         "Six companies, five years, one lens. Live market & news signals correlated with consolidated financials, "
         "regulatory pipelines and strategy, all in one place.",
         [f'<span class="pulse"></span> Live feeds {"on" if st.session_state.get("live_on", True) else "off"}',
-         "FY22 → FY26 + Q1 FY27", "Consolidated · ₹ Cr", f"As of {meta['as_of']}"],
+         "FY22 → FY26 + Q1 FY27", "Consolidated · ₹ Cr"],
     )
 
     tot_sales = k["sales"].sum()

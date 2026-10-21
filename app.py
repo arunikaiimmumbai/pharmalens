@@ -41,15 +41,14 @@ with st.sidebar:
     ids = list(D.names().keys())
     st.selectbox("Focus company", ids, format_func=lambda x: D.names()[x], key="focus")
     st.toggle("Live market & news feeds", value=True, key="live_on",
-              help="On: shows live share prices and news headlines. Off: shows only the saved data from 19 Oct 2026.")
+              help="On: shows live share prices and news headlines. Off: shows only the saved data.")
     with st.expander("🔑 AI settings"):
         st.text_input("Free Gemini API key (optional)", type="password", key="user_api_key",
                       help="Get one free at aistudio.google.com. Better: store it in Streamlit Secrets as GEMINI_API_KEY. "
                            "Without a key the AI Analyst runs in free offline mode.")
     st.markdown(
         f"""<div style="font-size:.74rem;opacity:.85;margin-top:14px;line-height:1.5">
-        <b>{meta['author']}</b><br>{meta['program']}<br>Mentor: {meta['mentor']}<br>
-        <span class="pulse"></span>&nbsp; Data as of {meta['as_of']}</div>""",
+        <b>{meta['author']}</b><br>{meta['program']}<br>Mentor: {meta['mentor']}</div>""",
         unsafe_allow_html=True,
     )
 

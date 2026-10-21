@@ -9,7 +9,7 @@ from core import theme as T
 def render():
     meta = D.meta()
     T.hero("Sources & Method", "How every number was built, where it came from, and what to be careful with.",
-           [meta["basis"].split(".")[0], f"As of {meta['as_of']}"])
+           [meta["basis"].split(".")[0]])
 
     T.section("Data sources")
     for s in meta["sources"]:
