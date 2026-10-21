@@ -98,8 +98,8 @@ def render():
         st.markdown(" ".join(T.pill(f"{n}: {int(v)}") for n, v in sc["PharmaLens score"].items()), unsafe_allow_html=True)
         st.caption("Pillars: Growth 25% · Profitability 25% · Returns 20% · Cash & WC 15% · Balance sheet 15%.")
 
-    # ── Partner so-whats ────────────────────────────────────────────────────
-    T.section("Partner so-whats", "auto-generated from the numbers")
+    # ── Key insights ────────────────────────────────────────────────────
+    T.section("Key insights", "auto-generated from the numbers")
     st.markdown(f'<div class="card">{bullets(I.cross_company_signals())}</div>', unsafe_allow_html=True)
 
     # ── Growth / opportunity / risk grid ────────────────────────────────────

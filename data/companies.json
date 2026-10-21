@@ -3,7 +3,7 @@
   "title": "PharmaLens — Indian Mid-cap Pharma Intelligence",
   "author": "Arunika Sherry",
   "program": "IIM Mumbai Mentorship Program",
-  "mentor": "Phalgun Rudrapatna",
+  "mentor": "Dr. Phalgun Rudrapatna",
   "as_of": "2026-10-19",
   "basis": "Consolidated, Indian fiscal year ending 31 March (FY22 = Mar-2022 ... FY26 = Mar-2026). Q1 FY27 = Apr-Jun 2026. All values INR crore unless stated.",
   "years": [
@@ -576,7 +576,33 @@
     "India SFE turnaround",
     "US tariff & portfolio scenario model",
     "R&D portfolio NPV triage"
-   ]
+   ],
+   "swot": {
+    "strengths": [
+     "Deepest US pipeline in the set: 279 ANDAs filed, 244 approved, 152 US DMFs",
+     "Clean recent USFDA outcomes at all US-facing plants",
+     "Backward-integrated into API — cushions solvent and KSM inflation",
+     "New complex-generics capacity: oncology, injectables, ophthalmics, derma"
+    ],
+    "weaknesses": [
+     "Lowest returns: ROCE 13%, EBITDA margin 15%",
+     "462 inventory days; 381-day cash conversion cycle",
+     "India branded growing ~5% vs Indian market ~11%",
+     "Borrowings doubled FY24→FY26 to ₹1,430 Cr"
+    ],
+    "opportunities": [
+     "Load the new Karkhadi, Panelav and Jarod lines, incl. CDMO for non-China supply",
+     "~15 more US launches planned in the rest of FY27",
+     "US branded specialty entry via Pivya",
+     "Animal health (+24%) and API (+33%) growing fast"
+    ],
+    "threats": [
+     "US generics-tariff path — 36% of revenue is US",
+     "Competition arriving on bosutinib, the current US growth driver",
+     "Normal US generic price erosion",
+     "Solvent and API cost inflation"
+    ]
+   }
   },
   {
    "id": "ajanta",
@@ -1056,7 +1082,33 @@
     "Org & cost transformation",
     "US pipeline & BD",
     "Cardio-metabolic launch excellence"
-   ]
+   ],
+   "swot": {
+    "strengths": [
+     "Best returns: ROCE 35%, EBITDA margin 27.5%",
+     "India branded outgrowing the market ~1.3x, volume-led",
+     "US generics +49% in FY26 from only ~51 products",
+     "Near-zero debt; generous capital returns"
+    ],
+    "weaknesses": [
+     "Cash conversion: CFO/PAT 0.5x as debtor days rose 93→124",
+     "Asia branded −1% in FY26 and −16% in Q1 FY27",
+     "Employee cost up from 19.0% to 24.7% of sales",
+     "India cardiology growing 7% vs market 14%"
+    ],
+    "opportunities": [
+     "US pipeline: 17 pending ANDAs, 5 tentative approvals",
+     "Africa branded growing 15%",
+     "Cardio-metabolic refresh incl. GLP-1 generics",
+     "New launches outperforming the market by 76%"
+    ],
+    "threats": [
+     "Pending outcome of the Aug-2025 income-tax search",
+     "US generics-tariff path — 30% of revenue is US",
+     "FX volatility (₹103 Cr mark-to-market loss in FY26)",
+     "Premium valuation (P/E ~36x) leaves little room for misses"
+    ]
+   }
   },
   {
    "id": "ipca",
@@ -1534,7 +1586,33 @@
     "Chronic portfolio strategy",
     "US/EU go-to-market",
     "Tender analytics & control tower"
-   ]
+   ],
+   "swot": {
+    "strengths": [
+     "Vertically integrated from API to formulation",
+     "Margin recovery: ~15% (FY23) to 24% (Q1 FY27)",
+     "Domestic outgrowing market in chronic (+17%) and acute (+9%)",
+     "Deleveraged — all USD loans repaid"
+    ],
+    "weaknesses": [
+     "Unichem: ~24% of revenue at ~11% EBITDA margin",
+     "ROCE only 17%; 353 inventory days",
+     "Domestic concentration in pain/rheumatology (~39%)",
+     "US business still small"
+    ],
+    "opportunities": [
+     "Unichem synergies (API source transfer, procurement): ₹150–250 Cr EBITDA over 2–3 years",
+     "FY27 guidance raised to 14–16% growth, ~23% margin",
+     "New API capacity at Dewas and Wardha",
+     "Seven biosimilars in pipeline (revenue FY29–30)"
+    ],
+    "threats": [
+     "Lumpy institutional and tender business",
+     "Freight and FX volatility",
+     "Regulatory history (past import alert at Ratlam)",
+     "Anti-malarials declining (−24% in Q1)"
+    ]
+   }
   },
   {
    "id": "mankind",
@@ -2028,7 +2106,33 @@
     "Consumer RGM & quick-commerce",
     "Innovation portfolio governance",
     "Plant network optimisation"
-   ]
+   ],
+   "swot": {
+    "strengths": [
+     "#1 prescription share for 9 years (15.2%); #4 by value, #2 by volume",
+     "~16,800 field force with deep tier-2 to tier-6 reach",
+     "Leading consumer brands (Manforce, Prega News, Unwanted-72)",
+     "Fastest growth in the set (16% CAGR) at ~26% EBITDA margin"
+    ],
+    "weaknesses": [
+     "ROCE fell from 26% (FY24) to 14% (FY26) after BSV",
+     "FY26 interest cost ₹644 Cr; PAT −3.4%",
+     "Consumer healthcare growth only +4% in Q1",
+     "Low R&D intensity (~2–3% of sales)"
+    ],
+    "opportunities": [
+     "Cross-sell BSV fertility and women's health (Foligraf, HMG +39%)",
+     "Lift chronic share from ~40% to 50%",
+     "Exports +29% in Q1 FY27",
+     "GLP-1 launches and CNS (Rivotril brand)"
+    ],
+    "threats": [
+     "Tax rate rising (17.7% → 25.4%) as Sikkim exemptions end",
+     "₹1,909 Cr income-tax contingency",
+     "High-risk innovation bets (ACTx CAR-T, €48M)",
+     "Premium valuation (P/E ~44x)"
+    ]
+   }
   },
   {
    "id": "alkem",
@@ -2519,7 +2623,33 @@
     "Capital allocation & M&A screening",
     "Enzene CDMO go-to-market",
     "Tax & cost program"
-   ]
+   ],
+   "swot": {
+    "strengths": [
+     "Net cash ~₹5,500 Cr",
+     "#1 in anti-infectives (13.2% share); #3 by prescriptions",
+     "Material cost fell from 42% to 29% of sales",
+     "Chronic outgrowing market (+17.9% vs 15.4%)"
+    ],
+    "weaknesses": [
+     "Slowest grower: 8.5% revenue CAGR; trade generics flat",
+     "Consolidated tax rate 30–32%; Q1 PAT −22%",
+     "Employee cost +16% in Q1 FY27",
+     "Working-capital days up from 31 to 123"
+    ],
+    "opportunities": [
+     "Semaglutide early traction (~11% unit share); US tolvaptan launch",
+     "International ex-US +35% in Q1",
+     "Enzene biosimilars and CDMO",
+     "Occlutech structural-heart devices"
+    ],
+    "threats": [
+     "Daman OAI — ~45% of US revenue at risk",
+     "US growth guidance cut; price erosion",
+     "CDMO breakeven pushed to FY28",
+     "API cost inflation"
+    ]
+   }
   },
   {
    "id": "glenmark",
@@ -3001,7 +3131,33 @@
     "Europe branded transformation",
     "NWC program",
     "IGI portfolio & partnering"
-   ]
+   ],
+   "swot": {
+    "strengths": [
+     "Debt ~zero after the AbbVie ISB 2001 deal ($700M upfront, up to $1.925B)",
+     "India outgrowing market (+15.5% vs 12.2%)",
+     "Respiratory and derma franchise; Ryaltris in 57 markets",
+     "Innovation engine (IGI) already monetised once"
+    ],
+    "weaknesses": [
+     "FY26 margin (27%) flattered by licensing; run-rate 21–22%",
+     "Employee and other costs up ~6.5 pts each of sales FY22–26",
+     "Volatile history: FY24 loss, negative CFO in FY24–25",
+     "Europe only ~30% branded"
+    ],
+    "opportunities": [
+     "2–3 US respiratory approvals in H2 FY27 (first generic Flovent)",
+     "In-licensed oncology (Tevimbra, Brukinsa, aumolertinib) in emerging markets",
+     "ISB 2001 milestones and royalties",
+     "Shift Europe toward ~60% branded"
+    ],
+    "threats": [
+     "IGI spend ~US$70M a year",
+     "US regulatory execution risk given compliance history",
+     "API and logistics inflation",
+     "US exposure (27% of revenue) to tariff changes"
+    ]
+   }
   }
  ]
 }

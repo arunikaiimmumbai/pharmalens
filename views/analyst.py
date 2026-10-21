@@ -11,7 +11,7 @@ SUGGESTIONS = [
     "Build the investment thesis risks for Mankind post-BSV and the ACTx CAR-T deal.",
     "Correlate employee cost growth with revenue growth for Ajanta and tell me if operating leverage is breaking.",
     "If Alembic grows 15% and reaches 18% EBITDA margin by FY28, what EV does that imply at 18x?",
-    "What are the top 3 consulting engagements to pitch to Glenmark and why now?",
+    "Give me a SWOT for Alkem and tell me which threat matters most right now.",
 ]
 
 

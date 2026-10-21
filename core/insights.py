@@ -135,7 +135,7 @@ def company_insights(cid: str) -> dict:
 
 
 def cross_company_signals() -> list[str]:
-    """Portfolio-level 'so-whats' a partner would highlight."""
+    """Portfolio-level key insights across the six companies."""
     k = D.kpi_table()
     s = []
     core = k.drop(index="Glenmark", errors="ignore")  # Glenmark FY26 ROCE inflated by AbbVie licensing income

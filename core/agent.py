@@ -48,7 +48,7 @@ TOOLS = [
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
     {"name": "get_news", "description": "Curated last-6-month news for a company (with KPI tags & impact) plus optional live Google News headlines. Use company='sector' for sector/policy news.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "live": {"type": "boolean", "default": True}}, "required": ["company"]}},
-    {"name": "get_problem_statements", "description": "Top-5 consultant problem statements (evidence, answer, what to investigate, service line), what is working / not working, digital maturity and consulting opportunities.",
+    {"name": "get_problem_statements", "description": "SWOT analysis (strengths, weaknesses, opportunities, threats), top-5 consultant problem statements (evidence, answer, what to investigate, service line), what is working / not working, digital maturity and consulting opportunities.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
     {"name": "get_market_data", "description": "Live price (if reachable) plus 1-year return vs Nifty Pharma and the curated market snapshot (mcap, P/E, P/B).",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
@@ -141,7 +141,7 @@ def run_tool(name: str, args: dict) -> dict:
 
         if name == "get_problem_statements":
             c = D.company(resolve(args["company"]))
-            return {k: c[k] for k in ["working", "not_working", "problems", "digital", "consulting"]}
+            return {k: c[k] for k in ["swot", "working", "not_working", "problems", "digital", "consulting"]}
 
         if name == "get_market_data":
             c = D.company(resolve(args["company"]))
@@ -335,7 +335,7 @@ def offline_answer(question: str, on_step=None) -> str:
         lines.append("")
         for s in I.cross_company_signals()[:3]:
             lines.append(f"- {s}")
-    for c in hits[:3] if len(hits) <= 3 else []:
+    for c in (hits if "swot" in q else (hits[:3] if len(hits) <= 3 else [])):
         if on_step:
             on_step(2, "get_insights", {"company": c["id"]})
         ins = I.company_insights(c["id"])
@@ -347,6 +347,10 @@ def offline_answer(question: str, on_step=None) -> str:
         if any(w in q for w in ("problem", "consult", "opportun", "fix", "issue")):
             lines.append("**Top problem statements**")
             lines += [f"{i}. **{p['title']}** — {p['answer']}" for i, p in enumerate(c["problems"], 1)]
+        if "swot" in q or "strength" in q or "threat" in q:
+            lines.append("**SWOT**")
+            for key, lab in [("strengths", "Strengths"), ("weaknesses", "Weaknesses"), ("opportunities", "Opportunities"), ("threats", "Threats")]:
+                lines.append(f"*{lab}:* " + "; ".join(c["swot"][key]))
         if "news" in q:
             lines.append("**Recent news**")
             lines += [f"- {n['date']}: {n['title']}" for n in c["news"][:4]]

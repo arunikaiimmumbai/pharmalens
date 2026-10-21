@@ -37,6 +37,30 @@ DIGITAL_USE_CASES = {
 }
 
 
+SWOT_STYLE = {
+    "strengths": ("S", "Strengths", "#0F9D58", "#F1FAF5"),
+    "weaknesses": ("W", "Weaknesses", "#C62828", "#FDF3F3"),
+    "opportunities": ("O", "Opportunities", "#1D4ED8", "#F2F6FF"),
+    "threats": ("T", "Threats", "#B45309", "#FFF8EE"),
+}
+
+
+def _swot_box(key: str, items: list[str], compact: bool = False) -> str:
+    letter, title, edge, tint = SWOT_STYLE[key]
+    size = ".8rem" if compact else ".9rem"
+    lis = "".join(f"<li style='margin:3px 0'>{i}</li>" for i in items)
+    return (f'<div style="background:{tint};border:1px solid #DCE6F5;border-left:5px solid {edge};border-radius:12px;'
+            f'padding:10px 12px;height:100%;color:#0F1B33">'
+            f'<div style="font-weight:800;color:{edge};font-size:{"0.85rem" if compact else "1rem"}">{letter} · {title}</div>'
+            f'<ul style="margin:4px 0 0 0;padding-left:18px;font-size:{size};color:#0F1B33">{lis}</ul></div>')
+
+
+def swot_grid(c: dict, compact: bool = False) -> str:
+    sw = c["swot"]
+    cells = "".join(_swot_box(k, sw[k], compact) for k in ("strengths", "weaknesses", "opportunities", "threats"))
+    return f'<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">{cells}</div>'
+
+
 def _service_matrix() -> pd.DataFrame:
     rows = {}
     for c in D.companies():
@@ -53,8 +77,8 @@ def _service_matrix() -> pd.DataFrame:
 
 
 def render():
-    T.hero("Strategy Room", "What is working, what is not, the five problems worth a consulting engagement — and the digital journey that unlocks them.",
-           ["Salient features", "Top-5 problem statements", "Consulting opportunity map", "Digitisation roadmap"])
+    T.hero("Strategy Room", "What is working, what is not, a SWOT for each company, the five problems worth a consulting engagement — and the digital journey that unlocks them.",
+           ["Salient features", "SWOT", "Top-5 problem statements", "Consulting opportunity map", "Digitisation roadmap"])
     cid = focus_picker("strat_pick")
     c = D.company(cid)
 
@@ -62,6 +86,18 @@ def render():
     a, b = st.columns(2)
     a.markdown(f'<div class="card" style="border-top:4px solid {T.GOOD}"><h4>✅ What is working</h4>{bullets(c["working"], "list-good")}</div>', unsafe_allow_html=True)
     b.markdown(f'<div class="card" style="border-top:4px solid {T.BAD}"><h4>⛔ What is not working</h4>{bullets(c["not_working"], "list-bad")}</div>', unsafe_allow_html=True)
+
+    T.section(f"{c['short']} · SWOT analysis", "internal strengths & weaknesses · external opportunities & threats")
+    st.markdown(swot_grid(c), unsafe_allow_html=True)
+    with st.expander("Compare SWOT across all six companies"):
+        cols = st.columns(2)
+        for i, cc in enumerate(D.companies()):
+            cols[i % 2].markdown(
+                f'<div style="background:#FFFFFF;border:1px solid #DCE6F5;border-top:4px solid {cc["color"]};border-radius:14px;'
+                f'padding:12px;margin-bottom:12px"><div style="font-weight:800;color:#0A2A66;margin-bottom:8px">{cc["short"]}</div>'
+                f'{swot_grid(cc, compact=True)}</div>', unsafe_allow_html=True)
+        st.caption("Strengths and weaknesses are internal (financials, operations); opportunities and threats are external "
+                   "(markets, regulators, policy). Every point traces to the KPI tables, filings or news on the other pages.")
 
     T.section("Top-5 problem statements", "evidence → hypothesis / answer → what to investigate next")
     for i, p in enumerate(c["problems"], 1):

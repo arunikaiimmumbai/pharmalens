@@ -12,9 +12,14 @@ DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "companies.json"
 
 
 @st.cache_data(show_spinner=False)
-def load_raw() -> dict:
+def _load_raw_cached(mtime: float) -> dict:
     with open(DATA_PATH, encoding="utf-8") as f:
         return json.load(f)
+
+
+def load_raw() -> dict:
+    """Re-reads companies.json whenever the file changes (e.g. after a GitHub update)."""
+    return _load_raw_cached(DATA_PATH.stat().st_mtime)
 
 
 def meta() -> dict:
@@ -56,8 +61,12 @@ def _safe_div(a, b):
     return out
 
 
-@st.cache_data(show_spinner=False)
 def financial_frame(cid: str) -> pd.DataFrame:
+    return _financial_frame(cid, DATA_PATH.stat().st_mtime)
+
+
+@st.cache_data(show_spinner=False)
+def _financial_frame(cid: str, mtime: float) -> pd.DataFrame:
     """Year-indexed frame of raw lines + derived ratios for one company."""
     c = company(cid)
     f = c["financials"]
@@ -144,8 +153,12 @@ US_KEYS = ("US formulations", "US generics", "US", "North America")
 INDIA_KEYS = ("India branded", "India", "Domestic formulations", "Domestic Rx (ex-CH)", "Consumer healthcare")
 
 
-@st.cache_data(show_spinner=False)
 def kpi_table(year: str = "FY26") -> pd.DataFrame:
+    return _kpi_table(year, DATA_PATH.stat().st_mtime)
+
+
+@st.cache_data(show_spinner=False)
+def _kpi_table(year: str, mtime: float) -> pd.DataFrame:
     """One row per company, one column per KPI (latest year unless stated)."""
     rows = []
     yrs = years()
@@ -179,8 +192,12 @@ def kpi_table(year: str = "FY26") -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("Company")
 
 
-@st.cache_data(show_spinner=False)
 def panel(metric: str) -> pd.DataFrame:
+    return _panel(metric, DATA_PATH.stat().st_mtime)
+
+
+@st.cache_data(show_spinner=False)
+def _panel(metric: str, mtime: float) -> pd.DataFrame:
     """Years × companies for a single metric (time-series comparisons)."""
     out = {}
     for c in companies():
