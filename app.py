@@ -39,7 +39,7 @@ nav = st.navigation(pages, position="sidebar")
 with st.sidebar:
     st.markdown("---")
     ids = [None] + list(D.names().keys())
-    st.selectbox("Focus company", ids, format_func=lambda x: "Select" if x is None else D.names()[x], key="focus",
+    st.selectbox("Focus company", ids, format_func=lambda x: "Select" if x is None else D.names()[x], key="focus", placeholder="Select",
                  help="Pick a company to open the Deep-Dive, P&L Lab and Strategy Room on it. Leave on Select for no focus.")
     st.toggle("Live market & news feeds", value=True, key="live_on",
               help="On: shows live share prices and news headlines. Off: shows only the saved data.")
@@ -53,4 +53,10 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
-nav.run()
+try:
+    nav.run()
+except Exception:  # page reruns use BaseException, so they pass through untouched
+    import traceback
+    traceback.print_exc()  # full detail stays in the server logs
+    st.warning("This page hit a temporary problem. Please refresh the browser. "
+               "If it keeps happening, choose another company or page and come back.")

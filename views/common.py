@@ -17,10 +17,47 @@ def focus_picker(key: str, label: str = "Company") -> str | None:
     if st.session_state.get(seen, "__unset__") != focus:  # sidebar focus changed: follow it
         st.session_state[key] = focus
         st.session_state[seen] = focus
-    cid = st.selectbox(label, ids, format_func=lambda x: "Select" if x is None else D.names()[x], key=key)
+    cid = st.selectbox(label, ids, format_func=lambda x: "Select" if x is None else D.names()[x], key=key, placeholder="Select")
     if cid is None:
-        st.info("Select a company above to see this page.")
+        company_chooser(key)
     return cid
+
+
+def _choose(key: str, cid: str) -> None:
+    st.session_state[key] = cid    # open this page on the company
+    st.session_state.focus = cid   # sidebar follows, so every company page opens on it
+
+
+def company_chooser(key: str) -> None:
+    """Shown when no company is selected: six clickable company cards."""
+    k = D.kpi_table()
+    st.markdown(
+        '<div class="card" style="text-align:center;padding:22px 18px;margin:6px 0 18px 0">'
+        '<div style="font-size:1.25rem;font-weight:800;color:#0A2A66">Choose a company to open this page</div>'
+        '<div class="muted" style="margin-top:6px">Click a card below, use the drop-down above, '
+        'or set the Focus company in the sidebar so every page opens on it.</div></div>',
+        unsafe_allow_html=True)
+    cols = st.columns(3)
+    for i, c in enumerate(D.companies()):
+        r = k.loc[c["short"]]
+        star = "*" if any("licensing" in n for n in c.get("data_notes", [])) else ""
+        with cols[i % 3]:
+            st.markdown(
+                f'<div class="card" style="border-top:5px solid {c["color"]};margin-bottom:8px;min-height:200px">'
+                f'<div style="font-size:1.1rem;font-weight:800;color:#0A2A66">{c["short"]}</div>'
+                f'<div class="muted" style="font-size:.84rem;min-height:40px">{c["tagline"]}</div>'
+                f'<div style="display:flex;gap:16px;margin-top:10px">'
+                f'<div><div class="muted" style="font-size:.72rem">FY26 revenue</div>'
+                f'<div style="font-weight:700;color:#0A2A66">₹{r["sales"]/1000:,.1f}k Cr</div></div>'
+                f'<div><div class="muted" style="font-size:.72rem">EBITDA margin</div>'
+                f'<div style="font-weight:700;color:#0A2A66">{r["ebitda_margin"]:.1f}%</div></div>'
+                f'<div><div class="muted" style="font-size:.72rem">ROCE</div>'
+                f'<div style="font-weight:700;color:#0A2A66">{r["roce"]:.0f}%{star}</div></div></div>'
+                + (f'<div class="muted" style="font-size:.72rem;margin-top:6px">*includes one-off licensing income</div>' if star else "")
+                + '</div>',
+                unsafe_allow_html=True)
+            st.button(f"Open {c['short']}", key=f"choose_{key}_{c['id']}", on_click=_choose, args=(key, c["id"]),
+                      use_container_width=True)
 
 
 def multi_line(panel: pd.DataFrame, title: str, ysuffix: str = "", height: int = 360, highlight: str | None = None) -> go.Figure:

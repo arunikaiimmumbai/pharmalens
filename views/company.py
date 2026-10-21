@@ -29,8 +29,12 @@ def _treemap(d: dict, title: str):
 
 
 def render():
+    top = st.container()
     cid = focus_picker("company_pick")
     if cid is None:
+        with top:
+            T.hero("Company Deep-Dive", "Everything about one company on one page: profile, geography, plants, R&D, therapies, news and insights.",
+                   ["6 companies", "Profile", "Footprint", "News", "Insights"])
         T.footer(D.meta())
         return
     c = D.company(cid)
@@ -38,8 +42,9 @@ def render():
     k = D.kpi_table().loc[c["short"]]
     p, m, fp, rg = c["profile"], c["market"], c["footprint"], c["regulatory"]
 
-    T.hero(c["name"], c["tagline"], [f"NSE: {c['ticker'].replace('.NS', '')}", f"HQ: {p['hq']}", f"Founded {p['founded']}",
-                                     f"M-cap ₹{m['mcap_cr']:,.0f} Cr", f"P/E {m['pe']}x"])
+    with top:
+        T.hero(c["name"], c["tagline"], [f"NSE: {c['ticker'].replace('.NS', '')}", f"HQ: {p['hq']}", f"Founded {p['founded']}",
+                                         f"M-cap ₹{m['mcap_cr']:,.0f} Cr", f"P/E {m['pe']}x"])
     yoy = df["sales_growth"].iloc[-1]
     T.kpi_row([
         T.kpi_card("FY26 revenue", f"₹{df['sales'].iloc[-1]/1000:,.1f}k Cr", f"{yoy:+.1f}% YoY", "up" if yoy > 0 else "down"),
