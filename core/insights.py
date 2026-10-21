@@ -1,7 +1,7 @@
 """Deterministic insight engine: always-on analyst layer (works with or without an LLM key).
 
 Generates Growth / Opportunity / Risk statements from the numbers, benchmarked to the peer median,
-and a composite PharmaLens score. The LLM agent uses these as grounded facts.
+and a composite Pha-inance Lens score. The LLM agent uses these as grounded facts.
 """
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ def pillar_scores() -> pd.DataFrame:
     out = pd.DataFrame(index=k.index)
     for p, (metrics, _) in PILLARS.items():
         out[p] = D.score_matrix(k, metrics).mean(axis=1)
-    out["PharmaLens score"] = sum(out[p] * w for p, (_, w) in PILLARS.items())
+    out["Pha-inance Lens score"] = sum(out[p] * w for p, (_, w) in PILLARS.items())
     return out.round(0)
 
 

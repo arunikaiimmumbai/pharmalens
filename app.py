@@ -1,10 +1,10 @@
-"""PharmaLens.ai: agentic intelligence dashboard for Indian mid-cap pharma.
+"""Pha-inance Lens: agentic intelligence dashboard for Indian mid-cap pharma.
 
 Run locally:  streamlit run app.py
 """
 import streamlit as st
 
-st.set_page_config(page_title="PharmaLens.ai · Pharma Intelligence", page_icon="🧬", layout="wide",
+st.set_page_config(page_title="Pha-inance Lens · Pharma Intelligence", page_icon="🧬", layout="wide",
                    initial_sidebar_state="expanded")
 
 from core import data as D  # noqa: E402
@@ -17,7 +17,7 @@ T.register_plotly_template()
 meta = D.meta()
 
 if "focus" not in st.session_state:
-    st.session_state.focus = "alkem"
+    st.session_state.focus = None
 
 from pathlib import Path  # noqa: E402
 
@@ -38,8 +38,9 @@ nav = st.navigation(pages, position="sidebar")
 
 with st.sidebar:
     st.markdown("---")
-    ids = list(D.names().keys())
-    st.selectbox("Focus company", ids, format_func=lambda x: D.names()[x], key="focus")
+    ids = [None] + list(D.names().keys())
+    st.selectbox("Focus company", ids, format_func=lambda x: "Select" if x is None else D.names()[x], key="focus",
+                 help="Pick a company to open the Deep-Dive, P&L Lab and Strategy Room on it. Leave on Select for no focus.")
     st.toggle("Live market & news feeds", value=True, key="live_on",
               help="On: shows live share prices and news headlines. Off: shows only the saved data.")
     with st.expander("🔑 AI settings"):

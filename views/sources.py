@@ -32,7 +32,7 @@ def render():
 - **Cost lines** (material, employee, manufacturing, other) from Screener cost schedules (% of sales); ₹ values derived = % × revenue. *Indirect* = manufacturing + other.
 - **CAGR** = 4-year compound growth FY22→FY26. **Cost growth vs revenue growth** = how fast a cost grew each year divided by how fast revenue grew (above 1 = cost growing faster).
 - **Correlations:** within-company (n = 5 years) are directional only; pooled (30 company-years) are more robust but mix structural differences.
-- **PharmaLens score:** min–max normalised KPIs (0–100) within the peer set, averaged per pillar, weighted Growth 25 / Profitability 25 / Returns 20 / Cash 15 / Balance sheet 15.
+- **Pha-inance Lens score:** min–max normalised KPIs (0–100) within the peer set, averaged per pillar, weighted Growth 25 / Profitability 25 / Returns 20 / Cash 15 / Balance sheet 15.
 - **Sentiment:** curated items hand-scored (+1/0/−1); live headlines scored with a pharma-specific lexicon (e.g. "OAI", "warning letter" negative; "approval", "EIR" positive).
 - **Share price reaction:** the 'extra move' is the share's change minus the Nifty Pharma index's change, from the day before the news to three trading days after.
 - **Digital maturity** and **therapy weights** are my estimates from public information. Check them with management interviews and IQVIA data.

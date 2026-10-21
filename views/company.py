@@ -30,6 +30,9 @@ def _treemap(d: dict, title: str):
 
 def render():
     cid = focus_picker("company_pick")
+    if cid is None:
+        T.footer(D.meta())
+        return
     c = D.company(cid)
     df = D.financial_frame(cid)
     k = D.kpi_table().loc[c["short"]]
@@ -42,7 +45,7 @@ def render():
         T.kpi_card("FY26 revenue", f"₹{df['sales'].iloc[-1]/1000:,.1f}k Cr", f"{yoy:+.1f}% YoY", "up" if yoy > 0 else "down"),
         T.kpi_card("EBITDA margin", f"{df['ebitda_margin'].iloc[-1]:.1f}%", f"{df['ebitda_margin'].iloc[-1]-df['ebitda_margin'].iloc[0]:+.1f} pts vs FY22", "up" if df['ebitda_margin'].iloc[-1] >= df['ebitda_margin'].iloc[0] else "down"),
         T.kpi_card("ROCE", f"{df['roce'].iloc[-1]:.0f}%", f"ROE {df['roe'].iloc[-1]:.1f}%", "flat"),
-        T.kpi_card("5-yr revenue CAGR", f"{k['sales_cagr']:.1f}%", f"PAT CAGR {k['pat_cagr']:.1f}%", "up"),
+        T.kpi_card("Revenue CAGR FY22 to FY26", f"{k['sales_cagr']:.1f}%", f"PAT CAGR {k['pat_cagr']:.1f}%", "up"),
         T.kpi_card("Cash cycle", f"{df['ccc'].iloc[-1]:.0f} d", f"Inventory {df['inventory_days'].iloc[-1]:.0f} d", "down" if df['ccc'].iloc[-1] > 200 else "flat"),
         T.kpi_card("Debt / equity", f"{df['de_ratio'].iloc[-1]:.2f}x", f"Borrowings ₹{df['borrowings'].iloc[-1]:,.0f} Cr", "flat"),
     ])

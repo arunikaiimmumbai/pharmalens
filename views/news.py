@@ -67,7 +67,7 @@ def render():
             st.info("Live feeds are switched off in the sidebar.")
         else:
             pick = st.selectbox("Company", [c["id"] for c in D.companies()], format_func=lambda x: D.names()[x], key="live_news_pick",
-                                index=[c["id"] for c in D.companies()].index(st.session_state.get("focus", "alkem")))
+                                index=next((i for i, c in enumerate(D.companies()) if c["id"] == st.session_state.get("focus")), 0))
             with st.spinner("Scanning Google News…"):
                 live, err = L.fetch_news(D.company(pick)["name"], days=180, limit=40)
             if err:

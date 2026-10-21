@@ -217,5 +217,5 @@ def style_fig(fig: go.Figure, height: int = 380, title: str | None = None) -> go
 
 def logo_html(meta: dict) -> str:
     return f"""<div style="display:flex;align-items:center;gap:10px;padding:6px 4px 14px 4px">{LOGO_SVG}
-    <div><div style="font-weight:800;font-size:1.15rem;letter-spacing:-.01em">PharmaLens<span style="color:#06B6D4">.ai</span></div>
+    <div><div style="font-weight:800;font-size:1.15rem;letter-spacing:-.01em">Pha-inance<span style="color:#06B6D4"> Lens</span></div>
     <div style="font-size:.72rem;opacity:.8">Agentic pharma intelligence</div></div></div>"""

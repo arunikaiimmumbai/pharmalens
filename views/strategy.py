@@ -80,6 +80,9 @@ def render():
     T.hero("Strategy Room", "What is working, what is not, a SWOT for each company, the five problems a consultant could solve, and the digital roadmap.",
            ["Salient features", "SWOT", "Top-5 problem statements", "Consulting opportunity map", "Digitisation roadmap"])
     cid = focus_picker("strat_pick")
+    if cid is None:
+        T.footer(D.meta())
+        return
     c = D.company(cid)
 
     T.section(f"{c['short']} · salient features")

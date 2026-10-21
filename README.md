@@ -1,4 +1,4 @@
-# PharmaLens.ai — Agentic Pharma Intelligence
+# Pha-inance Lens: Agentic Pharma Intelligence
 
 Live, interactive intelligence dashboard + AI analyst for six Indian pharma companies:
 **Alembic · Ajanta · Ipca · Mankind · Alkem · Glenmark** (consolidated, FY22–FY26 + Q1 FY27).
@@ -8,7 +8,7 @@ Prepared by **Arunika Sherry** · IIM Mumbai Mentorship Program · Mentor: **Dr.
 ## What's inside
 | Page | What it does |
 |---|---|
-| 🧬 Command Center | Portfolio KPIs, live market pulse, positioning map, PharmaLens scorecard, key insights, news pulse |
+| 🧬 Command Center | Portfolio KPIs, live market pulse, positioning map, Pha-inance Lens scorecard, key insights, news pulse |
 | 🏢 Company Deep-Dive | Profile, market / geographic / manufacturing / R&D / therapy footprints, 6-month news, insights |
 | 📊 P&L Lab | P&L bridge, common-size P&L, 5-yr trends, CAGR table, cost elasticity, correlation matrix, pooled explorer |
 | ⚖️ Ratio Benchmark | 33-KPI master table (best/worst highlighted), radar, KPI spotlight, 5-yr ratio trends, DuPont |
@@ -46,7 +46,7 @@ Edit it in GitHub → commit → the app redeploys automatically. Each quarter: 
 ```
 app.py                 navigation + sidebar
 core/data.py           data loader + ratio/KPI engine (CAGR, ROE, elasticity, correlations)
-core/insights.py       rule-based growth/opportunity/risk engine + PharmaLens score
+core/insights.py       rule-based growth/opportunity/risk engine + Pha-inance Lens score
 core/live.py           yfinance prices, Google News RSS, sentiment, event study
 core/agent.py          AI agent (free Gemini / Groq, optional Claude) with 10 tools + offline analyst
 core/theme.py          white/blue pharma design system (CSS, Plotly template, SVG motifs)

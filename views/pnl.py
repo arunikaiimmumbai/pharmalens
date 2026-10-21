@@ -46,6 +46,9 @@ def render():
     T.hero("P&L Lab", "Where every rupee of revenue goes over five years, which costs are growing too fast, "
            "and which numbers move together.", ["Revenue, EBITDA, profit", "Cost growth check", "Which numbers move together", "Growth per year by line"])
     cid = focus_picker("pnl_pick")
+    if cid is None:
+        T.footer(D.meta())
+        return
     c = D.company(cid)
     df = D.financial_frame(cid)
     name = c["short"]

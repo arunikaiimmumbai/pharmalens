@@ -9,10 +9,17 @@ from core import data as D
 from core import theme as T
 
 
-def focus_picker(key: str, label: str = "Company") -> str:
-    ids = list(D.names().keys())
-    idx = ids.index(st.session_state.get("focus", ids[0]))
-    cid = st.selectbox(label, ids, index=idx, format_func=lambda x: D.names()[x], key=key)
+def focus_picker(key: str, label: str = "Company") -> str | None:
+    """Company picker that follows the sidebar focus. Returns None while 'Select' is chosen."""
+    ids = [None] + list(D.names().keys())
+    focus = st.session_state.get("focus")
+    seen = f"_{key}_seen_focus"
+    if st.session_state.get(seen, "__unset__") != focus:  # sidebar focus changed: follow it
+        st.session_state[key] = focus
+        st.session_state[seen] = focus
+    cid = st.selectbox(label, ids, format_func=lambda x: "Select" if x is None else D.names()[x], key=key)
+    if cid is None:
+        st.info("Select a company above to see this page.")
     return cid
 
 
