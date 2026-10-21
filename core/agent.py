@@ -20,7 +20,7 @@ from core import live as L
 
 DEFAULT_MODEL = "claude-sonnet-5-5"
 
-SYSTEM_PROMPT = """You are Pha-inance Lens, a senior strategy consultant (MBB / Big-4 strategy practice) specialising in Indian pharma.
+SYSTEM_PROMPT = """You are a financial analyst and senior strategy consultant (MBB / Big-4 strategy practice) specialising in Indian pharma.
 You analyse six listed companies: Alembic, Ajanta, Ipca, Mankind, Alkem, Glenmark (consolidated, FY22–FY26 + Q1 FY27; INR crore).
 
 How you work:
@@ -46,7 +46,7 @@ TOOLS = [
      "input_schema": {"type": "object", "properties": {"metrics": {"type": "array", "items": {"type": "string"}}, "year": {"type": "string", "default": "FY26"}}, "required": ["metrics"]}},
     {"name": "correlate", "description": "Pearson correlation between two metrics. With a company: across its 5 years. Without: pooled 30 company-years. Also returns cost elasticity when x='sales'.",
      "input_schema": {"type": "object", "properties": {"x": {"type": "string"}, "y": {"type": "string"}, "company": {"type": "string"}}, "required": ["x", "y"]}},
-    {"name": "get_insights", "description": "Rule-based growth / opportunity / risk insights vs peer median and Pha-inance Lens pillar scores for one company.",
+    {"name": "get_insights", "description": "Rule-based growth / opportunity / risk insights vs peer median and financial pillar scores for one company.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
     {"name": "get_news", "description": "Curated last-6-month news for a company (with KPI tags & impact) plus optional live Google News headlines. Use company='sector' for sector/policy news.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "live": {"type": "boolean", "default": True}}, "required": ["company"]}},

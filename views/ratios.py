@@ -69,7 +69,7 @@ def render():
     st.dataframe(styled, hide_index=True, use_container_width=True, height=560,
                  column_order=["Group", "KPI"] + comps + ["Median"])
     st.download_button("⬇️ Download KPI table (CSV)", tbl.drop(columns=["_hib", "_m"]).to_csv(index=False).encode(),
-                       file_name=f"phainance_lens_kpis_{year}.csv", mime="text/csv")
+                       file_name=f"financial_kpis_{year}.csv", mime="text/csv")
 
     a, b = st.columns([1, 1.15])
     with a:

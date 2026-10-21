@@ -23,7 +23,7 @@ def render():
     k = D.kpi_table()
     scores = I.pillar_scores()
     T.hero(
-        "Indian Mid-cap Pharma · Command Center",
+        "Command Center",
         "Six companies, five years, one lens. Live market & news signals correlated with consolidated financials, "
         "regulatory pipelines and strategy, all in one place.",
         [f'<span class="pulse"></span> Live feeds {"on" if st.session_state.get("live_on", True) else "off"}',
@@ -86,16 +86,16 @@ def render():
                           xaxis_range=[k["sales_cagr"].min() - 2.5, k["sales_cagr"].max() + 2.5])
         st.plotly_chart(T.style_fig(fig, 430), use_container_width=True)
     with right:
-        T.section("Pha-inance Lens scorecard", "0 to 100, where 100 is best of the six")
-        sc = scores.sort_values("Pha-inance Lens score", ascending=False)
-        z = sc.drop(columns="Pha-inance Lens score").rename(columns={"Cash & working capital": "Cash &<br>WC", "Balance sheet": "Balance<br>sheet", "Profitability": "Profit-<br>ability"})
+        T.section("Financial scorecard", "0 to 100, where 100 is best of the six")
+        sc = scores.sort_values("Financial score", ascending=False)
+        z = sc.drop(columns="Financial score").rename(columns={"Cash & working capital": "Cash &<br>WC", "Balance sheet": "Balance<br>sheet", "Profitability": "Profit-<br>ability"})
         fig = go.Figure(go.Heatmap(
             z=z.values, x=z.columns, y=z.index, colorscale=[[0, "#EFF5FF"], [0.5, "#5B8FF5"], [1, "#0A2A66"]],
             text=z.values.astype(int), texttemplate="%{text}", textfont=dict(size=13), showscale=False, xgap=3, ygap=3,
             hovertemplate="%{y} · %{x}: %{z:.0f}/100<extra></extra>"))
         fig.update_layout(yaxis=dict(autorange="reversed"), xaxis=dict(side="top", tickangle=0, tickfont=dict(size=11)), margin=dict(t=70), hovermode="closest")
         st.plotly_chart(T.style_fig(fig, 300), use_container_width=True)
-        st.markdown(" ".join(T.pill(f"{n}: {int(v)}") for n, v in sc["Pha-inance Lens score"].items()), unsafe_allow_html=True)
+        st.markdown(" ".join(T.pill(f"{n}: {int(v)}") for n, v in sc["Financial score"].items()), unsafe_allow_html=True)
         st.caption("Each column is scored 0 to 100 against the other five companies. The overall score weights them: growth 25%, "
                    "profitability 25%, returns 20%, cash 15%, debt and balance sheet 15%.")
 

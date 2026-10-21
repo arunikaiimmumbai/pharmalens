@@ -69,5 +69,5 @@ def render():
         st.rerun()
     if st.session_state.chat:
         transcript = "\n\n".join(f"**{m['role'].upper()}**: {m['content']}" for m in st.session_state.chat)
-        c2.download_button("⬇️ Download transcript (.md)", transcript.encode(), "phainance_lens_analyst.md", "text/markdown")
+        c2.download_button("⬇️ Download transcript (.md)", transcript.encode(), "financial_analyst_chat.md", "text/markdown")
     T.footer(D.meta())
