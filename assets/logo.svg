@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="48" viewBox="0 0 240 48">
+<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs>
+<path d="M24 3 L43 14 L43 34 L24 45 L5 34 L5 14 Z" fill="url(#lg)"/>
+<g stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M16 15 C 22 21, 26 27, 32 33"/><path d="M32 15 C 26 21, 22 27, 16 33"/><path d="M18 19 H30" opacity=".7"/><path d="M18 29 H30" opacity=".7"/></g>
+<circle cx="24" cy="24" r="2.6" fill="#0A2A66"/>
+<text x="54" y="27" font-family="Plus Jakarta Sans, Segoe UI, Arial" font-size="21" font-weight="800" fill="#FFFFFF">PharmaLens<tspan fill="#5EEAD4">.ai</tspan></text>
+<text x="55" y="41" font-family="Plus Jakarta Sans, Segoe UI, Arial" font-size="10" fill="#C9DCFF">Agentic pharma intelligence</text></svg>
