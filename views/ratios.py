@@ -104,7 +104,7 @@ def render():
     col, suf = trend_opts[t]
     st.plotly_chart(multi_line(D.panel(col), f"{t} · FY22–26", suf, 400), use_container_width=True)
 
-    T.section("DuPont lens", "return on equity = profit margin × asset use × borrowing")
+    T.section("Why ROE differs (DuPont)", "return on equity = profit margin × asset use × borrowing")
     rows = []
     for comp in comps:
         df = D.financial_frame(D.company(next(c["id"] for c in D.companies() if c["short"] == comp))["id"]).loc[year]

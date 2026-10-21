@@ -147,18 +147,18 @@ def cross_company_signals() -> list[str]:
     s.append(f"Return dispersion is wide: {best_roce} earns {k.loc[best_roce, 'roce']:.0f}% ROCE vs {worst_roce} at "
              f"{k.loc[worst_roce, 'roce']:.0f}%. Decomposed, it is mostly margin (EBIT margin {m_b:.0f}% vs {m_w:.0f}%) rather than capital turnover "
              f"({t_b:.2f}x vs {t_w:.2f}x), though {worst_roce}'s margin is itself held down by R&D and under-loaded new capacity "
-             f"(Glenmark's {k.loc['Glenmark', 'roce']:.0f}% is one-off licensing-inflated).")
+             f"(Glenmark's {k.loc['Glenmark', 'roce']:.0f}% is lifted by one-off licensing income).")
 
     def _strength(r):
         a = abs(r)
         return "strong" if a >= 0.6 else "moderate" if a >= 0.3 else "weak"
 
     _, r_inv = D.pooled_correlation("inventory_days", "roce")
-    s.append(f"Across 30 company-years, inventory days vs ROCE: r = {r_inv:+.2f} ({_strength(r_inv)}). "
+    s.append(f"Across 30 company-years, inventory days vs ROCE, link strength {r_inv:+.2f} ({_strength(r_inv)}). "
              + ("high-inventory models systematically earn lower returns." if r_inv <= -0.3 else
-                "inventory alone doesn't explain returns; it matters most where it is extreme (Alembic 462 d, Ipca 353 d)."))
+                "Inventory alone doesn't explain returns; it matters most where it is extreme (Alembic 462 d, Ipca 353 d)."))
     _, r_cc = D.pooled_correlation("ccc", "roce")
-    s.append(f"Cash conversion cycle vs ROCE: r = {r_cc:+.2f} ({_strength(r_cc)}). Employee cost % rose for all six FY22–26 "
+    s.append(f"Cash cycle vs ROCE, link strength {r_cc:+.2f} ({_strength(r_cc)}). Employee cost % rose for all six FY22–26 "
              f"(+{(D.panel('employee_pct').iloc[-1] - D.panel('employee_pct').iloc[0]).mean():.1f} points on average). The key FY27 question is whether revenue can grow faster than costs.")
     us_heavy = k[k["us_share"] >= 25].index.tolist()
     s.append(f"US-heavy names ({', '.join(us_heavy)}) carry the generics-tariff option risk (Jul-2026 proposal); domestic-heavy names (Mankind, Alkem) carry IPM price/volume risk instead.")
@@ -166,5 +166,5 @@ def cross_company_signals() -> list[str]:
     drop = (mat.iloc[0] - mat.iloc[-1]).sort_values(ascending=False)
     n_fell = int((drop > 0).sum())
     s.append(f"Material cost/sales fell at {n_fell} of {len(drop)} companies FY22–26 (largest: {drop.index[0]} −{drop.iloc[0]:.1f} points). "
-             f"the FY27 risk is reversal from API/solvent inflation flagged on Q1 calls.")
+             f"The FY27 risk is that this reverses, as API and solvent prices rise (flagged on Q1 calls).")
     return s

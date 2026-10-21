@@ -44,7 +44,7 @@ def _common_size(df: pd.DataFrame, name: str):
 
 def render():
     T.hero("P&L Lab", "Where every rupee of revenue goes over five years, which costs are growing too fast, "
-           "and which cost lines move together.", ["Turnover · EBITDA · PAT", "Cost elasticity", "Correlation matrix", "CAGR league table"])
+           "and which numbers move together.", ["Revenue, EBITDA, profit", "Cost growth check", "Which numbers move together", "Growth per year by line"])
     cid = focus_picker("pnl_pick")
     c = D.company(cid)
     df = D.financial_frame(cid)
@@ -75,11 +75,11 @@ def render():
         })
         tbl["CAGR %"] = ((tbl["FY26"] / tbl["FY22"]).clip(lower=0) ** 0.25 - 1) * 100
         tbl.loc[(tbl["FY22"] <= 0) | (tbl["FY26"] <= 0), "CAGR %"] = np.nan
-        st.markdown("**4-year CAGR by line (FY22→FY26)**")
+        st.markdown("**Growth per year by line, FY22 to FY26 (CAGR)**")
         st.dataframe(tbl.style.format({"FY22": "{:,.0f}", "FY26": "{:,.0f}", "CAGR %": "{:.1f}%"})
                      .background_gradient(subset=["CAGR %"], cmap="Blues"), hide_index=True, use_container_width=True)
 
-    T.section("Cost elasticity", "cost growth ÷ revenue growth (above 1.0 means the cost is growing faster than sales)")
+    T.section("Cost growth check", "cost growth ÷ revenue growth (above 1.0 means the cost is growing faster than sales)")
     el = D.cost_elasticity(cid)
     c1, c2 = st.columns([1, 1])
     with c1:
@@ -97,7 +97,7 @@ def render():
         st.caption("How to read this: for every extra ₹100 of revenue since FY22, how much extra was spent on each cost. "
                    "Red bars are costs growing faster than revenue. That is where profit margin is being lost.")
 
-    T.section("Correlation matrix", "which numbers moved together, FY22–26 (blue = together, orange = opposite)")
+    T.section("Which numbers move together", "for this company, FY22–26 (blue = together, orange = opposite)")
     cols = ["sales", "employee_cost", "material_cost", "indirect_cost", "ebitda_margin", "employee_pct", "inventory_days", "roce", "borrowings"]
     labels = ["Revenue", "Employee ₹", "Material ₹", "Indirect ₹", "EBITDA %", "Employee %", "Inventory d", "ROCE", "Borrowings"]
     cm = D.correlation_matrix(cid, cols)
@@ -107,7 +107,7 @@ def render():
     c1, c2 = st.columns([1.2, 1])
     c1.plotly_chart(T.style_fig(fig, 460), use_container_width=True)
     with c2:
-        T.section("Pooled relationship explorer", "all six companies × five years = 30 data points")
+        T.section("Test any two numbers", "all six companies × five years = 30 data points")
         opts = {"Employee cost %": "employee_pct", "Material cost %": "material_pct", "Indirect cost %": "indirect_pct",
                 "Inventory days": "inventory_days", "Cash conversion cycle": "ccc", "EBITDA margin": "ebitda_margin",
                 "ROCE": "roce", "ROE": "roe", "Revenue growth %": "sales_growth", "Employee cost growth %": "employee_growth",
