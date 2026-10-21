@@ -90,17 +90,17 @@ def render():
             <div style="font-size:.9rem">{fp['rnd']}</div></div>""", unsafe_allow_html=True)
         st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
         st.markdown(f"""<div class="card"><h4>🧪 Regulatory snapshot ({rg['as_of']})</h4>
-            {T.pill(f"ANDAs filed: {rg['anda_filed'] or 'n.d.'}")}{T.pill(f"Approved: {rg['anda_approved'] or 'n.d.'}", 'good')}
-            {T.pill(f"Pending: {rg['anda_pending'] or 'n.d.'}", 'warn')}{T.pill(f"US products: {rg['us_products_commercialised'] or 'n.d.'}")}
-            {T.pill(f"US DMFs: {rg['dmf_us'] or 'n.d.'}")}
+            {T.pill(f"ANDAs filed: {rg['anda_filed'] or 'not published'}")}{T.pill(f"Approved: {rg['anda_approved'] or 'not published'}", 'good')}
+            {T.pill(f"Pending: {rg['anda_pending'] or 'not published'}", 'warn')}{T.pill(f"US products: {rg['us_products_commercialised'] or 'not published'}")}
+            {T.pill(f"US DMFs: {rg['dmf_us'] or 'not published'}")}
             <div style="font-size:.9rem;margin-top:8px">{rg['status']}</div></div>""", unsafe_allow_html=True)
 
     with tabs[3]:
         a, b = st.columns([1.3, 1])
         a.plotly_chart(_treemap(fp["therapies"], "Therapy footprint (indicative weights)"), use_container_width=True)
         b.markdown(f"""<div class="card"><h4>💊 How to read this</h4><div style="font-size:.88rem">{fp['therapies_basis']}.</div>
-            <div class="muted" style="margin-top:8px">Therapy weights are outside-in estimates from disclosed IQVIA ranks/shares and segment data;
-            validate with IQVIA MAT for client work.</div></div>""", unsafe_allow_html=True)
+            <div class="muted" style="margin-top:8px">These shares are my estimates from public information, not company figures.
+            They would need checking against IQVIA sales data before use with a client.</div></div>""", unsafe_allow_html=True)
 
     with tabs[4]:
         for n in sorted(c["news"], key=lambda x: x["date"], reverse=True):

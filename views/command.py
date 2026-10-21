@@ -33,7 +33,7 @@ def render():
     tot_sales = k["sales"].sum()
     tot_mcap = k["mcap_cr"].sum()
     T.kpi_row([
-        T.kpi_card("Combined FY26 revenue", f"₹{tot_sales/1000:,.1f}k Cr", f"{np.average(k['sales_cagr'], weights=k['sales']):.1f}% wtd CAGR", "up"),
+        T.kpi_card("Combined FY26 revenue", f"₹{tot_sales/1000:,.1f}k Cr", f"growing {np.average(k['sales_cagr'], weights=k['sales']):.1f}% a year", "up"),
         T.kpi_card("Combined market cap", f"₹{tot_mcap/100000:,.2f} L Cr", f"P/E median {k['pe'].median():.1f}x", "flat"),
         T.kpi_card("Median EBITDA margin", f"{k['ebitda_margin'].median():.1f}%", f"range {k['ebitda_margin'].min():.0f}–{k['ebitda_margin'].max():.0f}%", "flat"),
         T.kpi_card("Median ROCE", f"{k['roce'].median():.0f}%", f"{k['roce'].idxmax()} {k['roce'].max():.0f}% best", "up", ("*incl. one-off licensing income" if k['roce'].idxmax() == "Glenmark" else "")),
@@ -42,7 +42,7 @@ def render():
 
     # ── Live ticker / momentum ──────────────────────────────────────────────
     px = _live_strip()
-    T.section("Market pulse", "6-month total return vs Nifty Pharma" if px is not None else "curated snapshot (live feed unavailable)")
+    T.section("Market pulse", "share price change over the last 6 months" if px is not None else "latest saved prices (live prices not available right now)")
     cols = st.columns(6)
     for col, c in zip(cols, D.companies()):
         m = c["market"]
@@ -96,7 +96,8 @@ def render():
         fig.update_layout(yaxis=dict(autorange="reversed"), xaxis=dict(side="top", tickangle=0, tickfont=dict(size=11)), margin=dict(t=70), hovermode="closest")
         st.plotly_chart(T.style_fig(fig, 300), use_container_width=True)
         st.markdown(" ".join(T.pill(f"{n}: {int(v)}") for n, v in sc["PharmaLens score"].items()), unsafe_allow_html=True)
-        st.caption("Pillars: Growth 25% · Profitability 25% · Returns 20% · Cash & WC 15% · Balance sheet 15%.")
+        st.caption("Each column is scored 0 to 100 against the other five companies. The overall score weights them: growth 25%, "
+                   "profitability 25%, returns 20%, cash 15%, debt and balance sheet 15%.")
 
     # ── Key insights ────────────────────────────────────────────────────
     T.section("Key insights", "auto-generated from the numbers")

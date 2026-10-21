@@ -96,8 +96,8 @@ def render():
                 f'<div style="background:#FFFFFF;border:1px solid #DCE6F5;border-top:4px solid {cc["color"]};border-radius:14px;'
                 f'padding:12px;margin-bottom:12px"><div style="font-weight:800;color:#0A2A66;margin-bottom:8px">{cc["short"]}</div>'
                 f'{swot_grid(cc, compact=True)}</div>', unsafe_allow_html=True)
-        st.caption("Strengths and weaknesses are internal (financials, operations); opportunities and threats are external "
-                   "(markets, regulators, policy). Every point traces to the KPI tables, filings or news on the other pages.")
+        st.caption("Strengths and weaknesses are about the company itself (its numbers and operations). Opportunities and threats "
+                   "come from outside (markets, regulators, government policy). Every point is backed by a number or news item on the other pages.")
 
     T.section("Top-5 problem statements", "the evidence, the likely fix, and what to check next")
     for i, p in enumerate(c["problems"], 1):
@@ -115,7 +115,8 @@ def render():
                                hovertemplate="%{y} · %{x}: %{z}<extra></extra>"))
     fig.update_layout(xaxis=dict(side="top", tickangle=-20), yaxis=dict(autorange="reversed"), hovermode="closest")
     st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
-    st.caption("Cells = number of top-5 problems mapped to that service line; Digital column = maturity gap (5 − average maturity score).")
+    st.caption("How to read this: each number shows how many of a company's five problems need that kind of consulting help. "
+               "In the Digital column, a bigger number means the company is further behind on digital tools.")
     cols = st.columns(6)
     for col, cc in zip(cols, D.companies()):
         col.markdown(f'<div class="card" style="border-top:4px solid {cc["color"]}"><h4>{cc["short"]}</h4>'

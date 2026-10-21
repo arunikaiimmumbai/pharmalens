@@ -56,8 +56,8 @@ def render():
         st.plotly_chart(_waterfall(df, yr, name), use_container_width=True)
     with b:
         st.plotly_chart(_common_size(df, name), use_container_width=True)
-        st.caption("'Other op. items (net)' reconciles reported total expenses to the cost schedules (inventory changes, "
-                   "reclassifications; negative where one-off income, such as Glenmark's FY26 licensing income, sits in revenue).")
+        st.caption("'Other op. items (net)' is a small balancing figure so the costs add up to the company's reported total. "
+                   "It is negative for Glenmark FY26 because one-off licensing income is counted in revenue.")
 
     T.section("Five-year trajectory", "revenue, EBITDA and PAT · ₹ Cr")
     fig = go.Figure()
@@ -83,19 +83,19 @@ def render():
     el = D.cost_elasticity(cid)
     c1, c2 = st.columns([1, 1])
     with c1:
-        e = el.dropna(subset=["Elasticity vs revenue"])
-        colors = ["#C62828" if v > 1.05 else "#0F9D58" if v < 0.95 else "#7A8AA6" for v in e["Elasticity vs revenue"]]
-        fig = go.Figure(go.Bar(y=e["Cost line"], x=e["Elasticity vs revenue"], orientation="h", marker_color=colors, marker_cornerradius=6,
-                               text=[f"{v:.2f}x" for v in e["Elasticity vs revenue"]], textposition="outside",
+        e = el.dropna(subset=["Cost growth vs revenue growth"])
+        colors = ["#C62828" if v > 1.05 else "#0F9D58" if v < 0.95 else "#7A8AA6" for v in e["Cost growth vs revenue growth"]]
+        fig = go.Figure(go.Bar(y=e["Cost line"], x=e["Cost growth vs revenue growth"], orientation="h", marker_color=colors, marker_cornerradius=6,
+                               text=[f"{v:.2f}x" for v in e["Cost growth vs revenue growth"]], textposition="outside",
                                hovertemplate="%{y}: %{x:.2f}x revenue growth<extra></extra>"))
         fig.add_vline(x=1, line_dash="dot", line_color=T.NAVY, annotation_text="grows with revenue", annotation_font_color=T.MUTED)
-        fig.update_layout(title=f"{name} · cost CAGR ÷ revenue CAGR", hovermode="closest", yaxis=dict(autorange="reversed"))
+        fig.update_layout(title=f"{name} · how fast each cost grew compared with revenue (1.0 = same pace)", hovermode="closest", yaxis=dict(autorange="reversed"))
         st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
     with c2:
-        st.dataframe(el.style.format({"Δ cost (₹ Cr)": "{:,.0f}", "Δ cost per ₹100 Δ revenue": "{:.1f}", "Cost CAGR %": "{:.1f}%",
-                                      "Elasticity vs revenue": "{:.2f}x"}, na_rep="n/a"), hide_index=True, use_container_width=True)
-        st.caption("Reads as: for every ₹100 of incremental revenue since FY22, how many rupees went to each cost line. "
-                   "Red bars are costs growing faster than revenue. That is where margin is being lost.")
+        st.dataframe(el.style.format({"Extra cost since FY22 (₹ Cr)": "{:,.0f}", "Extra cost per ₹100 of extra revenue": "{:.1f}", "Cost growth per year %": "{:.1f}%",
+                                      "Cost growth vs revenue growth": "{:.2f}x"}, na_rep="n/a"), hide_index=True, use_container_width=True)
+        st.caption("How to read this: for every extra ₹100 of revenue since FY22, how much extra was spent on each cost. "
+                   "Red bars are costs growing faster than revenue. That is where profit margin is being lost.")
 
     T.section("Correlation matrix", "which numbers moved together, FY22–26 (blue = together, orange = opposite)")
     cols = ["sales", "employee_cost", "material_cost", "indirect_cost", "ebitda_margin", "employee_pct", "inventory_days", "roce", "borrowings"]
@@ -103,7 +103,7 @@ def render():
     cm = D.correlation_matrix(cid, cols)
     fig = go.Figure(go.Heatmap(z=cm.values, x=labels, y=labels, zmin=-1, zmax=1, colorscale=T.DIVERGING, xgap=2, ygap=2,
                                text=np.round(cm.values, 2), texttemplate="%{text}", hovertemplate="%{y} × %{x}: r = %{z:.2f}<extra></extra>"))
-    fig.update_layout(title=f"{name} · Pearson r (n = 5 years, directional)", yaxis=dict(autorange="reversed"), hovermode="closest")
+    fig.update_layout(title=f"{name} · do these numbers move together? (+1 = together, −1 = opposite; 5 years only)", yaxis=dict(autorange="reversed"), hovermode="closest")
     c1, c2 = st.columns([1.2, 1])
     c1.plotly_chart(T.style_fig(fig, 460), use_container_width=True)
     with c2:
@@ -125,7 +125,7 @@ def render():
             m, b0 = np.polyfit(pdf[opts[x]], pdf[opts[y]], 1)
             xs = np.linspace(pdf[opts[x]].min(), pdf[opts[x]].max(), 20)
             fig.add_trace(go.Scatter(x=xs, y=m * xs + b0, mode="lines", name="trend", line=dict(color=T.MUTED, dash="dot", width=2), hoverinfo="skip"))
-        fig.update_layout(title=f"r = {r:+.2f}", xaxis_title=x, yaxis_title=y, hovermode="closest")
+        fig.update_layout(title=f"Link strength {r:+.2f}  (+1 = move together, 0 = no link, −1 = opposite)", xaxis_title=x, yaxis_title=y, hovermode="closest")
         st.plotly_chart(T.style_fig(fig, 330), use_container_width=True)
 
     T.section("Peer trend comparison", "pick a metric")
@@ -146,7 +146,7 @@ def render():
                          hovertemplate="EBITDA ₹%{y:,} Cr<extra></extra>"))
     fig.add_trace(go.Bar(x=D.meta()["quarters"], y=q["pat"], name="PAT", marker_color="#06B6D4", marker_cornerradius=4,
                          hovertemplate="PAT ₹%{y:,} Cr<extra></extra>"))
-    fig.update_layout(barmode="group", title=f"{name} · quarterly P&L (₹ Cr) · OPM: " + " → ".join(f"{v}%" for v in q["opm"]))
+    fig.update_layout(barmode="group", title=f"{name} · quarterly P&L (₹ Cr) · operating margin: " + " → ".join(f"{v}%" for v in q["opm"]))
     st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
     if c.get("data_notes"):
         st.info("Data notes: " + " ".join(c["data_notes"]))

@@ -30,11 +30,11 @@ def render():
 - **Basis:** consolidated, March year-end. FY26 = year ended 31-Mar-2026; Q1 FY27 = Apr–Jun 2026. ₹ crore.
 - **EBITDA** = operating profit before other income (Screener definition). **ROCE** as reported by Screener; **ROE** = PAT ÷ average net worth.
 - **Cost lines** (material, employee, manufacturing, other) from Screener cost schedules (% of sales); ₹ values derived = % × revenue. *Indirect* = manufacturing + other.
-- **CAGR** = 4-year compound growth FY22→FY26. **Cost elasticity** = cost CAGR ÷ revenue CAGR.
+- **CAGR** = 4-year compound growth FY22→FY26. **Cost growth vs revenue growth** = how fast a cost grew each year divided by how fast revenue grew (above 1 = cost growing faster).
 - **Correlations:** within-company (n = 5 years) are directional only; pooled (30 company-years) are more robust but mix structural differences.
 - **PharmaLens score:** min–max normalised KPIs (0–100) within the peer set, averaged per pillar, weighted Growth 25 / Profitability 25 / Returns 20 / Cash 15 / Balance sheet 15.
 - **Sentiment:** curated items hand-scored (+1/0/−1); live headlines scored with a pharma-specific lexicon (e.g. "OAI", "warning letter" negative; "approval", "EIR" positive).
-- **Event study:** abnormal return = stock − Nifty Pharma from t−1 to t+3 trading days.
+- **Share price reaction:** the 'extra move' is the share's change minus the Nifty Pharma index's change, from the day before the news to three trading days after.
 - **Digital maturity** and **therapy weights** are my estimates from public information. Check them with management interviews and IQVIA data.
 """)
 

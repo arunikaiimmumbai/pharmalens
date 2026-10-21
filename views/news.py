@@ -15,7 +15,7 @@ def render():
     nd = D.all_news()
     nd = nd[nd["date"] >= pd.Timestamp("2026-04-19")]
 
-    T.section("Signal timeline", "Apr → Oct 2026 · colour = sentiment")
+    T.section("Signal timeline", "Apr → Oct 2026 · green = good news, red = bad news")
     sent_col = {1: T.GOOD, 0: "#94A3B8", -1: T.BAD}
     sent_sym = {1: "triangle-up", 0: "circle", -1: "triangle-down"}
     fig = go.Figure()
@@ -73,7 +73,7 @@ def render():
             if err:
                 st.warning(f"{err} Showing the curated news only.")
             else:
-                st.caption(f"{len(live)} headlines · lexicon sentiment & auto-category · refreshed every 30 min")
+                st.caption(f"{len(live)} headlines. Positive/negative is judged from keywords in the headline. Updates every 30 minutes.")
                 for _, r in live.iterrows():
                     d = r.to_dict()
                     d["impact"] = d.get("source", "")
@@ -84,7 +84,7 @@ def render():
         c = D.company(pick)
         px, err = L.fetch_prices((c["ticker"],), "1y") if st.session_state.get("live_on", True) else (pd.DataFrame(), "Live feeds off")
         if px.empty:
-            st.warning(f"Price history unavailable ({err}). Deploy with internet access (e.g. Streamlit Cloud) to enable the event study.")
+            st.warning("Share price history is not available right now, so this chart can't be shown. Try again in a few minutes.")
         else:
             ev = nd[nd["id"] == pick]
             s = px[c["ticker"]].dropna()
@@ -98,10 +98,12 @@ def render():
             st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
             es = L.event_study(px, c["ticker"], ev, window=3)
             if es.empty:
-                st.info("Not enough trading days around events yet.")
+                st.info("These news items are too recent to measure the share price reaction yet.")
             else:
-                st.dataframe(es.style.format({"stock_ret_%": "{:+.1f}%", "bench_ret_%": "{:+.1f}%", "abnormal_%": "{:+.1f}%"}),
+                st.dataframe(es.rename(columns={"date": "Date", "title": "News", "sentiment": "Good/bad (+1/−1)", "stock_ret_%": "Share move", "bench_ret_%": "Pharma index move", "abnormal_%": "Extra move"})
+                             .style.format({"Share move": "{:+.1f}%", "Pharma index move": "{:+.1f}%", "Extra move": "{:+.1f}%"}),
                              hide_index=True, use_container_width=True)
                 hit = (es["sentiment"] * es["abnormal_%"] > 0).mean() * 100
-                st.caption(f"Abnormal return = stock − Nifty Pharma, t−1 → t+3 trading days. Sentiment direction matched price reaction in {hit:.0f}% of events.")
+                st.caption(f"'Extra move' = how much the share moved beyond the pharma index, from the day before the news to three trading days after. "
+                           f"The share moved in the direction the news suggested {hit:.0f}% of the time.")
     T.footer(D.meta())

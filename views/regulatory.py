@@ -44,7 +44,7 @@ def render():
                                  hovertemplate=f"{lab}: %{{y}}<extra></extra>"))
         fig.update_layout(barmode="group", title="ANDA filed / approved / pending & US products")
         st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
-        st.caption("n.d. = not disclosed by the company in a comparable form (Ipca, Mankind report launches/filings rather than cumulative ANDAs).")
+        st.caption("Ipca and Mankind don't publish their total number of US filings, so they have no bars here. That means 'not published', not zero.")
     with b:
         T.section("R&D intensity vs EBITDA margin", "does higher R&D spend mean higher margin?")
         cmap = D.colors()
@@ -54,7 +54,7 @@ def render():
                                      marker=dict(size=10 + r["US share %"] * 0.9, color=cmap[r["Company"]], line=dict(color="#fff", width=2)),
                                      name=r["Company"], hovertemplate=f"{r['Company']}<br>R&D %{{x:.1f}}%<br>EBITDA %{{y:.1f}}%<br>US share {r['US share %']:.0f}%<extra></extra>"))
         rr = rdf["R&D %"].corr(rdf["EBITDA %"])
-        fig.update_layout(title=f"Bubble = US revenue share · r = {rr:+.2f}", xaxis_title="R&D % of sales", yaxis_title="EBITDA margin FY26 %",
+        fig.update_layout(title=f"Bigger bubble = more US revenue · link between R&D and margin: {rr:+.2f}", xaxis_title="R&D % of sales", yaxis_title="EBITDA margin FY26 %",
                           showlegend=False, hovermode="closest")
         st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
 
@@ -62,7 +62,7 @@ def render():
     st.markdown(f"""<div class="card"><ul style="margin:0;padding-left:18px;font-size:.92rem">
     <li><b>Approvals ≠ revenue.</b> Alembic has the deepest book (244 approvals, 185 marketed) → ~₹3,100 Cr annualised US revenue (Q1 FY27 ×4); Ajanta earns ~₹1,950 Cr annualised
     from ~51 products, about 2.3x more revenue per product. Picking products with few competitors beats filing more of them.</li>
-    <li><b>R&D intensity is inversely related to margin today</b> (r = {rr:+.2f}): Alembic (9% R&D) and Glenmark (6–7%) carry the heaviest pipelines;
+    <li><b>Companies spending more on R&D have lower margins today</b> (link strength {rr:+.2f}): Alembic (9% R&D) and Glenmark (6–7%) carry the heaviest pipelines;
     the payoff is visible in US growth (Alembic US +49%, Glenmark NA +41% in Q1 FY27) but not yet in margin.</li>
     <li><b>Compliance is a revenue variable.</b> Alkem's Daman OAI (Aug-2026) covers ~45% of its US sales and coincided with a US guidance cut and a 52-week low;
     Glenmark's Goa warning-letter closeout (Sep-2026) and Monroe VAI remove overhangs ahead of 2–3 respiratory approvals.</li>

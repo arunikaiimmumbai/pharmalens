@@ -242,10 +242,10 @@ def cost_elasticity(cid: str) -> pd.DataFrame:
         g_sales = _cagr(df["sales"].iloc[0], df["sales"].iloc[-1], len(df) - 1)
         rows.append({
             "Cost line": lab,
-            "Δ cost (₹ Cr)": d,
-            "Δ cost per ₹100 Δ revenue": d / d_sales * 100 if d_sales else np.nan,
-            "Cost CAGR %": g_cost * 100,
-            "Elasticity vs revenue": (g_cost / g_sales) if g_sales else np.nan,
+            "Extra cost since FY22 (₹ Cr)": d,
+            "Extra cost per ₹100 of extra revenue": d / d_sales * 100 if d_sales else np.nan,
+            "Cost growth per year %": g_cost * 100,
+            "Cost growth vs revenue growth": (g_cost / g_sales) if g_sales else np.nan,
         })
     return pd.DataFrame(rows)
 

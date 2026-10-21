@@ -41,7 +41,7 @@ with st.sidebar:
     ids = list(D.names().keys())
     st.selectbox("Focus company", ids, format_func=lambda x: D.names()[x], key="focus")
     st.toggle("Live market & news feeds", value=True, key="live_on",
-              help="Pulls prices from Yahoo Finance and headlines from Google News. Off = curated data only.")
+              help="On: shows live share prices and news headlines. Off: shows only the saved data from 19 Oct 2026.")
     with st.expander("🔑 AI settings"):
         st.text_input("Free Gemini API key (optional)", type="password", key="user_api_key",
                       help="Get one free at aistudio.google.com. Better: store it in Streamlit Secrets as GEMINI_API_KEY. "

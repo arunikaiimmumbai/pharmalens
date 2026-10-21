@@ -113,5 +113,5 @@ def render():
                      "Equity multiplier x": lev, "ROE % (DuPont)": df["pat_margin"] * df["asset_turnover"] * lev})
     st.dataframe(pd.DataFrame(rows).style.format({"PAT margin %": "{:.1f}", "Asset turnover x": "{:.2f}", "Equity multiplier x": "{:.2f}",
                                                   "ROE % (DuPont)": "{:.1f}"}), hide_index=True, use_container_width=True)
-    st.caption("ROE here uses year-end equity (DuPont identity); the KPI table uses average equity, so values differ slightly.")
+    st.caption("This table uses shareholders' funds at year end, while the main table uses the average across the year, so the numbers differ slightly.")
     T.footer(D.meta())
