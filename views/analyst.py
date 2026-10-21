@@ -1,4 +1,4 @@
-"""AI Analyst — agentic chat (Claude tool-use) with visible reasoning trace."""
+"""AI Analyst: agentic chat (Claude tool-use) with visible reasoning trace."""
 import streamlit as st
 
 from core import agent as A
@@ -6,7 +6,7 @@ from core import data as D
 from core import theme as T
 
 SUGGESTIONS = [
-    "Compare ROCE, cash conversion and inventory days across all six — who has the biggest working-capital opportunity?",
+    "Compare ROCE, cash conversion and inventory days across all six. Who could free up the most cash?",
     "Why did Alkem's PAT fall in Q1 FY27 despite 11% revenue growth? Link it to news and the Daman OAI.",
     "Build the investment thesis risks for Mankind post-BSV and the ACTx CAR-T deal.",
     "Correlate employee cost growth with revenue growth for Ajanta and tell me if operating leverage is breaking.",
@@ -24,7 +24,7 @@ def _trace(step, tool, args):
 
 def render():
     T.hero("AI Analyst", "An agent that plans, pulls the right data (financials, ratios, correlations, live news, prices, scenarios) "
-           "and writes a partner-ready answer — with its tool trace visible.",
+           "and writes a clear answer. You can see every step it takes.",
            ['<span class="pulse"></span> Agent online' if A.get_api_key() else "Offline analyst mode (add a free Gemini key)",
             f"Engine: {A.provider_label()} · {A.get_model() if A.get_api_key() else 'rule-based'}", "10 tools"])
 

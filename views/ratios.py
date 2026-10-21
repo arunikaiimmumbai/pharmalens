@@ -1,4 +1,4 @@
-"""Ratio Benchmark — every KPI, ranked, scored and trended."""
+"""Ratio Benchmark: every KPI, ranked, scored and trended."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -22,7 +22,7 @@ GROUPS = {
 
 
 def render():
-    T.hero("Ratio Benchmark", "All ratios side by side — ranked against peers, normalised into a scorecard and trended over five years.",
+    T.hero("Ratio Benchmark", "Every ratio side by side, ranked against the other five companies and shown over five years.",
            ["33 KPIs", "Peer median & rank", "Radar comparison", "5-year trends"])
     year = st.radio("Financial year", D.years(), index=4, horizontal=True, key="ratio_year")
     k = D.kpi_table(year)
@@ -73,7 +73,7 @@ def render():
 
     a, b = st.columns([1, 1.15])
     with a:
-        T.section("Radar comparison", "0–100 normalised (100 = best)")
+        T.section("Radar comparison", "scored 0 to 100, where 100 is best of the six")
         sel = st.multiselect("Companies", comps, default=comps[:3], key="radar_sel")
         rm = ["sales_cagr", "ebitda_margin", "roce", "roe", "cfo_pat", "ccc", "inventory_days", "de_ratio", "employee_pct"]
         sc = D.score_matrix(k, rm)
@@ -104,7 +104,7 @@ def render():
     col, suf = trend_opts[t]
     st.plotly_chart(multi_line(D.panel(col), f"{t} · FY22–26", suf, 400), use_container_width=True)
 
-    T.section("DuPont lens", "ROE = margin × asset turn × leverage")
+    T.section("DuPont lens", "return on equity = profit margin × asset use × borrowing")
     rows = []
     for comp in comps:
         df = D.financial_frame(D.company(next(c["id"] for c in D.companies() if c["short"] == comp))["id"]).loc[year]

@@ -13,7 +13,7 @@ def render():
 
     T.section("Data sources")
     for s in meta["sources"]:
-        link = f' — <a href="{s["url"]}" target="_blank">{s["url"]}</a>' if s["url"] else ""
+        link = f': <a href="{s["url"]}" target="_blank">{s["url"]}</a>' if s["url"] else ""
         st.markdown(f"- {s['name']}{link}", unsafe_allow_html=True)
     st.markdown("- Live layer: Yahoo Finance (via `yfinance`) for prices & Nifty Pharma; Google News RSS for headlines (refreshed every 15–30 min).")
 
@@ -35,7 +35,7 @@ def render():
 - **PharmaLens score:** min–max normalised KPIs (0–100) within the peer set, averaged per pillar, weighted Growth 25 / Profitability 25 / Returns 20 / Cash 15 / Balance sheet 15.
 - **Sentiment:** curated items hand-scored (+1/0/−1); live headlines scored with a pharma-specific lexicon (e.g. "OAI", "warning letter" negative; "approval", "EIR" positive).
 - **Event study:** abnormal return = stock − Nifty Pharma from t−1 to t+3 trading days.
-- **Digital maturity** and **therapy weights** are outside-in hypotheses from public disclosures — validate via management interviews / IQVIA.
+- **Digital maturity** and **therapy weights** are my estimates from public information. Check them with management interviews and IQVIA data.
 """)
 
     T.section("Data caveats")

@@ -1,4 +1,4 @@
-"""P&L Lab — five-year profitability, cost structure, CAGR and correlation analysis."""
+"""P&L Lab: five-year profitability, cost structure, CAGR and correlation analysis."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -43,7 +43,7 @@ def _common_size(df: pd.DataFrame, name: str):
 
 
 def render():
-    T.hero("P&L Lab", "Five-year profitability anatomy: where every rupee of revenue goes, how costs scale with growth, "
+    T.hero("P&L Lab", "Where every rupee of revenue goes over five years, which costs are growing too fast, "
            "and which cost lines move together.", ["Turnover · EBITDA · PAT", "Cost elasticity", "Correlation matrix", "CAGR league table"])
     cid = focus_picker("pnl_pick")
     c = D.company(cid)
@@ -57,7 +57,7 @@ def render():
     with b:
         st.plotly_chart(_common_size(df, name), use_container_width=True)
         st.caption("'Other op. items (net)' reconciles reported total expenses to the cost schedules (inventory changes, "
-                   "reclassifications; negative where one-off operating income — e.g. Glenmark FY26 licensing — sits in revenue).")
+                   "reclassifications; negative where one-off income, such as Glenmark's FY26 licensing income, sits in revenue).")
 
     T.section("Five-year trajectory", "revenue, EBITDA and PAT · ₹ Cr")
     fig = go.Figure()
@@ -79,7 +79,7 @@ def render():
         st.dataframe(tbl.style.format({"FY22": "{:,.0f}", "FY26": "{:,.0f}", "CAGR %": "{:.1f}%"})
                      .background_gradient(subset=["CAGR %"], cmap="Blues"), hide_index=True, use_container_width=True)
 
-    T.section("Cost elasticity", "how fast each cost line grew relative to revenue (>1.0 = cost outgrowing revenue)")
+    T.section("Cost elasticity", "cost growth ÷ revenue growth (above 1.0 means the cost is growing faster than sales)")
     el = D.cost_elasticity(cid)
     c1, c2 = st.columns([1, 1])
     with c1:
@@ -93,11 +93,11 @@ def render():
         st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
     with c2:
         st.dataframe(el.style.format({"Δ cost (₹ Cr)": "{:,.0f}", "Δ cost per ₹100 Δ revenue": "{:.1f}", "Cost CAGR %": "{:.1f}%",
-                                      "Elasticity vs revenue": "{:.2f}x"}, na_rep="—"), hide_index=True, use_container_width=True)
+                                      "Elasticity vs revenue": "{:.2f}x"}, na_rep="n/a"), hide_index=True, use_container_width=True)
         st.caption("Reads as: for every ₹100 of incremental revenue since FY22, how many rupees went to each cost line. "
-                   "Red bars are cost lines outgrowing revenue — the first place to look for margin leakage.")
+                   "Red bars are costs growing faster than revenue. That is where margin is being lost.")
 
-    T.section("Correlation matrix", "co-movement of revenue, cost lines and returns across FY22–26")
+    T.section("Correlation matrix", "which numbers moved together, FY22–26 (blue = together, orange = opposite)")
     cols = ["sales", "employee_cost", "material_cost", "indirect_cost", "ebitda_margin", "employee_pct", "inventory_days", "roce", "borrowings"]
     labels = ["Revenue", "Employee ₹", "Material ₹", "Indirect ₹", "EBITDA %", "Employee %", "Inventory d", "ROCE", "Borrowings"]
     cm = D.correlation_matrix(cid, cols)
@@ -107,7 +107,7 @@ def render():
     c1, c2 = st.columns([1.2, 1])
     c1.plotly_chart(T.style_fig(fig, 460), use_container_width=True)
     with c2:
-        T.section("Pooled relationship explorer", "30 company-years")
+        T.section("Pooled relationship explorer", "all six companies × five years = 30 data points")
         opts = {"Employee cost %": "employee_pct", "Material cost %": "material_pct", "Indirect cost %": "indirect_pct",
                 "Inventory days": "inventory_days", "Cash conversion cycle": "ccc", "EBITDA margin": "ebitda_margin",
                 "ROCE": "roce", "ROE": "roe", "Revenue growth %": "sales_growth", "Employee cost growth %": "employee_growth",

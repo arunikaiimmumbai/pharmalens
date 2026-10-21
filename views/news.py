@@ -1,4 +1,4 @@
-"""News & Signals — curated + live news, correlated with KPIs and share-price reaction."""
+"""News & Signals: curated + live news, correlated with KPIs and share-price reaction."""
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -10,7 +10,7 @@ from views.common import news_html
 
 
 def render():
-    T.hero("News & Signals", "Last six months of financial, regulatory, M&A and policy news — tagged to the KPIs they move, "
+    T.hero("News & Signals", "Six months of financial, regulatory, deal and policy news. Each item is linked to the numbers it affects, "
            "scored for sentiment and tested against share-price reaction.", ["Curated + live Google News", "KPI tagging", "Event study vs Nifty Pharma"])
     nd = D.all_news()
     nd = nd[nd["date"] >= pd.Timestamp("2026-04-19")]
@@ -71,7 +71,7 @@ def render():
             with st.spinner("Scanning Google News…"):
                 live, err = L.fetch_news(D.company(pick)["name"], days=180, limit=40)
             if err:
-                st.warning(f"{err} — showing curated feed only.")
+                st.warning(f"{err} Showing the curated news only.")
             else:
                 st.caption(f"{len(live)} headlines · lexicon sentiment & auto-category · refreshed every 30 min")
                 for _, r in live.iterrows():

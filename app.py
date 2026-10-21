@@ -1,4 +1,4 @@
-"""PharmaLens.ai — agentic intelligence dashboard for Indian mid-cap pharma.
+"""PharmaLens.ai: agentic intelligence dashboard for Indian mid-cap pharma.
 
 Run locally:  streamlit run app.py
 """

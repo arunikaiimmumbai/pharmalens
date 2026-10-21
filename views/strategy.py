@@ -1,4 +1,4 @@
-"""Strategy Room — salient features, top-5 problem statements, consulting opportunities, digital journey."""
+"""Strategy Room: salient features, top-5 problem statements, consulting opportunities, digital journey."""
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -77,7 +77,7 @@ def _service_matrix() -> pd.DataFrame:
 
 
 def render():
-    T.hero("Strategy Room", "What is working, what is not, a SWOT for each company, the five problems worth a consulting engagement — and the digital journey that unlocks them.",
+    T.hero("Strategy Room", "What is working, what is not, a SWOT for each company, the five problems a consultant could solve, and the digital roadmap.",
            ["Salient features", "SWOT", "Top-5 problem statements", "Consulting opportunity map", "Digitisation roadmap"])
     cid = focus_picker("strat_pick")
     c = D.company(cid)
@@ -99,7 +99,7 @@ def render():
         st.caption("Strengths and weaknesses are internal (financials, operations); opportunities and threats are external "
                    "(markets, regulators, policy). Every point traces to the KPI tables, filings or news on the other pages.")
 
-    T.section("Top-5 problem statements", "evidence → hypothesis / answer → what to investigate next")
+    T.section("Top-5 problem statements", "the evidence, the likely fix, and what to check next")
     for i, p in enumerate(c["problems"], 1):
         with st.container():
             st.markdown(f"""<div class="problem"><div class="n">{i}</div><h5>{p['title']}</h5>
@@ -108,7 +108,7 @@ def render():
             <div class="row"><b>Investigate further:</b> {p['investigate']}</div>
             <div class="row">{T.pill(p['service'])}</div></div>""", unsafe_allow_html=True)
 
-    T.section("Consulting opportunity map", "intensity of need by service line · all six companies")
+    T.section("Consulting opportunity map", "where each company most needs help, by type of consulting work")
     m = _service_matrix()
     fig = go.Figure(go.Heatmap(z=m.values, x=m.columns, y=m.index, colorscale=[[0, "#F5F8FF"], [0.5, "#5B8FF5"], [1, "#0A2A66"]],
                                xgap=3, ygap=3, text=m.values, texttemplate="%{text}", showscale=False,
@@ -121,7 +121,7 @@ def render():
         col.markdown(f'<div class="card" style="border-top:4px solid {cc["color"]}"><h4>{cc["short"]}</h4>'
                      + "".join(T.pill(x) for x in cc["consulting"]) + "</div>", unsafe_allow_html=True)
 
-    T.section("Journey of digitisation", "outside-in maturity (1 = nascent, 5 = leading) — hypothesis to validate in interviews")
+    T.section("Journey of digitisation", "estimated from public information (1 = early, 5 = leading); to be checked in interviews")
     a, b = st.columns([1, 1.2])
     with a:
         dims = list(c["digital"].keys())

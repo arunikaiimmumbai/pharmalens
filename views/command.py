@@ -1,4 +1,4 @@
-"""Command Center — portfolio-level view of the six companies."""
+"""Command Center: portfolio-level view of the six companies."""
 import numpy as np
 import plotly.graph_objects as go
 import streamlit as st
@@ -25,7 +25,7 @@ def render():
     T.hero(
         "Indian Mid-cap Pharma · Command Center",
         "Six companies, five years, one lens. Live market & news signals correlated with consolidated financials, "
-        "regulatory pipelines and strategy — built for a partner-level conversation.",
+        "regulatory pipelines and strategy, all in one place.",
         [f'<span class="pulse"></span> Live feeds {"on" if st.session_state.get("live_on", True) else "off"}',
          "FY22 → FY26 + Q1 FY27", "Consolidated · ₹ Cr", f"As of {meta['as_of']}"],
     )
@@ -65,7 +65,7 @@ def render():
     # ── Positioning map + scorecard ─────────────────────────────────────────
     left, right = st.columns([1.25, 1])
     with left:
-        T.section("Strategic positioning map", "growth × profitability · bubble = market cap")
+        T.section("Strategic positioning map", "growth vs margin · bigger bubble = bigger company")
         cmap = D.colors()
         fig = go.Figure()
         for name, r in k.iterrows():
@@ -78,7 +78,7 @@ def render():
             ))
         fig.add_vline(x=k["sales_cagr"].median(), line_dash="dot", line_color=T.MUTED)
         fig.add_hline(y=k["ebitda_margin"].median(), line_dash="dot", line_color=T.MUTED)
-        for txt, x, y in [("Compounders", 0.98, 0.98), ("Margin-rich, slower", 0.02, 0.98), ("Scale-up, margin-light", 0.98, 0.04), ("Fix-the-base", 0.02, 0.04)]:
+        for txt, x, y in [("Fast growth, high margin", 0.98, 0.98), ("High margin, slower growth", 0.02, 0.98), ("Fast growth, lower margin", 0.98, 0.04), ("Slower growth, lower margin", 0.02, 0.04)]:
             fig.add_annotation(text=txt, xref="paper", yref="paper", x=x, y=y, showarrow=False, font=dict(color=T.MUTED, size=11),
                                xanchor="right" if x > 0.5 else "left")
         fig.update_layout(xaxis_title="Revenue CAGR FY22–26 (%)", yaxis_title="EBITDA margin FY26 (%)", showlegend=False, hovermode="closest",
@@ -86,7 +86,7 @@ def render():
                           xaxis_range=[k["sales_cagr"].min() - 2.5, k["sales_cagr"].max() + 2.5])
         st.plotly_chart(T.style_fig(fig, 430), use_container_width=True)
     with right:
-        T.section("PharmaLens scorecard", "0–100 vs peers; weighted")
+        T.section("PharmaLens scorecard", "0 to 100, where 100 is best of the six")
         sc = scores.sort_values("PharmaLens score", ascending=False)
         z = sc.drop(columns="PharmaLens score").rename(columns={"Cash & working capital": "Cash &<br>WC", "Balance sheet": "Balance<br>sheet", "Profitability": "Profit-<br>ability"})
         fig = go.Figure(go.Heatmap(
@@ -103,11 +103,11 @@ def render():
     st.markdown(f'<div class="card">{bullets(I.cross_company_signals())}</div>', unsafe_allow_html=True)
 
     # ── Growth / opportunity / risk grid ────────────────────────────────────
-    T.section("Growth · Opportunity · Risk radar", "headline signal per company")
+    T.section("Growth · Opportunity · Risk radar", "one line each, per company")
     cols = st.columns(3)
     for i, c in enumerate(D.companies()):
         g = c["working"][0]
-        o = c["problems"][0]["title"] + " — " + c["problems"][0]["evidence"]
+        o = c["problems"][0]["title"] + ". " + c["problems"][0]["evidence"]
         r = c["not_working"][0]
         cols[i % 3].markdown(
             f"""<div class="card" style="margin-bottom:12px;border-top:4px solid {c['color']}">

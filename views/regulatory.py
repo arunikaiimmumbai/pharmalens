@@ -1,4 +1,4 @@
-"""Regulatory & Pipeline — ANDA/DMF engine correlated with US revenue, R&D and plant status."""
+"""Regulatory & Pipeline: ANDA/DMF engine correlated with US revenue, R&D and plant status."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -9,7 +9,7 @@ from core import theme as T
 
 
 def render():
-    T.hero("Regulatory & Pipeline", "ANDA / DMF engines, USFDA site status and how they translate into US revenue, R&D intensity and margins.",
+    T.hero("Regulatory & Pipeline", "US drug filings (ANDAs and DMFs), FDA plant status, and how they link to US revenue, R&D spend and margins.",
            ["ANDA filed · approved · pending", "USFDA status", "R&D productivity", "Correlations"])
     k = D.kpi_table()
     rows = []
@@ -46,7 +46,7 @@ def render():
         st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
         st.caption("n.d. = not disclosed by the company in a comparable form (Ipca, Mankind report launches/filings rather than cumulative ANDAs).")
     with b:
-        T.section("R&D intensity vs EBITDA margin", "is R&D buying margin?")
+        T.section("R&D intensity vs EBITDA margin", "does higher R&D spend mean higher margin?")
         cmap = D.colors()
         fig = go.Figure()
         for _, r in rdf.iterrows():
@@ -58,10 +58,10 @@ def render():
                           showlegend=False, hovermode="closest")
         st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
 
-    T.section("What the regulatory data says", "correlated with internal metrics & news")
+    T.section("What the regulatory data says", "what the filings and news tell us")
     st.markdown(f"""<div class="card"><ul style="margin:0;padding-left:18px;font-size:.92rem">
     <li><b>Approvals ≠ revenue.</b> Alembic has the deepest book (244 approvals, 185 marketed) → ~₹3,100 Cr annualised US revenue (Q1 FY27 ×4); Ajanta earns ~₹1,950 Cr annualised
-    from ~51 products — ~2.3x revenue per marketed product. Portfolio selection (limited-competition) beats volume of filings.</li>
+    from ~51 products, about 2.3x more revenue per product. Picking products with few competitors beats filing more of them.</li>
     <li><b>R&D intensity is inversely related to margin today</b> (r = {rr:+.2f}): Alembic (9% R&D) and Glenmark (6–7%) carry the heaviest pipelines;
     the payoff is visible in US growth (Alembic US +49%, Glenmark NA +41% in Q1 FY27) but not yet in margin.</li>
     <li><b>Compliance is a revenue variable.</b> Alkem's Daman OAI (Aug-2026) covers ~45% of its US sales and coincided with a US guidance cut and a 52-week low;

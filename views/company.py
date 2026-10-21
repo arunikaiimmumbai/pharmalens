@@ -1,4 +1,4 @@
-"""Company Deep-Dive — profile and every footprint lens."""
+"""Company Deep-Dive: profile and every footprint lens."""
 import plotly.graph_objects as go
 import streamlit as st
 
@@ -83,7 +83,7 @@ def render():
     with tabs[2]:
         a, b = st.columns(2)
         a.markdown(f"""<div class="card"><h4>🏭 Manufacturing footprint</h4>
-            <div style="font-size:2rem;font-weight:800;color:#0A2A66;font-family:JetBrains Mono">{fp.get('plants') or '—'} <span style="font-size:.9rem;color:#7A8AA6">sites</span></div>
+            <div style="font-size:2rem;font-weight:800;color:#0A2A66;font-family:JetBrains Mono">{fp.get('plants') or 'n/a'} <span style="font-size:.9rem;color:#7A8AA6">sites</span></div>
             <div style="font-size:.9rem">{fp['manufacturing']}</div></div>""", unsafe_allow_html=True)
         b.markdown(f"""<div class="card"><h4>🔬 R&D footprint</h4>
             <div style="font-size:2rem;font-weight:800;color:#0A2A66;font-family:JetBrains Mono">{fp['rnd_pct']:.1f}% <span style="font-size:.9rem;color:#7A8AA6">of sales</span></div>
@@ -99,7 +99,7 @@ def render():
         a, b = st.columns([1.3, 1])
         a.plotly_chart(_treemap(fp["therapies"], "Therapy footprint (indicative weights)"), use_container_width=True)
         b.markdown(f"""<div class="card"><h4>💊 How to read this</h4><div style="font-size:.88rem">{fp['therapies_basis']}.</div>
-            <div class="muted" style="margin-top:8px">Therapy weights are outside-in estimates from disclosed IQVIA ranks/shares and segment data —
+            <div class="muted" style="margin-top:8px">Therapy weights are outside-in estimates from disclosed IQVIA ranks/shares and segment data;
             validate with IQVIA MAT for client work.</div></div>""", unsafe_allow_html=True)
 
     with tabs[4]:
@@ -110,8 +110,8 @@ def render():
         ins = I.company_insights(cid)
         a, b, cc = st.columns(3)
         a.markdown(f'<div class="card"><h4>📈 Growth</h4>{bullets(ins["growth"], "list-good")}</div>', unsafe_allow_html=True)
-        b.markdown(f'<div class="card"><h4>🎯 Opportunity</h4>{bullets(ins["opportunity"] or ["—"])}</div>', unsafe_allow_html=True)
-        cc.markdown(f'<div class="card"><h4>⚠️ Risk</h4>{bullets(ins["risk"] or ["—"], "list-bad")}</div>', unsafe_allow_html=True)
+        b.markdown(f'<div class="card"><h4>🎯 Opportunity</h4>{bullets(ins["opportunity"] or ["None flagged"])}</div>', unsafe_allow_html=True)
+        cc.markdown(f'<div class="card"><h4>⚠️ Risk</h4>{bullets(ins["risk"] or ["None flagged"], "list-bad")}</div>', unsafe_allow_html=True)
         if c.get("data_notes"):
             st.info("Data notes: " + " ".join(c["data_notes"]))
 

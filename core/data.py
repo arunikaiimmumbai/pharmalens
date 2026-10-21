@@ -39,7 +39,7 @@ def names() -> dict[str, str]:
 
 
 def colors() -> dict[str, str]:
-    """Colour follows the entity (keyed by short name) — never by rank."""
+    """Colour follows the entity (keyed by short name), never by rank."""
     return {c["short"]: c["color"] for c in companies()}
 
 
@@ -281,5 +281,5 @@ def all_news() -> pd.DataFrame:
 
 def fmt(metric: str, v) -> str:
     if v is None or (isinstance(v, float) and np.isnan(v)):
-        return "—"
+        return "n/a"
     return KPI_DEFS.get(metric, ("", "", None, "{:,.1f}"))[3].format(v)

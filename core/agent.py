@@ -1,4 +1,4 @@
-"""PharmaLens agent — LLM tool-use loop (free Gemini by default; Groq or Claude optional) over the curated dataset + live feeds.
+"""PharmaLens agent: LLM tool-use loop (free Gemini by default; Groq or Claude optional) over the curated dataset + live feeds.
 
 The agent plans, calls tools (financials, KPI comparisons, correlations, news, scenarios),
 reads the results and writes a consultant-grade answer. If no API key is configured the
@@ -30,7 +30,9 @@ How you work:
   **Implications / opportunities / risks** → **What to investigate next**. Use compact markdown tables when comparing.
 - Be crisp, partner-ready, hypothesis-driven. Flag data caveats (e.g. Glenmark FY26 includes AbbVie licensing income;
   Mankind consolidates BSV from Oct-2024; Ipca consolidates Unichem from FY24).
-- This is public-information analysis for an academic mentorship project; it is not investment advice — never give buy/sell calls.
+- This is public-information analysis for an academic mentorship project; it is not investment advice, so never give buy/sell calls.
+- Write in plain, simple English that a non-specialist can follow. Explain any technical term in a few words.
+- Never use the em dash character. Use commas, colons or full stops instead.
 """
 
 TOOLS = [
@@ -108,7 +110,7 @@ def run_tool(name: str, args: dict) -> dict:
                 cid = resolve(args["company"])
                 df = D.financial_frame(cid)
                 r = df[x].corr(df[y])
-                out = {"scope": f"{D.company(cid)['short']} FY22–26 (n=5 — directional only)", "r": r,
+                out = {"scope": f"{D.company(cid)['short']} FY22–26 (n=5, directional only)", "r": r,
                        "x": df[x].round(2).tolist(), "y": df[y].round(2).tolist()}
                 if x == "sales":
                     out["cost_elasticity"] = D.cost_elasticity(cid).round(2).to_dict(orient="records")
@@ -226,11 +228,16 @@ def provider_label() -> str:
     return PROVIDERS[prov]["label"] if prov else "offline"
 
 
+def _no_em_dash(text: str) -> str:
+    """House style: no em dashes in anything shown to the user."""
+    return re.sub(r"\s*\u2014\s*", ", ", text or "")
+
+
 def run_agent(messages: list[dict], on_step=None, max_steps: int = 8) -> str:
     """Agentic loop over the configured provider. `messages` = [{role, content}] (strings)."""
     if get_provider() == "anthropic":
-        return _run_anthropic(messages, on_step, max_steps)
-    return _run_openai_compatible(messages, on_step, max_steps)
+        return _no_em_dash(_run_anthropic(messages, on_step, max_steps))
+    return _no_em_dash(_run_openai_compatible(messages, on_step, max_steps))
 
 
 def _gemini_safe(schema: dict) -> dict:
@@ -256,11 +263,11 @@ def friendly_error(e: Exception) -> str:
     low = msg.lower()
     code = getattr(e, "status_code", None)
     if code in (401, 403) or "api key" in low or "permission" in low or "unauthenticated" in low:
-        return "the AI key was rejected — check GEMINI_API_KEY in Streamlit Secrets (no spaces, inside quotes)."
+        return "the AI key was rejected. Check GEMINI_API_KEY in Streamlit Secrets (no spaces, inside quotes)."
     if code == 429 or "quota" in low or "rate" in low or "exhausted" in low:
-        return "the free AI quota is used up for now — wait a minute (or until tomorrow for the daily limit) and ask again."
+        return "the free AI quota is used up for now. Wait a minute (or until tomorrow for the daily limit) and ask again."
     if code == 404 or "not found" in low:
-        return "the AI model name wasn't found — set GEMINI_MODEL in Secrets to a model listed in Google AI Studio."
+        return "the AI model name wasn't found. Set GEMINI_MODEL in Secrets to a model listed in Google AI Studio."
     if code == 400:
         return f"the AI service rejected the request ({msg[:160]})."
     return f"the AI service couldn't be reached ({msg[:160]})."
@@ -314,7 +321,7 @@ def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 
                 on_step(step + 1, tc.function.name, args)
             out = _clean(run_tool(tc.function.name, args))
             convo.append({"role": "tool", "tool_call_id": tc.id, "content": json.dumps(out, default=str)[:24000]})
-    return "I hit the step limit while researching — try narrowing the question."
+    return "I hit the step limit while researching. Try a narrower question."
 
 
 def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 8) -> str:
@@ -341,7 +348,7 @@ def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 8) -> st
                 out = _clean(run_tool(b.name, b.input))
                 results.append({"type": "tool_result", "tool_use_id": b.id, "content": json.dumps(out, default=str)[:24000]})
         convo.append({"role": "user", "content": results})
-    return "I hit the step limit while researching — try narrowing the question."
+    return "I hit the step limit while researching. Try a narrower question."
 
 
 # ── Offline analyst (no API key) ─────────────────────────────────────────────
@@ -375,7 +382,7 @@ def offline_answer(question: str, on_step=None) -> str:
                 lines += [f"- {x}" for x in ins[key][:4]]
         if any(w in q for w in ("problem", "consult", "opportun", "fix", "issue")):
             lines.append("**Top problem statements**")
-            lines += [f"{i}. **{p['title']}** — {p['answer']}" for i, p in enumerate(c["problems"], 1)]
+            lines += [f"{i}. **{p['title']}**: {p['answer']}" for i, p in enumerate(c["problems"], 1)]
         if "swot" in q or "strength" in q or "threat" in q:
             lines.append("**SWOT**")
             for key, lab in [("strengths", "Strengths"), ("weaknesses", "Weaknesses"), ("opportunities", "Opportunities"), ("threats", "Threats")]:

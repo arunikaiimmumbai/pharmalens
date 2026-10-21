@@ -1,6 +1,6 @@
 {
  "meta": {
-  "title": "PharmaLens — Indian Mid-cap Pharma Intelligence",
+  "title": "PharmaLens: Indian Mid-cap Pharma Intelligence",
   "author": "Arunika Sherry",
   "program": "IIM Mumbai Mentorship Program",
   "mentor": "Dr. Phalgun Rudrapatna",
@@ -26,7 +26,7 @@
     "url": "https://www.screener.in/"
    },
    {
-    "name": "NSE/BSE exchange filings — results, press releases, investor presentations, annual reports",
+    "name": "NSE/BSE exchange filings: results, press releases, investor presentations, annual reports",
     "url": "https://www.nseindia.com/companies-listing/corporate-filings-announcements"
    },
    {
@@ -49,7 +49,7 @@
   "sector_news": [
    {
     "date": "2026-10-01",
-    "title": "IPM grows 13.5% in September 2026 (MAT 10.9%); volume +2.9% — growth is price/mix-led",
+    "title": "Indian pharma market grew 13.5% in September 2026 (12-month 10.9%); volume only +2.9%, so growth is coming from price and mix",
     "category": "Market",
     "sentiment": 1,
     "impact": "Supports domestic-heavy names (Mankind, Alkem, Ipca, Ajanta). Volume-light growth = pricing & new launches matter more than reach.",
@@ -108,7 +108,7 @@
     "founded": "1907 (group); pharma entity demerged 2011",
     "hq": "Vadodara, Gujarat",
     "leadership": "Chirayu Amin (Chairman & CEO); Pranav Amin (MD)",
-    "business_model": "Integrated generics — US formulations, ex-US international, India branded formulations (incl. animal health) and API.",
+    "business_model": "Integrated generics: US formulations, international (ex-US), India branded medicines (incl. animal health) and API.",
     "description": "Research-driven integrated pharma company with one of India's largest US ANDA portfolios relative to size. Invested heavily (~₹2,000 Cr+) in new oral-solid oncology, injectables, ophthalmic and derma plants at Karkhadi, Panelav and Jarod to move up the complexity curve; entered US branded specialty via Alembic Therapeutics (Pivya, Feb-2026).",
     "employees_note": "Field force ~5,500–5,800 MRs (India)"
    },
@@ -138,7 +138,7 @@
      "API": 16
     },
     "geography_basis": "Q1 FY27 revenue mix (%)",
-    "manufacturing": "9 facilities. US-facing formulation plants at Panelav, Karkhadi, Jarod (oral solids incl. oncology, injectables, ophthalmics, derma) — all recent USFDA audits successful. API at Panelav & Karkhadi. Indore (India formulations) WHO-certified Apr-2026.",
+    "manufacturing": "9 facilities. US-facing plants at Panelav, Karkhadi and Jarod (tablets and capsules incl. cancer drugs, injectables, eye drops, skin products); all recent USFDA audits successful. API at Panelav and Karkhadi. Indore (India) WHO-certified Apr-2026.",
     "rnd": "R&D centres at Vadodara & Hyderabad. Q1 FY27 R&D ₹186 Cr (9% of sales, +29% YoY); FY27 guided ₹750–800 Cr. Focus: peptides, complex generics, specialty.",
     "rnd_pct": 9.0,
     "therapies": {
@@ -150,7 +150,7 @@
      "India specialty (gynaec/gastro/ophthal)": 12,
      "Animal health": 8
     },
-    "therapies_basis": "Indicative weights — US approved-ANDA mix (164 OS / 33 derma / 23 ophthal / 22 inj) blended with India portfolio",
+    "therapies_basis": "Estimated weights from the US approved-ANDA mix (164 oral solids, 33 derma, 23 eye, 22 injectables) blended with the India portfolio",
     "plants": 9,
     "field_force": 5500
    },
@@ -445,7 +445,7 @@
     "fy28_ebitda_pct": 17.3
    },
    "data_notes": [
-    "FY23 PAT depressed by impairment/one-offs; FY24 & FY26 tax rate unusually low (3%) — normalise when comparing PAT."
+    "FY23 profit was hit by one-off write-downs, and FY24 and FY26 tax rates were unusually low (3%). Adjust for these when comparing profit."
    ],
    "news": [
     {
@@ -453,7 +453,7 @@
      "title": "Alembic Therapeutics launches Clonidine HCl tablets 0.05mg in US",
      "category": "Launch",
      "sentiment": 1,
-     "impact": "Part of ~15 launches planned for 9M FY27 — feeds US momentum.",
+     "impact": "One of about 15 US launches planned for the rest of FY27; adds to US growth.",
      "metrics": [
       "US revenue",
       "ANDA commercialisation"
@@ -465,7 +465,7 @@
      "title": "USFDA final approval for generic Ciprodex (ciprofloxacin/dexamethasone) otic suspension",
      "category": "Regulatory",
      "sentiment": 1,
-     "impact": "Complex sterile/otic suspension — validates move up the complexity curve.",
+     "impact": "A hard-to-make sterile ear suspension, which shows Alembic moving into more complex products.",
      "metrics": [
       "ANDA approvals",
       "US revenue"
@@ -513,8 +513,8 @@
    ],
    "working": [
     "US engine accelerating: +49% YoY in Q1 FY27, 10 approvals & 7 launches in one quarter; 185 products commercialised",
-    "Deepest regulatory moat in peer set: 279 ANDAs filed / 244 approved, 152 US DMFs — complexity mix (derma, ophthal, injectables, onco) rising",
-    "Clean USFDA status across all US-facing sites — rare among peers in 2026",
+    "Biggest US pipeline in the set: 279 ANDAs filed, 244 approved, 152 US DMFs, with more complex products (skin, eye, injectables, cancer) each year",
+    "Clean USFDA status at every US-facing plant, which is rare among peers in 2026",
     "API (+33%) and ex-US (+17%) diversify beyond US; animal health a quiet compounder (+24%)",
     "Backward integration into API cushions solvent/KSM inflation"
    ],
@@ -522,7 +522,7 @@
     "Lowest capital efficiency in set: ROCE ~13% vs Ajanta 35%; ~₹2,000 Cr new-plant capex still under-absorbed",
     "Working capital is the binding constraint: inventory 462 days, cash conversion cycle 381 days (worst in set); FY25 CFO collapsed to ₹88 Cr",
     "India branded growth (~5% FY26) trails IPM (~10–11%) despite 5,500+ MRs",
-    "EBITDA margin stuck at ~15% (peer median ~22%) — R&D at 9–11% of sales plus Pivya dilution",
+    "EBITDA margin stuck at ~15% (peer median ~22%) because R&D is 9–11% of sales and the Pivya launch costs money",
     "Borrowings doubled FY24→FY26 (₹513 Cr → ₹1,430 Cr); finance cost +17% YoY"
    ],
    "problems": [
@@ -531,35 +531,35 @@
      "evidence": "ROCE flat at 11–13% for 5 yrs; fixed assets + CWIP ₹3,764 Cr vs ₹7,345 Cr sales (asset turn ~1.9x vs Ajanta ~2.6x).",
      "answer": "Plant-loading masterplan: map 35 pending + upcoming ANDAs to Karkhadi/Jarod lines; fill idle capacity with CDMO/third-party contracts (US tariff-driven demand for non-China capacity); line-level OEE program. Target +500 bps ROCE by FY29.",
      "investigate": "Line-wise utilisation & OEE; contribution margin per SKU; launch calendar vs capacity; CDMO demand pipeline.",
-     "service": "Operations — Manufacturing network & OEE; Strategy — CDMO entry"
+     "service": "Operations: Manufacturing network & OEE; Strategy: CDMO entry"
     },
     {
      "title": "Release ₹500 Cr+ trapped in inventory",
      "evidence": "Inventory days 462 and CCC 381 days (peer median ~290/150); every 30 days of inventory ≈ ₹180 Cr of cash.",
      "answer": "End-to-end S&OP with US demand sensing (wholesaler 852/EDI data), SKU-tail rationalisation of the 185-product US book, API safety-stock re-optimisation, vendor-managed KSM. Target CCC <300 days in 18 months.",
      "investigate": "Inventory split (RM/WIP/FG, US vs India); SKU ABC-XYZ; forecast accuracy; write-off history.",
-     "service": "Operations — Supply chain & working capital; Finance transformation"
+     "service": "Operations: Supply chain & working capital; Finance transformation"
     },
     {
      "title": "Close the India branded growth gap (~5% vs IPM ~11%)",
      "evidence": "India branded +7% in Q1 FY27, +5% FY26 while IPM grew ~11%; specialty divisions growing double-digit, core divisions lagging.",
      "answer": "Sales-force effectiveness diagnostic (PCPM, doctor-call quality, brand-division fit); reallocate MRs to high-growth specialty (gynaec/gastro/ophthal); launch omnichannel HCP engagement; selective in-licensing for chronic.",
      "investigate": "IQVIA MAT by division/brand; PCPM vs peers (~₹6–7 lakh benchmark); attrition; top-30 brand concentration.",
-     "service": "Commercial excellence — SFE & omnichannel"
+     "service": "Commercial excellence: SFE & omnichannel"
     },
     {
      "title": "De-risk US concentration before the bosutinib & tariff cliffs",
      "evidence": "US = 36% of revenue; reported +49% vs ex-bosutinib +20–25%; generics tariff path (100%→200%) proposed Jul-2026.",
      "answer": "Product-level erosion model & launch-replacement plan; prioritise limited-competition complex filings (injectables, ophthal, peptides); tariff scenario P&L and a US-footprint option (contract manufacturing / partnership) for top-20 SKUs.",
      "investigate": "Top-10 product revenue share; competitor entry timelines; tariff exposure by SKU price band.",
-     "service": "Strategy — Portfolio & scenario planning; Tax & Trade"
+     "service": "Strategy: Portfolio & scenario planning; Tax & Trade"
     },
     {
      "title": "Raise R&D productivity and prove the branded-specialty model",
      "evidence": "R&D ₹750–800 Cr (~9% of sales) is the highest intensity in the set yet EBITDA margin is the lowest; Pivya dilutes 100–150 bps.",
      "answer": "R&D portfolio triage with risk-adjusted NPV & stage-gates; partner/out-license low-fit assets; Pivya launch-excellence & breakeven tracker (scripts, payer coverage, CAC).",
      "investigate": "R&D spend per approval & per ₹ of launch revenue; Pivya weekly TRx; payer access.",
-     "service": "Strategy — R&D portfolio; Commercial — US specialty launch"
+     "service": "Strategy: R&D portfolio; Commercial: US specialty launch"
     }
    ],
    "digital": {
@@ -581,7 +581,7 @@
     "strengths": [
      "Deepest US pipeline in the set: 279 ANDAs filed, 244 approved, 152 US DMFs",
      "Clean recent USFDA outcomes at all US-facing plants",
-     "Backward-integrated into API — cushions solvent and KSM inflation",
+     "Makes its own API, which softens the hit from rising raw material costs",
      "New complex-generics capacity: oncology, injectables, ophthalmics, derma"
     ],
     "weaknesses": [
@@ -597,7 +597,7 @@
      "Animal health (+24%) and API (+33%) growing fast"
     ],
     "threats": [
-     "US generics-tariff path — 36% of revenue is US",
+     "US generics-tariff path: 36% of revenue is US",
      "Competition arriving on bosutinib, the current US growth driver",
      "Normal US generic price erosion",
      "Solvent and API cost inflation"
@@ -616,7 +616,7 @@
     "hq": "Mumbai, Maharashtra",
     "leadership": "Mannalal Agrawal (Chairman); Yogesh Agrawal (MD); Rajesh Agrawal (Jt. MD)",
     "business_model": "Branded generics in India, Asia (Philippines, Sri Lanka, Myanmar, etc.) and Africa; US generics; Africa institutional (anti-malarials).",
-    "description": "Specialty-led branded generics player — strong in cardiology, ophthalmology, dermatology and pain in India, with a 'first-to-market' launch culture (new launches outperforming IPM by 76%). Highest ROCE/RoNW in the peer group with near-zero debt and a high-payout capital return policy.",
+    "description": "Branded generics company strong in heart, eye, skin and pain medicines in India, known for being first to launch new products (its new launches grow 76% faster than the market). Highest ROCE and return on equity in the peer group, near-zero debt, and high dividends and buybacks.",
     "employees_note": "7 manufacturing facilities, all in India; ground presence in 30+ countries"
    },
    "market": {
@@ -944,7 +944,7 @@
    "guidance": "No quantified guidance; management expects continued US and India outperformance and strong cash generation through FY27.",
    "consensus": {
     "broker": "Street (indicative)",
-    "rating": "—",
+    "rating": "Not available",
     "target": null,
     "fy27_sales": null,
     "fy28_sales": null,
@@ -960,7 +960,7 @@
      "title": "Sep-2026 IPM data: Ajanta +16.5% value / +7.5% units vs IPM +13.5% / +2.9%",
      "category": "Market",
      "sentiment": 1,
-     "impact": "Volume-led outperformance — confirms India franchise health.",
+     "impact": "Growth driven by volume, which confirms the India business is healthy.",
      "metrics": [
       "India revenue growth"
      ],
@@ -996,7 +996,7 @@
      "title": "FY26: revenue +17% to ₹5,453 Cr; US generics +49% to ₹1,557 Cr; ROCE 33%; R&D up to ₹252 Cr",
      "category": "Results",
      "sentiment": 1,
-     "impact": "But CFO fell to ₹529 Cr (CFO/PAT 0.5) as receivables rose — cash quality watch-point.",
+     "impact": "But operating cash flow fell to ₹529 Cr (half of profit) as receivables rose, so cash quality needs watching.",
      "metrics": [
       "CFO/PAT",
       "Debtor days",
@@ -1019,16 +1019,16 @@
    ],
    "working": [
     "Best-in-class returns: ROCE 35%, RoNW ~27%, OPM 27–28% with near-zero debt",
-    "US generics scaling: ₹1,047 Cr → ₹1,557 Cr (+49%) in FY26, +57% in Q1 FY27 from only ~51 products — high revenue per ANDA",
+    "US generics scaling: ₹1,047 Cr to ₹1,557 Cr (+49%) in FY26 and +57% in Q1 FY27, from only ~51 products, so high revenue per product",
     "India branded outgrowing IPM ~1.3x, volume-led; new launches beat IPM by 76%",
-    "Gross margin expansion — material cost down from 29.5% (FY23) to 22.2% (FY26)",
+    "Gross margin up: material cost fell from 29.5% (FY23) to 22.2% (FY26) of sales",
     "Shareholder-friendly capital return (buybacks + ₹400 Cr interim dividend)"
    ],
    "not_working": [
     "Cash conversion slipped: FY26 CFO ₹529 Cr vs PAT ₹1,056 Cr; debtor days 93 → 124",
-    "Asia branded stalled (−1% FY26, −16% Q1 FY27) — the original growth engine",
+    "Asia branded has stalled (−1% FY26, −16% Q1 FY27), and it used to be the main growth engine",
     "Employee cost creeping up: 19.0% → 24.7% of sales FY22–26; other costs to 22.2%",
-    "India cardiology growing 7% vs IPM 14% — losing share in the largest chronic therapy",
+    "India cardiology growing 7% vs market 14%, losing share in the biggest long-term therapy",
     "Income-tax search outcome pending; borrowings up to ₹260 Cr"
    ],
    "problems": [
@@ -1037,35 +1037,35 @@
      "evidence": "Debtor days jumped 93→124; CFO halved to ₹529 Cr while PAT rose 15%.",
      "answer": "Order-to-cash diagnostic by geography (Africa/Asia distributors, US chargebacks & rebates); credit-limit and distributor-scorecard redesign; receivables securitisation for institutional. Target CFO/PAT ≥0.9.",
      "investigate": "Receivable ageing by market/customer; US gross-to-net accruals; distributor inventory levels.",
-     "service": "Finance — Working capital / O2C"
+     "service": "Finance: Working capital / O2C"
     },
     {
      "title": "Turn around Asia branded (₹1,175 Cr, declining)",
      "evidence": "−1% FY26 and −16% Q1 FY27 vs Africa branded +15%.",
      "answer": "Market-by-market portfolio & route-to-market reset (Philippines, Sri Lanka, Myanmar, CIS), local brand-building, price-access strategy, tender participation; exit sub-scale markets.",
      "investigate": "Country P&Ls; currency & macro effects; competitive launches; field-force productivity by country.",
-     "service": "Strategy — International growth; Commercial excellence"
+     "service": "Strategy: International growth; Commercial excellence"
     },
     {
      "title": "Arrest cost creep in people & SG&A",
      "evidence": "Employee cost +5.6 pts of sales in 4 yrs (19.0%→24.7%), highest increase in peer set; other costs 22.2%.",
      "answer": "Organisation design & spans-and-layers review; MR productivity model; zero-based budgeting on promotion spend; shared-services for international back-office.",
      "investigate": "Headcount by function/geography; cost per MR; promo ROI by brand.",
-     "service": "Operations — Cost transformation / ZBB"
+     "service": "Operations: Cost transformation / ZBB"
     },
     {
      "title": "Build the next US growth curve",
      "evidence": "US ~30% of sales on just ~51 products with 17 pending; growth may be lumpy; tariff overhang.",
      "answer": "Pipeline expansion to 10–12 filings/yr with limited-competition focus; in-licensing/acquiring ANDAs; front-end channel strategy; tariff scenario model.",
      "investigate": "Product-level US revenue; price erosion; filing pipeline by competition intensity.",
-     "service": "Strategy — Portfolio / BD"
+     "service": "Strategy: Portfolio / BD"
     },
     {
      "title": "Win back cardiology share; enter GLP-1/semaglutide era",
      "evidence": "Cardiology +7% vs IPM +14% (MAT Mar-26) while other therapies outgrow market.",
      "answer": "Cardio-metabolic portfolio refresh (fixed-dose combos, semaglutide generics post Mar-2026 patent expiry), KOL & digital detailing, division split for cardio-diabeto.",
      "investigate": "Brand-level IQVIA share; prescriber churn; competitor FDCs.",
-     "service": "Commercial — Portfolio & launch excellence"
+     "service": "Commercial: Portfolio & launch excellence"
     }
    ],
    "digital": {
@@ -1104,7 +1104,7 @@
     ],
     "threats": [
      "Pending outcome of the Aug-2025 income-tax search",
-     "US generics-tariff path — 30% of revenue is US",
+     "US generics-tariff path: 30% of revenue is US",
      "FX volatility (₹103 Cr mark-to-market loss in FY26)",
      "Premium valuation (P/E ~36x) leaves little room for misses"
     ]
@@ -1457,7 +1457,7 @@
     "fy28_ebitda_pct": 23.9
    },
    "data_notes": [
-    "Unichem consolidated from FY24 — FY24+ not like-for-like with FY22–23."
+    "Unichem is included from FY24, so FY24 onwards is not directly comparable with FY22–23."
    ],
    "news": [
     {
@@ -1500,7 +1500,7 @@
      "title": "Unichem Q1: revenue +20%, margin 11% (+680 bps YoY); API source-transfer synergies still 'minimal'",
      "category": "Integration",
      "sentiment": 0,
-     "impact": "Integration value largely ahead — key swing factor for 25–26% margin goal.",
+     "impact": "Most of the integration benefit is still to come, and it decides whether the 25–26% margin goal is reached.",
      "metrics": [
       "EBITDA margin",
       "Synergies"
@@ -1512,7 +1512,7 @@
      "title": "Capex ₹700–800 Cr: new API/intermediate plants at Dewas & Wardha; biotech R&D; all USD loans repaid",
      "category": "Strategy",
      "sentiment": 0,
-     "impact": "Ratlam near capacity — de-bottlenecking supports API growth; balance sheet net-cash-like.",
+     "impact": "Ratlam is nearly full, so the new capacity supports API growth; debt is now very low.",
      "metrics": [
       "Capex",
       "Borrowings",
@@ -1529,7 +1529,7 @@
     "Guidance upgraded twice; strong broker sentiment"
    ],
    "not_working": [
-    "ROCE only 17% despite margin gains — heavy asset base (₹4,627 Cr fixed assets) and 353 inventory days",
+    "ROCE only 17% despite better margins, because of a large asset base (₹4,627 Cr fixed assets) and 353 inventory days",
     "Unichem drags mix: ~24% of revenue at ~11% margin vs base business ~26%",
     "Domestic portfolio concentrated in pain/HCQS (~39% of IQVIA sales); anti-malarials −24%",
     "Lumpy institutional & export tenders; freight/FX volatility",
@@ -1541,35 +1541,35 @@
      "evidence": "Unichem ~₹2,300 Cr revenue (subsidiaries line) at ~11% EBITDA vs Ipca base ~26%; API source transfers 'minimal'.",
      "answer": "Synergy PMO: API source-transfer roadmap (Ipca APIs into Unichem US dossiers), joint procurement, plant network rationalisation, US/EU portfolio pruning; quantify ₹150–250 Cr EBITDA upside.",
      "investigate": "Dossier-level source-change filing plan; overlap of KSMs; plant utilisation across both entities.",
-     "service": "Transactions — Post-merger integration & synergy"
+     "service": "Transactions: Post-merger integration & synergy"
     },
     {
      "title": "Lift ROCE from 17% toward 22%+",
      "evidence": "Inventory days 353; fixed-asset base grew 1.9x since FY22; capex ₹700–800 Cr planned.",
      "answer": "Capital-productivity program: inventory norms by API/formulation, capex stage-gating with IRR hurdle, asset-light options (CMO for low-margin SKUs).",
      "investigate": "Plant-wise capacity utilisation; inventory by product family; capex pipeline IRRs.",
-     "service": "Operations — Capital productivity; Finance"
+     "service": "Operations: Capital productivity; Finance"
     },
     {
      "title": "Diversify domestic portfolio beyond pain/rheumatology",
      "evidence": "Pain ~₹2,152 Cr of ~₹5,576 Cr IQVIA sales; HCQS single brand ~₹224 Cr; anti-malarials −24%.",
      "answer": "Chronic portfolio build (cardio-diabeto, derma, onco) via new division + in-licensing; brand-lifecycle plans for Zerodol franchise; KOL programs.",
      "investigate": "Brand-level growth decomposition (price/volume/new); therapy white-space map.",
-     "service": "Strategy — Portfolio; Commercial excellence"
+     "service": "Strategy: Portfolio; Commercial excellence"
     },
     {
      "title": "Scale the regulated-market (US/EU) generics business",
      "evidence": "Ipca US +27% but small base; Unichem US +9%; 7–8 launches FY27; approvals take ~1.5 yrs.",
      "answer": "Integrated US go-to-market for Ipca + Unichem; filing plan prioritising limited-competition products using Ipca APIs; digital QMS to sustain compliance.",
      "investigate": "US portfolio profitability; customer concentration; FDA readiness of each site.",
-     "service": "Strategy — Market entry; Quality & compliance"
+     "service": "Strategy: Market entry; Quality & compliance"
     },
     {
      "title": "Industrialise tender & export demand planning",
      "evidence": "Institutional +107% in Q1 (₹40 Cr spilled from Mar); freight spikes in LatAm/US/EU; FX added ~5 pts to growth.",
      "answer": "Tender analytics & win-rate model, integrated S&OP across API/formulation, FX hedging policy, logistics control tower.",
      "investigate": "Tender pipeline & win/loss; freight cost per kg by lane; hedge ratios.",
-     "service": "Operations — Supply chain; Finance — Treasury"
+     "service": "Operations: Supply chain; Finance: Treasury"
     }
    ],
    "digital": {
@@ -1592,7 +1592,7 @@
      "Vertically integrated from API to formulation",
      "Margin recovery: ~15% (FY23) to 24% (Q1 FY27)",
      "Domestic outgrowing market in chronic (+17%) and acute (+9%)",
-     "Deleveraged — all USD loans repaid"
+     "Debt cut sharply: all USD loans repaid"
     ],
     "weaknesses": [
      "Unichem: ~24% of revenue at ~11% EBITDA margin",
@@ -1654,7 +1654,7 @@
      "Exports (incl. BSV intl)": 15
     },
     "geography_basis": "FY26 revenue mix (%)",
-    "manufacturing": "32 manufacturing facilities in India (Paonta Sahib — first USFDA inspection; Udaipur & Ambernath EU-GMP). BSV biologics/recombinant capacity (Ambernath).",
+    "manufacturing": "32 manufacturing facilities in India (Paonta Sahib had its first USFDA inspection; Udaipur and Ambernath are EU-GMP approved). BSV biologics capacity at Ambernath.",
     "rnd": "7 R&D facilities, 750+ scientists; R&D ~2–3% of sales (est.). Innovation bets: Denovo Science AI drug-discovery partnership; ACTx CAR-T (70%, €48M, Oct-2026).",
     "rnd_pct": 2.5,
     "therapies": {
@@ -1680,7 +1680,7 @@
     "dmf_us": null,
     "q_launches": 1,
     "q_approvals": null,
-    "status": "Paonta Sahib — first USFDA inspection; Udaipur & Ambernath EU-GMP. US is a small option, not a core driver.",
+    "status": "Paonta Sahib had its first USFDA inspection; Udaipur and Ambernath are EU-GMP approved. The US is a small add-on, not a main driver.",
     "as_of": "30-Jun-2026"
    },
    "financials": {
@@ -1954,7 +1954,7 @@
    "guidance": "FY27: EBITDA margin 25.5–26.5%; double-digit revenue growth; capex 6–7% of revenue; acquisition debt repaid by FY28; chronic share to 50% medium-term.",
    "consensus": {
     "broker": "Street (indicative)",
-    "rating": "—",
+    "rating": "Not available",
     "target": null,
     "fy27_sales": null,
     "fy28_sales": null,
@@ -1962,7 +1962,7 @@
     "fy28_ebitda_pct": 26.5
    },
    "data_notes": [
-    "BSV consolidated from 23-Oct-2024 — FY25 partial, FY26 full year; balance sheet step-up in FY25 is acquisition goodwill/intangibles."
+    "BSV is included from 23-Oct-2024: FY25 has part of a year, FY26 a full year. The jump in FY25 assets is acquisition goodwill and intangibles."
    ],
    "news": [
     {
@@ -1970,7 +1970,7 @@
      "title": "Acquires 70% of Belgian CAR-T biotech Armed Cell Therapeutics (ACTx) for €48M (~₹511 Cr)",
      "category": "M&A",
      "sentiment": 0,
-     "impact": "Entry into next-gen cell therapy; long-dated, high-risk — capital allocation scrutiny while still deleveraging.",
+     "impact": "Entry into next-generation cell therapy. Long-term and high-risk, so investors will question the spending while debt is still being paid down.",
      "metrics": [
       "R&D %",
       "Borrowings",
@@ -2052,8 +2052,8 @@
     "ROCE halved (32% → 14%) after BSV; FY26 interest ₹644 Cr and D&A ₹886 Cr compress PAT (−3.4%)",
     "Consumer healthcare stuck at single-digit growth (+8.7% FY26, +4% Q1) amid channel shift",
     "Rising tax rate (17.7% → 25.4%) as Sikkim exemptions expire; ₹1,909 Cr tax contingency",
-    "Low R&D intensity (~2–3%) while buying high-risk innovation (CAR-T) — capital-allocation coherence question",
-    "32-plant network — likely sub-scale sites and complexity cost"
+    "Low R&D spend (~2–3% of sales) yet buying high-risk innovation (CAR-T); the investment logic is unclear",
+    "32 plants, likely including small sites that add cost and complexity"
    ],
    "problems": [
     {
@@ -2061,35 +2061,35 @@
      "evidence": "ROCE 26% (FY24) → 14% (FY26); fixed assets ₹4,545 Cr → ₹18,620 Cr; interest ₹644 Cr.",
      "answer": "BSV value-creation plan: cross-sell fertility/women's health through Mankind's 16,800 MRs, international fertility scale-up, price-mix on biologics, accelerated deleveraging; track BSV ROIC quarterly.",
      "investigate": "BSV standalone P&L & cohort of brands; synergy realisation vs deal case; refinancing cost.",
-     "service": "Transactions — Value creation / PMI"
+     "service": "Transactions: Value creation / PMI"
     },
     {
      "title": "Shift chronic share from 40% to 50%",
      "evidence": "Chronic ~40%; competitors with entrenched cardio-diabeto KOL networks; GLP-1 generics wave.",
      "answer": "Specialty field-force carve-outs, KOL and medical-affairs engine, semaglutide/GLP-1 launch playbook, digital HCP engagement in metros where Mankind under-indexes.",
      "investigate": "Rx share by city tier & specialty; chronic brand ladder; doctor-coverage overlap.",
-     "service": "Commercial excellence — Specialty SFE & launch"
+     "service": "Commercial excellence: Specialty SFE & launch"
     },
     {
      "title": "Re-ignite consumer healthcare",
      "evidence": "CH ₹879 Cr, +8.7% FY26 and +4% Q1; MT/e-com at 15% growing 38%; cash-and-carry exited.",
      "answer": "Channel strategy for quick-commerce/D2C, brand architecture (Manforce, Prega News, Unwanted-72, Acnestar), RGM (revenue growth management) and trade-spend optimisation.",
      "investigate": "Channel profitability; brand health tracking; trade-spend ROI.",
-     "service": "Consumer strategy — RGM & channel"
+     "service": "Consumer strategy: RGM & channel"
     },
     {
      "title": "Build a coherent innovation & capital-allocation thesis",
-     "evidence": "R&D ~2–3% of sales; ACTx CAR-T (€48M), Denovo AI, BSV biologics — diverse bets.",
+     "evidence": "R&D ~2–3% of sales, yet bets on ACTx CAR-T (€48M), Denovo AI and BSV biologics.",
      "answer": "Innovation portfolio governance with stage-gates, partnering strategy, capital-allocation framework balancing deleveraging vs bets; investor narrative.",
      "investigate": "Spend & milestones per program; comparable CAR-T valuations; board risk appetite.",
-     "service": "Strategy — Corporate strategy & capital allocation"
+     "service": "Strategy: Corporate strategy & capital allocation"
     },
     {
      "title": "Defend margins against tax and input inflation",
      "evidence": "ETR 17.7% → 25.4%; RM/currency pressure flagged; working-capital days 48 → 52.",
      "answer": "Network optimisation across 32 plants (consolidate sub-scale sites, re-locate to incentive zones), API procurement & dual sourcing, tax structuring, inventory rationalisation.",
      "investigate": "Plant-wise cost/unit & utilisation; RM basket sensitivity; tax incentive map.",
-     "service": "Operations — Network & procurement; Tax"
+     "service": "Operations: Network & procurement; Tax"
     }
    ],
    "digital": {
@@ -2200,7 +2200,7 @@
     "dmf_us": null,
     "q_launches": null,
     "q_approvals": 5,
-    "status": "Daman (Amaliya) — 7 observations (Apr-20 to May-1, 2026), classified OAI (Aug-2026); supply continuing; resolution expected in 6–12 months. 2 NDAs approved, 1 BLA filed.",
+    "status": "Daman (Amaliya): 7 observations (20 Apr to 1 May 2026), classified OAI (Aug-2026). Supply continues; resolution expected in 6–12 months. 2 NDAs approved, 1 BLA filed.",
     "as_of": "30-Jun-2026"
    },
    "financials": {
@@ -2490,7 +2490,7 @@
      "title": "Macquarie upgrades to BUY, target ₹6,000 (from 52-week-low levels)",
      "category": "Investor",
      "sentiment": 1,
-     "impact": "Street split (BoB SELL ₹4,638) — debate centres on Daman, tax, US growth.",
+     "impact": "Brokers are split (BoB says SELL at ₹4,638). The debate is about Daman, tax and US growth.",
      "metrics": [
       "Valuation"
      ],
@@ -2538,7 +2538,7 @@
      "title": "Completes acquisition of majority stake in Swiss structural-heart device maker Occlutech",
      "category": "M&A",
      "sentiment": 0,
-     "impact": "Medtech diversification; ~₹400 Cr FY27 sales at EBITDA breakeven — dilutive near-term.",
+     "impact": "Move into medical devices: about ₹400 Cr of FY27 sales at breakeven, so it lowers margins in the short term.",
      "metrics": [
       "Capital allocation",
       "EBITDA margin"
@@ -2560,16 +2560,16 @@
    ],
    "working": [
     "Fortress balance sheet: net cash ~₹5,500 Cr; CFO steady ~₹1,900–2,000 Cr",
-    "Anti-infective leadership (#1, 13.2% share) and #3 by prescriptions — massive acute reach",
+    "#1 in anti-infectives (13.2% share) and #3 by prescriptions, so it reaches a huge number of doctors",
     "Gross-margin structural gain: material cost 42.3% (FY23) → 29.1% (FY26)",
     "Chronic outgrowing IPM (+17.9% vs 15.4% in Q1); early semaglutide traction",
-    "International ex-US +27% FY26 / +35% Q1 — fastest-growing segment"
+    "International (ex-US) +27% in FY26 and +35% in Q1, the fastest-growing part of the business"
    ],
    "not_working": [
     "Daman OAI puts ~45% of US revenue at regulatory risk",
     "Slowest grower in the set with Alembic/Glenmark: ~8.5% sales CAGR; trade generics flat",
     "Tax drag: consolidated ETR guided 30–32% → PAT fell 22% in Q1 despite +11% sales",
-    "Diversification bets (Enzene CDMO, Occlutech) loss-making/breakeven — CDMO breakeven pushed to FY28",
+    "New businesses (Enzene contract manufacturing, Occlutech) are loss-making or breakeven; contract manufacturing breakeven pushed to FY28",
     "Working-capital days 31 → 123 since FY22; employee cost +16% in Q1"
    ],
    "problems": [
@@ -2578,35 +2578,35 @@
      "evidence": "7 observations (Apr–May 2026), OAI (Aug-2026); Daman ≈ 45% of US revenue (~₹1,300 Cr).",
      "answer": "Quality remediation PMO (CAPA tracking, data-integrity, investigations), third-party cGMP readiness audits, digital QMS/LIMS, and a site-transfer contingency to Baddi for top SKUs.",
      "investigate": "483 observation themes; CAPA closure velocity; product-site dependency map; FDA response timeline.",
-     "service": "Risk — Quality & regulatory compliance remediation"
+     "service": "Risk: Quality & regulatory compliance remediation"
     },
     {
-     "title": "Fix the growth algorithm — acute-heavy & trade-generics flat",
+     "title": "Fix slow growth: too dependent on short-term therapies, and trade generics are flat",
      "evidence": "Sales CAGR ~8.5% (FY22–26); trade generics 'flat to mildly growing'; chronic still small (anti-diabetic #15, derma #18).",
      "answer": "Chronic portfolio acceleration (semaglutide, cardio-diabeto in-licensing), trade-generics channel redesign under Alkem Wellness (distributor economics, credit discipline), division restructuring.",
      "investigate": "Brand-ladder growth decomposition; trade-generics channel P&L; prescriber mix by specialty.",
-     "service": "Strategy — Growth & portfolio; Commercial excellence"
+     "service": "Strategy: Growth & portfolio; Commercial excellence"
     },
     {
      "title": "Deploy ₹5,500 Cr net cash with discipline",
      "evidence": "Net cash ₹5,474 Cr; Occlutech (medtech) & Enzene CDMO early-stage; ROCE 21%.",
      "answer": "Capital-allocation framework (hurdle rates, M&A screening in chronic/specialty pharma, buyback/dividend policy), portfolio review of non-core bets.",
      "investigate": "Target universe screening; Occlutech plan vs actual; payout benchmarks.",
-     "service": "Strategy — Corporate development / M&A"
+     "service": "Strategy: Corporate development / M&A"
     },
     {
      "title": "Get Enzene CDMO to breakeven (needs $25–30M revenue)",
      "evidence": "US CDMO loss-making; breakeven pushed from 12 months to FY28.",
      "answer": "CDMO go-to-market (biotech pipeline targeting, BD funnel, pricing), capacity-utilisation plan, BIOSECURE-driven China-plus-one positioning.",
      "investigate": "BD funnel & win rate; contract mix; plant utilisation.",
-     "service": "Strategy — Commercial due diligence / growth"
+     "service": "Strategy: Commercial due diligence / growth"
     },
     {
      "title": "Neutralise tax and cost drag on EPS",
      "evidence": "Consolidated ETR 30–32% vs standalone 27–28%; employee cost +16% YoY Q1; WC days 123.",
      "answer": "Group tax & transfer-pricing structuring review, MR productivity & span review after 1,200 adds, inventory & receivables program.",
      "investigate": "Entity-wise tax profile; MR productivity cohorts; WC by business.",
-     "service": "Tax; Operations — Cost & working capital"
+     "service": "Tax; Operations: Cost & working capital"
     }
    ],
    "digital": {
@@ -2644,7 +2644,7 @@
      "Occlutech structural-heart devices"
     ],
     "threats": [
-     "Daman OAI — ~45% of US revenue at risk",
+     "Daman OAI: ~45% of US revenue at risk",
      "US growth guidance cut; price erosion",
      "CDMO breakeven pushed to FY28",
      "API cost inflation"
@@ -2663,7 +2663,7 @@
     "hq": "Mumbai, Maharashtra",
     "leadership": "Glenn Saldanha (Chairman & MD); Anurag Mantri (CFO)",
     "business_model": "Branded formulations in India, Europe & Emerging Markets; US generics (respiratory, derma, injectables); innovation via Ichnos Glenmark Innovation (IGI).",
-    "description": "IPM #13 (2.34%), 2nd-fastest-growing top-15 company in FY26; leader in dermatology & respiratory. Out-licensed ISB 2001 (CD38×BCMA×CD3 trispecific) to AbbVie — US$700M upfront, up to US$1.925B total + royalties — making gross debt ~zero. 11 plants across 4 continents, 6 R&D centres, 80+ countries.",
+    "description": "#13 in the Indian pharma market (2.34% share) and the 2nd-fastest-growing top-15 company in FY26; a leader in skin and respiratory medicines. Licensed its cancer drug ISB 2001 to AbbVie for US$700M upfront (up to US$1.925B in total plus royalties), which wiped out its debt. 11 plants on 4 continents, 6 R&D centres, sales in 80+ countries.",
     "employees_note": "11 manufacturing facilities (4 continents); 6 R&D centres; Scrip Top-100 global"
    },
    "market": {
@@ -2691,7 +2691,7 @@
      "Europe": 19,
      "Emerging Markets": 18
     },
-    "geography_basis": "Q1 FY27 revenue mix (%) — NA incl. deferred ISB 2001 income",
+    "geography_basis": "Q1 FY27 revenue mix (%); North America includes deferred ISB 2001 income",
     "manufacturing": "11 facilities across 4 continents (India: Goa, Baddi, Nashik, Aurangabad, Indore, Sikkim; Monroe NC USA injectables; Czech Republic; Argentina). Monroe EIR-VAI (Nov-2025), restart enabled. Goa warning letter (2022) formally closed out Sep-2026.",
     "rnd": "R&D ~6–7% of sales (guided 7–8%); Q1 FY27 ₹249 Cr. IGI pipeline: ISB 2001 (AbbVie), ISB 2301 (IND end-2026), ISB 2302/2501 preclinical; IGI spend ~US$70M/yr.",
     "rnd_pct": 6.5,
@@ -2990,7 +2990,7 @@
    "guidance": "FY27: EBITDA margin 21–22%; R&D 7–8% of sales; NWC <115 days; gross debt ~zero; Europe high-single-digit; 2–3 US respiratory approvals in H2; aumolertinib first launch H2 FY27.",
    "consensus": {
     "broker": "Street (indicative)",
-    "rating": "—",
+    "rating": "Not available",
     "target": null,
     "fy27_sales": null,
     "fy28_sales": null,
@@ -2998,7 +2998,7 @@
     "fy28_ebitda_pct": 22.0
    },
    "data_notes": [
-    "FY22–FY23 include Glenmark Life Sciences (75% divested to Nirma in FY24) — base not like-for-like.",
+    "FY22–FY23 include Glenmark Life Sciences (75% sold to Nirma in FY24), so the base is not directly comparable.",
     "FY26 (and Q2 FY26 OPM 39%) inflated by ISB 2001 out-licensing income; FY26 other income −₹1,805 Cr includes exceptional items.",
     "FY24 net loss driven by divestment-related tax and one-offs."
    ],
@@ -3034,7 +3034,7 @@
      "title": "FY27 margin guidance 21–22% held despite API/logistics inflation; NWC <115 days target",
      "category": "Guidance",
      "sentiment": 0,
-     "impact": "Normalised margin is ~21–22% — not FY26's 27% (licensing-inflated).",
+     "impact": "The normal margin is about 21–22%, not FY26's 27%, which was boosted by licensing income.",
      "metrics": [
       "EBITDA margin",
       "Working capital"
@@ -3086,35 +3086,35 @@
      "evidence": "FY26 EBITDA ₹4,572 Cr includes licensing income; FY27 guided margin 21–22% vs 26.9% FY26.",
      "answer": "Earnings-quality bridge for investors; capital-deployment plan into specialty brands (in-licensing like BeiGene assets), respiratory pipeline and India chronic; KPI: recurring EBITDA ₹4,000 Cr+ by FY28.",
      "investigate": "Licensing income schedule (deferred vs recognised); ROI by deployment option; peer specialty valuations.",
-     "service": "Strategy — Capital allocation & equity story"
+     "service": "Strategy: Capital allocation & equity story"
     },
     {
      "title": "Execute the US respiratory & complex-generics wave",
      "evidence": "52 ANDAs pending (25 Para IV); Flovent HFA first generic; 2–3 respiratory approvals H2 FY27; compliance history.",
      "answer": "Launch-excellence war-room (supply readiness, channel contracting, 180-day exclusivity capture), quality culture & digital QMS across 11 plants.",
      "investigate": "Launch P&L for exclusivity products; site-readiness scorecards; competitor filings.",
-     "service": "Commercial — US launch excellence; Quality & compliance"
+     "service": "Commercial: US launch excellence; Quality & compliance"
     },
     {
      "title": "Shift Europe from 30% to 60% branded",
      "evidence": "Europe ₹747 Cr/qtr, high-single-digit growth guided; Ryaltris/Winlevi launches.",
      "answer": "Country-cluster commercial model, KAM for respiratory/derma, launch sequencing & pricing/market-access playbook.",
      "investigate": "Country-level brand P&L; payer access timelines; field-force ROI.",
-     "service": "Commercial excellence — International launch & access"
+     "service": "Commercial excellence: International launch & access"
     },
     {
      "title": "Industrialise working capital (target NWC <115 days)",
      "evidence": "Debtor days 107, inventory 264, payable 288; CFO swung −₹828 Cr (FY25) → +₹3,445 Cr (FY26).",
      "answer": "Integrated O2C/P2P program, inventory norms across 80+ markets, supplier-finance program to reduce reliance on payables stretch.",
      "investigate": "DSO by region; inventory by plant; supplier terms & MSME exposure.",
-     "service": "Finance — Working capital & treasury"
+     "service": "Finance: Working capital & treasury"
     },
     {
      "title": "Run IGI as a value-maximising innovation portfolio",
      "evidence": "IGI spend ~US$70M/yr; ISB 2301 IND end-2026; GRC 65327 deprioritised.",
      "answer": "Portfolio rNPV and option valuation, partnering/out-licensing playbook (repeat ISB 2001), governance separating innovation from base business.",
      "investigate": "Asset-level rNPV; comparable deal benchmarks; burn vs milestones.",
-     "service": "Strategy — R&D portfolio & BD"
+     "service": "Strategy: R&D portfolio & BD"
     }
    ],
    "digital": {
