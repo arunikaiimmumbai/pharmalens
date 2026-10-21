@@ -3,18 +3,18 @@
 Live, interactive intelligence dashboard + AI analyst for six Indian pharma companies:
 **Alembic · Ajanta · Ipca · Mankind · Alkem · Glenmark** (consolidated, FY22–FY26 + Q1 FY27).
 
-Prepared by **Arunika Sherry** · IIM Mumbai Mentorship Program · Mentor: **Phalgun Rudrapatna**
+Prepared by **Arunika Sherry** · IIM Mumbai Mentorship Program · Mentor: **Dr. Phalgun Rudrapatna**
 
 ## What's inside
 | Page | What it does |
 |---|---|
-| 🧬 Command Center | Portfolio KPIs, live market pulse, positioning map, PharmaLens scorecard, partner so-whats, news pulse |
+| 🧬 Command Center | Portfolio KPIs, live market pulse, positioning map, PharmaLens scorecard, key insights, news pulse |
 | 🏢 Company Deep-Dive | Profile, market / geographic / manufacturing / R&D / therapy footprints, 6-month news, insights |
 | 📊 P&L Lab | P&L bridge, common-size P&L, 5-yr trends, CAGR table, cost elasticity, correlation matrix, pooled explorer |
 | ⚖️ Ratio Benchmark | 33-KPI master table (best/worst highlighted), radar, KPI spotlight, 5-yr ratio trends, DuPont |
 | 🧪 Regulatory & Pipeline | USFDA status, ANDA/DMF engine, R&D vs margin, US-share risk |
 | 📰 News & Signals | Signal timeline, news→KPI heatmap, curated + live Google News, event study vs Nifty Pharma |
-| 🎯 Strategy Room | What's working / not, Top-5 problem statements, consulting opportunity map, digitisation journey |
+| 🎯 Strategy Room | What's working / not, SWOT, Top-5 problem statements, consulting opportunity map, digitisation journey |
 | 🤖 AI Analyst | Tool-using AI agent (10 tools, free Gemini by default) with visible trace; offline rule-based mode without a key |
 | 📚 Sources & Method | Sources, methodology, caveats, KPI dictionary |
 

@@ -58,7 +58,7 @@ def render():
                         ans = A.offline_answer(q, on_step=_trace)
                     status.update(label=f"Done · {len(st.session_state._trace)} tool calls", state="complete", expanded=False)
                 except Exception as e:
-                    ans = A.offline_answer(q, on_step=_trace) + f"\n\n> ⚠️ Agent error, fell back to offline mode: `{e}`"
+                    ans = A.offline_answer(q, on_step=_trace) + f"\n\n> ⚠️ The AI couldn't answer, so this reply comes from the offline analyst. Reason: {A.friendly_error(e)}"
                     status.update(label="Fell back to offline analyst", state="error", expanded=False)
             st.markdown(ans)
         st.session_state.chat.append({"role": "assistant", "content": ans})

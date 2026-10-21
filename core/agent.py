@@ -233,8 +233,37 @@ def run_agent(messages: list[dict], on_step=None, max_steps: int = 8) -> str:
     return _run_openai_compatible(messages, on_step, max_steps)
 
 
-OPENAI_TOOLS = [{"type": "function", "function": {"name": t["name"], "description": t["description"], "parameters": t["input_schema"]}}
+def _gemini_safe(schema: dict) -> dict:
+    """Gemini rejects 'default' keys and objects with no properties; strip/patch them."""
+    if isinstance(schema, dict):
+        out = {k: _gemini_safe(v) for k, v in schema.items() if k != "default"}
+        if out.get("type") == "object" and not out.get("properties"):
+            out["properties"] = {"note": {"type": "string", "description": "Optional; leave empty."}}
+        return out
+    if isinstance(schema, list):
+        return [_gemini_safe(x) for x in schema]
+    return schema
+
+
+OPENAI_TOOLS = [{"type": "function", "function": {"name": t["name"], "description": t["description"],
+                                                  "parameters": _gemini_safe(t["input_schema"])}}
                 for t in TOOLS]
+
+
+def friendly_error(e: Exception) -> str:
+    """Plain-English reason for an AI failure, shown under the offline answer."""
+    msg = str(e)
+    low = msg.lower()
+    code = getattr(e, "status_code", None)
+    if code in (401, 403) or "api key" in low or "permission" in low or "unauthenticated" in low:
+        return "the AI key was rejected — check GEMINI_API_KEY in Streamlit Secrets (no spaces, inside quotes)."
+    if code == 429 or "quota" in low or "rate" in low or "exhausted" in low:
+        return "the free AI quota is used up for now — wait a minute (or until tomorrow for the daily limit) and ask again."
+    if code == 404 or "not found" in low:
+        return "the AI model name wasn't found — set GEMINI_MODEL in Secrets to a model listed in Google AI Studio."
+    if code == 400:
+        return f"the AI service rejected the request ({msg[:160]})."
+    return f"the AI service couldn't be reached ({msg[:160]})."
 
 
 def _pick_model(client, prov: str) -> str | None:

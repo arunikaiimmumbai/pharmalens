@@ -1,7 +1,7 @@
 # PharmaLens.ai — build checkpoint
 
 Project: agentic pharma intelligence dashboard (Streamlit) + deploy guide + storytelling deck.
-Owner: Arunika Sherry · IIM Mumbai Mentorship Program · Mentor: Phalgun Rudrapatna. No EY branding.
+Owner: Arunika Sherry · IIM Mumbai Mentorship Program · Mentor: Dr. Phalgun Rudrapatna. No EY branding.
 Companies: Alembic, Ajanta, Ipca, Mankind, Alkem, Glenmark. Basis: consolidated FY22–FY26 + Q1 FY27 (data as of 19-Oct-2026).
 
 ## Status
@@ -30,3 +30,11 @@ Upload pharmalens_checkpoint.zip and say: "Resume PharmaLens from PROGRESS.md �
 ## Open items for the user
 - Deck placeholders: [app URL] on slide 12; [date] x2 and [Company A]/[Company B] on slide 13.
 - Add free GEMINI_API_KEY in Streamlit secrets to switch on the live agent (loop mock-tested; not tested against the real API — no key here).
+
+## Update 21-Oct-2026
+- Mentor shown as "Dr. Phalgun Rudrapatna" everywhere (app meta, README, deck slides 1 & 13).
+- Command Center section "Partner so-whats" renamed "Key insights".
+- SWOT added: data/companies.json `swot` per company; Strategy Room SWOT grid + compare-all expander; agent tool get_problem_statements returns swot; deck slide 9 is now a SWOT table.
+- ROCE story corrected (mostly margin, not capital) in insights.py and deck slides 2 & 5.
+- Docs: Q&A prep https://claude.ai/artifact/E7KTmiPtYo5FyaGd1HqS6w · Walkthrough https://claude.ai/artifact/VpE2SPHNw76Xwpbt4ZVGm8
+- User's repo: github.com/arunikaiimmumbai/pharmalens (config.toml landed at root, not in .streamlit/ — user advised to create .streamlit/config.toml).
