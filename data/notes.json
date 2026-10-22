@@ -1,0 +1,1014 @@
+{
+ "company": {
+  "alembic": {
+   "growth": {
+    "text": "Revenue grew only ~8.5% a year FY22–26 because India branded sales grew ~5% against a market growing ~10–11%, and the US business was flat for two years. Growth has now turned sharply (Q1 FY27 +26%) as new US approvals convert, partly helped by a limited-competition product (bosutinib).",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +26% to ₹2,150 Cr; US +49%; PAT +12%; FY27 growth guidance raised to mid-",
+      "url": "https://www.investing.com/news/company-news/alembic-q1-fy27-slides-us-generics-surge-49-revenue-up-26-93CH-4834597"
+     }
+    ],
+    "doing": "Raised FY27 growth guidance to mid-teens; ~15 more US launches planned; 10 approvals and 7 launches in Q1 FY27."
+   },
+   "margin": {
+    "text": "Margin is the lowest in the set (~15%) because Alembic spends 9–11% of sales on R&D, the most of the six, and is paying launch costs for its Pivya brand. New plants add depreciation before they are full. Material cost is not the problem: it is broadly flat.",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     },
+     {
+      "title": "Q4 FY26: PAT +29% to ₹203 Cr but EBITDA margin 12.3%; R&D 11% of sales; Pivya launched Feb",
+      "url": "https://www.barodaetrade.com/Reports/AlembicPharma-Q4FY26ResultReview16May26-Research.pdf"
+     }
+    ],
+    "doing": "Moving the pipeline to complex products (Ciprodex, injectables) that earn more; no public plan yet to cap R&D spend."
+   },
+   "returns": {
+    "text": "ROCE is ~13% because two things combine: a low margin (R&D and launch costs) and about ₹2,000 Cr of new plants that are built but not yet full. Capital is in the denominator before the revenue arrives, so returns should rise if utilisation improves.",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     }
+    ],
+    "doing": "Ramping complex launches from the new plants; no public utilisation target."
+   },
+   "wc": {
+    "text": "Inventory of 462 days is the highest of the six. US generics need stock ahead of each launch and Alembic has the biggest pipeline (279 filings, ~15 launches planned), but 462 days also points to planning gaps. Every 30 days cut frees about ₹180 Cr.",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     },
+     {
+      "title": "Alembic Therapeutics launches Clonidine HCl tablets 0.05mg in US",
+      "url": "https://www.globenewswire.com/news-release/2026/10/13/3379788/0/en/alembic-therapeutics-llc-announces-availability-of-clonidine-hydrochloride-tablets-0-05mg.html"
+     }
+    ],
+    "doing": "No public working-capital target; analysts flagged it at the Sep 2026 investor meetings."
+   },
+   "cash": {
+    "text": "Cash from operations was ₹783 Cr in FY26 (1.2x profit), a recovery from FY25's ₹88 Cr collapse, but heavy capex means free cash flow is thin and borrowings doubled to ₹1,430 Cr.",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     },
+     {
+      "title": "Q4 FY26: PAT +29% to ₹203 Cr but EBITDA margin 12.3%; R&D 11% of sales; Pivya launched Feb",
+      "url": "https://www.barodaetrade.com/Reports/AlembicPharma-Q4FY26ResultReview16May26-Research.pdf"
+     }
+    ],
+    "doing": "Borrowing to fund capex (debt ₹1,430 Cr); no public cash-release plan."
+   },
+   "cost": {
+    "text": "Employee cost rose from 21% to 24% of sales FY22–26 as R&D scientists and a 5,500-strong sales force were added faster than revenue grew. Other overheads stayed flat, so people cost is the line to manage.",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     }
+    ],
+    "doing": "Added R&D scientists and sales force; no public cost programme."
+   },
+   "geo": {
+    "text": "US formulations are ~36% of revenue, the highest share of the six, so Alembic is most exposed to US pricing, FDA inspections and the proposed generics tariff. API and ex-US markets (~34%) give some balance.",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     },
+     {
+      "title": "Alembic investor presentation, September 2025 (Q2 FY26)",
+      "url": "https://alembicpharmaceuticals.com/webfiles/pdf/Investor/investors_presentations/2025-2026/Q2/Investor-Presentation-September-2025.pdf"
+     }
+    ],
+    "doing": "Growing API (+33%) and ex-US markets (+17%) to reduce US dependence."
+   },
+   "brands": {
+    "text": "India strength is in older acute brands that lead their molecules (Roxid 95% share, Althrocin 86%). These are mature, low-growth markets, which explains India growth of ~5%. Animal health (22% of India business) is the fastest-growing part.",
+    "sources": [
+     {
+      "title": "Alembic investor presentation, September 2025 (Q2 FY26)",
+      "url": "https://alembicpharmaceuticals.com/webfiles/pdf/Investor/investors_presentations/2025-2026/Q2/Investor-Presentation-September-2025.pdf"
+     }
+    ],
+    "doing": "Pushing specialty (28% of India) and animal health (22%, fastest growing)."
+   },
+   "rnd": {
+    "text": "9 plants and the highest R&D intensity (9% of sales) reflect a strategy of building US complex generics. The payoff shows in US growth (+49% in Q1 FY27) but not yet in margin.",
+    "sources": [
+     {
+      "title": "Alembic investor presentation, September 2025 (Q2 FY26)",
+      "url": "https://alembicpharmaceuticals.com/webfiles/pdf/Investor/investors_presentations/2025-2026/Q2/Investor-Presentation-September-2025.pdf"
+     },
+     {
+      "title": "USFDA final approval for generic Ciprodex (ciprofloxacin/dexamethasone) otic suspension",
+      "url": "https://scanx.trade/stock-market-news/companies/alembic-pharmaceuticals-secures-usfda-approval-otic-suspension/53790104"
+     }
+    ],
+    "doing": "R&D at 9-11% of sales focused on complex generics; 279 ANDAs filed."
+   },
+   "quarter": {
+    "text": "Quarterly revenue jumped in Q1 FY27 (+26%) on US launches; margin stays near 15% because R&D and the Pivya launch absorb the gains.",
+    "sources": [
+     {
+      "title": "Q1 FY27: revenue +26% to ₹2,150 Cr; US +49%; PAT +12%; FY27 growth guidance raised to mid-",
+      "url": "https://www.investing.com/news/company-news/alembic-q1-fy27-slides-us-generics-surge-49-revenue-up-26-93CH-4834597"
+     }
+    ],
+    "doing": "Guidance raised after Q1 FY27."
+   },
+   "debt": {
+    "text": "Debt rose to ₹1,430 Cr (1.1x EBITDA net) to fund new plants. Still comfortable, but interest cost grew 17% and adds pressure until the plants earn.",
+    "sources": [
+     {
+      "title": "Screener.in: Alembic consolidated financials",
+      "url": "https://www.screener.in/company/APLLTD/consolidated/"
+     }
+    ],
+    "doing": "Debt-funded capex; interest cost +17%."
+   }
+  },
+  "ajanta": {
+   "growth": {
+    "text": "Revenue grew ~13% a year, driven by US generics (+49% in FY26 from only ~51 products) and India volume growth ahead of the market. Asia branded, once the main engine, has stalled (−16% in Q1 FY27).",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +25% to ₹1,626 Cr; PAT +31% to ₹334 Cr; US +57%; Asia branded −16%; ₹32/s",
+      "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916"
+     }
+    ],
+    "doing": "Scaling US (+57% in Q1 FY27); new India launches beat the market by 76%."
+   },
+   "margin": {
+    "text": "Margin is the highest of the six (~27.5%) because Ajanta sells mostly branded, chronic products in India and emerging markets, and picks US products with few competitors. Material cost fell from 29.5% to 22.2% of sales FY23–26.",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     },
+     {
+      "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+      "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+     }
+    ],
+    "doing": "Lower material cost (22% of sales) and US products with few competitors."
+   },
+   "returns": {
+    "text": "ROCE of 35% comes mainly from margin (EBIT ~24%) rather than from working assets harder. Debt is near zero and capex is modest, so capital stays lean.",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     }
+    ],
+    "doing": "Keeps capex modest and returns surplus cash (buybacks, ₹400 Cr dividend)."
+   },
+   "wc": {
+    "text": "Debtor days jumped from 93 to 124 in FY26 as US sales and distributor credit grew. Inventory (289 days) is in line with peers. Collections are the issue, not stock.",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     },
+     {
+      "title": "FY26: revenue +17% to ₹5,453 Cr; US generics +49% to ₹1,557 Cr; ROCE 33%; R&D up to ₹252 C",
+      "url": "https://www.ajantapharma.com/assets/frontend/images/investors/files/quarterly_results/1777975848_PressRelease-Q4FY2026.pdf"
+     }
+    ],
+    "doing": "Using digital supply tools for forecasting; no public receivables target."
+   },
+   "cash": {
+    "text": "Only half of FY26 profit turned into cash (CFO/PAT 0.5x) because receivables rose by ~₹670 Cr. With a ₹400 Cr dividend in Q1 FY27, cash discipline matters.",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     },
+     {
+      "title": "FY26: revenue +17% to ₹5,453 Cr; US generics +49% to ₹1,557 Cr; ROCE 33%; R&D up to ₹252 C",
+      "url": "https://www.ajantapharma.com/assets/frontend/images/investors/files/quarterly_results/1777975848_PressRelease-Q4FY2026.pdf"
+     }
+    ],
+    "doing": "Paid a ₹400 Cr interim dividend; no public cash-conversion target."
+   },
+   "cost": {
+    "text": "Employee cost rose from 19.0% to 24.7% of sales FY22–26, the second-largest rise of the six, as Ajanta expanded US operations and sales teams ahead of revenue.",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     }
+    ],
+    "doing": "Digitising (SAP workflows, eBMR) and automating lines (manual work cut ~50% on one line)."
+   },
+   "geo": {
+    "text": "Revenue is spread across India (31%), US (30%), Africa (23%) and Asia (16%). The mix protects against any one market, but Asia's decline and the US tariff path are the watch points.",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +25% to ₹1,626 Cr; PAT +31% to ₹334 Cr; US +57%; Asia branded −16%; ₹32/s",
+      "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916"
+     }
+    ],
+    "doing": "Diversified across India, US, Africa and Asia; Asia turnaround not yet announced."
+   },
+   "brands": {
+    "text": "Ajanta leads ophthalmology (#1) and is climbing in dermatology (#13). Cardiology, its largest therapy, grew 7% against a market growing 14%, so it is losing share there.",
+    "sources": [
+     {
+      "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+      "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+     }
+    ],
+    "doing": "Climbing in dermatology (#16 to #13); ophthalmology #1."
+   },
+   "rnd": {
+    "text": "R&D is 4.6% of sales, focused on first-to-market branded generics (over half its 350+ launches were first to market). Plants are digitising (electronic batch records, predictive maintenance).",
+    "sources": [
+     {
+      "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+      "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+     }
+    ],
+    "doing": "R&D fully digitised and integrating AI models; Paithan plant cleared by FDA (VAI)."
+   },
+   "quarter": {
+    "text": "Q1 FY27 revenue rose 25% and profit 31%, led by the US (+57%). Margin held near 27%.",
+    "sources": [
+     {
+      "title": "Q1 FY27: revenue +25% to ₹1,626 Cr; PAT +31% to ₹334 Cr; US +57%; Asia branded −16%; ₹32/s",
+      "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916"
+     }
+    ],
+    "doing": "Q1 FY27 revenue +25%, profit +31%."
+   },
+   "debt": {
+    "text": "Borrowings rose to ₹260 Cr but Ajanta holds net cash. Balance sheet is the strongest pillar.",
+    "sources": [
+     {
+      "title": "Screener.in: Ajanta consolidated financials",
+      "url": "https://www.screener.in/company/AJANTPHARM/consolidated/"
+     }
+    ],
+    "doing": "Near-zero net debt."
+   }
+  },
+  "ipca": {
+   "growth": {
+    "text": "Revenue grew ~13% a year, but part of that is the Unichem acquisition (consolidated from FY24). Domestic sales are outgrowing the market (16% vs 13.5% in Sep 2026).",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     },
+     {
+      "title": "Sep-2026 IPM: Ipca +16% value / +8.4% units vs IPM +13.5%",
+      "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html"
+     }
+    ],
+    "doing": "Guidance raised to 14-16% growth; domestic outgrowing the market."
+   },
+   "margin": {
+    "text": "Margin recovered from 15% to ~21% (FY23–26) and 22.9% in Q1 FY27 as API prices normalised and material cost fell from 35.8% to 25.5% of sales. Unichem, at ~11% margin, still pulls the group average down.",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     },
+     {
+      "title": "Unichem Q1: revenue +20%, margin 11% (+680 bps YoY); API source-transfer synergies still '",
+      "url": "https://plindia.com/ResReport/IPCA-16-8-26-PL.pdf"
+     }
+    ],
+    "doing": "API recovery and Unichem source transfer; guidance of 23% margin for FY27."
+   },
+   "returns": {
+    "text": "ROCE is only ~17% despite better margins because Ipca carries a large asset base (25 sites, ₹4,600 Cr fixed assets) and 353 inventory days. Returns rise only if assets work harder.",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     }
+    ],
+    "doing": "Repaid USD loans; new capex of ₹700-800 Cr for API plants."
+   },
+   "wc": {
+    "text": "Inventory of 353 days reflects API backward integration (holding raw materials and intermediates) and lumpy tender and export business.",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     }
+    ],
+    "doing": "No public inventory target."
+   },
+   "cash": {
+    "text": "Cash conversion is close to 1x and USD loans are repaid, so cash is healthy; ₹700–800 Cr of new capex will absorb part of it.",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     },
+     {
+      "title": "Capex ₹700–800 Cr: new API/intermediate plants at Dewas & Wardha; biotech R&D; all USD loa",
+      "url": "https://scanx.trade/stock-market-news/companies/ipca-labs-q1-results-net-profit-rises-72-yoy-4-billion/48156617"
+     }
+    ],
+    "doing": "Repaid all USD loans."
+   },
+   "cost": {
+    "text": "Employee cost rose ~2.3 points of sales FY22–26, the smallest rise of the six, and fell 1.4 points in Q1 FY27 as revenue grew faster.",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +21% to ₹2,788 Cr, EBITDA +50% (22.9% margin), PAT +72%; FY27 guidance ra",
+      "url": "https://scanx.trade/stock-market-news/companies/ipca-labs-q1-results-net-profit-rises-72-yoy-4-billion/48156617"
+     }
+    ],
+    "doing": "Personnel cost down 1.4 points of sales in Q1 FY27."
+   },
+   "geo": {
+    "text": "Domestic formulations are ~39% of revenue, with exports, API and Unichem making up the rest. Low US exposure means low tariff risk but also less US upside.",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     }
+    ],
+    "doing": "Building US/EU filings (4-5 a year)."
+   },
+   "brands": {
+    "text": "Pain management is 53% of domestic sales (Zerodol family, HCQS), so Ipca depends on one therapy. Anti-malarials are shrinking.",
+    "sources": [
+     {
+      "title": "Ipca Laboratories annual report 2024-25",
+      "url": "https://ipca.com/wp-content/pdf/financials/annual-reports/annual_report_2024_25.pdf"
+     }
+    ],
+    "doing": "Pushing chronic (+17%) to reduce reliance on pain."
+   },
+   "rnd": {
+    "text": "R&D is only ~2.5% of sales; the strategy relies on API backward integration rather than new molecules.",
+    "sources": [
+     {
+      "title": "Ipca Laboratories annual report 2024-25",
+      "url": "https://ipca.com/wp-content/pdf/financials/annual-reports/annual_report_2024_25.pdf"
+     }
+    ],
+    "doing": "Biotech R&D capex announced."
+   },
+   "quarter": {
+    "text": "Q1 FY27 was strong: revenue +21%, EBITDA +50%, margin 22.9%, and guidance was raised to 14–16% growth.",
+    "sources": [
+     {
+      "title": "Q1 FY27: revenue +21% to ₹2,788 Cr, EBITDA +50% (22.9% margin), PAT +72%; FY27 guidance ra",
+      "url": "https://scanx.trade/stock-market-news/companies/ipca-labs-q1-results-net-profit-rises-72-yoy-4-billion/48156617"
+     }
+    ],
+    "doing": "Q1 FY27 EBITDA +50%."
+   },
+   "debt": {
+    "text": "Borrowings fell from ₹1,481 Cr to ₹809 Cr and Ipca holds net cash. Interest is now negligible.",
+    "sources": [
+     {
+      "title": "Screener.in: Ipca consolidated financials",
+      "url": "https://www.screener.in/company/IPCALAB/consolidated/"
+     }
+    ],
+    "doing": "Borrowings down to ₹809 Cr; net cash."
+   }
+  },
+  "mankind": {
+   "growth": {
+    "text": "Revenue grew ~16% a year, the fastest of the six, but part is acquired: Bharat Serums (BSV) has been included since October 2024. The core India Rx business still grows ahead of the market.",
+    "sources": [
+     {
+      "title": "Screener.in: Mankind consolidated financials",
+      "url": "https://www.screener.in/company/MANKIND/consolidated/"
+     },
+     {
+      "title": "FY26: revenue +17% to ₹14,278 Cr; adj. EBITDA ₹3,629 Cr (25.4%); PAT −3.4% on BSV interest",
+      "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_19052026200732_PR_Final.pdf"
+     }
+    ],
+    "doing": "Launched 'Vistar' division and bought Rivotril (CNS); exports +34.5%."
+   },
+   "margin": {
+    "text": "Margin is high (~25%) thanks to India branded generics and consumer brands with strong pricing (gross margin ~72%). It rose to 26.3% in Q1 FY27 as BSV integration progressed.",
+    "sources": [
+     {
+      "title": "Screener.in: Mankind consolidated financials",
+      "url": "https://www.screener.in/company/MANKIND/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +13% to ₹4,031 Cr; EBITDA margin 26.3% (+250 bps); PAT +29%; net debt ₹3,",
+      "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218"
+     }
+    ],
+    "doing": "Margin up 2.5 points in Q1 FY27 as BSV integrates."
+   },
+   "returns": {
+    "text": "ROCE halved from 32% to 14% because the BSV purchase added large goodwill and intangibles to capital, plus interest of ₹644 Cr and D&A of ₹886 Cr. The business is fine; the deal has to earn its price.",
+    "sources": [
+     {
+      "title": "Screener.in: Mankind consolidated financials",
+      "url": "https://www.screener.in/company/MANKIND/consolidated/"
+     },
+     {
+      "title": "FY26: revenue +17% to ₹14,278 Cr; adj. EBITDA ₹3,629 Cr (25.4%); PAT −3.4% on BSV interest",
+      "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_19052026200732_PR_Final.pdf"
+     }
+    ],
+    "doing": "Repaying BSV debt (net debt 0.9x EBITDA); pledge on BSV shares released."
+   },
+   "wc": {
+    "text": "Cash cycle (117 days) is among the shortest of the six, because India trade generics and consumer brands sell through quickly.",
+    "sources": [
+     {
+      "title": "Screener.in: Mankind consolidated financials",
+      "url": "https://www.screener.in/company/MANKIND/consolidated/"
+     }
+    ],
+    "doing": "Short cash cycle already (117 days)."
+   },
+   "cash": {
+    "text": "Cash from operations (₹3,121 Cr) is 1.6x profit, the strongest conversion of the six; it is being used to repay BSV debt.",
+    "sources": [
+     {
+      "title": "Screener.in: Mankind consolidated financials",
+      "url": "https://www.screener.in/company/MANKIND/consolidated/"
+     }
+    ],
+    "doing": "Using strong cash flow to repay debt."
+   },
+   "cost": {
+    "text": "Employee cost rose ~3.2 points of sales (to ~22.7%) as BSV's specialist teams joined and the field force grew.",
+    "sources": [
+     {
+      "title": "Screener.in: Mankind consolidated financials",
+      "url": "https://www.screener.in/company/MANKIND/consolidated/"
+     }
+    ],
+    "doing": "SAP S/4HANA and data lake for supply chain and sales productivity."
+   },
+   "geo": {
+    "text": "About 79% of revenue is India prescriptions and 6% consumer healthcare; exports (incl. BSV) are 15%. Very low US risk, but exposed to Indian price controls and tax changes.",
+    "sources": [
+     {
+      "title": "Screener.in: Mankind consolidated financials",
+      "url": "https://www.screener.in/company/MANKIND/consolidated/"
+     }
+    ],
+    "doing": "Growing exports through BSV."
+   },
+   "brands": {
+    "text": "Mankind leads its consumer categories by a wide margin (Prega News ~84%, Unwanted-72 68%) and is #1 in gynaecology. Chronic share rose from 28% to 39% over eight years, which steadies growth.",
+    "sources": [
+     {
+      "title": "Mankind Pharma Q1 FY27 investor presentation (NSE, 30 Jul 2026)",
+      "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_30072026154612_CoveringIP.pdf"
+     }
+    ],
+    "doing": "Raising chronic share (28% to 39% since FY18)."
+   },
+   "rnd": {
+    "text": "R&D is only ~2.5% of sales yet Mankind is buying high-risk innovation (CAR-T biotech ACTx). 32 plants, some small, add complexity.",
+    "sources": [
+     {
+      "title": "Mankind Pharma Q1 FY27 investor presentation (NSE, 30 Jul 2026)",
+      "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_30072026154612_CoveringIP.pdf"
+     },
+     {
+      "title": "Acquires 70% of Belgian CAR-T biotech Armed Cell Therapeutics (ACTx) for €48M (~₹511 Cr)",
+      "url": "https://www.business-standard.com/companies/news/mankind-pharma-to-acquire-70-in-belgian-biotech-firm-for-48-million-126101501420_1.html"
+     }
+    ],
+    "doing": "AI drug-discovery tie-up; bought 70% of CAR-T biotech ACTx."
+   },
+   "quarter": {
+    "text": "Q1 FY27 revenue rose 13% and margin rose 2.5 points to 26.3%; profit +29% despite a higher tax rate.",
+    "sources": [
+     {
+      "title": "Q1 FY27: revenue +13% to ₹4,031 Cr; EBITDA margin 26.3% (+250 bps); PAT +29%; net debt ₹3,",
+      "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218"
+     }
+    ],
+    "doing": "Q1 FY27 profit +29%."
+   },
+   "debt": {
+    "text": "Net debt is ₹3,377 Cr (0.9x EBITDA) after the BSV deal and falling; pledges on BSV shares are being released.",
+    "sources": [
+     {
+      "title": "Q1 FY27: revenue +13% to ₹4,031 Cr; EBITDA margin 26.3% (+250 bps); PAT +29%; net debt ₹3,",
+      "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218"
+     },
+     {
+      "title": "Releases pledge on 38.68% stake in BSV (Bharat Serums & Vaccines)",
+      "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-releases-pledge-38-68-stake-bsvl/48539533"
+     }
+    ],
+    "doing": "Debt being repaid; pledges released."
+   }
+  },
+  "alkem": {
+   "growth": {
+    "text": "Revenue grew only ~8.5% a year because Alkem is concentrated in acute therapies (antibiotics, gastro, pain) that grow slower than chronic, and its trade-generics business is flat.",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +11% to ₹3,740 Cr; EBITDA margin 20.5% (−140 bps); PAT −22% on 30–32% tax",
+      "url": "https://www.investing.com/news/company-news/alkem-q1-fy27-slides-revenue-up-11-profit-falls-on-tax-hit-93CH-4860539"
+     }
+    ],
+    "doing": "Early semaglutide launch (~11% unit share); added 1,200 reps; chronic outgrowing market."
+   },
+   "margin": {
+    "text": "Margin is ~20%, below the industry average, because the acute mix carries lower margins and new businesses (Enzene contract manufacturing, Occlutech devices) are loss-making or breakeven. Material cost fell sharply (42.3% to 29.1% of sales FY23–26), which helped.",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     },
+     {
+      "title": "Completes acquisition of majority stake in Swiss structural-heart device maker Occlutech",
+      "url": "https://www.indianpharmapost.com/news/alkem-completes-acquisition-of-majority-stake-in-switzerlands-occlutech-20982"
+     }
+    ],
+    "doing": "Lower material cost; new ventures (Enzene, Occlutech) still breakeven or loss-making."
+   },
+   "returns": {
+    "text": "ROCE of 21% is above the six-company median, supported by large net cash, but held back by low-margin new ventures.",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     }
+    ],
+    "doing": "Holds large net cash; buying into devices (Occlutech)."
+   },
+   "wc": {
+    "text": "Working-capital days rose from 31 to 123 since FY22 as inventory and receivables grew faster than sales.",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     }
+    ],
+    "doing": "No public working-capital target."
+   },
+   "cash": {
+    "text": "Cash from operations is steady at ~₹1,900–2,000 Cr a year; Alkem holds large cash and deposits (about ₹5,500 Cr net cash by company disclosures).",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     }
+    ],
+    "doing": "Cash from operations steady at ~₹2,000 Cr."
+   },
+   "cost": {
+    "text": "Employee cost rose ~3.2 points of sales FY22–26 and jumped 16% in Q1 FY27 after adding 1,200 reps and staffing the contract-manufacturing business.",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +11% to ₹3,740 Cr; EBITDA margin 20.5% (−140 bps); PAT −22% on 30–32% tax",
+      "url": "https://www.investing.com/news/company-news/alkem-q1-fy27-slides-revenue-up-11-profit-falls-on-tax-hit-93CH-4860539"
+     }
+    ],
+    "doing": "Added 1,200 reps in Q1 FY27 (employee cost +16%)."
+   },
+   "geo": {
+    "text": "India is ~68% of revenue, the US ~20%. The Daman plant, now classified OAI by the US FDA, supplies about 45% of US sales.",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     },
+     {
+      "title": "USFDA classifies Daman (Amaliya) facility as OAI after 7-observation inspection",
+      "url": "https://medicaldialogues.in/news/industry/pharma/alkem-labs-daman-facility-gets-7-usfda-observations-classified-as-oai-176829"
+     }
+    ],
+    "doing": "Remediating Daman after the FDA OAI (6-12 months expected)."
+   },
+   "brands": {
+    "text": "Alkem is #1 in anti-infectives (13.4% share) with Pan, Clavam and Pan-D among India's top 15 brands. It is weak in faster-growing chronic therapies (diabetes #14, CNS #14).",
+    "sources": [
+     {
+      "title": "Alkem Q2 FY26 results presentation (Nov 2025)",
+      "url": "https://admin.alkemlabs.com/uploads/Q2_FY_26_Results_Presentation_f934fcbd85.pdf"
+     }
+    ],
+    "doing": "Building chronic around semaglutide and diabetes."
+   },
+   "rnd": {
+    "text": "21 plants; R&D ~4% of sales. The Daman FDA finding shows quality systems are the priority investment.",
+    "sources": [
+     {
+      "title": "Alkem Q2 FY26 results presentation (Nov 2025)",
+      "url": "https://admin.alkemlabs.com/uploads/Q2_FY_26_Results_Presentation_f934fcbd85.pdf"
+     },
+     {
+      "title": "USFDA classifies Daman (Amaliya) facility as OAI after 7-observation inspection",
+      "url": "https://medicaldialogues.in/news/industry/pharma/alkem-labs-daman-facility-gets-7-usfda-observations-classified-as-oai-176829"
+     }
+    ],
+    "doing": "Daman remediation under way."
+   },
+   "quarter": {
+    "text": "Q1 FY27 revenue rose 11% but profit fell 22% because the tax rate jumped to 30–32%.",
+    "sources": [
+     {
+      "title": "Q1 FY27: revenue +11% to ₹3,740 Cr; EBITDA margin 20.5% (−140 bps); PAT −22% on 30–32% tax",
+      "url": "https://www.investing.com/news/company-news/alkem-q1-fy27-slides-revenue-up-11-profit-falls-on-tax-hit-93CH-4860539"
+     }
+    ],
+    "doing": "Q1 FY27 profit −22% on higher tax."
+   },
+   "debt": {
+    "text": "Borrowings are ₹2,047 Cr but cash and deposits are larger, so Alkem is effectively debt-free.",
+    "sources": [
+     {
+      "title": "Screener.in: Alkem consolidated financials",
+      "url": "https://www.screener.in/company/ALKEM/consolidated/"
+     }
+    ],
+    "doing": "Effectively debt-free."
+   }
+  },
+  "glenmark": {
+   "growth": {
+    "text": "Revenue grew ~8.4% a year FY22–26, but the base includes Glenmark Life Sciences (sold in FY24). FY26 jumped 27.5% because of the AbbVie licensing payment.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     },
+     {
+      "title": "FY26: revenue +27.5% to ₹16,983 Cr, EBITDA 26.9% (incl. AbbVie upfront); 13 US launches; 5",
+      "url": "https://nsearchives.nseindia.com/corporate/GLENMARK_29052026215918_BSE_NSE_PR_29052026_signed.pdf"
+     }
+    ],
+    "doing": "13 US launches in FY26; first generic Flovent HFA with 180-day exclusivity."
+   },
+   "margin": {
+    "text": "FY26 margin of 26.9% is inflated by AbbVie licensing income (US$700M upfront). Management's normal margin is 21–22%.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     },
+     {
+      "title": "FY27 margin guidance 21–22% held despite API/logistics inflation; NWC <115 days target",
+      "url": "https://www.sahi.com/news/glenmark-sets-fy27-margin-forecast-at-21-22-amid-over-100-million-quarterly-us-sales-estimate-3207-PE1_COR"
+     }
+    ],
+    "doing": "Guiding 21-22% normal margin despite input inflation."
+   },
+   "returns": {
+    "text": "ROCE of 40% is a one-off driven by licensing income. Excluding it, returns are closer to the peer median.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     }
+    ],
+    "doing": "Cut debt to ₹594 Cr using the AbbVie payment."
+   },
+   "wc": {
+    "text": "Cash cycle is the shortest of the six (83 days), but only because payables are stretched to 288 days; debtor days (107) and inventory (264) are high.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     }
+    ],
+    "doing": "Target of net working capital below 115 days."
+   },
+   "cash": {
+    "text": "Cash from operations was ₹3,445 Cr in FY26 (2.5x profit) because of the licensing cash. Borrowings fell from ₹4,608 Cr (FY23) to ₹594 Cr.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     }
+    ],
+    "doing": "Repaid debt with licensing cash."
+   },
+   "cost": {
+    "text": "Employee cost rose from 14.7% to 21.2% of sales FY22–26, the largest rise of the six, as Glenmark built specialty and innovation teams.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     }
+    ],
+    "doing": "No public cost programme."
+   },
+   "geo": {
+    "text": "India ~36%, North America ~27%, Europe ~19%, emerging markets ~18%. North America is lifted by deferred licensing income.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     }
+    ],
+    "doing": "Ryaltris in 55+ markets; Europe branded shift."
+   },
+   "brands": {
+    "text": "Glenmark is #2 in dermatology and #3 in respiratory in India; Ryaltris is its top global brand. Diabetes share is slipping.",
+    "sources": [
+     {
+      "title": "Glenmark management discussion & analysis, Q4 FY26",
+      "url": "https://glenmark.b-cdn.net/gpl_pdfs/Financials/Quarterly/Glenmark_MDA_Q4FY26_vf.pdf"
+     }
+    ],
+    "doing": "Launching semaglutide, Tevimbra, Brukinsa in India."
+   },
+   "rnd": {
+    "text": "R&D ~6.5% of sales, including the innovation unit (IGI) that burns ~US$70M a year but produced the AbbVie deal.",
+    "sources": [
+     {
+      "title": "Glenmark management discussion & analysis, Q4 FY26",
+      "url": "https://glenmark.b-cdn.net/gpl_pdfs/Financials/Quarterly/Glenmark_MDA_Q4FY26_vf.pdf"
+     }
+    ],
+    "doing": "IGI innovation unit; out-licensed ISB 2001."
+   },
+   "quarter": {
+    "text": "Q1 FY27 revenue rose 23% (core above 18%); margin ~20% excluding licensing.",
+    "sources": [
+     {
+      "title": "Q1 FY27: revenue +23% to ₹4,018 Cr (core >18%); NA +41% incl. deferred ISB 2001 income; EB",
+      "url": "https://www.investing.com/news/company-news/glenmark-q1-fy27-slides-23-revenue-growth-innovation-pipeline-expands-93CH-4829792"
+     }
+    ],
+    "doing": "Q1 FY27 core growth above 18%."
+   },
+   "debt": {
+    "text": "Debt is close to zero after the licensing payment and the Life Sciences sale.",
+    "sources": [
+     {
+      "title": "Screener.in: Glenmark consolidated financials",
+      "url": "https://www.screener.in/company/GLENMARK/consolidated/"
+     }
+    ],
+    "doing": "Debt close to zero."
+   }
+  }
+ },
+ "peer": {
+  "cmd_tiles": {
+   "text": "The six grow about as fast as the industry, but their middle margin and ROCE sit slightly below the Nifty Pharma average, which includes large, more global players such as Sun Pharma and Divi's. The cash cycle is the clearest gap: two companies (Alembic, Ipca) hold far more inventory than the industry.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    },
+    {
+     "title": "Industry benchmark: Nifty Pharma constituents (Screener.in)",
+     "url": "https://www.5paisa.com/hindi/nifty-pharma-stock-list"
+    }
+   ]
+  },
+  "cmd_map": {
+   "text": "Companies in the top-right (Ajanta, Mankind) combine branded India or chronic portfolios with pricing power. Alembic and Alkem sit bottom-left: Alembic because R&D and new plants weigh on margin, Alkem because of its acute and trade-generics mix. Glenmark's position is flattered by one-off licensing income.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_table": {
+   "text": "Green and red mark best and weakest of the six. The Industry column is the Nifty Pharma average, so a company can be best of six and still below the industry.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    },
+    {
+     "title": "Industry benchmark: Nifty Pharma constituents (Screener.in)",
+     "url": "https://www.5paisa.com/hindi/nifty-pharma-stock-list"
+    }
+   ]
+  },
+  "rt_trend_roce": {
+   "text": "Ajanta has risen steadily on margin. Mankind fell sharply after the BSV acquisition added goodwill to capital. Glenmark's FY26 spike is licensing income. Alembic is flat because new plants are not yet full.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_roe": {
+   "text": "ROE follows ROCE. Companies with little debt (Ajanta, Ipca) have ROE close to ROCE; borrowing would lift ROE without improving the business.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_roic": {
+   "text": "ROIC is after-tax return on the money invested in operations. Above about 12% (a typical cost of capital for Indian pharma) the company creates value; below it, growth destroys value.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_ebitda_margin": {
+   "text": "Margins rose across the industry from FY23 as API and freight costs eased after the pandemic. Companies with branded India portfolios (Ajanta, Mankind) sit highest.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    },
+    {
+     "title": "Industry benchmark: Nifty Pharma constituents (Screener.in)",
+     "url": "https://www.5paisa.com/hindi/nifty-pharma-stock-list"
+    }
+   ]
+  },
+  "rt_trend_inventory_days": {
+   "text": "API-integrated companies (Alembic, Ipca) hold more stock because they carry raw materials and intermediates as well as finished goods.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_debtor_days": {
+   "text": "Debtor days rise when US sales or distributor credit grow. Ajanta's jump (93 to 124) is the sharpest move in FY26.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_ccc": {
+   "text": "Cash cycle = inventory + debtor days − payable days. Glenmark's low figure comes from stretching suppliers, which is not sustainable.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_de_ratio": {
+   "text": "Debt is low across the set. Mankind rose after the BSV deal; Alembic after funding new plants.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_cfo_pat": {
+   "text": "Below 1x means profit is not arriving as cash. Ajanta's 0.5x in FY26 is the warning sign; Glenmark's high figure is licensing cash.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_asset_turnover": {
+   "text": "Sales per rupee of assets. Mankind dropped after the BSV deal added assets; Ajanta and Glenmark are highest.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_interest_cover": {
+   "text": "Times operating profit covers interest. Very high values mean almost no debt; Mankind's ~4x is the lowest but still safe.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_trend_fcf_margin": {
+   "text": "Free cash flow here is cash from operations minus all investing (capex, acquisitions, investments), as a share of sales. Big deal years show as negative.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rt_dupont": {
+   "text": "ROE = profit margin × asset turnover × equity multiplier. Ajanta wins on margin; Mankind's weak spot is asset turnover after BSV; Glenmark uses more liabilities.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rg_fda": {
+   "text": "FDA status decides whether US launches continue. Alkem's Daman OAI is the only open issue; Glenmark and Ajanta have just cleared theirs.",
+   "sources": [
+    {
+     "title": "US FDA warning letters",
+     "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters"
+    }
+   ]
+  },
+  "rg_anda": {
+   "text": "More approvals do not mean more revenue: Ajanta earns about 2.3x more US revenue per product than Alembic by choosing products with few competitors.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "rg_rnd": {
+   "text": "Higher R&D spend currently goes with lower margins because the payoff from new filings arrives years later.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "nw_timeline": {
+   "text": "Regulatory and policy news (FDA, tariffs) moved these companies more than quarterly results did in the last six months.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "nw_heat": {
+   "text": "US revenue and EBITDA margin are the two numbers most affected by news; Alkem is the only company with net negative news.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "st_map": {
+   "text": "Each number counts how many of a company's five problem statements need that type of consulting help; Digital shows how far behind the company is.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "pl_scatter": {
+   "text": "Each dot is one company in one year. With 30 points this is more reliable than one company's 5 years, but it mixes very different business models.",
+   "sources": [
+    {
+     "title": "Screener.in consolidated financials",
+     "url": "https://www.screener.in/"
+    }
+   ]
+  },
+  "market": {
+   "text": "The Indian pharma market grew ~10% in FY26 (volume 2.7%, price 4.4%, new products 2.8%), with chronic (~14%) well ahead of acute (~8%).",
+   "sources": [
+    {
+     "title": "HDFC Sky: IPM grew 10% in FY26 (citing IQVIA)",
+     "url": "https://hdfcsky.com/news/pharmaceuticals-ipm-11-percent-growth-in-mar-26"
+    }
+   ]
+  }
+ }
+}

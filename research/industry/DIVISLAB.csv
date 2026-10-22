@@ -1,0 +1,35 @@
+metric,Mar2022,Mar2023,Mar2024,Mar2025,Mar2026
+Sales,8960,7768,7845,9360,10560
+Operating Profit,3885,2370,2210,2973,3442
+Other Income,112,344,335,348,433
+Interest,2,2,4,3,24
+Depreciation,312,343,378,402,463
+Profit before tax,3684,2369,2163,2916,3388
+Tax %,20,23,26,25,24
+Net Profit,2960,1823,1600,2191,2568
+Equity Capital,53,53,53,53,53
+Reserves,11675,12714,13518,14916,16708
+Borrowings,4,3,3,4,7
+Other Liabilities,1628,1654,1886,1948,3251
+Total Liabilities,13360,14425,15460,16921,20019
+Fixed Assets,4325,4723,4739,5442,6528
+CWIP,470,212,778,1022,2113
+Investments,72,77,82,65,69
+Other Assets,8493,9413,9861,10392,11309
+Cash from Operating Activity,1912,2460,1261,1653,2738
+Cash from Investing Activity,-2195,-2708,-269,-804,-2219
+Cash from Financing Activity,-532,-797,-799,-799,-804
+Debtor Days,99,84,100,106,103
+Inventory Days,341,352,364,311,346
+Days Payable,96,89,94,88,106
+Cash Conversion Cycle,344,347,370,330,343
+Working Capital Days,177,188,206,192,195
+ROCE %,35,19,16,20,22
+MarketCap,243059
+PE,81.6
+ID,837
+Material Cost %,34.34,40.46,41.0,40.7,39.42
+Employee Cost %,10.46,12.52,13.95,13.18,13.5
+Manufacturing Cost %,7.27,10.24,10.12,8.06,8.23
+Other Cost %,4.24,5.95,6.5,5.62,5.27
+Cash Equivalents,2804,4188,3961,3696,3371

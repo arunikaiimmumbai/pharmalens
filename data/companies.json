@@ -1,6 +1,6 @@
 {
  "meta": {
-  "title": "Pha-inance Lens: Indian Mid-cap Pharma Intelligence",
+  "title": "Finance Lens: Indian Mid-cap Pharma Intelligence",
   "author": "Arunika Sherry",
   "program": "IIM Mumbai Mentorship Program",
   "mentor": "Dr. Phalgun Rudrapatna",
@@ -56,7 +56,14 @@
     "metrics": [
      "India revenue growth"
     ],
-    "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html"
+    "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html",
+    "statement_impact": {
+     "pl": "Market growth supports India revenues for all six.",
+     "bs": "No effect.",
+     "cf": "No effect.",
+     "doing": "Companies outgrowing the market: Ajanta, Ipca, Glenmark.",
+     "should": "Track share gains vs the market monthly, by therapy."
+    }
    },
    {
     "date": "2026-09-29",
@@ -68,7 +75,14 @@
      "US revenue",
      "EBITDA margin"
     ],
-    "url": "https://www.business-standard.com/world-news/trump-100-percent-pharma-tariff-india-select-drugs-exemption-126092900121_1.html"
+    "url": "https://www.business-standard.com/world-news/trump-100-percent-pharma-tariff-india-select-drugs-exemption-126092900121_1.html",
+    "statement_impact": {
+     "pl": "Generics excluded for now; specialty brands may face tariffs.",
+     "bs": "No effect.",
+     "cf": "No effect.",
+     "doing": "Indian firms rely on the generics exclusion.",
+     "should": "Map each company's US product mix by tariff exposure."
+    }
    },
    {
     "date": "2026-07-22",
@@ -80,7 +94,14 @@
      "US revenue",
      "Valuation"
     ],
-    "url": "https://www.business-standard.com/industry/news/us-proposal-to-impose-tariffs-on-generic-medicines-could-impact-india-gtri-126072200704_1.html"
+    "url": "https://www.business-standard.com/industry/news/us-proposal-to-impose-tariffs-on-generic-medicines-could-impact-india-gtri-126072200704_1.html",
+    "statement_impact": {
+     "pl": "If applied, US margins fall sharply after 2 years unless companies build US plants.",
+     "bs": "Possible US plant capex.",
+     "cf": "Capex for US manufacturing.",
+     "doing": "0% for 2 years gives time to adapt.",
+     "should": "US footprint options study: contract manufacturing, partner plants, price strategy."
+    }
    },
    {
     "date": "2026-08-15",
@@ -92,7 +113,14 @@
      "Material cost %",
      "Gross margin"
     ],
-    "url": ""
+    "url": "",
+    "statement_impact": {
+     "pl": "Material and freight costs up, so gross margin falls.",
+     "bs": "Higher inventory value.",
+     "cf": "More cash tied up in stock.",
+     "doing": "Flagged on Q1 calls; API-integrated firms (Alembic, Ipca) are cushioned.",
+     "should": "Procurement and price-pass-through programme; dual sourcing."
+    }
    }
   ]
  },
@@ -397,6 +425,13 @@
      13,
      13,
      13
+    ],
+    "cash": [
+     22,
+     28,
+     26,
+     21,
+     29
     ]
    },
    "ttm": {
@@ -458,7 +493,14 @@
       "US revenue",
       "ANDA commercialisation"
      ],
-     "url": "https://www.globenewswire.com/news-release/2026/10/13/3379788/0/en/alembic-therapeutics-llc-announces-availability-of-clonidine-hydrochloride-tablets-0-05mg.html"
+     "url": "https://www.globenewswire.com/news-release/2026/10/13/3379788/0/en/alembic-therapeutics-llc-announces-availability-of-clonidine-hydrochloride-tablets-0-05mg.html",
+     "statement_impact": {
+      "pl": "Adds US revenue; small single launch, so gross margin effect is minor.",
+      "bs": "Adds a little inventory and receivables for the launch.",
+      "cf": "Launch stock uses cash before sales arrive.",
+      "doing": "About 15 US launches planned for the rest of FY27.",
+      "should": "Launch only where competition is thin; stage launch stock to avoid adding to 462 inventory days."
+     }
     },
     {
      "date": "2026-10-08",
@@ -470,7 +512,14 @@
       "ANDA approvals",
       "US revenue"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/alembic-pharmaceuticals-secures-usfda-approval-otic-suspension/53790104"
+     "url": "https://scanx.trade/stock-market-news/companies/alembic-pharmaceuticals-secures-usfda-approval-otic-suspension/53790104",
+     "statement_impact": {
+      "pl": "Higher-margin sterile product once launched; supports US growth and margin.",
+      "bs": "Uses existing complex-product capacity, which helps absorb new plants.",
+      "cf": "Positive once sales start; little extra capex.",
+      "doing": "Moving its pipeline toward complex products (eye, ear, injectables).",
+      "should": "Prioritise complex launches that fill the under-used new plants; track return on each plant."
+     }
     },
     {
      "date": "2026-09-23",
@@ -481,7 +530,14 @@
      "metrics": [
       "Valuation"
      ],
-     "url": "https://www.sahi.com/news/alembic-pharmaceuticals-plans-analyst-and-investor-meeting-on-september-23-at-10-am"
+     "url": "https://www.sahi.com/news/alembic-pharmaceuticals-plans-analyst-and-investor-meeting-on-september-23-at-10-am",
+     "statement_impact": {
+      "pl": "No direct effect.",
+      "bs": "No direct effect.",
+      "cf": "No direct effect.",
+      "doing": "Management is promoting the upgraded mid-teens growth guidance.",
+      "should": "Pair the growth story with a public working-capital target; investors are watching cash, not only growth."
+     }
     },
     {
      "date": "2026-08-04",
@@ -495,7 +551,14 @@
       "EBITDA margin",
       "R&D %"
      ],
-     "url": "https://www.investing.com/news/company-news/alembic-q1-fy27-slides-us-generics-surge-49-revenue-up-26-93CH-4834597"
+     "url": "https://www.investing.com/news/company-news/alembic-q1-fy27-slides-us-generics-surge-49-revenue-up-26-93CH-4834597",
+     "statement_impact": {
+      "pl": "Revenue +26%, but margin only ~15% because R&D is ~9% of sales and the Pivya launch costs money.",
+      "bs": "Receivables and inventory rise with US growth.",
+      "cf": "Growth absorbs cash; PAT +12% only.",
+      "doing": "FY27 growth guidance raised to mid-teens.",
+      "should": "Separate one-off bosutinib sales from the base; cap R&D at a % of sales; set an inventory-days target."
+     }
     },
     {
      "date": "2026-05-15",
@@ -508,7 +571,14 @@
       "Borrowings",
       "R&D %"
      ],
-     "url": "https://www.barodaetrade.com/Reports/AlembicPharma-Q4FY26ResultReview16May26-Research.pdf"
+     "url": "https://www.barodaetrade.com/Reports/AlembicPharma-Q4FY26ResultReview16May26-Research.pdf",
+     "statement_impact": {
+      "pl": "EBITDA margin troughed at 12.3% as R&D hit 11% of sales and branded launch costs rose.",
+      "bs": "Borrowings rose to ₹1,430 Cr.",
+      "cf": "Interest cost rising (+17%); cash flow under pressure.",
+      "doing": "Launched Pivya (specialty brand) in Feb 2026.",
+      "should": "Stage-gate R&D spend by expected return; working-capital release to repay debt."
+     }
     }
    ],
    "working": [
@@ -602,7 +672,170 @@
      "Normal US generic price erosion",
      "Solvent and API cost inflation"
     ]
-   }
+   },
+   "brands": {
+    "summary": "Ranked 20th in the Indian market (about 1.3% share). Strength is molecule leadership in older acute brands; 51% of the India business is acute, 28% specialty and 22% animal health.",
+    "therapy_basis": "Share of India branded business, Q2 FY26",
+    "therapies": [
+     {
+      "therapy": "Acute (anti-infectives, cough and cold, gastro)",
+      "value": 51,
+      "detail": "51% of India branded sales"
+     },
+     {
+      "therapy": "Specialty (gynaecology, cardiology, diabetes, ophthalmology)",
+      "value": 28,
+      "detail": "28%"
+     },
+     {
+      "therapy": "Animal health",
+      "value": 22,
+      "detail": "22%, growing fastest"
+     }
+    ],
+    "brand_basis": "Rank and share within its molecule market, Q2 FY26",
+    "brands": [
+     {
+      "name": "Roxid",
+      "therapy": "Anti-infective",
+      "evidence": "#1, 95.2% share",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Althrocin",
+      "therapy": "Anti-infective",
+      "evidence": "#1, 86.3%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Deltone",
+      "therapy": "Animal health",
+      "evidence": "#1, 54.3%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Elata",
+      "therapy": "Animal health",
+      "evidence": "#1, 52.5%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Gerijoint",
+      "therapy": "Pain",
+      "evidence": "#1, 32.1%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Azithral",
+      "therapy": "Anti-infective",
+      "evidence": "#1, 30.2%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Crina-NCR",
+      "therapy": "Gynaecology",
+      "evidence": "#1, 29.9%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Estroplus",
+      "therapy": "Gynaecology",
+      "evidence": "#2, 47.5%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Lactonic",
+      "therapy": "Gynaecology",
+      "evidence": "#2, 38.5%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Gestofit SR",
+      "therapy": "Gynaecology",
+      "evidence": "#2, 18.1%",
+      "basis": "Molecule rank"
+     },
+     {
+      "name": "Wikoryl",
+      "therapy": "Cough and cold",
+      "evidence": "#3, 10.4%",
+      "basis": "Molecule rank"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Alembic investor presentation, September 2025 (Q2 FY26)",
+      "url": "https://alembicpharmaceuticals.com/webfiles/pdf/Investor/investors_presentations/2025-2026/Q2/Investor-Presentation-September-2025.pdf"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 2,
+     "status": "Weak",
+     "doing": "5,500+ medical reps, but no disclosed digital sales tools.",
+     "gap": "India sales grow ~5% vs market ~11% despite a large field force.",
+     "consultant": "Rep productivity analytics and digital doctor engagement for specialty brands.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Alembic investor presentation, September 2025 (Q2 FY26)",
+       "url": "https://alembicpharmaceuticals.com/webfiles/pdf/Investor/investors_presentations/2025-2026/Q2/Investor-Presentation-September-2025.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 2,
+     "status": "Weak",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "462 inventory days and a 381-day cash cycle, the worst in the set.",
+     "consultant": "Integrated S&OP and AI demand forecasting for US launches; inventory diagnostic worth ~₹500 Cr.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations. Clean FDA record suggests sound quality systems.",
+     "gap": "New plants under-used; no disclosed digital batch records or plant analytics.",
+     "consultant": "Plant utilisation and OEE programme with e-batch records at the new sites.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "Biggest filing engine in the set (279 ANDAs), but no disclosed digital or AI tools.",
+     "gap": "R&D is 9–11% of sales with no disclosed productivity tools.",
+     "consultant": "GenAI dossier drafting and portfolio analytics to pick fewer, better ANDAs.",
+     "wave": "18–30 mo",
+     "sources": []
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "Borrowings doubled; working capital not tracked publicly.",
+     "consultant": "Order-to-cash and inventory control tower on the ERP.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 2,
+     "status": "Weak",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "No disclosed data platform or AI use.",
+     "consultant": "Data foundation (single data lake) before any AI pilots.",
+     "wave": "0–6 mo",
+     "sources": []
+    }
+   ]
   },
   {
    "id": "ajanta",
@@ -904,6 +1137,13 @@
      32,
      32,
      35
+    ],
+    "cash": [
+     145,
+     270,
+     63,
+     50,
+     91
     ]
    },
    "ttm": {
@@ -964,7 +1204,14 @@
      "metrics": [
       "India revenue growth"
      ],
-     "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html"
+     "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html",
+     "statement_impact": {
+      "pl": "India sales growing faster than the market, mostly from volume, which is the healthy kind of growth.",
+      "bs": "No major effect.",
+      "cf": "Supports steady cash from India.",
+      "doing": "Volume-led growth across its branded portfolio.",
+      "should": "Use the momentum to fix cardiology, where it is losing share (7% vs market 14%)."
+     }
     },
     {
      "date": "2026-07-30",
@@ -977,7 +1224,14 @@
       "US revenue",
       "Dividend payout"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916"
+     "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916",
+     "statement_impact": {
+      "pl": "Revenue +25%, PAT +31%; US +57%, but Asia branded −16%.",
+      "bs": "₹400 Cr interim dividend reduces reserves.",
+      "cf": "Dividend paid exceeded the quarter's profit, so cash falls.",
+      "doing": "Returning cash to shareholders; scaling US.",
+      "should": "Turnaround plan for Asia branded; fix collections before raising payouts further."
+     }
     },
     {
      "date": "2026-07-02",
@@ -989,7 +1243,14 @@
       "US revenue",
       "ANDA approvals"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916"
+     "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916",
+     "statement_impact": {
+      "pl": "No immediate P&L effect; removes a risk to future US launches.",
+      "bs": "No effect.",
+      "cf": "No effect.",
+      "doing": "Plant cleared (VAI = minor issues only).",
+      "should": "Use Paithan for the next wave of US filings; keep inspection readiness."
+     }
     },
     {
      "date": "2026-05-05",
@@ -1002,7 +1263,14 @@
       "Debtor days",
       "US revenue"
      ],
-     "url": "https://www.ajantapharma.com/assets/frontend/images/investors/files/quarterly_results/1777975848_PressRelease-Q4FY2026.pdf"
+     "url": "https://www.ajantapharma.com/assets/frontend/images/investors/files/quarterly_results/1777975848_PressRelease-Q4FY2026.pdf",
+     "statement_impact": {
+      "pl": "Revenue +17%, ROCE ~33%; R&D raised to ₹252 Cr.",
+      "bs": "Receivables jumped (debtor days 93 → 124).",
+      "cf": "Cash from operations only ₹529 Cr, half of profit (0.5x).",
+      "doing": "Investing in US growth and R&D.",
+      "should": "Order-to-cash review: distributor credit terms, collections incentives, receivables ageing."
+     }
     },
     {
      "date": "2026-04-06",
@@ -1014,7 +1282,14 @@
       "Tax rate",
       "Valuation"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916"
+     "url": "https://scanx.trade/stock-market-news/companies/ajanta-pharma-q1-results-net-profit-rises-31-yoy-to-334-crore/47026916",
+     "statement_impact": {
+      "pl": "No charge yet; outcome 'cannot be determined'.",
+      "bs": "Possible future tax liability (contingent).",
+      "cf": "Possible future cash outflow.",
+      "doing": "Returns filed after the Aug 2025 tax search.",
+      "should": "Disclose a range of possible outcomes; keep a provision policy ready."
+     }
     }
    ],
    "working": [
@@ -1072,7 +1347,7 @@
     "Commercial & omnichannel": 3,
     "Supply chain & S&OP": 3,
     "Manufacturing 4.0 & quality": 3,
-    "R&D & regulatory": 2,
+    "R&D & regulatory": 3,
     "Finance & ERP": 3,
     "Data & AI": 2
    },
@@ -1108,7 +1383,174 @@
      "FX volatility (₹103 Cr mark-to-market loss in FY26)",
      "Premium valuation (P/E ~36x) leaves little room for misses"
     ]
-   }
+   },
+   "brands": {
+    "summary": "Ranked 24th in India (IQVIA, Mar 2026) and #1 in ophthalmology. Over 65% of India sales are chronic; the top 10 brands make 53% of India sales and 18 brands exceed ₹25 Cr.",
+    "therapy_basis": "IQVIA therapy rank (lower is better)",
+    "therapies": [
+     {
+      "therapy": "Ophthalmology",
+      "value": 1,
+      "detail": "#1 (IQVIA Jun MAT 2026); grew 14% vs market 9%"
+     },
+     {
+      "therapy": "Dermatology",
+      "value": 13,
+      "detail": "#13, up from #16; grew 14% vs market 7%"
+     },
+     {
+      "therapy": "Cardiology",
+      "value": 17,
+      "detail": "#17; grew 7% vs market 14%, so losing share"
+     },
+     {
+      "therapy": "Pain management",
+      "value": 27,
+      "detail": "#27; grew 12% vs market 8%"
+     }
+    ],
+    "brand_basis": "Leadership claims in company disclosures (brand sales not published)",
+    "brands": [
+     {
+      "name": "Feburic",
+      "therapy": "Pain (gout)",
+      "evidence": "Top position in febuxostat",
+      "basis": "Molecule leader"
+     },
+     {
+      "name": "Bimat",
+      "therapy": "Ophthalmology",
+      "evidence": "Lead brand of the #1 ophthalmology franchise",
+      "basis": "Franchise leader"
+     },
+     {
+      "name": "Met XL",
+      "therapy": "Cardiology",
+      "evidence": "Leading brand in its sub-segment",
+      "basis": "Sub-segment leader"
+     },
+     {
+      "name": "Melacare",
+      "therapy": "Dermatology",
+      "evidence": "Leading brand in its sub-segment",
+      "basis": "Sub-segment leader"
+     },
+     {
+      "name": "Atorfit CV",
+      "therapy": "Cardiology",
+      "evidence": "Named key cardiology brand",
+      "basis": "Named brand"
+     },
+     {
+      "name": "Rosutor Gold",
+      "therapy": "Cardiology",
+      "evidence": "Named key cardiology brand",
+      "basis": "Named brand"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+      "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+     },
+     {
+      "title": "Ajanta Pharma: India branded generics",
+      "url": "https://ajantapharma.com/ajanta/Business/india_branded_generics"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "In progress",
+     "doing": "AI-enabled learning platform ('Ajanta Academy') and year-round AI training for staff.",
+     "gap": "No disclosed digital doctor engagement; cardiology losing share (7% vs market 14%).",
+     "consultant": "Omnichannel cardiology relaunch with rep next-best-action.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+       "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Digital tools for real-time supply visibility and forecasting accuracy.",
+     "gap": "Debtor days rose 93 → 124; cash conversion 0.5x.",
+     "consultant": "Order-to-cash and distributor credit analytics; collections dashboard.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+       "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Electronic batch records integrated with equipment; predictive maintenance; automation cut manual work by ~50% on one line.",
+     "gap": "Roll-out shown at selected sites only.",
+     "consultant": "Scale e-batch records and predictive quality across all US-facing plants.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+       "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+      }
+     ]
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "In progress",
+     "doing": "R&D processes fully digitised; AI models being integrated into R&D.",
+     "gap": "Early stage; US pipeline still small (~51 products).",
+     "consultant": "AI-led product selection for the next US wave.",
+     "wave": "18–30 mo",
+     "sources": [
+      {
+       "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+       "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "In progress",
+     "doing": "SAP-enabled digital workflows and approvals; SAP SuccessFactors for HR.",
+     "gap": "Receivables not yet under control despite SAP.",
+     "consultant": "Working-capital control tower on SAP data.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+       "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Data & AI",
+     "score": 2,
+     "status": "Weak",
+     "doing": "AI used in learning and R&D; cybersecurity upgraded.",
+     "gap": "No enterprise data platform or AI in commercial and supply chain.",
+     "consultant": "Enterprise data platform plus 2–3 AI use cases (demand, collections, rep targeting).",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Ajanta Pharma annual report 2025-26 (NSE)",
+       "url": "https://nsearchives.nseindia.com/annual_reports/AR_29404_AJANTPHARM_2025_2026_A_9211972_18062026105542.pdf"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "ipca",
@@ -1409,6 +1851,13 @@
      13,
      15,
      17
+    ],
+    "cash": [
+     596,
+     1706,
+     113,
+     165,
+     363
     ]
    },
    "ttm": {
@@ -1469,7 +1918,14 @@
      "metrics": [
       "India revenue growth"
      ],
-     "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html"
+     "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html",
+     "statement_impact": {
+      "pl": "Domestic sales growing faster than the market (16% vs 13.5%).",
+      "bs": "No major effect.",
+      "cf": "Supports cash flow.",
+      "doing": "Outgrowing the market in both chronic and acute.",
+      "should": "Reduce dependence on pain (53% of sales) by pushing chronic launches."
+     }
     },
     {
      "date": "2026-08-17",
@@ -1480,7 +1936,14 @@
      "metrics": [
       "Valuation"
      ],
-     "url": "https://www.businesstoday.in/markets/stocks/story/ipca-laboratories-shares-jump-12-to-hit-record-high-on-strong-q1-show-check-revised-target-prices-549498-2026-08-17"
+     "url": "https://www.businesstoday.in/markets/stocks/story/ipca-laboratories-shares-jump-12-to-hit-record-high-on-strong-q1-show-check-revised-target-prices-549498-2026-08-17",
+     "statement_impact": {
+      "pl": "No direct effect.",
+      "bs": "No direct effect.",
+      "cf": "No direct effect.",
+      "doing": "Delivering on raised guidance.",
+      "should": "Valuation now prices in margin delivery; Unichem synergies must arrive to justify it."
+     }
     },
     {
      "date": "2026-08-14",
@@ -1493,7 +1956,14 @@
       "Employee cost %",
       "Revenue growth"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/ipca-labs-q1-results-net-profit-rises-72-yoy-4-billion/48156617"
+     "url": "https://scanx.trade/stock-market-news/companies/ipca-labs-q1-results-net-profit-rises-72-yoy-4-billion/48156617",
+     "statement_impact": {
+      "pl": "Revenue +21%, EBITDA +50%, margin 22.9%: operating leverage plus API recovery.",
+      "bs": "No major effect.",
+      "cf": "Stronger profit improves cash.",
+      "doing": "Guidance raised to 14–16% growth and 23% margin; personnel cost down 1.4 points of sales.",
+      "should": "Lock in cost gains with a procurement and productivity programme."
+     }
     },
     {
      "date": "2026-08-14",
@@ -1505,7 +1975,14 @@
       "EBITDA margin",
       "Synergies"
      ],
-     "url": "https://plindia.com/ResReport/IPCA-16-8-26-PL.pdf"
+     "url": "https://plindia.com/ResReport/IPCA-16-8-26-PL.pdf",
+     "statement_impact": {
+      "pl": "Unichem margin only 11% vs Ipca's base ~26%, which drags the group margin.",
+      "bs": "No effect.",
+      "cf": "No effect.",
+      "doing": "API source transfer to Unichem has started but synergies are still 'minimal'.",
+      "should": "Synergy tracking office: API switch, joint buying, plant consolidation (₹150–250 Cr EBITDA prize)."
+     }
     },
     {
      "date": "2026-08-14",
@@ -1518,7 +1995,14 @@
       "Borrowings",
       "ROCE"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/ipca-labs-q1-results-net-profit-rises-72-yoy-4-billion/48156617"
+     "url": "https://scanx.trade/stock-market-news/companies/ipca-labs-q1-results-net-profit-rises-72-yoy-4-billion/48156617",
+     "statement_impact": {
+      "pl": "Higher depreciation later; no immediate profit effect.",
+      "bs": "Fixed assets up ₹700–800 Cr; USD loans repaid, so debt very low.",
+      "cf": "Cash out for capex.",
+      "doing": "Building new API plants at Dewas and Wardha.",
+      "should": "Phase capex to demand; target utilisation before new spend to protect ROCE (17%)."
+     }
     }
    ],
    "working": [
@@ -1612,7 +2096,168 @@
      "Regulatory history (past import alert at Ratlam)",
      "Anti-malarials declining (−24% in Q1)"
     ]
-   }
+   },
+   "brands": {
+    "summary": "Ranked 16th in India (IQVIA, Mar 2025). Highly concentrated: pain management is 53% of domestic branded sales, led by the Zerodol family and HCQS; 6 brands are in India's top 300.",
+    "therapy_basis": "Share of domestic branded formulations, FY25",
+    "therapies": [
+     {
+      "therapy": "Pain management",
+      "value": 53,
+      "detail": "53%"
+     },
+     {
+      "therapy": "Cardiovascular and anti-diabetic",
+      "value": 17,
+      "detail": "17%"
+     },
+     {
+      "therapy": "Dermatology",
+      "value": 6,
+      "detail": "6%"
+     },
+     {
+      "therapy": "Anti-bacterials",
+      "value": 5,
+      "detail": "5%"
+     },
+     {
+      "therapy": "Urology",
+      "value": 5,
+      "detail": "5%"
+     },
+     {
+      "therapy": "Cough preparations",
+      "value": 4,
+      "detail": "4%"
+     },
+     {
+      "therapy": "Neuro-psychiatry",
+      "value": 3,
+      "detail": "3%"
+     },
+     {
+      "therapy": "Anti-malarials",
+      "value": 3,
+      "detail": "3%"
+     },
+     {
+      "therapy": "Gastro-intestinal",
+      "value": 2,
+      "detail": "2%"
+     }
+    ],
+    "brand_basis": "Brands named in India's top 300 (sales not published)",
+    "brands": [
+     {
+      "name": "Zerodol-SP",
+      "therapy": "Pain",
+      "evidence": "Top 300 brand",
+      "basis": "Top 300"
+     },
+     {
+      "name": "Zerodol-P",
+      "therapy": "Pain",
+      "evidence": "Top 300 brand",
+      "basis": "Top 300"
+     },
+     {
+      "name": "HCQS",
+      "therapy": "Rheumatology / anti-malarial",
+      "evidence": "Top 300 brand; market leader in hydroxychloroquine",
+      "basis": "Top 300"
+     },
+     {
+      "name": "Folitrax",
+      "therapy": "Rheumatology",
+      "evidence": "Top 300 brand",
+      "basis": "Top 300"
+     },
+     {
+      "name": "Zerodol-TH",
+      "therapy": "Pain",
+      "evidence": "Top 300 brand",
+      "basis": "Top 300"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Ipca Laboratories annual report 2024-25",
+      "url": "https://ipca.com/wp-content/pdf/financials/annual-reports/annual_report_2024_25.pdf"
+     },
+     {
+      "title": "Ipca corporate presentation (June 2024)",
+      "url": "https://www.ipca.com/wp-content/pdf/financials/corporate-presentation/ipca-corporate-presentation-june-2024.pdf"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 2,
+     "status": "No public evidence",
+     "doing": "6,476-strong field force across 21 therapy divisions; no disclosed digital tools.",
+     "gap": "Portfolio 53% pain; needs reach in chronic therapies.",
+     "consultant": "Digital engagement for chronic launches; rep productivity analytics.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Ipca corporate presentation (June 2024)",
+       "url": "https://www.ipca.com/wp-content/pdf/financials/corporate-presentation/ipca-corporate-presentation-june-2024.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 2,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "353 inventory days; lumpy tenders and exports.",
+     "consultant": "Tender and export demand planning with S&OP.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations. Large API base (25 sites).",
+     "gap": "Unichem integration needs common quality and plant systems.",
+     "consultant": "Plant network and quality systems harmonisation (Ipca + Unichem).",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 2,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "Small regulated-market pipeline (4–5 US filings a year).",
+     "consultant": "Portfolio analytics to choose US/EU filings.",
+     "wave": "18–30 mo",
+     "sources": []
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "Two companies (Ipca, Unichem) to bring onto one finance backbone.",
+     "consultant": "Single ERP and synergy tracking for the Unichem integration.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 2,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "No disclosed data or AI programme.",
+     "consultant": "Data foundation, then API cost and yield analytics.",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ]
   },
   {
    "id": "mankind",
@@ -1914,6 +2559,13 @@
      26,
      17,
      14
+    ],
+    "cash": [
+     139,
+     155,
+     484,
+     306,
+     159
     ]
    },
    "ttm": {
@@ -1976,7 +2628,14 @@
       "Borrowings",
       "Capital allocation"
      ],
-     "url": "https://www.business-standard.com/companies/news/mankind-pharma-to-acquire-70-in-belgian-biotech-firm-for-48-million-126101501420_1.html"
+     "url": "https://www.business-standard.com/companies/news/mankind-pharma-to-acquire-70-in-belgian-biotech-firm-for-48-million-126101501420_1.html",
+     "statement_impact": {
+      "pl": "Adds R&D-type losses for years; no revenue soon.",
+      "bs": "~₹511 Cr investment added to assets.",
+      "cf": "Cash out of ~₹511 Cr while acquisition debt is still being repaid.",
+      "doing": "Entering cell therapy (CAR-T) for long-term growth.",
+      "should": "Set a clear innovation budget and milestones; explain the strategy to investors."
+     }
     },
     {
      "date": "2026-09-15",
@@ -1988,7 +2647,14 @@
       "Borrowings",
       "Interest"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-releases-pledge-38-68-stake-bsvl/48539533"
+     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-releases-pledge-38-68-stake-bsvl/48539533",
+     "statement_impact": {
+      "pl": "No direct effect.",
+      "bs": "Shows acquisition debt being refinanced or repaid.",
+      "cf": "No direct effect.",
+      "doing": "Reducing BSV acquisition debt (net debt down to 0.9x EBITDA).",
+      "should": "Keep deleveraging before further deals."
+     }
     },
     {
      "date": "2026-07-30",
@@ -2001,7 +2667,14 @@
       "Tax rate",
       "Net debt"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218"
+     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218",
+     "statement_impact": {
+      "pl": "Margin up 2.5 points to 26.3%; tax rate up to 25.4% as Sikkim tax breaks end.",
+      "bs": "Net debt ₹3,377 Cr (0.9x EBITDA).",
+      "cf": "Debt repayment absorbs cash.",
+      "doing": "Improving margins after the BSV merger.",
+      "should": "Plan for a higher tax rate; fix consumer healthcare growth (+4%)."
+     }
     },
     {
      "date": "2026-07-30",
@@ -2013,7 +2686,14 @@
       "India revenue growth",
       "Chronic share"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218"
+     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218",
+     "statement_impact": {
+      "pl": "New division adds cost first, sales later.",
+      "bs": "Rivotril brand purchase adds intangibles.",
+      "cf": "Cash out for the brand.",
+      "doing": "Building depth in CNS; AI drug-discovery partnership.",
+      "should": "Measure new-division productivity per rep from day one."
+     }
     },
     {
      "date": "2026-05-19",
@@ -2026,7 +2706,14 @@
       "Interest",
       "PAT"
      ],
-     "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_19052026200732_PR_Final.pdf"
+     "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_19052026200732_PR_Final.pdf",
+     "statement_impact": {
+      "pl": "Revenue +17%, but PAT −3.4% due to BSV interest (₹644 Cr) and D&A (₹886 Cr).",
+      "bs": "Goodwill and intangibles from BSV lift capital; ROCE fell from 26% to 14%.",
+      "cf": "Strong cash (CFO ₹3,121 Cr) used to repay debt.",
+      "doing": "Integrating BSV; exports +34.5%.",
+      "should": "BSV cross-selling through 16,800 reps to earn back the cost of capital."
+     }
     },
     {
      "date": "2026-07-30",
@@ -2038,7 +2725,14 @@
       "Tax rate",
       "Valuation"
      ],
-     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218"
+     "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consolidated-net-profit-rises-34-yoy-to-574-crore/46952218",
+     "statement_impact": {
+      "pl": "No charge yet.",
+      "bs": "₹1,909 Cr shown as a possible liability.",
+      "cf": "Possible future outflow.",
+      "doing": "Management says it is confident of its position.",
+      "should": "Scenario-plan the downside; disclose the timeline."
+     }
     }
    ],
    "working": [
@@ -2097,7 +2791,7 @@
     "Supply chain & S&OP": 3,
     "Manufacturing 4.0 & quality": 2,
     "R&D & regulatory": 3,
-    "Finance & ERP": 3,
+    "Finance & ERP": 4,
     "Data & AI": 3
    },
    "consulting": [
@@ -2132,7 +2826,188 @@
      "High-risk innovation bets (ACTx CAR-T, €48M)",
      "Premium valuation (P/E ~44x)"
     ]
-   }
+   },
+   "brands": {
+    "summary": "#1 in India by prescription share (15.2%) for nine years. Leads consumer categories by a wide margin; 22 brands crossed ₹100 Cr in FY26. Chronic share rose from 28% (FY18) to 39% (FY26).",
+    "therapy_basis": "Market share in the therapy (FY26)",
+    "therapies": [
+     {
+      "therapy": "Gynaecology",
+      "value": 10.3,
+      "detail": "10.3% share, #1"
+     },
+     {
+      "therapy": "Anti-infectives",
+      "value": 6.0,
+      "detail": "6.0%"
+     },
+     {
+      "therapy": "Cardiovascular",
+      "value": 5.5,
+      "detail": "5.5%"
+     },
+     {
+      "therapy": "Anti-diabetic",
+      "value": 4.5,
+      "detail": "4.5%"
+     },
+     {
+      "therapy": "Respiratory",
+      "value": 4.5,
+      "detail": "4.5%"
+     }
+    ],
+    "brand_basis": "Category share for consumer brands; FY26 growth for prescription brands (sales not published)",
+    "brands": [
+     {
+      "name": "Prega News",
+      "therapy": "Consumer: pregnancy test",
+      "evidence": "#1, about 84% category share",
+      "basis": "Category share"
+     },
+     {
+      "name": "Unwanted-72",
+      "therapy": "Consumer: emergency contraceptive",
+      "evidence": "#1, 68% category share",
+      "basis": "Category share"
+     },
+     {
+      "name": "AcneStar",
+      "therapy": "Consumer: anti-acne",
+      "evidence": "#1, 34% category share",
+      "basis": "Category share"
+     },
+     {
+      "name": "Manforce",
+      "therapy": "Consumer: condoms",
+      "evidence": "#1, 28% category share",
+      "basis": "Category share"
+     },
+     {
+      "name": "Gas-O-Fast",
+      "therapy": "Consumer: antacid",
+      "evidence": "#2, 12% category share",
+      "basis": "Category share"
+     },
+     {
+      "name": "Nobeglar",
+      "therapy": "Anti-diabetic (Rx)",
+      "evidence": "+45% growth",
+      "basis": "FY26 growth"
+     },
+     {
+      "name": "Foligraf / Humog (BSV)",
+      "therapy": "Fertility (Rx)",
+      "evidence": "+39% growth",
+      "basis": "FY26 growth"
+     },
+     {
+      "name": "Glizid family",
+      "therapy": "Anti-diabetic (Rx)",
+      "evidence": "+29% growth",
+      "basis": "FY26 growth"
+     },
+     {
+      "name": "Telmikind family",
+      "therapy": "Cardiovascular (Rx)",
+      "evidence": "+21% growth",
+      "basis": "FY26 growth"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Mankind Pharma Q1 FY27 investor presentation (NSE, 30 Jul 2026)",
+      "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_30072026154612_CoveringIP.pdf"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Consumer business shifting online: modern trade and e-commerce reached 15% of consumer sales (Q1 FY27).",
+     "gap": "Consumer healthcare growth stuck at ~4–9%.",
+     "consultant": "Direct-to-consumer and e-commerce growth playbook; Rx omnichannel for chronic.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Mankind Pharma Q1 FY27 investor presentation (NSE, 30 Jul 2026)",
+       "url": "https://nsearchives.nseindia.com/corporate/MANKIND1_30072026154612_CoveringIP.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Supply chain redesigned with Accenture: demand planning, inventory optimisation and real-time supply data.",
+     "gap": "BSV supply chain still to be fully integrated.",
+     "consultant": "Integrate BSV into the planning and control tower.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "CIMdata: Accenture accelerates Mankind Pharma's digital transformation (May 2021)",
+       "url": "https://www.cimdata.com/de/industry-summary-articles/item/15657-accenture-accelerates-mankind-pharma-s-digital-transformation-with-data-driven-cloud-platform"
+      }
+     ]
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 2,
+     "status": "Weak",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "32 plants including small sites; first USFDA inspection only recently.",
+     "consultant": "Plant network rationalisation and e-batch records ahead of export growth.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "In progress",
+     "doing": "AI drug-discovery tie-up with Denovo Science (Jul 2026).",
+     "gap": "R&D only ~2–3% of sales, yet buying high-risk innovation (CAR-T).",
+     "consultant": "R&D portfolio governance and stage-gate analytics.",
+     "wave": "18–30 mo",
+     "sources": [
+      {
+       "title": "ScanX: Mankind Pharma Q1 results (Vistar division, AI drug-discovery tie-up)",
+       "url": "https://scanx.trade/stock-market-news/companies/mankind-pharma-q1-results-consol"
+      }
+     ]
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 4,
+     "status": "Doing well",
+     "doing": "SAP S/4HANA across finance, supply chain, sales and procurement (with Accenture).",
+     "gap": "BSV acquisition systems to fold in.",
+     "consultant": "Synergy and capital-return tracking on the S/4HANA core.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "CIMdata: Accenture accelerates Mankind Pharma's digital transformation (May 2021)",
+       "url": "https://www.cimdata.com/de/industry-summary-articles/item/15657-accenture-accelerates-mankind-pharma-s-digital-transformation-with-data-driven-cloud-platform"
+      }
+     ]
+    },
+    {
+     "area": "Data & AI",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Microsoft Azure data lake with Tableau dashboards for management.",
+     "gap": "Dashboards, not yet AI in decisions.",
+     "consultant": "Move from dashboards to AI use cases (rep targeting, demand sensing).",
+     "wave": "18–30 mo",
+     "sources": [
+      {
+       "title": "CIMdata: Accenture accelerates Mankind Pharma's digital transformation (May 2021)",
+       "url": "https://www.cimdata.com/de/industry-summary-articles/item/15657-accenture-accelerates-mankind-pharma-s-digital-transformation-with-data-driven-cloud-platform"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "alkem",
@@ -2434,6 +3309,13 @@
      20,
      20,
      21
+    ],
+    "cash": [
+     2297,
+     2164,
+     1066,
+     1056,
+     1289
     ]
    },
    "ttm": {
@@ -2494,7 +3376,14 @@
      "metrics": [
       "Valuation"
      ],
-     "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/macquarie-upgrades-alkem-stock-to-buy-with-inr-6-000-target/70319934"
+     "url": "https://www.ad-hoc-news.de/boerse/news/nebenwerte/macquarie-upgrades-alkem-stock-to-buy-with-inr-6-000-target/70319934",
+     "statement_impact": {
+      "pl": "No direct effect.",
+      "bs": "No direct effect.",
+      "cf": "No direct effect.",
+      "doing": "Investors split: BUY at ₹6,000 vs SELL at ₹4,638.",
+      "should": "Investor messaging on the Daman fix and tax outlook."
+     }
     },
     {
      "date": "2026-09-28",
@@ -2505,7 +3394,14 @@
      "metrics": [
       "Valuation"
      ],
-     "url": "https://univest.in/blogs/why-alkem-laboratories-share-price-price-fall-2026-09-28"
+     "url": "https://univest.in/blogs/why-alkem-laboratories-share-price-price-fall-2026-09-28",
+     "statement_impact": {
+      "pl": "No direct effect.",
+      "bs": "No direct effect.",
+      "cf": "No direct effect.",
+      "doing": "Share price reflects Daman, tax and US guidance worries.",
+      "should": "Show a credible Daman remediation timeline; that is the main share-price trigger."
+     }
     },
     {
      "date": "2026-08-14",
@@ -2519,7 +3415,14 @@
       "Employee cost %",
       "US revenue"
      ],
-     "url": "https://www.investing.com/news/company-news/alkem-q1-fy27-slides-revenue-up-11-profit-falls-on-tax-hit-93CH-4860539"
+     "url": "https://www.investing.com/news/company-news/alkem-q1-fy27-slides-revenue-up-11-profit-falls-on-tax-hit-93CH-4860539",
+     "statement_impact": {
+      "pl": "Revenue +11%, margin down 1.4 points; PAT −22% due to 30–32% tax rate.",
+      "bs": "No major effect.",
+      "cf": "Lower profit means lower cash.",
+      "doing": "Added 1,200 reps; US guidance cut.",
+      "should": "Rep productivity review before more hiring; tax structure review."
+     }
     },
     {
      "date": "2026-08-08",
@@ -2531,7 +3434,14 @@
       "US revenue",
       "ANDA approvals"
      ],
-     "url": "https://medicaldialogues.in/news/industry/pharma/alkem-labs-daman-facility-gets-7-usfda-observations-classified-as-oai-176829"
+     "url": "https://medicaldialogues.in/news/industry/pharma/alkem-labs-daman-facility-gets-7-usfda-observations-classified-as-oai-176829",
+     "statement_impact": {
+      "pl": "US sales at risk: Daman supplies ~45% of US revenue; remediation costs rise.",
+      "bs": "Possible inventory write-offs if products can't ship.",
+      "cf": "Remediation spend; lower US collections.",
+      "doing": "Remediation expected to take 6–12 months.",
+      "should": "Independent remediation team, e-quality systems, and a backup plant for key US products."
+     }
     },
     {
      "date": "2026-07-20",
@@ -2543,7 +3453,14 @@
       "Capital allocation",
       "EBITDA margin"
      ],
-     "url": "https://www.indianpharmapost.com/news/alkem-completes-acquisition-of-majority-stake-in-switzerlands-occlutech-20982"
+     "url": "https://www.indianpharmapost.com/news/alkem-completes-acquisition-of-majority-stake-in-switzerlands-occlutech-20982",
+     "statement_impact": {
+      "pl": "About ₹400 Cr of FY27 sales at breakeven, so group margin dips.",
+      "bs": "Acquisition adds goodwill.",
+      "cf": "Cash out for the deal.",
+      "doing": "Entering medical devices (structural heart).",
+      "should": "Integration plan with a clear path to profit."
+     }
     },
     {
      "date": "2026-05-29",
@@ -2555,7 +3472,14 @@
       "EBITDA margin",
       "PAT"
      ],
-     "url": "https://www.business-standard.com/markets/news/alkem-laboratories-share-price-target-nse-bse-q4-results-profit-revenue-126052900430_1.html"
+     "url": "https://www.business-standard.com/markets/news/alkem-laboratories-share-price-target-nse-bse-q4-results-profit-revenue-126052900430_1.html",
+     "statement_impact": {
+      "pl": "EBITDA crossed ₹3,000 Cr (20.4%); exceptional charges for the labour code and a property impairment.",
+      "bs": "Impairment reduces asset value.",
+      "cf": "Operating cash steady (~₹1,960 Cr).",
+      "doing": "Launched semaglutide early (~11% unit share).",
+      "should": "Strip one-offs in reporting; build the chronic franchise around semaglutide."
+     }
     }
    ],
    "working": [
@@ -2649,7 +3573,167 @@
      "CDMO breakeven pushed to FY28",
      "API cost inflation"
     ]
-   }
+   },
+   "brands": {
+    "summary": "#1 in India's acute segment and #1 in anti-infectives (13.4% share). Pan, Clavam and Pan-D are among India's top 15 brands. Weak spots: diabetes (#14), CNS (#14) and dermatology (#18).",
+    "therapy_basis": "Market share and rank, Q2 FY26 (mapping read from a chart, so indicative)",
+    "therapies": [
+     {
+      "therapy": "Anti-infectives",
+      "value": 13.4,
+      "detail": "13.4%, #1"
+     },
+     {
+      "therapy": "Gastro-intestinal",
+      "value": 7.9,
+      "detail": "7.9%, #3"
+     },
+     {
+      "therapy": "Vitamins and nutrition",
+      "value": 7.0,
+      "detail": "7.0%, #2"
+     },
+     {
+      "therapy": "Pain",
+      "value": 5.6,
+      "detail": "5.6%, #3"
+     },
+     {
+      "therapy": "Respiratory",
+      "value": 2.4,
+      "detail": "2.4%, #7"
+     },
+     {
+      "therapy": "Anti-diabetic",
+      "value": 2.2,
+      "detail": "2.2%, #14"
+     },
+     {
+      "therapy": "Neuro / CNS",
+      "value": 1.6,
+      "detail": "1.6%, #14"
+     },
+     {
+      "therapy": "Dermatology",
+      "value": 1.5,
+      "detail": "1.5%, #18"
+     }
+    ],
+    "brand_basis": "IQVIA brand rank in India (FY24) and company disclosures",
+    "brands": [
+     {
+      "name": "Pan",
+      "therapy": "Gastro",
+      "evidence": "#2 brand in India (Q2 FY26); franchise above ₹1,000 Cr",
+      "basis": "IPM rank"
+     },
+     {
+      "name": "Clavam",
+      "therapy": "Anti-infective",
+      "evidence": "#9 in India (FY24); above ₹600 Cr",
+      "basis": "IPM rank"
+     },
+     {
+      "name": "Pan-D",
+      "therapy": "Gastro",
+      "evidence": "#15 in India (FY24)",
+      "basis": "IPM rank"
+     },
+     {
+      "name": "Taxim-O",
+      "therapy": "Anti-infective",
+      "evidence": "Among India's top 50 brands",
+      "basis": "Top 50"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Alkem Q2 FY26 results presentation (Nov 2025)",
+      "url": "https://admin.alkemlabs.com/uploads/Q2_FY_26_Results_Presentation_f934fcbd85.pdf"
+     },
+     {
+      "title": "Alkem digital annual report 2023-24: strategic priorities",
+      "url": "https://www.alkemlabs.com/investors/digital-annual-report-2023-24/strategic-priorities.html"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Company says it is 'strengthening its digital footprint' and IT infrastructure; no specifics disclosed.",
+     "gap": "Added 1,200 reps in Q1 FY27 (employee cost +16%), so rep productivity matters.",
+     "consultant": "Rep productivity and targeting analytics before adding more reps.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Alkem digital annual report 2023-24: strategic priorities",
+       "url": "https://www.alkemlabs.com/investors/digital-annual-report-2023-24/strategic-priorities.html"
+      }
+     ]
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Digitisation 'to strengthen operational prudence' (no specifics).",
+     "gap": "Working-capital days rose 31 → 123 since FY22.",
+     "consultant": "Inventory and receivables diagnostic with S&OP.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Alkem digital annual report 2023-24: strategic priorities",
+       "url": "https://www.alkemlabs.com/investors/digital-annual-report-2023-24/strategic-priorities.html"
+      }
+     ]
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 2,
+     "status": "Weak",
+     "doing": "No public disclosure found in the annual report or investor presentations. Daman plant classified OAI by the US FDA (Aug 2026).",
+     "gap": "Quality systems failed an FDA inspection at a plant behind ~45% of US sales.",
+     "consultant": "Remediation programme with electronic quality systems (e-QMS, data integrity monitoring) across sites.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "Biosimilars (Enzene) and devices (Occlutech) add complexity.",
+     "consultant": "Regulatory operations and dossier automation.",
+     "wave": "18–30 mo",
+     "sources": []
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Enhanced IT infrastructure to 'streamline operations' (no specifics).",
+     "gap": "Tax rate 30–32% and new businesses need tighter finance control.",
+     "consultant": "Group finance transformation and tax structure review.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Alkem digital annual report 2023-24: strategic priorities",
+       "url": "https://www.alkemlabs.com/investors/digital-annual-report-2023-24/strategic-priorities.html"
+      }
+     ]
+    },
+    {
+     "area": "Data & AI",
+     "score": 2,
+     "status": "Weak",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "No disclosed data or AI programme.",
+     "consultant": "Data foundation plus AI for acute-season demand forecasting.",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ]
   },
   {
    "id": "glenmark",
@@ -2950,6 +4034,13 @@
      12,
      19,
      40
+    ],
+    "cash": [
+     30,
+     94,
+     129,
+     133,
+     293
     ]
    },
    "ttm": {
@@ -3014,7 +4105,14 @@
       "US revenue",
       "Valuation"
      ],
-     "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/glenmark-pharmaceuticals-limited-637314-09232026"
+     "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/glenmark-pharmaceuticals-limited-637314-09232026",
+     "statement_impact": {
+      "pl": "No immediate effect; unlocks future US approvals from Goa.",
+      "bs": "No effect.",
+      "cf": "No effect.",
+      "doing": "Fixed FDA issues; warning letter closed.",
+      "should": "Keep inspection-ready; file pending products from Goa quickly."
+     }
     },
     {
      "date": "2026-07-31",
@@ -3027,7 +4125,14 @@
       "US revenue",
       "EBITDA margin"
      ],
-     "url": "https://www.investing.com/news/company-news/glenmark-q1-fy27-slides-23-revenue-growth-innovation-pipeline-expands-93CH-4829792"
+     "url": "https://www.investing.com/news/company-news/glenmark-q1-fy27-slides-23-revenue-growth-innovation-pipeline-expands-93CH-4829792",
+     "statement_impact": {
+      "pl": "Revenue +23% (core >18%); margin 20% once licensing is excluded.",
+      "bs": "No major effect.",
+      "cf": "Healthy cash.",
+      "doing": "First generic Flovent HFA with 180-day exclusivity.",
+      "should": "Report core and licensing income separately."
+     }
     },
     {
      "date": "2026-07-31",
@@ -3039,7 +4144,14 @@
       "EBITDA margin",
       "Working capital"
      ],
-     "url": "https://www.sahi.com/news/glenmark-sets-fy27-margin-forecast-at-21-22-amid-over-100-million-quarterly-us-sales-estimate-3207-PE1_COR"
+     "url": "https://www.sahi.com/news/glenmark-sets-fy27-margin-forecast-at-21-22-amid-over-100-million-quarterly-us-sales-estimate-3207-PE1_COR",
+     "statement_impact": {
+      "pl": "Normal margin is 21–22%, not FY26's 27%.",
+      "bs": "Target net working capital below 115 days.",
+      "cf": "Working-capital target would release cash.",
+      "doing": "Holding margin guidance despite input inflation.",
+      "should": "Working-capital programme to meet the 115-day target."
+     }
     },
     {
      "date": "2026-05-29",
@@ -3052,7 +4164,14 @@
       "Borrowings",
       "CFO"
      ],
-     "url": "https://nsearchives.nseindia.com/corporate/GLENMARK_29052026215918_BSE_NSE_PR_29052026_signed.pdf"
+     "url": "https://nsearchives.nseindia.com/corporate/GLENMARK_29052026215918_BSE_NSE_PR_29052026_signed.pdf",
+     "statement_impact": {
+      "pl": "Revenue +27.5%, margin 26.9% boosted by the AbbVie upfront payment.",
+      "bs": "Borrowings cut to ₹594 Cr.",
+      "cf": "Cash from operations ₹3,445 Cr.",
+      "doing": "13 US launches; 52 ANDAs pending.",
+      "should": "Turn the windfall into recurring profit: reinvest in launches with clear returns."
+     }
     },
     {
      "date": "2026-05-29",
@@ -3063,7 +4182,14 @@
      "metrics": [
       "Exceptional items"
      ],
-     "url": "https://nsearchives.nseindia.com/corporate/GLENMARK_29052026215918_BSE_NSE_PR_29052026_signed.pdf"
+     "url": "https://nsearchives.nseindia.com/corporate/GLENMARK_29052026215918_BSE_NSE_PR_29052026_signed.pdf",
+     "statement_impact": {
+      "pl": "US$29.6M settlement over 5 years.",
+      "bs": "Liability booked and closed.",
+      "cf": "Small yearly cash outflow.",
+      "doing": "Settled a legacy legal case.",
+      "should": "None needed beyond compliance monitoring."
+     }
     }
    ],
    "working": [
@@ -3157,7 +4283,175 @@
      "API and logistics inflation",
      "US exposure (27% of revenue) to tariff changes"
     ]
-   }
+   },
+   "brands": {
+    "summary": "Ranked 13th in India (2.34% share, IQVIA Mar 2026) and grew 1.5x the market in FY26. #2 in dermatology, #3 in respiratory, #4 in cardiac; 11 brands are in India's top 300.",
+    "therapy_basis": "India market share and rank (IQVIA MAT Mar 2026)",
+    "therapies": [
+     {
+      "therapy": "Dermatology",
+      "value": 8.3,
+      "detail": "8.3%, #2"
+     },
+     {
+      "therapy": "Cardiac",
+      "value": 6.1,
+      "detail": "6.1%, #4"
+     },
+     {
+      "therapy": "Respiratory",
+      "value": 6.0,
+      "detail": "6.0%, #3"
+     },
+     {
+      "therapy": "Diabetes",
+      "value": 1.1,
+      "detail": "1.1%, falling (sales −4%)"
+     }
+    ],
+    "brand_basis": "Company's own ranking of top commercial products (global)",
+    "brands": [
+     {
+      "name": "Ryaltris",
+      "therapy": "Respiratory (global)",
+      "evidence": "#1 product; sold in 55+ countries",
+      "basis": "Company rank"
+     },
+     {
+      "name": "Candid",
+      "therapy": "Dermatology",
+      "evidence": "#2 product",
+      "basis": "Company rank"
+     },
+     {
+      "name": "Telma",
+      "therapy": "Cardiac",
+      "evidence": "#3 product; about ₹1,036 Cr a year by 2024",
+      "basis": "Company rank"
+     },
+     {
+      "name": "Ascoril",
+      "therapy": "Respiratory",
+      "evidence": "#4 product",
+      "basis": "Company rank"
+     },
+     {
+      "name": "Klenzit",
+      "therapy": "Dermatology",
+      "evidence": "#5 product",
+      "basis": "Company rank"
+     },
+     {
+      "name": "Alex",
+      "therapy": "Respiratory",
+      "evidence": "#6 product",
+      "basis": "Company rank"
+     },
+     {
+      "name": "Momate",
+      "therapy": "Dermatology",
+      "evidence": "#7 product",
+      "basis": "Company rank"
+     },
+     {
+      "name": "Tacroz",
+      "therapy": "Dermatology",
+      "evidence": "#8 product",
+      "basis": "Company rank"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Glenmark management discussion & analysis, Q4 FY26",
+      "url": "https://glenmark.b-cdn.net/gpl_pdfs/Financials/Quarterly/Glenmark_MDA_Q4FY26_vf.pdf"
+     },
+     {
+      "title": "Glenmark: top commercial products",
+      "url": "https://glenmarkpharma.com/top-products/"
+     },
+     {
+      "title": "Wikipedia: Glenmark Pharmaceuticals (Telma revenue)",
+      "url": "https://en.wikipedia.org/wiki/Glenmark_Pharmaceuticals"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Sharper digital engagement and omnichannel reach in consumer care; e-commerce and quick-commerce growth.",
+     "gap": "Diabetes share falling (sales −4% vs market +12%).",
+     "consultant": "Digital launch playbook for semaglutide and specialty brands.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Glenmark integrated annual report FY2026",
+       "url": "https://glenmark.b-cdn.net/gpl_pdfs/investors/reports_presentations/Annual%20Report%202025-26%20(Low%20Version).pdf"
+      }
+     ]
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "Payables stretched (288 days); target net working capital below 115 days.",
+     "consultant": "Working-capital programme to hit the 115-day target.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Compliance repair: Goa warning letter closed (Sep 2026), Monroe VAI.",
+     "gap": "Digital quality systems not disclosed.",
+     "consultant": "Data integrity and predictive quality to keep plants clean.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 4,
+     "status": "Doing well",
+     "doing": "Innovation engine (IGI): out-licensed ISB 2001 to AbbVie; chairman cites AI and data science in R&D.",
+     "gap": "IGI burns ~US$70M a year.",
+     "consultant": "R&D portfolio valuation and partnering strategy.",
+     "wave": "18–30 mo",
+     "sources": [
+      {
+       "title": "Glenmark integrated annual report FY2026",
+       "url": "https://glenmark.b-cdn.net/gpl_pdfs/investors/reports_presentations/Annual%20Report%202025-26%20(Low%20Version).pdf"
+      }
+     ]
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No public disclosure found in the annual report or investor presentations.",
+     "gap": "Earnings quality: licensing income makes results lumpy.",
+     "consultant": "Management reporting that separates core and one-off income.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Launched 'ELVIAE', an AI humanoid tool in clinics across five Asia-Pacific markets.",
+     "gap": "AI used for patient education, not yet for internal decisions.",
+     "consultant": "AI use cases in supply chain and commercial targeting.",
+     "wave": "18–30 mo",
+     "sources": [
+      {
+       "title": "Glenmark integrated annual report FY2026",
+       "url": "https://glenmark.b-cdn.net/gpl_pdfs/investors/reports_presentations/Annual%20Report%202025-26%20(Low%20Version).pdf"
+      }
+     ]
+    }
+   ]
   }
  ]
 }

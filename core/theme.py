@@ -67,7 +67,7 @@ CSS = f"""
 html, body, [class*="css"], .stMarkdown, .stText, p, li, label, input, textarea, button {{ font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important; }}
 .stApp {{ background: #F7FAFF url("{_hex_bg()}") repeat; background-attachment: fixed; }}
 [data-testid="stHeader"] {{ background: transparent; }}
-.block-container {{ padding-top: 1.2rem; max-width: 1480px; }}
+.block-container {{ padding-top: 3.4rem; max-width: 1560px; }}
 h1, h2, h3, h4 {{ color: var(--navy) !important; letter-spacing: -0.02em; font-weight: 800 !important; }}
 [data-testid="stSidebar"] {{ background: linear-gradient(185deg, #0A2A66 0%, #0F3A8C 55%, #1D4ED8 100%); border-right: 1px solid rgba(255,255,255,.08); }}
 [data-testid="stSidebar"] * {{ color: #E8F0FF !important; }}
@@ -106,7 +106,7 @@ h1, h2, h3, h4 {{ color: var(--navy) !important; letter-spacing: -0.02em; font-w
 .kpi::after {{ content:""; position:absolute; right:-18px; top:-18px; width:70px; height:70px; border-radius:50%;
   background: radial-gradient(circle, rgba(59,130,246,.18), transparent 70%); }}
 .kpi .lab {{ color: var(--ink2); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; font-weight:600; }}
-.kpi .val {{ color: var(--navy); font-size: 1.45rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; line-height: 1.25; white-space: nowrap; }}
+.kpi .val {{ color: var(--navy); font-size: clamp(1.0rem, 1.45vw, 1.45rem); font-weight: 800; font-family: 'JetBrains Mono', monospace; line-height: 1.25; white-space: nowrap; }}
 .kpi .delta {{ font-size: .8rem; font-weight: 600; }}
 .up {{ color: {GOOD}; }} .down {{ color: {BAD}; }} .flat {{ color: var(--muted); }}
 .section {{ display:flex; align-items:center; gap:10px; margin: 22px 0 8px 0; }}
@@ -139,6 +139,26 @@ div[data-testid="stMetric"] {{ background:#fff; border:1px solid var(--line); bo
 .stButton > button:hover {{ border-color: var(--blue); color: #fff; background: var(--blue); }}
 .stButton > button[kind="primary"] {{ background: linear-gradient(135deg, #1D4ED8, #06B6D4); color:#fff; border:none; }}
 [data-testid="stChatMessage"] {{ background: rgba(255,255,255,.9); border:1px solid var(--line); border-radius: 16px; }}
+.note {{ background:#F4F6FA; border:1px solid #E1E7F0; border-left:4px solid #94A3B8; border-radius:12px; padding:9px 12px; margin:6px 0 2px 0;
+  color:#334155; font-size:.86rem; line-height:1.45; }}
+.note b {{ color:#0F1B33; }}
+.note .src {{ color:#64748B; font-size:.76rem; margin-top:5px; }}
+.note .src a {{ color:#1D4ED8; text-decoration:none; }}
+.stButton > button[kind="tertiary"] {{ border:none; background:transparent; color:#1D4ED8; font-size:.8rem; padding:0 2px; min-height:0; }}
+.stButton > button[kind="tertiary"]:hover {{ background:transparent; color:#0A2A66; text-decoration:underline; }}
+.impact {{ display:grid; grid-template-columns: repeat(5, 1fr); gap:8px; margin:4px 0 12px 0; }}
+.impact .ib {{ background:#F8FAFD; border:1px solid #E1E7F0; border-radius:10px; padding:7px 9px; font-size:.8rem; color:#334155; }}
+.impact .ibl {{ font-weight:700; color:#0A2A66; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:2px; }}
+@media (max-width: 900px) {{ .impact {{ grid-template-columns: 1fr 1fr; }} }}
+.panelhead {{ background: linear-gradient(135deg,#0A2A66,#1D4ED8); color:#fff; border-radius:16px; padding:12px 14px; margin-bottom:8px; }}
+.panelhead b {{ color:#fff; font-size:1.02rem; }}
+.panelhead .muted {{ color:#D6E4FF !important; font-size:.78rem; }}
+.status {{ display:inline-block; padding:2px 9px; border-radius:999px; font-size:.72rem; font-weight:700; }}
+.ans {{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px 12px; margin:6px 0; font-size:.88rem; }}
+.q {{ color:#1D4ED8; font-weight:700; font-size:.85rem; margin-top:8px; }}
+.st-key-panel p, .st-key-panel li, .st-key-panel td {{ font-size:.86rem !important; line-height:1.45; }}
+.st-key-panel .stButton > button p {{ white-space: normal !important; text-align:left; font-size:.82rem !important; }}
+.st-key-panel .stButton > button {{ justify-content:flex-start; }}
 </style>
 """
 
@@ -217,5 +237,5 @@ def style_fig(fig: go.Figure, height: int = 380, title: str | None = None) -> go
 
 def logo_html(meta: dict) -> str:
     return f"""<div style="display:flex;align-items:center;gap:10px;padding:6px 4px 14px 4px">{LOGO_SVG}
-    <div><div style="font-weight:800;font-size:1.15rem;letter-spacing:-.01em">Pha-inance<span style="color:#06B6D4"> Lens</span></div>
+    <div><div style="font-weight:800;font-size:1.15rem;letter-spacing:-.01em">Finance<span style="color:#06B6D4"> Lens</span></div>
     <div style="font-size:.72rem;opacity:.8">Agentic pharma intelligence</div></div></div>"""

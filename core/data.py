@@ -61,6 +61,27 @@ def _safe_div(a, b):
     return out
 
 
+def add_return_metrics(df: pd.DataFrame) -> pd.DataFrame:
+    """Metrics shared with the industry benchmark: EBIT, ROIC, free cash flow and net debt.
+    FCF = cash from operations + cash from investing (all investing, incl. acquisitions).
+    Net debt = borrowings - cash equivalents - investments (Screener schedules; bank deposits held in
+    'other assets' are not counted, so net cash can be understated).
+    ROIC = EBIT x (1 - tax rate) / (net worth + net debt), year-end capital."""
+    s = df["sales"]
+    nw = df["equity_capital"] + df["reserves"]
+    df["ebit"] = df["ebitda"] - df["depreciation"]
+    df["ebit_margin"] = df["ebit"] / s * 100
+    df["fcf"] = df["cfo"] + df["cfi"]
+    df["fcf_margin"] = df["fcf"] / s * 100
+    cash = df["cash"] if "cash" in df.columns else 0
+    df["net_debt"] = df["borrowings"] - df["investments"] - cash
+    df["net_debt_ebitda"] = _safe_div(df["net_debt"], df["ebitda"])
+    tax = (df["tax_pct"].clip(lower=0, upper=35) / 100).fillna(0.25)
+    invested = nw + df["net_debt"]
+    df["roic"] = _safe_div(df["ebit"] * (1 - tax), invested) * 100
+    return df
+
+
 def financial_frame(cid: str) -> pd.DataFrame:
     return _financial_frame(cid, DATA_PATH.stat().st_mtime)
 
@@ -98,6 +119,7 @@ def _financial_frame(cid: str, mtime: float) -> pd.DataFrame:
     df["cfo_ebitda"] = df["cfo"] / df["ebitda"]
     df["cfo_pat"] = _safe_div(df["cfo"], df["pat"])
     df["fcf_proxy"] = df["cfo"] + df["cfi"]
+    add_return_metrics(df)
     df["sales_growth"] = s.pct_change() * 100
     df["ebitda_growth"] = df["ebitda"].pct_change() * 100
     df["pat_growth"] = df["pat"].pct_change() * 100
@@ -139,6 +161,10 @@ KPI_DEFS = {
     "fixed_asset_turnover": ("Fixed-asset turnover", "x", True, "{:.2f}x"),
     "cfo_pat": ("CFO / PAT", "x", True, "{:.2f}x"),
     "cfo_ebitda": ("CFO / EBITDA", "x", True, "{:.2f}x"),
+    "ebit_margin": ("EBIT margin", "%", True, "{:.1f}%"),
+    "roic": ("ROIC (after tax)", "%", True, "{:.1f}%"),
+    "fcf_margin": ("Free cash flow / sales", "%", True, "{:.1f}%"),
+    "net_debt_ebitda": ("Net debt / EBITDA", "x", False, "{:.2f}x"),
     "rnd_pct": ("R&D / sales (latest)", "%", None, "{:.1f}%"),
     "pe": ("P/E (TTM)", "x", None, "{:.1f}x"),
     "pb": ("P/B", "x", None, "{:.1f}x"),

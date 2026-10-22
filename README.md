@@ -1,4 +1,4 @@
-# Pha-inance Lens: Agentic Pharma Intelligence
+# Finance Lens: Agentic Pharma Intelligence
 
 Live, interactive intelligence dashboard + AI analyst for six Indian pharma companies:
 **Alembic · Ajanta · Ipca · Mankind · Alkem · Glenmark** (consolidated, FY22–FY26 + Q1 FY27).
@@ -6,17 +6,24 @@ Live, interactive intelligence dashboard + AI analyst for six Indian pharma comp
 Prepared by **Arunika Sherry** · IIM Mumbai Mentorship Program · Mentor: **Dr. Phalgun Rudrapatna**
 
 ## What's inside
+Every page has a **Compare with** bar (Industry = average of the 20 Nifty Pharma companies, or any of the six), an
+**Analyst note** under each chart (why it looks this way, with sources), and the **🤖 Ask the analyst** panel on the right.
+
 | Page | What it does |
 |---|---|
-| 🧬 Command Center | Portfolio KPIs, live market pulse, positioning map, financial scorecard, key insights, news pulse |
-| 🏢 Company Deep-Dive | Profile, market / geographic / manufacturing / R&D / therapy footprints, 6-month news, insights |
-| 📊 P&L Lab | P&L bridge, common-size P&L, 5-yr trends, CAGR table, cost elasticity, correlation matrix, pooled explorer |
-| ⚖️ Ratio Benchmark | 33-KPI master table (best/worst highlighted), radar, KPI spotlight, 5-yr ratio trends, DuPont |
+| 🧬 Command Center | Headline tiles vs industry, Indian market growth (IQVIA), market pulse, positioning map, key insights, top news |
+| 🏢 Company Deep-Dive | Profile, brands & therapies ranked, geography, plants & R&D, cost drivers ranked, news impact on the statements, insights |
+| 📊 P&L Lab | P&L bridge, cost mix, cost drivers (margin impact and 1% sensitivity), cost growth check, growth by line, test any two numbers (6 or 20 companies) |
+| ⚖️ Ratio Benchmark | 36-KPI table with industry column and plain-English meaning, 5-year trends with industry line, DuPont |
 | 🧪 Regulatory & Pipeline | USFDA status, ANDA/DMF engine, R&D vs margin, US-share risk |
-| 📰 News & Signals | Signal timeline, news→KPI heatmap, curated + live Google News, event study vs Nifty Pharma |
-| 🎯 Strategy Room | What's working / not, SWOT, Top-5 problem statements, consulting opportunity map, digitisation journey |
-| 🤖 AI Analyst | Tool-using AI agent (10 tools, free Gemini by default) with visible trace; offline rule-based mode without a key |
-| 📚 Sources & Method | Sources, methodology, caveats, KPI dictionary |
+| 📰 News & Signals | Signal timeline, news→KPI heat, news cards with P&L / balance sheet / cash flow impact and actions, live news, event study |
+| 🎯 Strategy Room | What's working / not, SWOT, top-5 problem statements, consulting map, digitisation roadmap with gaps and consultant entry points |
+| 🏆 Ranking & Scenarios | Weighted scorecard (growth 20, profit 25, cash 20, capital 15, balance sheet 10, efficiency 10) vs industry, 3 lenses, weight robustness, hire-a-consultant what-if with tornado, Base/Upside/Downside |
+| 📤 Data Upload | Demo: upload a company's own numbers (template) and benchmark them vs industry; nothing stored |
+| 📚 Sources & Method | Sources, industry members, method, caveats, glossary |
+
+Data files: `data/companies.json` (six companies), `data/industry.json` (Nifty Pharma benchmark), `data/notes.json` (analyst notes).
+Rebuild scripts and raw extracts are in `research/`.
 
 ## Cost: ₹0
 Everything runs on free tiers: GitHub (free), Streamlit Community Cloud (free hosting), Google Gemini API (free tier).

@@ -6,6 +6,7 @@ import streamlit as st
 
 from core import data as D
 from core import theme as T
+from views.common import note_box, register
 
 
 def render():
@@ -31,6 +32,7 @@ def render():
         col.markdown(f"""<div class="card" style="border-top:4px solid {D.colors()[r['Company']]}"><h4>{r['Company']}</h4>
             {T.pill(r['FDA status'], kind)}<div style="font-size:.78rem;margin-top:6px;color:#42526E">{r['Detail']}</div></div>""",
                      unsafe_allow_html=True)
+    note_box("USFDA site status", peer="rg_fda", facts="; ".join(f"{r['Company']}: {r['FDA status']}" for _, r in rdf.iterrows()))
 
     a, b = st.columns([1.1, 1])
     with a:
@@ -45,6 +47,8 @@ def render():
         fig.update_layout(barmode="group", title="ANDA filed / approved / pending & US products")
         st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
         st.caption("Ipca and Mankind don't publish their total number of US filings, so they have no bars here. That means 'not published', not zero.")
+        note_box("ANDA engine (US filings)", peer="rg_anda",
+                 facts="; ".join(f"{r['Company']}: filed {r['ANDA filed']}, approved {r['ANDA approved']}, pending {r['Pending']}, US products {r['US products']}" for _, r in rdf.iterrows()))
     with b:
         T.section("R&D intensity vs EBITDA margin", "does higher R&D spend mean higher margin?")
         cmap = D.colors()
@@ -57,6 +61,8 @@ def render():
         fig.update_layout(title=f"Bigger bubble = more US revenue · link between R&D and margin: {rr:+.2f}", xaxis_title="R&D % of sales", yaxis_title="EBITDA margin FY26 %",
                           showlegend=False, hovermode="closest")
         st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
+        note_box("R&D intensity vs EBITDA margin", peer="rg_rnd", metric="rnd_pct",
+                 facts=f"Link strength {rr:+.2f}. " + "; ".join(f"{r['Company']}: R&D {r['R&D %']:.1f}%, margin {r['EBITDA %']:.1f}%, US {r['US share %']:.0f}%" for _, r in rdf.iterrows()))
 
     T.section("What the regulatory data says", "what the filings and news tell us")
     st.markdown(f"""<div class="card"><ul style="margin:0;padding-left:18px;font-size:.92rem">
@@ -69,9 +75,11 @@ def render():
     <li><b>Tariff lens.</b> Generics are outside the Sep-2026 Section 232 tariff, but the Jul-2026 proposal (0% → 100% → 200%) makes US-share a
     strategic-risk KPI: Alembic 36%, Ajanta 30%, Glenmark 27%, Alkem 20%.</li></ul></div>""", unsafe_allow_html=True)
 
-    T.section("Regulatory data table")
-    st.dataframe(rdf.drop(columns=["Detail"]), hide_index=True, use_container_width=True,
-                 column_config={"US share %": st.column_config.ProgressColumn(min_value=0, max_value=50, format="%.0f%%"),
-                                "R&D %": st.column_config.NumberColumn(format="%.1f%%"),
-                                "EBITDA %": st.column_config.NumberColumn(format="%.1f%%")})
+    register("What the regulatory data says", kind="text", facts="Approvals are not revenue; R&D spenders have lower margins today; compliance moves revenue; US share is a tariff-risk number.")
+    with st.expander("Regulatory data table (all numbers above in one table)"):
+        st.dataframe(rdf.drop(columns=["Detail"]), hide_index=True, use_container_width=True,
+                     column_config={"US share %": st.column_config.ProgressColumn(min_value=0, max_value=50, format="%.0f%%"),
+                                    "R&D %": st.column_config.NumberColumn(format="%.1f%%"),
+                                    "EBITDA %": st.column_config.NumberColumn(format="%.1f%%")})
+        st.caption("No industry average here: Nifty Pharma companies don't report filings and R&D in a consistent way.")
     T.footer(D.meta())

@@ -1,4 +1,4 @@
-"""Pha-inance Lens agent: LLM tool-use loop (free Gemini by default; Groq or Claude optional) over the curated dataset + live feeds.
+"""Finance Lens agent: LLM tool-use loop (free Gemini by default; Groq or Claude optional) over the curated dataset + live feeds.
 
 The agent plans, calls tools (financials, KPI comparisons, correlations, news, scenarios),
 reads the results and writes a consultant-grade answer. If no API key is configured the
@@ -15,24 +15,34 @@ import pandas as pd
 import streamlit as st
 
 from core import data as D
+from core import glossary as G
+from core import industry as IND
 from core import insights as I
 from core import live as L
+from core import notes as N
 
 DEFAULT_MODEL = "claude-sonnet-5-5"
 
-SYSTEM_PROMPT = """You are a financial analyst and senior strategy consultant (MBB / Big-4 strategy practice) specialising in Indian pharma.
-You analyse six listed companies: Alembic, Ajanta, Ipca, Mankind, Alkem, Glenmark (consolidated, FY22–FY26 + Q1 FY27; INR crore).
+SYSTEM_PROMPT = """You are a financial analyst and senior strategy consultant specialising in Indian pharma.
+You analyse six listed companies: Alembic, Ajanta, Ipca, Mankind, Alkem, Glenmark (consolidated, FY22 to FY26 plus Q1 FY27; INR crore),
+and compare them with the industry: the average of the 20 Nifty Pharma companies (tool get_industry_benchmark) and
+published Indian pharma market growth (IQVIA, Pharmarack).
 
-How you work:
-- ALWAYS ground numbers in tool results. Call tools before answering; never invent figures. If data is missing say so.
-- Prefer comparisons vs peer median, 5-year trends and CAGRs. Connect financial metrics to news and regulatory events.
-- Structure answers as: **Headline** (one line, the so-what) → **Evidence** (3–6 bullets with numbers) →
-  **Implications / opportunities / risks** → **What to investigate next**. Use compact markdown tables when comparing.
-- Be crisp, partner-ready, hypothesis-driven. Flag data caveats (e.g. Glenmark FY26 includes AbbVie licensing income;
-  Mankind consolidates BSV from Oct-2024; Ipca consolidates Unichem from FY24).
-- This is public-information analysis for an academic mentorship project; it is not investment advice, so never give buy/sell calls.
-- Write in plain, simple English that a non-specialist can follow. Explain any technical term in a few words.
-- Never use the em dash character. Use commas, colons or full stops instead.
+Rules:
+- Ground every number in tool results or the page context given to you. Call tools first; never invent figures or links.
+- Explain WHY a number is what it is (business model, mix, one-offs, acquisitions, regulators, costs), not just that it is high or low.
+- Always compare with the industry average and the other companies where it helps.
+- Flag one-offs: Glenmark FY26 includes AbbVie licensing income; Mankind includes BSV from Oct 2024; Ipca includes Unichem from FY24.
+- Public-information analysis for an academic project: no buy/sell advice.
+- Plain, simple English. Explain any technical term in a few words. Never use the em dash character.
+
+Answer format. Always use exactly these five bold headings, keep the whole answer under about 220 words, bullets where useful:
+**What it's checking:** one line.
+**How it's calculated:** the formula with the actual numbers.
+**What it means for the company:** the reason or context, compared with the industry and peers.
+**What the company is already doing:** actions from filings or news; write "No public action found" if none.
+**What more it, or a consultant, can do:** 2 or 3 concrete actions.
+Then a line **Sources:** followed by markdown links [title](url), taken ONLY from 'sources' fields in tool results or the page context.
 """
 
 TOOLS = [
@@ -53,6 +63,10 @@ TOOLS = [
     {"name": "get_problem_statements", "description": "SWOT analysis (strengths, weaknesses, opportunities, threats), top-5 consultant problem statements (evidence, answer, what to investigate, service line), what is working / not working, digital maturity and consulting opportunities.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
     {"name": "get_market_data", "description": "Live price (if reachable) plus 1-year return vs Nifty Pharma and the curated market snapshot (mcap, P/E, P/B).",
+     "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
+    {"name": "get_industry_benchmark", "description": "Industry benchmark for a metric: average and median of the 20 Nifty Pharma companies, each member's value, plus published Indian pharma market growth (IQVIA/Pharmarack).",
+     "input_schema": {"type": "object", "properties": {"metric": {"type": "string", "description": "e.g. ebitda_margin, roce, roic, inventory_days, sales_cagr"}, "year": {"type": "string", "default": "FY26"}}, "required": ["metric"]}},
+    {"name": "get_brands_and_digital", "description": "Top brands and therapy areas ranked by market share or success, and the digitisation roadmap by area (score 1-5, what the company is doing, gap, consultant entry point), with sources.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
     {"name": "run_scenario", "description": "Simple 2-year projection (FY27E, FY28E) from FY26 base given revenue growth % and EBITDA margin %; returns EBITDA and an EV implied at a given EV/EBITDA multiple.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "revenue_growth_pct": {"type": "number"}, "ebitda_margin_pct": {"type": "number"}, "ev_ebitda_multiple": {"type": "number", "default": 20}}, "required": ["company", "revenue_growth_pct", "ebitda_margin_pct"]}},
@@ -87,22 +101,30 @@ def run_tool(name: str, args: dict) -> dict:
         if name == "get_company_profile":
             c = D.company(resolve(args["company"]))
             keys = ["name", "tagline", "profile", "market", "footprint", "regulatory", "guidance", "consensus", "data_notes"]
-            return {k: c[k] for k in keys}
+            return {**{k: c[k] for k in keys}, "sources": [N.screener(c["id"])] + c["brands"]["sources"]}
 
         if name == "get_financials":
             cid = resolve(args["company"])
             df = D.financial_frame(cid)
-            m = [x for x in (args.get("metrics") or ["sales", "ebitda", "ebitda_margin", "pat", "roce", "roe", "employee_pct", "inventory_days", "cfo_pat", "borrowings"]) if x in df.columns]
+            m = [x for x in (args.get("metrics") or ["sales", "ebitda", "ebitda_margin", "pat", "roce", "roic", "roe", "employee_pct", "inventory_days", "cfo_pat", "fcf_margin", "net_debt_ebitda", "borrowings"]) if x in df.columns]
             c = D.company(cid)
             return {"years": list(df.index), "series": {k: df[k].tolist() for k in m},
-                    "quarterly": {"labels": D.meta()["quarters"], **c["quarterly"]}, "ttm": c.get("ttm"), "notes": c.get("data_notes")}
+                    "quarterly": {"labels": D.meta()["quarters"], **c["quarterly"]}, "ttm": c.get("ttm"), "notes": c.get("data_notes"),
+                    "industry_average_FY26": {x: IND.industry_value(x)["avg"] for x in m},
+                    "definitions": {x: G.tooltip(x) for x in m if G.tooltip(x)},
+                    "analyst_notes": {th: N.company(cid, th)["text"] for th in ("growth", "margin", "returns", "wc", "cash", "cost") if N.company(cid, th)},
+                    "sources": [N.screener(cid)]}
 
         if name == "compare_kpis":
             k = D.kpi_table(args.get("year", "FY26"))
             m = [x for x in args["metrics"] if x in k.columns]
             t = k[m]
+            yr = args.get("year", "FY26")
             return {"table": t.round(2).to_dict(orient="index"), "peer_median": t.median(numeric_only=True).round(2).to_dict(),
-                    "rank_1_is_best": {x: D.peer_rank(k, x).to_dict() for x in m if x in D.KPI_DEFS}}
+                    "industry_average": {x: IND.industry_value(x, yr)["avg"] for x in m},
+                    "rank_1_is_best": {x: D.peer_rank(k, x).to_dict() for x in m if x in D.KPI_DEFS},
+                    "sources": [{"title": "Screener.in consolidated financials", "url": "https://www.screener.in/"},
+                                {"title": "Nifty Pharma constituents", "url": IND.meta()["constituents_source"]["url"]}]}
 
         if name == "correlate":
             x, y = args["x"], args["y"]
@@ -121,7 +143,10 @@ def run_tool(name: str, args: dict) -> dict:
         if name == "get_insights":
             cid = resolve(args["company"])
             sc = I.pillar_scores().loc[D.company(cid)["short"]].to_dict()
-            return {"insights": I.company_insights(cid), "pillar_scores_0_100": sc, "cross_company": I.cross_company_signals()}
+            notes = {th: v["text"] for th, v in N._all()["company"].get(cid, {}).items()}
+            srcs = [s for v in N._all()["company"].get(cid, {}).values() for s in v["sources"]]
+            return {"insights": I.company_insights(cid), "pillar_scores_0_100": sc, "analyst_notes_why": notes,
+                    "cross_company": I.cross_company_signals(), "sources": srcs[:8]}
 
         if name == "get_news":
             comp = args["company"]
@@ -133,7 +158,9 @@ def run_tool(name: str, args: dict) -> dict:
                 cid = resolve(comp)
                 cur = nd[nd["id"] == cid]
                 q = D.company(cid)["name"]
-            out = {"curated": cur.assign(date=cur["date"].dt.strftime("%Y-%m-%d"))[["date", "title", "category", "sentiment", "impact", "metrics", "url"]].to_dict(orient="records")}
+            cols = [x for x in ["date", "title", "category", "sentiment", "impact", "metrics", "url", "statement_impact"] if x in cur.columns]
+            out = {"curated": cur.assign(date=cur["date"].dt.strftime("%Y-%m-%d"))[cols].to_dict(orient="records"),
+                   "sources": [{"title": t[:80], "url": u} for t, u in zip(cur["title"], cur["url"]) if isinstance(u, str) and u]}
             if args.get("live", True):
                 live, err = L.fetch_news(q, days=180, limit=15)
                 out["live"] = [] if live.empty else live.assign(date=live["date"].dt.strftime("%Y-%m-%d"))[["date", "title", "source", "sentiment", "category"]].to_dict(orient="records")
@@ -143,7 +170,8 @@ def run_tool(name: str, args: dict) -> dict:
 
         if name == "get_problem_statements":
             c = D.company(resolve(args["company"]))
-            return {k: c[k] for k in ["swot", "working", "not_working", "problems", "digital", "consulting"]}
+            return {**{k: c[k] for k in ["swot", "working", "not_working", "problems", "digital", "consulting"]},
+                    "sources": [N.screener(c["id"])] + [{"title": n["title"][:80], "url": n["url"]} for n in c["news"][:4]]}
 
         if name == "get_market_data":
             c = D.company(resolve(args["company"]))
@@ -161,6 +189,22 @@ def run_tool(name: str, args: dict) -> dict:
                 out["live_error"] = err
             return out
 
+        if name == "get_industry_benchmark":
+            metric, yr = args["metric"], args.get("year", "FY26")
+            iv = IND.industry_value(metric, yr)
+            vals = IND.member_values(metric, yr).dropna().round(2).sort_values(ascending=False)
+            return {"metric": metric, "definition": G.tooltip(metric), "year": yr, "industry_average": iv["avg"], "industry_median": iv["median"],
+                    "companies_counted": iv["n"], "member_values": vals.to_dict(), "method": IND.meta()["method"],
+                    "market_growth": IND.market(),
+                    "sources": [{"title": "Nifty Pharma constituents (5paisa, 22 Oct 2026)", "url": IND.meta()["constituents_source"]["url"]},
+                                {"title": "Screener.in consolidated financials", "url": "https://www.screener.in/"},
+                                IND.market()[0]["source"]]}
+
+        if name == "get_brands_and_digital":
+            c = D.company(resolve(args["company"]))
+            srcs = list(c["brands"]["sources"]) + [s for r in c["digital_roadmap"] for s in r["sources"]]
+            return {"brands": c["brands"], "digital_roadmap": c["digital_roadmap"], "sources": srcs}
+
         if name == "run_scenario":
             cid = resolve(args["company"])
             df = D.financial_frame(cid)
@@ -173,7 +217,7 @@ def run_tool(name: str, args: dict) -> dict:
             net_debt = df["borrowings"].iloc[-1] - df["investments"].iloc[-1]
             return {"FY26_sales": base, "FY27E_sales": s27, "FY28E_sales": s28, "FY27E_ebitda": e27, "FY28E_ebitda": e28,
                     "implied_EV_on_FY28E": e28 * mult, "implied_equity_value": e28 * mult - net_debt,
-                    "current_mcap": D.company(cid)["market"]["mcap_cr"], "assumptions": args}
+                    "current_mcap": D.company(cid)["market"]["mcap_cr"], "assumptions": args, "sources": [N.screener(cid)]}
 
         return {"error": f"unknown tool {name}"}
     except Exception as e:  # tool errors go back to the model, not the user
@@ -352,43 +396,107 @@ def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 8) -> st
 
 
 # ── Offline analyst (no API key) ─────────────────────────────────────────────
-def offline_answer(question: str, on_step=None) -> str:
+THEME_WORDS = {
+    "growth": ("growth", "launch", "revenue"), "margin": ("margin", "cost", "r&d"), "returns": ("roce", "capital", "plant", "return"),
+    "wc": ("inventory", "receivable", "working", "collection", "debtor"), "cash": ("cash", "dividend", "receivable"),
+    "cost": ("cost", "rep", "employee", "people"), "debt": ("debt", "borrow", "pledge"), "geo": ("us ", "us-", "tariff", "export"),
+    "brands": ("brand", "share", "therapy", "chronic"), "rnd": ("r&d", "plant", "fda", "filing"), "quarter": ("q1", "quarter"),
+}
+
+
+def _match_news(c: dict, theme: str | None):
+    words = THEME_WORDS.get(theme or "", ())
+    for n_ in sorted(c["news"], key=lambda x: x["date"], reverse=True):
+        imp = n_.get("statement_impact") or {}
+        blob = " ".join([n_["title"], n_.get("impact", ""), imp.get("doing", "")]).lower()
+        if not words or any(w in blob for w in words):
+            return n_
+    return None
+
+
+def _match_problem(c: dict, theme: str | None):
+    words = THEME_WORDS.get(theme or "", ())
+    for p in c["problems"]:
+        blob = (p["title"] + " " + p["evidence"]).lower()
+        if any(w in blob for w in words):
+            return p
+    return c["problems"][0]
+
+
+def _links(sources: list[dict]) -> str:
+    seen, out = set(), []
+    for s_ in sources:
+        if s_ and s_.get("url") and s_["url"] not in seen:
+            seen.add(s_["url"])
+            out.append(f"[{s_['title']}]({s_['url']})")
+    return " · ".join(out) if out else "Screener.in and company filings"
+
+
+def structured_answer(item: dict, question: str = "") -> str:
+    """Five-part answer built from the data behind one chart or text (used offline and as context)."""
+    cid, metric, theme = item.get("company"), item.get("metric"), item.get("theme")
+    c = D.company(cid) if cid else None
+    note = item.get("note") or {}
+    sources = list(note.get("sources") or [])
+    how = G.formula(metric) if metric else ""
+    how = f"{how}. {item.get('facts', '')}".strip(". ") if how else item.get("facts", "")
+    means = note.get("text", "")
+    if metric and metric in IND.BENCHMARKABLE:
+        iv = IND.industry_value(metric)
+        if iv["avg"] is not None:
+            means += f" Industry average (20 Nifty Pharma companies): {D.fmt(metric, iv['avg'])}, median {D.fmt(metric, iv['median'])}."
+    doing, more = "No public action found in the curated news.", ""
+    if c:
+        if note.get("doing"):
+            doing = note["doing"]
+        p = _match_problem(c, theme)
+        more = f"{p['answer']} (problem statement: {p['title']})"
+    else:
+        more = "Use the compare bar to see which companies lead, then open the Strategy Room for each company's problem statements."
+    return (f"**What it's checking:** {item.get('title', question)}\n\n"
+            f"**How it's calculated:** {how or 'See the chart and table above.'}\n\n"
+            f"**What it means for the company:** {means or 'See the analyst note under the chart.'}\n\n"
+            f"**What the company is already doing:** {doing}\n\n"
+            f"**What more it, or a consultant, can do:** {more}\n\n"
+            f"**Sources:** {_links(sources)}")
+
+
+def offline_answer(question: str, on_step=None, item: dict | None = None) -> str:
+    if item and item.get("kind") != "page":
+        if on_step:
+            on_step(1, "read_chart_data", {"item": item.get("title", "")})
+        return structured_answer(item, question) + "\n\n_Offline analyst (rule-based, free). Add a Gemini key for free-text reasoning._"
     q = question.lower()
     hits = [c for c in D.companies() if c["short"].lower() in q or c["id"] in q]
     if not hits:
         hits = D.companies()
     lines = []
+    srcs = []
     if len(hits) > 1 or any(w in q for w in ("compare", "vs", "versus", "peer", "best", "rank")):
-        metrics = ["sales_cagr", "ebitda_margin", "roce", "roe", "employee_pct", "inventory_days", "ccc", "cfo_pat", "de_ratio", "pe"]
+        metrics = ["sales_cagr", "ebitda_margin", "roce", "roic", "employee_pct", "inventory_days", "ccc", "cfo_pat", "net_debt_ebitda"]
         if on_step:
             on_step(1, "compare_kpis", {"metrics": metrics})
         k = D.kpi_table().loc[[c["short"] for c in hits], metrics]
-        lines.append("**Headline:** peer comparison on growth, profitability, returns and cash (FY26).\n")
+        lines.append("**What it's checking:** growth, profitability, returns and cash across the companies (FY26), against the industry.\n")
         hdr = "| Company | " + " | ".join(D.KPI_DEFS[m][0] for m in metrics) + " |"
         lines += [hdr, "|" + "---|" * (len(metrics) + 1)]
         for name, row in k.iterrows():
             lines.append(f"| {name} | " + " | ".join(D.fmt(m, row[m]) for m in metrics) + " |")
-        lines.append("")
-        for s in I.cross_company_signals()[:3]:
-            lines.append(f"- {s}")
-    for c in (hits if "swot" in q else (hits[:3] if len(hits) <= 3 else [])):
+        lines.append("| **Industry avg** | " + " | ".join(D.fmt(m, IND.industry_value(m)["avg"]) for m in metrics) + " |")
+        lines.append("\n**What it means:**")
+        for s_ in I.cross_company_signals()[:3]:
+            lines.append(f"- {s_}")
+        srcs += [{"title": "Screener.in consolidated financials", "url": "https://www.screener.in/"},
+                 {"title": "Nifty Pharma constituents", "url": IND.meta()["constituents_source"]["url"]}]
+    for c in (hits if len(hits) <= 3 else []):
         if on_step:
             on_step(2, "get_insights", {"company": c["id"]})
-        ins = I.company_insights(c["id"])
-        lines.append(f"\n### {c['short']}\n*{c['tagline']}*")
-        for lab, key in [("Growth", "growth"), ("Opportunities", "opportunity"), ("Risks", "risk")]:
-            if ins[key]:
-                lines.append(f"**{lab}**")
-                lines += [f"- {x}" for x in ins[key][:4]]
-        if any(w in q for w in ("problem", "consult", "opportun", "fix", "issue")):
-            lines.append("**Top problem statements**")
-            lines += [f"{i}. **{p['title']}**: {p['answer']}" for i, p in enumerate(c["problems"], 1)]
-        if "swot" in q or "strength" in q or "threat" in q:
-            lines.append("**SWOT**")
-            for key, lab in [("strengths", "Strengths"), ("weaknesses", "Weaknesses"), ("opportunities", "Opportunities"), ("threats", "Threats")]:
-                lines.append(f"*{lab}:* " + "; ".join(c["swot"][key]))
-        if "news" in q:
-            lines.append("**Recent news**")
-            lines += [f"- {n['date']}: {n['title']}" for n in c["news"][:4]]
-    lines.append("\n_Offline analyst mode (rule-based, free). Add a free Gemini API key (Settings → Secrets: GEMINI_API_KEY) to switch on the full reasoning agent._")
+        theme = next((t for t, ws in THEME_WORDS.items() if any(w.strip() in q for w in ws)), "margin")
+        note = N.company(c["id"], theme) or N.company(c["id"], "margin")
+        lines.append(f"\n### {c['short']}")
+        lines.append(structured_answer({"title": question, "company": c["id"], "theme": theme, "note": note,
+                                        "facts": ""}, question))
+    if srcs:
+        lines.append(f"\n**Sources:** {_links(srcs)}")
+    lines.append("\n_Offline analyst mode (rule-based, free). Add a free Gemini API key (Secrets: GEMINI_API_KEY) for the full reasoning agent._")
     return "\n".join(lines)

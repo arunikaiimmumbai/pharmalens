@@ -1,12 +1,16 @@
-"""P&L Lab: five-year profitability, cost structure, CAGR and correlation analysis."""
+"""P&L Lab: where revenue goes, which costs drive margin, and which numbers move together."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
 from core import data as D
+from core import industry as IND
 from core import theme as T
-from views.common import focus_picker, multi_line
+from views.common import IND_LABEL, color, compare_bar, focus_picker, note_box, value
+
+LINES = [("Material", "material_pct", "material_cost"), ("Employee", "employee_pct", "employee_cost"),
+         ("Manufacturing", "manufacturing_pct", "manufacturing_cost"), ("Other / SG&A", "other_cost_pct", "other_cost")]
 
 
 def _waterfall(df: pd.DataFrame, year: str, name: str):
@@ -31,20 +35,19 @@ def _waterfall(df: pd.DataFrame, year: str, name: str):
 def _common_size(df: pd.DataFrame, name: str):
     parts = [("Material", "material_pct", "#0A2A66"), ("Employee", "employee_pct", "#1D4ED8"),
              ("Manufacturing", "manufacturing_pct", "#3B82F6"), ("Other / SG&A", "other_cost_pct", "#93B8FF"),
-             ("Other op. items (net)", "recon_pct", "#CBD5E1"),
-             ("EBITDA", "ebitda_margin", "#06B6D4")]
+             ("Other op. items (net)", "recon_pct", "#CBD5E1"), ("EBITDA", "ebitda_margin", "#06B6D4")]
     fig = go.Figure()
     for lab, col, colr in parts:
         fig.add_trace(go.Bar(x=df.index, y=df[col], name=lab, marker_color=colr, marker_line=dict(color="#fff", width=2),
-                             text=[f"{v:.0f}%" for v in df[col]], textposition="inside", insidetextfont=dict(color="#fff"), texttemplate="%{y:.0f}%",
+                             texttemplate="%{y:.0f}%", textposition="inside", insidetextfont=dict(color="#fff"),
                              hovertemplate=f"{lab}: %{{y:.1f}}% of sales<extra></extra>"))
-    fig.update_layout(barmode="relative", title=f"{name} · common-size P&L (% of revenue)", yaxis_ticksuffix="%")
-    return T.style_fig(fig, 400)
+    fig.update_layout(barmode="relative", title=f"{name} · each cost as % of revenue", yaxis_ticksuffix="%")
+    return T.style_fig(fig, 420)
 
 
 def render():
-    T.hero("P&L Lab", "Where every rupee of revenue goes over five years, which costs are growing too fast, "
-           "and which numbers move together.", ["Revenue, EBITDA, profit", "Cost growth check", "Which numbers move together", "Growth per year by line"])
+    T.hero("P&L Lab", "Where every rupee of revenue goes, which costs drive the margin, and which numbers move together.",
+           ["P&L bridge", "Cost drivers ranked", "Cost growth check", "Test any two numbers"])
     cid = focus_picker("pnl_pick")
     if cid is None:
         T.footer(D.meta())
@@ -52,6 +55,8 @@ def render():
     c = D.company(cid)
     df = D.financial_frame(cid)
     name = c["short"]
+    cmp = compare_bar("pnl", exclude=name)
+    names = [name] + cmp["companies"] + ([IND_LABEL] if cmp["industry"] else [])
 
     a, b = st.columns([1.1, 1])
     with a:
@@ -59,98 +64,124 @@ def render():
         st.plotly_chart(_waterfall(df, yr, name), use_container_width=True)
     with b:
         st.plotly_chart(_common_size(df, name), use_container_width=True)
-        st.caption("'Other op. items (net)' is a small balancing figure so the costs add up to the company's reported total. "
-                   "It is negative for Glenmark FY26 because one-off licensing income is counted in revenue.")
+        st.caption("'Other op. items (net)' is a small balancing figure so the costs add up to the company's reported total.")
+    r = df.loc[yr]
+    note_box(f"{name}: P&L bridge and cost mix", company=cid, theme="margin", metric="ebitda_margin",
+             facts=f"{yr}: revenue ₹{r['sales']:,.0f} Cr, EBITDA ₹{r['ebitda']:,.0f} Cr ({r['ebitda_margin']:.1f}%), PAT ₹{r['pat']:,.0f} Cr; "
+                   f"material {r['material_pct']:.1f}%, employee {r['employee_pct']:.1f}%, other {r['other_cost_pct']:.1f}% of sales. "
+                   f"Industry EBITDA margin {IND.industry_value('ebitda_margin', yr)['avg']:.1f}%.")
 
-    T.section("Five-year trajectory", "revenue, EBITDA and PAT · ₹ Cr")
-    fig = go.Figure()
-    for col, lab, colr in [("sales", "Revenue", "#0A2A66"), ("ebitda", "EBITDA", "#1D4ED8"), ("pat", "PAT", "#06B6D4")]:
-        fig.add_trace(go.Bar(x=df.index, y=df[col], name=lab, marker_color=colr, marker_cornerradius=4,
-                             text=[f"{v:,.0f}" for v in df[col]], textposition="outside", hovertemplate=f"{lab}: ₹%{{y:,.0f}} Cr<extra></extra>"))
-    fig.update_layout(barmode="group", title=f"{name} · revenue, EBITDA, PAT (₹ Cr)")
-    c1, c2 = st.columns([1.3, 1])
-    c1.plotly_chart(T.style_fig(fig, 380), use_container_width=True)
-    with c2:
-        tbl = pd.DataFrame({
-            "Metric": ["Revenue", "EBITDA", "PAT", "Employee cost", "Material cost", "Indirect (mfg+other)", "Depreciation", "Interest"],
-            "FY22": [df[x].iloc[0] for x in ["sales", "ebitda", "pat", "employee_cost", "material_cost", "indirect_cost", "depreciation", "interest"]],
-            "FY26": [df[x].iloc[-1] for x in ["sales", "ebitda", "pat", "employee_cost", "material_cost", "indirect_cost", "depreciation", "interest"]],
-        })
-        tbl["CAGR %"] = ((tbl["FY26"] / tbl["FY22"]).clip(lower=0) ** 0.25 - 1) * 100
-        tbl.loc[(tbl["FY22"] <= 0) | (tbl["FY26"] <= 0), "CAGR %"] = np.nan
-        st.markdown("**Growth per year by line, FY22 to FY26 (CAGR)**")
-        st.dataframe(tbl.style.format({"FY22": "{:,.0f}", "FY26": "{:,.0f}", "CAGR %": "{:.1f}%"})
-                     .background_gradient(subset=["CAGR %"], cmap="Blues"), hide_index=True, use_container_width=True)
-
-    T.section("Cost growth check", "cost growth ÷ revenue growth (above 1.0 means the cost is growing faster than sales)")
-    el = D.cost_elasticity(cid)
-    c1, c2 = st.columns([1, 1])
-    with c1:
-        e = el.dropna(subset=["Cost growth vs revenue growth"])
-        colors = ["#C62828" if v > 1.05 else "#0F9D58" if v < 0.95 else "#7A8AA6" for v in e["Cost growth vs revenue growth"]]
-        fig = go.Figure(go.Bar(y=e["Cost line"], x=e["Cost growth vs revenue growth"], orientation="h", marker_color=colors, marker_cornerradius=6,
-                               text=[f"{v:.2f}x" for v in e["Cost growth vs revenue growth"]], textposition="outside",
-                               hovertemplate="%{y}: %{x:.2f}x revenue growth<extra></extra>"))
-        fig.add_vline(x=1, line_dash="dot", line_color=T.NAVY, annotation_text="grows with revenue", annotation_font_color=T.MUTED)
-        fig.update_layout(title=f"{name} · how fast each cost grew compared with revenue (1.0 = same pace)", hovermode="closest", yaxis=dict(autorange="reversed"))
-        st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
-    with c2:
-        st.dataframe(el.style.format({"Extra cost since FY22 (₹ Cr)": "{:,.0f}", "Extra cost per ₹100 of extra revenue": "{:.1f}", "Cost growth per year %": "{:.1f}%",
-                                      "Cost growth vs revenue growth": "{:.2f}x"}, na_rep="n/a"), hide_index=True, use_container_width=True)
-        st.caption("How to read this: for every extra ₹100 of revenue since FY22, how much extra was spent on each cost. "
-                   "Red bars are costs growing faster than revenue. That is where profit margin is being lost.")
-
-    T.section("Which numbers move together", "for this company, FY22–26 (blue = together, orange = opposite)")
-    cols = ["sales", "employee_cost", "material_cost", "indirect_cost", "ebitda_margin", "employee_pct", "inventory_days", "roce", "borrowings"]
-    labels = ["Revenue", "Employee ₹", "Material ₹", "Indirect ₹", "EBITDA %", "Employee %", "Inventory d", "ROCE", "Borrowings"]
-    cm = D.correlation_matrix(cid, cols)
-    fig = go.Figure(go.Heatmap(z=cm.values, x=labels, y=labels, zmin=-1, zmax=1, colorscale=T.DIVERGING, xgap=2, ygap=2,
-                               text=np.round(cm.values, 2), texttemplate="%{text}", hovertemplate="%{y} × %{x}: r = %{z:.2f}<extra></extra>"))
-    fig.update_layout(title=f"{name} · do these numbers move together? (+1 = together, −1 = opposite; 5 years only)", yaxis=dict(autorange="reversed"), hovermode="closest")
-    c1, c2 = st.columns([1.2, 1])
-    c1.plotly_chart(T.style_fig(fig, 460), use_container_width=True)
-    with c2:
-        T.section("Test any two numbers", "all six companies × five years = 30 data points")
-        opts = {"Employee cost %": "employee_pct", "Material cost %": "material_pct", "Indirect cost %": "indirect_pct",
-                "Inventory days": "inventory_days", "Cash conversion cycle": "ccc", "EBITDA margin": "ebitda_margin",
-                "ROCE": "roce", "ROE": "roe", "Revenue growth %": "sales_growth", "Employee cost growth %": "employee_growth",
-                "Asset turnover": "asset_turnover", "Debt/equity": "de_ratio"}
-        x = st.selectbox("X", list(opts), index=3, key="px")
-        y = st.selectbox("Y", list(opts), index=6, key="py")
-        pdf, r = D.pooled_correlation(opts[x], opts[y])
-        cmap = D.colors()
+    # ── Cost drivers ─────────────────────────────────────────────────────────
+    T.section("Cost drivers ranked", "which costs moved the margin most, and which matter most today")
+    a, b = st.columns(2)
+    with a:
+        rows = []
+        for lab, pct, _ in LINES:
+            rows.append({"line": lab, "pct": pct, name: df[pct].iloc[-1] - df[pct].iloc[0]})
+        imp = pd.DataFrame(rows).sort_values(name, ascending=False)
         fig = go.Figure()
-        for comp, g in pdf.groupby("Company"):
-            fig.add_trace(go.Scatter(x=g[opts[x]], y=g[opts[y]], mode="markers", name=comp, text=g["Year"],
-                                     marker=dict(size=11, color=cmap[comp], line=dict(color="#fff", width=2)),
-                                     hovertemplate=f"{comp} %{{text}}<br>{x}: %{{x:.1f}}<br>{y}: %{{y:.1f}}<extra></extra>"))
-        if len(pdf) > 2:
-            m, b0 = np.polyfit(pdf[opts[x]], pdf[opts[y]], 1)
-            xs = np.linspace(pdf[opts[x]].min(), pdf[opts[x]].max(), 20)
-            fig.add_trace(go.Scatter(x=xs, y=m * xs + b0, mode="lines", name="trend", line=dict(color=T.MUTED, dash="dot", width=2), hoverinfo="skip"))
-        fig.update_layout(title=f"Link strength {r:+.2f}  (+1 = move together, 0 = no link, −1 = opposite)", xaxis_title=x, yaxis_title=y, hovermode="closest")
-        st.plotly_chart(T.style_fig(fig, 330), use_container_width=True)
+        for n in names:
+            vals = []
+            for pct in imp["pct"]:
+                if n == IND_LABEL:
+                    s = IND.industry_series(pct)["Average"]
+                    vals.append(s.iloc[-1] - s.iloc[0])
+                else:
+                    f = D.financial_frame(next(x["id"] for x in D.companies() if x["short"] == n))
+                    vals.append(f[pct].iloc[-1] - f[pct].iloc[0])
+            fig.add_trace(go.Bar(y=imp["line"], x=vals, orientation="h", name="Industry avg" if n == IND_LABEL else n, marker_color=color(n),
+                                 marker_pattern_shape="/" if n == IND_LABEL else "", text=[f"{v:+.1f}" for v in vals], textposition="outside",
+                                 hovertemplate=f"{n}: %{{x:+.1f}} pts of sales<extra></extra>"))
+        fig.add_vline(x=0, line_color=T.NAVY, line_width=1)
+        fig.update_layout(barmode="group", yaxis=dict(autorange="reversed"), hovermode="closest",
+                          title="Margin impact FY22 → FY26 (points of sales; + = cost rose, margin fell)")
+        st.plotly_chart(T.style_fig(fig, 300 + 14 * len(names)), use_container_width=True)
+    with b:
+        r26 = df.iloc[-1]
+        sens = []
+        for lab, pct, cost in LINES:
+            cost_v = r26[cost]
+            sens.append({"Cost line": lab, "Cost ₹ Cr": cost_v, "1% saving adds to EBITDA ₹ Cr": cost_v * 0.01,
+                         "= % of EBITDA": cost_v * 0.01 / r26["ebitda"] * 100, "Margin gain (bps)": cost_v * 0.01 / r26["sales"] * 10000})
+        sens = pd.DataFrame(sens).sort_values("Cost ₹ Cr", ascending=False).reset_index(drop=True)
+        sens.insert(0, "Rank", range(1, len(sens) + 1))
+        fig = go.Figure(go.Bar(y=sens["Cost line"], x=sens["1% saving adds to EBITDA ₹ Cr"], orientation="h", marker_color=c["color"],
+                               text=[f"₹{v:,.0f} Cr" for v in sens["1% saving adds to EBITDA ₹ Cr"]], textposition="outside",
+                               hovertemplate="%{y}: ₹%{x:,.1f} Cr<extra></extra>"))
+        fig.update_layout(title="Sensitivity: EBITDA gained from a 1% saving on each cost (FY26)", yaxis=dict(autorange="reversed"), hovermode="closest")
+        st.plotly_chart(T.style_fig(fig, 300), use_container_width=True)
+    st.dataframe(sens.style.format({"Cost ₹ Cr": "{:,.0f}", "1% saving adds to EBITDA ₹ Cr": "{:,.1f}", "= % of EBITDA": "{:.2f}%",
+                                    "Margin gain (bps)": "{:.0f}"}), hide_index=True, use_container_width=True)
+    if cmp["industry"]:
+        st.caption(IND.note("employee_pct"))
+    el = D.cost_elasticity(cid)
+    with st.expander("Cost growth check: how fast each cost grew compared with revenue (1.0 = same pace)"):
+        st.dataframe(el.style.format({"Extra cost since FY22 (₹ Cr)": "{:,.0f}", "Extra cost per ₹100 of extra revenue": "{:.1f}",
+                                      "Cost growth per year %": "{:.1f}%", "Cost growth vs revenue growth": "{:.2f}x"}, na_rep="n/a")
+                     .background_gradient(subset=["Cost growth vs revenue growth"], cmap="Reds", vmin=0.5, vmax=2.5),
+                     hide_index=True, use_container_width=True)
+        st.caption("Above 1.0x = the cost grows faster than revenue, so it eats margin. Interest often shows a big number because it starts from a tiny base.")
+    top = imp.iloc[0]
+    note_box(f"{name}: cost drivers", company=cid, theme="cost", metric="employee_pct",
+             facts=f"Biggest margin hit FY22–26: {top['line']} ({top[name]:+.1f} pts of sales). Biggest cost today: {sens.iloc[0]['Cost line']} "
+                   f"(₹{sens.iloc[0]['Cost ₹ Cr']:,.0f} Cr; a 1% saving adds ₹{sens.iloc[0]['1% saving adds to EBITDA ₹ Cr']:,.0f} Cr EBITDA). "
+                   f"Employee cost {df['employee_pct'].iloc[0]:.1f}% → {df['employee_pct'].iloc[-1]:.1f}% of sales; industry {IND.industry_value('employee_pct')['avg']:.1f}%.")
 
-    T.section("Peer trend comparison", "pick a metric")
-    metric_opts = {"Revenue (₹ Cr)": ("sales", ""), "EBITDA margin": ("ebitda_margin", "%"), "PAT margin": ("pat_margin", "%"),
-                   "Gross margin": ("gross_margin", "%"), "Employee cost / sales": ("employee_pct", "%"),
-                   "Material cost / sales": ("material_pct", "%"), "Indirect cost / sales": ("indirect_pct", "%"),
-                   "Revenue growth YoY": ("sales_growth", "%")}
-    mlab = st.radio("Metric", list(metric_opts), horizontal=True, key="pnl_metric", index=1)
-    mcol, suf = metric_opts[mlab]
-    st.plotly_chart(multi_line(D.panel(mcol), f"{mlab} · FY22–26", suf, 400, highlight=name), use_container_width=True)
+    # ── Growth per year by line ──────────────────────────────────────────────
+    T.section("Growth per year by line", "FY22 → FY26 (CAGR)")
+    keys = [("Revenue", "sales"), ("EBITDA", "ebitda"), ("PAT", "pat"), ("Employee cost", "employee_cost"), ("Material cost", "material_cost"),
+            ("Indirect (mfg + other)", "indirect_cost"), ("Depreciation", "depreciation"), ("Interest", "interest")]
+    tbl = pd.DataFrame({"Line": [k_ for k_, _ in keys], "FY22 ₹ Cr": [df[x].iloc[0] for _, x in keys], "FY26 ₹ Cr": [df[x].iloc[-1] for _, x in keys]})
+    tbl[f"{name} CAGR %"] = [D._cagr(df[x].iloc[0], df[x].iloc[-1], 4) * 100 for _, x in keys]
+    for n in cmp["companies"]:
+        f = D.financial_frame(next(x["id"] for x in D.companies() if x["short"] == n))
+        tbl[f"{n} CAGR %"] = [D._cagr(f[x].iloc[0], f[x].iloc[-1], 4) * 100 for _, x in keys]
+    if cmp["industry"]:
+        tbl["Industry CAGR %"] = [IND.industry_value(m_)["avg"] if m_ else None for m_ in ("sales_cagr", "ebitda_cagr", "pat_cagr", None, None, None, None, None)]
+    st.dataframe(tbl.style.format({c_: "{:.1f}%" for c_ in tbl.columns if "CAGR" in c_} | {"FY22 ₹ Cr": "{:,.0f}", "FY26 ₹ Cr": "{:,.0f}"}, na_rep="–")
+                 .background_gradient(subset=[f"{name} CAGR %"], cmap="Blues"), hide_index=True, use_container_width=True)
+    note_box(f"{name}: growth by P&L line", company=cid, theme="growth", metric="sales_cagr",
+             facts="; ".join(f"{l_} {v:.1f}%/yr" for l_, v in zip(tbl["Line"], tbl[f"{name} CAGR %"]) if not pd.isna(v)))
 
-    T.section("Quarterly momentum", "Q1 FY26 → Q1 FY27")
-    q = c["quarterly"]
+    # ── Test any two numbers ─────────────────────────────────────────────────
+    T.section("Test any two numbers", "does one number move with another? each dot = one company in one year")
+    opts = {"Employee cost %": "employee_pct", "Material cost %": "material_pct", "Inventory days": "inventory_days",
+            "Cash conversion cycle": "ccc", "EBITDA margin": "ebitda_margin", "ROCE": "roce", "ROIC": "roic", "ROE": "roe",
+            "Revenue growth %": "sales_growth", "Asset turnover": "asset_turnover", "Debt/equity": "de_ratio", "Free cash flow / sales": "fcf_margin"}
+    c1, c2, c3 = st.columns([1, 1, 1.2])
+    x = c1.selectbox("X axis", list(opts), index=2, key="px")
+    y = c2.selectbox("Y axis", list(opts), index=5, key="py")
+    wide = c3.toggle("Include all 20 Nifty Pharma companies", value=False, key="pwide",
+                     help="Off: the six companies (30 dots). On: the 20 industry companies (about 100 dots) for a sturdier test.")
+    xm, ym = opts[x], opts[y]
+    rows = []
+    if wide:
+        for sym, (nm, f, _) in IND.frames().items():
+            for yy in f.index:
+                if xm in f.columns and ym in f.columns:
+                    rows.append({"Company": nm, "Year": yy, xm: f.loc[yy, xm], ym: f.loc[yy, ym]})
+    else:
+        for co in D.companies():
+            f = D.financial_frame(co["id"])
+            for yy in f.index:
+                rows.append({"Company": co["short"], "Year": yy, xm: f.loc[yy, xm], ym: f.loc[yy, ym]})
+    pdf = pd.DataFrame(rows).replace([np.inf, -np.inf], np.nan).dropna()
+    rr = pdf[xm].corr(pdf[ym]) if len(pdf) > 2 else np.nan
+    cmap = D.colors()
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=D.meta()["quarters"], y=q["sales"], name="Revenue", marker_color="#C9DCFF", marker_cornerradius=4,
-                         hovertemplate="Revenue ₹%{y:,} Cr<extra></extra>"))
-    fig.add_trace(go.Bar(x=D.meta()["quarters"], y=q["ebitda"], name="EBITDA", marker_color="#1D4ED8", marker_cornerradius=4,
-                         hovertemplate="EBITDA ₹%{y:,} Cr<extra></extra>"))
-    fig.add_trace(go.Bar(x=D.meta()["quarters"], y=q["pat"], name="PAT", marker_color="#06B6D4", marker_cornerradius=4,
-                         hovertemplate="PAT ₹%{y:,} Cr<extra></extra>"))
-    fig.update_layout(barmode="group", title=f"{name} · quarterly P&L (₹ Cr) · operating margin: " + " → ".join(f"{v}%" for v in q["opm"]))
-    st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
-    if c.get("data_notes"):
-        st.info("Data notes: " + " ".join(c["data_notes"]))
+    for comp, g in pdf.groupby("Company"):
+        fig.add_trace(go.Scatter(x=g[xm], y=g[ym], mode="markers", name=comp, text=g["Year"],
+                                 marker=dict(size=11 if comp in cmap else 8, color=cmap.get(comp, "#CBD5E1"), line=dict(color="#fff", width=1.5)),
+                                 hovertemplate=f"{comp} %{{text}}<br>{x}: %{{x:.1f}}<br>{y}: %{{y:.1f}}<extra></extra>"))
+    if len(pdf) > 2:
+        mm, b0 = np.polyfit(pdf[xm], pdf[ym], 1)
+        xs = np.linspace(pdf[xm].min(), pdf[xm].max(), 20)
+        fig.add_trace(go.Scatter(x=xs, y=mm * xs + b0, mode="lines", name="trend", line=dict(color=T.MUTED, dash="dot", width=2), hoverinfo="skip"))
+    strength = "strong" if abs(rr) >= 0.6 else "moderate" if abs(rr) >= 0.3 else "weak"
+    fig.update_layout(title=f"Link strength {rr:+.2f} ({strength}; +1 = move together, 0 = no link, −1 = opposite) · {len(pdf)} dots",
+                      xaxis_title=x, yaxis_title=y, hovermode="closest", showlegend=not wide)
+    st.plotly_chart(T.style_fig(fig, 420), use_container_width=True)
+    if wide:
+        st.caption("Grey dots = the other Nifty Pharma companies; coloured = the six in this study.")
+    note_box("Test any two numbers", peer="pl_scatter", facts=f"{x} vs {y}: link strength {rr:+.2f} ({strength}) across {len(pdf)} company-years.")
     T.footer(D.meta())

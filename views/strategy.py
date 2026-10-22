@@ -5,7 +5,8 @@ import streamlit as st
 
 from core import data as D
 from core import theme as T
-from views.common import bullets, focus_picker
+from core import notes as N
+from views.common import bullets, compare_bar, focus_picker, note_box, register
 
 SERVICE_LINES = ["Strategy & portfolio", "Commercial excellence", "Operations & supply chain", "Quality & compliance",
                  "Finance & working capital", "Transactions & PMI", "Tax & trade", "Digital, data & AI"]
@@ -111,6 +112,9 @@ def render():
             <div class="row"><b>Investigate further:</b> {p['investigate']}</div>
             <div class="row">{T.pill(p['service'])}</div></div>""", unsafe_allow_html=True)
 
+    register(f"{c['short']}: top-5 problem statements", company=cid, kind="text", theme="returns",
+             facts=" | ".join(f"{p['title']}: {p['evidence']}" for p in c["problems"]))
+
     T.section("Consulting opportunity map", "where each company most needs help, by type of consulting work")
     m = _service_matrix()
     fig = go.Figure(go.Heatmap(z=m.values, x=m.columns, y=m.index, colorscale=[[0, "#F5F8FF"], [0.5, "#5B8FF5"], [1, "#0A2A66"]],
@@ -118,36 +122,41 @@ def render():
                                hovertemplate="%{y} · %{x}: %{z}<extra></extra>"))
     fig.update_layout(xaxis=dict(side="top", tickangle=-20), yaxis=dict(autorange="reversed"), hovermode="closest")
     st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
-    st.caption("How to read this: each number shows how many of a company's five problems need that kind of consulting help. "
-               "In the Digital column, a bigger number means the company is further behind on digital tools.")
-    cols = st.columns(6)
-    for col, cc in zip(cols, D.companies()):
-        col.markdown(f'<div class="card" style="border-top:4px solid {cc["color"]}"><h4>{cc["short"]}</h4>'
-                     + "".join(T.pill(x) for x in cc["consulting"]) + "</div>", unsafe_allow_html=True)
+    note_box("Consulting opportunity map", peer="st_map",
+             facts="; ".join(f"{r_}: " + ", ".join(f"{col} {v:g}" for col, v in m.loc[r_].items() if v) for r_ in m.index))
 
-    T.section("Journey of digitisation", "estimated from public information (1 = early, 5 = leading); to be checked in interviews")
-    a, b = st.columns([1, 1.2])
-    with a:
-        dims = list(c["digital"].keys())
-        fig = go.Figure()
-        for cc in D.companies():
-            v = [cc["digital"][d] for d in dims]
-            sel = cc["id"] == cid
-            fig.add_trace(go.Scatterpolar(r=v + v[:1], theta=dims + dims[:1], name=cc["short"],
-                                          line=dict(color=cc["color"], width=3.5 if sel else 1.2),
-                                          opacity=1 if sel else 0.35, fill="toself" if sel else None))
-        fig.update_layout(polar=dict(radialaxis=dict(range=[0, 5], tickvals=[1, 2, 3, 4, 5], gridcolor="#DCE6F5"),
-                                     angularaxis=dict(tickfont=dict(size=11))), hovermode="closest", title=f"{c['short']} highlighted vs peers")
-        st.plotly_chart(T.style_fig(fig, 430), use_container_width=True)
-    with b:
-        html = '<div class="card"><h4>🚀 Four-wave roadmap</h4>'
-        for stage, desc, t in JOURNEY:
-            html += (f'<div style="display:flex;gap:12px;margin:10px 0"><div style="min-width:118px;font-weight:800;color:#1D4ED8">{stage}'
-                     f'<div class="muted">{t}</div></div><div style="font-size:.88rem">{desc}</div></div>')
-        html += "</div>"
-        st.markdown(html, unsafe_allow_html=True)
-        st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
-        weakest = sorted(c["digital"].items(), key=lambda x: x[1])[:3]
-        st.markdown('<div class="card"><h4>Priority use-cases for ' + c["short"] + "</h4>"
-                    + bullets([f"<b>{d}</b> (maturity {s}/5): {DIGITAL_USE_CASES[d]}" for d, s in weakest]) + "</div>", unsafe_allow_html=True)
+    T.section(f"{c['short']} · digitisation roadmap", "what it is doing today, where it is weak, and where a consultant comes in")
+    cmp = compare_bar("strategy", exclude=c["short"], help_text="Pick companies to compare digital maturity scores side by side.")
+    STATUS = {"Doing well": ("#E8F7EF", "#0F9D58"), "In progress": ("#EAF2FF", "#1D4ED8"),
+              "Weak": ("#FDECEC", "#C62828"), "No public evidence": ("#FFF4E5", "#B45309")}
+    rows_html = ""
+    for r in c["digital_roadmap"]:
+        bg, fg = STATUS[r["status"]]
+        dots = "".join(f'<span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:3px;background:{"#1D4ED8" if i < r["score"] else "#DCE6F5"}"></span>' for i in range(5))
+        src = N.sources_md(r["sources"])
+        flag = r["status"] in ("Weak", "No public evidence")
+        rows_html += (f'<tr style="background:{"#FFFBF7" if flag else "#fff"}">'
+                      f'<td style="font-weight:700;color:#0A2A66">{r["area"]}</td><td style="white-space:nowrap">{dots}<div class="muted" style="font-size:.72rem">{r["score"]}/5</div></td>'
+                      f'<td><span class="status" style="background:{bg};color:{fg}">{r["status"]}</span></td>'
+                      f'<td>{r["doing"]}' + (f'<div class="muted" style="font-size:.72rem;margin-top:3px">Source: {src}</div>' if src else "") + '</td>'
+                      f'<td>{r["gap"]}</td><td style="color:#0A2A66;font-weight:600">{"🎯 " if flag else ""}{r["consultant"]}</td><td>{r["wave"]}</td></tr>')
+    st.markdown(f"""<div class="card" style="padding:6px 8px"><table style="width:100%;font-size:.84rem;border-collapse:collapse">
+        <tr style="text-align:left;color:#42526E;font-size:.74rem;text-transform:uppercase"><th>Area</th><th>Maturity</th><th>Status</th>
+        <th>What it is doing today</th><th>Gap</th><th>Consultant entry point</th><th>When</th></tr>{rows_html}</table></div>""", unsafe_allow_html=True)
+    st.caption("Status: Doing well / In progress = public evidence of a programme. Weak or No public evidence (highlighted, 🎯) = "
+               "nothing disclosed, which is where a consultant comes in. Scores are outside-in estimates; check them in management interviews.")
+    waves = {"0–6 mo": [], "6–18 mo": [], "18–30 mo": []}
+    for r in c["digital_roadmap"]:
+        waves.setdefault(r["wave"], []).append(f'<b>{r["area"]}</b>: {r["consultant"]}')
+    wcols = st.columns(3)
+    for col, (w, items) in zip(wcols, waves.items()):
+        col.markdown(f'<div class="card"><h4>{w}</h4>{bullets(items) if items else "<span class=muted>Nothing scheduled</span>"}</div>', unsafe_allow_html=True)
+    if cmp["companies"]:
+        tbl = pd.DataFrame({cc["short"]: cc["digital"] for cc in D.companies() if cc["short"] in [c["short"]] + cmp["companies"]})
+        st.markdown("**Digital maturity, side by side (1 = early, 5 = leading)**")
+        st.dataframe(tbl.style.background_gradient(cmap="Blues", vmin=1, vmax=5), use_container_width=True)
+    register(f"{c['short']}: digitisation roadmap", company=cid, kind="text", theme="rnd",
+             facts=" | ".join(f"{r['area']} {r['score']}/5 ({r['status']}): doing {r['doing']}; gap {r['gap']}; consultant {r['consultant']}" for r in c["digital_roadmap"]),
+             note={"text": "Outside-in digital maturity from annual reports, investor presentations and news.",
+                   "sources": [s_ for r in c["digital_roadmap"] for s_ in r["sources"]]})
     T.footer(D.meta())

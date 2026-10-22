@@ -6,7 +6,7 @@ import streamlit as st
 from core import data as D
 from core import live as L
 from core import theme as T
-from views.common import news_html
+from views.common import impact_html, news_html, note_box
 
 
 def render():
@@ -27,26 +27,21 @@ def render():
                                  hovertemplate="<b>%{y}</b> · %{x|%d %b %Y}<br>%{customdata}<br>%{text}<extra></extra>"))
     fig.update_layout(hovermode="closest", yaxis=dict(categoryorder="array", categoryarray=["Sector"] + [c["short"] for c in D.companies()][::-1]))
     st.plotly_chart(T.style_fig(fig, 380), use_container_width=True)
+    bal = nd.groupby("Company")["sentiment"].agg(["sum", "count"])
+    note_box("Signal timeline (6 months of news)", peer="nw_timeline",
+             facts="; ".join(f"{c}: net {int(r['sum']):+d} from {int(r['count'])} items" for c, r in bal.iterrows()))
 
-    a, b = st.columns([1, 1])
-    with a:
-        T.section("News → KPI heat", "which metrics the news is moving")
-        ex = nd.explode("metrics")
-        piv = ex.pivot_table(index="metrics", columns="Company", values="sentiment", aggfunc="sum", fill_value=0)
-        piv = piv.loc[piv.abs().sum(axis=1).sort_values(ascending=False).index[:12]]
-        fig = go.Figure(go.Heatmap(z=piv.values, x=piv.columns, y=piv.index, colorscale=T.DIVERGING, zmid=0, xgap=2, ygap=2,
-                                   text=piv.values, texttemplate="%{text}", hovertemplate="%{x} · %{y}: net sentiment %{z}<extra></extra>"))
-        fig.update_layout(hovermode="closest", yaxis=dict(autorange="reversed"))
-        st.plotly_chart(T.style_fig(fig, 420), use_container_width=True)
-    with b:
-        T.section("Sentiment balance", "positive − negative events")
-        bal = nd[nd["Company"] != "Sector"].groupby("Company")["sentiment"].agg(["sum", "count"])
-        cmap = D.colors()
-        fig = go.Figure(go.Bar(x=bal.index, y=bal["sum"], marker_color=[cmap[i] for i in bal.index], marker_cornerradius=6,
-                               text=[f"{s:+d} ({n} events)" for s, n in zip(bal["sum"], bal["count"])], textposition="outside",
-                               hovertemplate="%{x}: net %{y:+d}<extra></extra>"))
-        fig.update_layout(hovermode="closest")
-        st.plotly_chart(T.style_fig(fig, 420), use_container_width=True)
+    T.section("News → KPI heat", "which numbers the news is moving · bottom row = each company's net good minus bad")
+    ex = nd.explode("metrics")
+    piv = ex.pivot_table(index="metrics", columns="Company", values="sentiment", aggfunc="sum", fill_value=0)
+    piv = piv.loc[piv.abs().sum(axis=1).sort_values(ascending=False).index[:12]]
+    tot = nd.groupby("Company")["sentiment"].sum().reindex(piv.columns).fillna(0)
+    piv.loc["NET (all news)"] = tot
+    fig = go.Figure(go.Heatmap(z=piv.values, x=piv.columns, y=piv.index, colorscale=T.DIVERGING, zmid=0, xgap=2, ygap=2,
+                               text=piv.values.astype(int), texttemplate="%{text}", hovertemplate="%{x} · %{y}: net %{z}<extra></extra>"))
+    fig.update_layout(hovermode="closest", yaxis=dict(autorange="reversed"))
+    st.plotly_chart(T.style_fig(fig, 460), use_container_width=True)
+    note_box("News to KPI heat", peer="nw_heat", facts="Net good-minus-bad news by company: " + "; ".join(f"{c} {int(v):+d}" for c, v in tot.items()))
 
     tabs = st.tabs(["🗂️ Curated feed", "📡 Live headlines", "📈 Price reaction (event study)"])
     with tabs[0]:
@@ -58,9 +53,11 @@ def render():
             view = view[view["Company"].isin(comps)]
         if cats:
             view = view[view["category"].isin(cats)]
-        c1, c2 = st.columns(2)
-        for i, (_, r) in enumerate(view.iterrows()):
-            (c1 if i % 2 == 0 else c2).markdown(news_html(r.to_dict(), r["Company"]), unsafe_allow_html=True)
+        st.caption("Each card shows what the news does to the P&L, balance sheet and cash flow, what management is already doing, and what more to do.")
+        for _, r in view.iterrows():
+            d_ = r.to_dict()
+            imp = d_.get("statement_impact") if isinstance(d_.get("statement_impact"), dict) else None
+            st.markdown(news_html(d_, r["Company"]) + impact_html(imp), unsafe_allow_html=True)
 
     with tabs[1]:
         if not st.session_state.get("live_on", True):
