@@ -29,6 +29,7 @@ and compare them with the industry: the average of the 20 Nifty Pharma companies
 published Indian pharma market growth (IQVIA, Pharmarack).
 
 Rules:
+- Be fast. The page context usually already contains the numbers: if it does, answer straight away without tools. Otherwise call at most 2 tools, together in one round if you can.
 - Ground every number in tool results or the page context given to you. Call tools first; never invent figures or links.
 - Explain WHY a number is what it is (business model, mix, one-offs, acquisitions, regulators, costs), not just that it is high or low.
 - Always compare with the industry average and the other companies where it helps.
@@ -59,7 +60,7 @@ TOOLS = [
     {"name": "get_insights", "description": "Rule-based growth / opportunity / risk insights vs peer median and financial pillar scores for one company.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
     {"name": "get_news", "description": "Curated last-6-month news for a company (with KPI tags & impact) plus optional live Google News headlines. Use company='sector' for sector/policy news.",
-     "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "live": {"type": "boolean", "default": True}}, "required": ["company"]}},
+     "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "live": {"type": "boolean", "default": False, "description": "true only if the user asks for the very latest headlines (slower)"}}, "required": ["company"]}},
     {"name": "get_problem_statements", "description": "SWOT analysis (strengths, weaknesses, opportunities, threats), top-5 consultant problem statements (evidence, answer, what to investigate, service line), what is working / not working, digital maturity and consulting opportunities.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
     {"name": "get_market_data", "description": "Live price (if reachable) plus 1-year return vs Nifty Pharma and the curated market snapshot (mcap, P/E, P/B).",
@@ -161,7 +162,7 @@ def run_tool(name: str, args: dict) -> dict:
             cols = [x for x in ["date", "title", "category", "sentiment", "impact", "metrics", "url", "statement_impact"] if x in cur.columns]
             out = {"curated": cur.assign(date=cur["date"].dt.strftime("%Y-%m-%d"))[cols].to_dict(orient="records"),
                    "sources": [{"title": t[:80], "url": u} for t, u in zip(cur["title"], cur["url"]) if isinstance(u, str) and u]}
-            if args.get("live", True):
+            if args.get("live", False):
                 live, err = L.fetch_news(q, days=180, limit=15)
                 out["live"] = [] if live.empty else live.assign(date=live["date"].dt.strftime("%Y-%m-%d"))[["date", "title", "source", "sentiment", "category"]].to_dict(orient="records")
                 if err:
@@ -277,7 +278,7 @@ def _no_em_dash(text: str) -> str:
     return re.sub(r"\s*\u2014\s*", ", ", text or "")
 
 
-def run_agent(messages: list[dict], on_step=None, max_steps: int = 8) -> str:
+def run_agent(messages: list[dict], on_step=None, max_steps: int = 4) -> str:
     """Agentic loop over the configured provider. `messages` = [{role, content}] (strings)."""
     if get_provider() == "anthropic":
         return _no_em_dash(_run_anthropic(messages, on_step, max_steps))
@@ -331,24 +332,39 @@ def _pick_model(client, prov: str) -> str | None:
     return sorted(good, reverse=True)[0] if good else None
 
 
-def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 8) -> str:
-    from openai import NotFoundError, OpenAI  # noqa: WPS433
+def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 4) -> str:
+    from openai import BadRequestError, NotFoundError, OpenAI  # noqa: WPS433
 
     prov = get_provider() or "gemini"
     cfg = PROVIDERS[prov]
     client = OpenAI(api_key=get_api_key(), base_url=cfg["base_url"])
     convo = [{"role": "system", "content": SYSTEM_PROMPT}] + [{"role": m["role"], "content": m["content"]} for m in messages]
     model = get_model()
+    def call(choice: str):
+        kw = dict(model=model, messages=convo, tools=OPENAI_TOOLS, tool_choice=choice, max_tokens=1000)
+        if prov == "gemini" and not st.session_state.get("_no_reasoning_param"):
+            try:
+                return client.chat.completions.create(**kw, extra_body={"reasoning_effort": "low"})
+            except BadRequestError:
+                st.session_state["_no_reasoning_param"] = True  # model doesn't accept it; don't try again
+        return client.chat.completions.create(**kw)
+
     for step in range(max_steps):
+        choice = "none" if step == max_steps - 1 else "auto"  # last round must answer, not research
         try:
-            resp = client.chat.completions.create(model=model, messages=convo, tools=OPENAI_TOOLS, tool_choice="auto", max_tokens=2500)
+            try:
+                resp = call(choice)
+            except BadRequestError:
+                if choice != "none":
+                    raise
+                resp = call("auto")  # provider doesn't accept tool_choice='none'
         except NotFoundError:
             alt = _pick_model(client, prov)
             if not alt or alt == model:
                 raise
             model = alt
             st.session_state[f"_resolved_model_{prov}"] = alt
-            resp = client.chat.completions.create(model=model, messages=convo, tools=OPENAI_TOOLS, tool_choice="auto", max_tokens=2500)
+            resp = call(choice)
         msg = resp.choices[0].message
         calls = msg.tool_calls or []
         if not calls:
@@ -364,17 +380,17 @@ def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 
             if on_step:
                 on_step(step + 1, tc.function.name, args)
             out = _clean(run_tool(tc.function.name, args))
-            convo.append({"role": "tool", "tool_call_id": tc.id, "content": json.dumps(out, default=str)[:24000]})
+            convo.append({"role": "tool", "tool_call_id": tc.id, "content": json.dumps(out, default=str)[:7000]})
     return "I hit the step limit while researching. Try a narrower question."
 
 
-def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 8) -> str:
+def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 4) -> str:
     import anthropic  # noqa: WPS433
 
     client = anthropic.Anthropic(api_key=get_api_key())
     convo = [{"role": m["role"], "content": m["content"]} for m in messages]
     for step in range(max_steps):
-        resp = client.messages.create(model=get_model(), max_tokens=2500, system=SYSTEM_PROMPT, tools=TOOLS, messages=convo)
+        resp = client.messages.create(model=get_model(), max_tokens=1000, system=SYSTEM_PROMPT, tools=TOOLS, messages=convo)
         if resp.stop_reason != "tool_use":
             return "".join(b.text for b in resp.content if b.type == "text")
         blocks = []
@@ -390,7 +406,7 @@ def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 8) -> st
                 if on_step:
                     on_step(step + 1, b.name, b.input)
                 out = _clean(run_tool(b.name, b.input))
-                results.append({"type": "tool_result", "tool_use_id": b.id, "content": json.dumps(out, default=str)[:24000]})
+                results.append({"type": "tool_result", "tool_use_id": b.id, "content": json.dumps(out, default=str)[:7000]})
         convo.append({"role": "user", "content": results})
     return "I hit the step limit while researching. Try a narrower question."
 

@@ -12,6 +12,32 @@ from core import theme as T
 from views.common import ask_button, register
 
 MEDAL = {1: "🥇", 2: "🥈", 3: "🥉"}
+
+
+# Cached heavy computations (keyed on the inputs, so moving a slider only recomputes what changed).
+@st.cache_data(show_spinner=False, ttl=3600)
+def _robust(adj: bool, n: int = 2000) -> pd.DataFrame:
+    R.ADJUST["on"] = adj
+    return R.robustness(n)
+
+
+@st.cache_data(show_spinner=False, ttl=3600)
+def _tornado(cid: str, adj: bool) -> pd.DataFrame:
+    R.ADJUST["on"] = adj
+    return R.tornado(cid)
+
+
+@st.cache_data(show_spinner=False, ttl=3600)
+def _scenarios(adj: bool) -> pd.DataFrame:
+    R.ADJUST["on"] = adj
+    return R.scenario_ranking()
+
+
+@st.cache_data(show_spinner=False, ttl=3600)
+def _score(dw: tuple, lw: tuple, adj: bool, ov_key: str = "", cid: str = "", lv: tuple = ()) -> dict:
+    R.ADJUST["on"] = adj
+    ov = {cid: R.scenario_overrides(cid, dict(lv), 0.75)} if cid else None
+    return R.scorecard(dict(dw), dict(lw), overrides=ov)
 SRC = [{"title": "Screener.in consolidated financials", "url": "https://www.screener.in/"},
        {"title": "Industry benchmark: Nifty Pharma constituents", "url": "https://www.5paisa.com/hindi/nifty-pharma-stock-list"}]
 
@@ -42,9 +68,10 @@ def render():
     if sum(dw.values()) == 0 or sum(lw.values()) == 0:
         st.warning("Set at least one weight above zero.")
         return
-    sc = R.scorecard(dw, lw)
+    adj = R.ADJUST["on"]
+    sc = _score(tuple(dw.items()), tuple(lw.items()), adj)
     t = sc["table"]
-    rob = R.robustness(2000)
+    rob = _robust(adj)
 
     # ── Partner summary ──────────────────────────────────────────────────────
     T.section("Financial performance ranking", "score out of 100 · 100 = top of the Nifty Pharma industry on every measure")
@@ -143,7 +170,7 @@ def render():
     high = R.project(cid, lv, realisation=1.0, rnd_pays=1.0)["years"]
     lk = likely["years"]
     ev_mult = D.kpi_table().loc[names[cid], "ev_ebitda"]
-    new = R.scorecard(dw, lw, overrides={cid: R.scenario_overrides(cid, lv, 0.75)})["table"]
+    new = _score(tuple(dw.items()), tuple(lw.items()), adj, cid=cid, lv=tuple(lv.items()))["table"]
     old_rank, new_rank = int(t.loc[cid, "Rank"]), int(new.loc[cid, "Rank"])
 
     def tile(lab, key, fmt, unit=""):
@@ -171,7 +198,7 @@ def render():
         fig.update_layout(title=f"{names[cid]} ROCE path, FY27 to FY29", yaxis_ticksuffix="%")
         st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
     with b:
-        tor = R.tornado(cid)
+        tor = _tornado(cid, adj)
         fig = go.Figure(go.Bar(y=tor["Lever"], x=tor["Δ overall score"], orientation="h",
                                marker_color=[T.GOOD if v >= 0 else T.BAD for v in tor["Δ overall score"]],
                                customdata=tor[["Δ ROCE FY29 (pts)", "Δ EBITDA FY29 (₹ Cr)"]].values,
@@ -201,7 +228,7 @@ This is an illustrative model for discussion, not a forecast.""")
 
     # ── Scenarios ────────────────────────────────────────────────────────────
     T.section("Base, Upside and Downside", "how the ranking changes if the market moves")
-    scn = R.scenario_ranking()
+    scn = _scenarios(adj)
     a, b = st.columns([1, 1.2])
     with a:
         fig = go.Figure()

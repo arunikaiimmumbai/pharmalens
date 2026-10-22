@@ -76,7 +76,9 @@ def _ask(question: str, item: dict | None, page: str) -> None:
                 "outcome": outcome, "steps": steps})
 
 
+@st.fragment
 def render() -> None:
+    """Runs as a fragment: asking a question reruns only this panel, not the whole page."""
     page = st.session_state.get("_page", "")
     items = st.session_state.get("_items", [])
     st.markdown('<div class="panelhead"><b>🤖 Ask the analyst</b><div class="muted">Pick a chart or text on this page, then click a '
@@ -111,7 +113,7 @@ def render() -> None:
             box.markdown("---")
         if st.button("🧹 Clear answers", use_container_width=True):
             st.session_state["panel_chat"] = []
-            st.rerun()
+            st.rerun(scope="fragment")
 
     log = st.session_state.get("agent_log", [])
     with st.expander(f"🕘 Agent history ({len(log)})"):
