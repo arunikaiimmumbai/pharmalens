@@ -16,12 +16,6 @@ MEDAL = {1: "🥇", 2: "🥈", 3: "🥉"}
 
 # Cached heavy computations (keyed on the inputs, so moving a slider only recomputes what changed).
 @st.cache_data(show_spinner=False, ttl=3600)
-def _robust(adj: bool, n: int = 2000) -> pd.DataFrame:
-    R.ADJUST["on"] = adj
-    return R.robustness(n)
-
-
-@st.cache_data(show_spinner=False, ttl=3600)
 def _tornado(cid: str, adj: bool) -> pd.DataFrame:
     R.ADJUST["on"] = adj
     return R.tornado(cid)
@@ -51,9 +45,9 @@ def _assessment(row: pd.Series, cid: str) -> str:
 
 
 def render():
-    T.hero("Ranking & Scenarios", "Which company is performing best to worst, how robust that ranking is, and what a consulting "
+    T.hero("Ranking & Scenarios", "Which company is performing best to worst, and what a consulting "
            "programme would change. Scored against the 20 Nifty Pharma companies.",
-           ["Weighted scorecard", "3 lenses", "How sure are we?", "Hire-a-consultant what-if", "Base / Upside / Downside"])
+           ["Weighted scorecard", "3 lenses", "Hire-a-consultant what-if", "Base / Upside / Downside"])
 
     with st.expander("⚙️ Change the weights (the ranking updates live)", expanded=False):
         st.caption("Your framework: Revenue growth 20, Profitability 25, Cash generation 20, Capital efficiency 15, Balance sheet 10, "
@@ -71,7 +65,6 @@ def render():
     adj = R.ADJUST["on"]
     sc = _score(tuple(dw.items()), tuple(lw.items()), adj)
     t = sc["table"]
-    rob = _robust(adj)
 
     # ── Partner summary ──────────────────────────────────────────────────────
     T.section("Financial performance ranking", "score out of 100 · 100 = top of the Nifty Pharma industry on every measure")
@@ -79,10 +72,9 @@ def render():
     for cid, r in t.iterrows():
         rows.append({"Rank": f"{MEDAL.get(r['Rank'], '')} {int(r['Rank'])}", "Company": r["Company"], "Score /100": r["Overall"],
                      "Current strength": r["Current strength"], "Momentum": r["Momentum"], "Quality": r["Quality"],
-                     "Chance of #1": rob.loc[cid, "Chance of #1"], "Assessment": _assessment(r, cid)})
+                     "Assessment": _assessment(r, cid)})
     summ = pd.DataFrame(rows)
-    st.dataframe(summ.style.format({"Score /100": "{:.0f}", "Current strength": "{:.0f}", "Momentum": "{:.0f}", "Quality": "{:.0f}",
-                                    "Chance of #1": "{:.0f}%"})
+    st.dataframe(summ.style.format({"Score /100": "{:.0f}", "Current strength": "{:.0f}", "Momentum": "{:.0f}", "Quality": "{:.0f}"})
                  .background_gradient(subset=["Score /100", "Current strength", "Momentum", "Quality"], cmap="Blues", vmin=0, vmax=100),
                  hide_index=True, use_container_width=True, column_config={"Assessment": st.column_config.TextColumn(width="large")})
     st.caption("Current strength = your six-dimension scorecard on FY26. Momentum = is it getting better (margin, ROCE, cash cycle, debt since FY23, "
@@ -134,26 +126,6 @@ def render():
     register("Scorecard by dimension", kind="table", note={"text": "Dimension scores 0 to 100 against the industry.", "sources": SRC},
              facts="; ".join(f"{c}: " + ", ".join(f"{d} {t.set_index('Company').loc[c, d]:.0f}" for d in R.DIMENSIONS) for c in t["Company"]))
     ask_button("Scorecard by dimension")
-
-    # ── Robustness ───────────────────────────────────────────────────────────
-    T.section("How sure are we?", "the ranking re-run 2,000 times with every weight moved up to ±50%")
-    a, b = st.columns([1.1, 1])
-    with a:
-        rb = rob.sort_values("Chance of #1")
-        fig = go.Figure(go.Bar(y=rb["Company"], x=rb["Chance of #1"], orientation="h",
-                               marker_color=[D.colors()[c] for c in rb["Company"]], text=[f"{v:.0f}%" for v in rb["Chance of #1"]],
-                               textposition="outside", hovertemplate="%{y}: #1 in %{x:.0f}% of runs<extra></extra>"))
-        fig.update_layout(title="Chance of ranking #1", xaxis_range=[0, 115], xaxis_ticksuffix="%", hovermode="closest")
-        st.plotly_chart(T.style_fig(fig, 300), use_container_width=True)
-    with b:
-        st.dataframe(rob.set_index("Company")[["Chance of top 3", "Median rank", "Best rank", "Worst rank"]].style.format(
-            {"Chance of top 3": "{:.0f}%", "Median rank": "{:.0f}", "Best rank": "{:.0f}", "Worst rank": "{:.0f}"}), use_container_width=True)
-        st.caption("If a company stays #1 under most weightings, the ranking does not depend on our choice of weights.")
-    register("How sure are we? (weight robustness)", kind="chart",
-             note={"text": "Monte Carlo on the weights: each run draws every weight between half and 1.5 times its base value.", "sources": SRC},
-             facts="; ".join(f"{r_['Company']}: #1 in {r_['Chance of #1']:.0f}% of runs, median rank {r_['Median rank']:.0f}, range {r_['Best rank']:.0f}–{r_['Worst rank']:.0f}"
-                             for _, r_ in rob.iterrows()))
-    ask_button("How sure are we? (weight robustness)")
 
     # ── What-if ──────────────────────────────────────────────────────────────
     T.section("Hire a consultant: what-if", "pick a company, move the levers, see FY29 and the new rank")

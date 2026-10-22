@@ -83,19 +83,6 @@ def render():
     st.info("Demo version. Files are read in memory for this session only and never saved. For real client data, this would run in a "
             "private, access-controlled deployment.")
 
-    T.section("What a client could use this for", "talking points for the Partner")
-    uses = [("🔍 Due diligence", "Load a target's data-room numbers and see in minutes where it sits against listed peers on margin, cash and returns."),
-            ("📉 Performance improvement", "A client uploads plant, brand or division data; the gaps to industry become the case and the size of the prize."),
-            ("🤝 Post-merger integration", "Upload monthly numbers after a deal and track whether promised synergies are arriving."),
-            ("💰 Working-capital diagnostic", "Upload inventory and receivables to find the cash that could be released."),
-            ("🧭 Inside-out + outside-in", "Public data gives the outside-in view; the client's own data gives the inside-out view. Same engine for both.")]
-    cols = st.columns(5)
-    for col, (h, t) in zip(cols, uses):
-        col.markdown(f'<div class="card"><h4>{h}</h4><div style="font-size:.85rem">{t}</div></div>', unsafe_allow_html=True)
-    register("What a client could use the upload for", kind="text",
-             facts=" | ".join(f"{h}: {t}" for h, t in uses))
-    ask_button("What a client could use the upload for")
-
     T.section("1 · Get the template", "one row per line item, one column per year, ₹ Cr")
     a, b, c = st.columns(3)
     a.download_button("⬇️ Blank template (CSV)", template_csv(False), "finance_lens_template.csv", "text/csv", use_container_width=True)

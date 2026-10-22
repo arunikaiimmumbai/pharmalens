@@ -18,7 +18,7 @@ Every page has a **Compare with** bar (Industry = average of the 20 Nifty Pharma
 | 🧪 Regulatory & Pipeline | USFDA status, ANDA/DMF engine, R&D vs margin, US-share risk |
 | 📰 News & Signals | Signal timeline, news→KPI heat, news cards with P&L / balance sheet / cash flow impact and actions, live news, event study |
 | 🎯 Strategy Room | What's working / not, SWOT, top-5 problem statements, consulting map, digitisation roadmap with gaps and consultant entry points |
-| 🏆 Ranking & Scenarios | Weighted scorecard (growth 20, profit 25, cash 20, capital 15, balance sheet 10, efficiency 10) vs industry, 3 lenses, weight robustness, hire-a-consultant what-if with tornado, Base/Upside/Downside |
+| 🏆 Ranking & Scenarios | Weighted scorecard (growth 20, profit 25, cash 20, capital 15, balance sheet 10, efficiency 10) vs industry, 3 lenses, hire-a-consultant what-if with tornado, Base/Upside/Downside |
 | 📤 Data Upload | Demo: upload a company's own numbers (template) and benchmark them vs industry; nothing stored |
 | 📚 Sources & Method | Sources, industry members, method, caveats, glossary |
 
