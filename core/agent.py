@@ -37,13 +37,11 @@ Rules:
 - Public-information analysis for an academic project: no buy/sell advice.
 - Plain, simple English. Explain any technical term in a few words. Never use the em dash character.
 
-Answer format. Always use exactly these five bold headings, keep the whole answer under about 220 words, bullets where useful:
-**What it's checking:** one line.
-**How it's calculated:** the formula with the actual numbers.
-**What it means for the company:** the reason or context, compared with the industry and peers.
-**What the company is already doing:** actions from filings or news; write "No public action found" if none.
-**What more it, or a consultant, can do:** 2 or 3 concrete actions.
-Then a line **Sources:** followed by markdown links [title](url), taken ONLY from 'sources' fields in tool results or the page context.
+Answer format: short and plain, under about 120 words, no headings.
+Start with a one or two sentence summary that answers the question. Then 3 to 5 short bullet points covering, only where you
+have the information: the calculation with the actual numbers, the reason behind it (compared with the industry), what the
+company is already doing, and what more it or a consultant could do. Skip anything you don't have; never write "not available".
+End with one line: Sources: followed by markdown links [title](url), taken ONLY from 'sources' fields in tool results or the page context.
 """
 
 TOOLS = [
@@ -369,9 +367,12 @@ def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 
         calls = msg.tool_calls or []
         if not calls:
             return msg.content or ""
-        convo.append({"role": "assistant", "content": msg.content or "",
-                      "tool_calls": [{"id": tc.id, "type": "function",
-                                      "function": {"name": tc.function.name, "arguments": tc.function.arguments or "{}"}} for tc in calls]})
+        # Send the assistant turn back exactly as received: Gemini attaches a 'thought_signature' to each tool
+        # call (in extra_content) and rejects the next request if it is missing.
+        turn = msg.model_dump(exclude_none=True)
+        turn["role"] = "assistant"
+        turn.setdefault("content", "")
+        convo.append(turn)
         for tc in calls:
             try:
                 args = json.loads(tc.function.arguments or "{}")
@@ -449,39 +450,40 @@ def _links(sources: list[dict]) -> str:
 
 
 def structured_answer(item: dict, question: str = "") -> str:
-    """Five-part answer built from the data behind one chart or text (used offline and as context)."""
+    """Short answer from the data behind one chart or text: a summary, then key points; missing parts are skipped."""
     cid, metric, theme = item.get("company"), item.get("metric"), item.get("theme")
     c = D.company(cid) if cid else None
     note = item.get("note") or {}
     sources = list(note.get("sources") or [])
-    how = G.formula(metric) if metric else ""
-    how = f"{how}. {item.get('facts', '')}".strip(". ") if how else item.get("facts", "")
-    means = note.get("text", "")
+    text = note.get("text", "")
+    first = text.split(". ")
+    summary = ". ".join(first[:2]).rstrip(".") + "." if text else (item.get("facts") or item.get("title", question))
+    points = []
+    if metric and G.formula(metric):
+        calc = G.formula(metric)
+        if item.get("facts"):
+            calc += f". {item['facts'][:220].rstrip('.')}."
+        points.append(f"How it's calculated: {calc}")
     if metric and metric in IND.BENCHMARKABLE:
         iv = IND.industry_value(metric)
         if iv["avg"] is not None:
-            means += f" Industry average (20 Nifty Pharma companies): {D.fmt(metric, iv['avg'])}, median {D.fmt(metric, iv['median'])}."
-    doing, more = "No public action found in the curated news.", ""
+            points.append(f"Industry (20 Nifty Pharma companies): average {D.fmt(metric, iv['avg'])}, median {D.fmt(metric, iv['median'])}")
+    if len(first) > 2:
+        points.append(". ".join(first[2:]).rstrip("."))
+    if note.get("doing"):
+        points.append(f"Already doing: {note['doing']}")
     if c:
-        if note.get("doing"):
-            doing = note["doing"]
         p = _match_problem(c, theme)
-        more = f"{p['answer']} (problem statement: {p['title']})"
-    else:
-        more = "Use the compare bar to see which companies lead, then open the Strategy Room for each company's problem statements."
-    return (f"**What it's checking:** {item.get('title', question)}\n\n"
-            f"**How it's calculated:** {how or 'See the chart and table above.'}\n\n"
-            f"**What it means for the company:** {means or 'See the analyst note under the chart.'}\n\n"
-            f"**What the company is already doing:** {doing}\n\n"
-            f"**What more it, or a consultant, can do:** {more}\n\n"
-            f"**Sources:** {_links(sources)}")
+        points.append(f"What more to do: {p['answer'].split('. ')[0].rstrip('.')}")
+    body = summary + "\n\n" + "\n".join(f"- {p}" for p in points[:5])
+    return body + f"\n\nSources: {_links(sources)}"
 
 
 def offline_answer(question: str, on_step=None, item: dict | None = None) -> str:
     if item and item.get("kind") != "page":
         if on_step:
             on_step(1, "read_chart_data", {"item": item.get("title", "")})
-        return structured_answer(item, question) + "\n\n_Offline analyst (rule-based, free). Add a Gemini key for free-text reasoning._"
+        return structured_answer(item, question)
     q = question.lower()
     hits = [c for c in D.companies() if c["short"].lower() in q or c["id"] in q]
     if not hits:
