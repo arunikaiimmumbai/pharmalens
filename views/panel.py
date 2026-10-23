@@ -44,7 +44,8 @@ def _context(item: dict | None, page: str) -> str:
     met = f" Metric key: {item['metric']}." if item.get("metric") else ""
     return (f"[Page context] Page: {page}. The user is asking about: {item['title']}.{who}{met} "
             f"Data shown: {item.get('facts', '')} Analyst note: {note.get('text', '')} "
-            f"What the company is already doing: {note.get('doing', 'not recorded')}. Sources available: {srcs}")
+            f"What the company is already doing: {note.get('doing', 'not recorded')}. "
+            f"Where a consultant can help: {note.get('angle') or 'not recorded'}. Sources available: {srcs}")
 
 
 def _ask(question: str, item: dict | None, page: str) -> None:

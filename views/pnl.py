@@ -7,7 +7,7 @@ import streamlit as st
 from core import data as D
 from core import industry as IND
 from core import theme as T
-from views.common import IND_LABEL, color, compare_bar, focus_picker, note_box, value
+from views.common import IND_LABEL, color, compare_bar, comparison_block, focus_picker, note_box, value
 
 LINES = [("Material", "material_pct", "material_cost"), ("Employee", "employee_pct", "employee_cost"),
          ("Manufacturing", "manufacturing_pct", "manufacturing_cost"), ("Other / SG&A", "other_cost_pct", "other_cost")]
@@ -55,7 +55,10 @@ def render():
     c = D.company(cid)
     df = D.financial_frame(cid)
     name = c["short"]
-    cmp = compare_bar("pnl", exclude=name)
+    cmp = compare_bar("pnl", exclude=name,
+                      help_text="Pick companies and/or Industry to open a side-by-side comparison; the cost charts below also add them.")
+    comparison_block("pnl", name, cmp, ["ebitda_margin", "gross_margin", "pat_margin", "employee_pct", "material_pct", "indirect_pct",
+                                        "ebitda_cagr", "pat_cagr"], title="P&L side by side")
     names = [name] + cmp["companies"] + ([IND_LABEL] if cmp["industry"] else [])
 
     a, b = st.columns([1.1, 1])

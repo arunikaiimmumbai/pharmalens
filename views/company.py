@@ -8,7 +8,7 @@ from core import industry as IND
 from core import insights as I
 from core import notes as N
 from core import theme as T
-from views.common import (IND_COLOR, IND_LABEL, bullets, color, compare_bar, focus_picker, impact_html, kpi_help, news_html,
+from views.common import (IND_COLOR, IND_LABEL, bullets, color, compare_bar, comparison_block, focus_picker, impact_html, kpi_help, news_html,
                           note_box, value)
 
 COST_LINES = [("Material", "material_pct"), ("Employee", "employee_pct"), ("Other / SG&A", "other_cost_pct"),
@@ -50,8 +50,10 @@ def render():
     with top:
         T.hero(c["name"], c["tagline"], [f"NSE: {c['ticker'].replace('.NS', '')}", f"HQ: {p['hq']}", f"Founded {p['founded']}",
                                          f"M-cap ₹{m['mcap_cr']:,.0f} Cr", f"P/E {m['pe']}x"])
-    cmp = compare_bar("company", exclude=c["short"])
-    others = [x for x in cmp["companies"]] + ([IND_LABEL] if cmp["industry"] else [])
+    cmp = compare_bar("company", exclude=c["short"],
+                      help_text="Pick companies and/or Industry (average of the 20 Nifty Pharma companies) to open a side-by-side comparison.")
+    comparison_block("company", c["short"], cmp,
+                     ["sales_growth", "sales_cagr", "ebitda_margin", "roce", "roic", "ccc", "inventory_days", "cfo_pat", "net_debt_ebitda"])
 
     yoy = df["sales_growth"].iloc[-1]
     tiles = [
@@ -65,9 +67,7 @@ def render():
     ]
     cols = st.columns(len(tiles))
     for col, (lab, val, dlt, dirn, met) in zip(cols, tiles):
-        col.markdown(f'<div title="{kpi_help(met)}">' + T.kpi_card(lab, val, dlt, dirn, _cmp_line(met, others)) + "</div>", unsafe_allow_html=True)
-    if cmp["industry"]:
-        st.caption("Industry = average of the 20 Nifty Pharma companies (source A, Screener.in). Hover a tile for its meaning and formula.")
+        col.markdown(f'<div title="{kpi_help(met)}">' + T.kpi_card(lab, val, dlt, dirn) + "</div>", unsafe_allow_html=True)
     note_box(f"{c['short']}: headline numbers", company=cid, theme="growth", metric="sales_cagr",
              facts=f"FY26 revenue ₹{df['sales'].iloc[-1]:,.0f} Cr ({yoy:+.1f}% YoY), EBITDA margin {df['ebitda_margin'].iloc[-1]:.1f}%, ROCE {df['roce'].iloc[-1]:.0f}%, "
                    f"revenue CAGR {k['sales_cagr']:.1f}%, cash cycle {df['ccc'].iloc[-1]:.0f} days. Industry revenue CAGR {IND.industry_value('sales_cagr')['avg']:.1f}%.")

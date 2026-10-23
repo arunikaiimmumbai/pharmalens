@@ -9,7 +9,7 @@ from core import data as D
 from core import industry as IND
 from core import ranking as R
 from core import theme as T
-from views.common import ask_button, register
+from views.common import register
 
 MEDAL = {1: "🥇", 2: "🥈", 3: "🥉"}
 
@@ -84,7 +84,6 @@ def render():
     register("Financial performance ranking", kind="table",
              note={"text": "Weighted scorecard on the user's framework, scored against the Nifty Pharma distribution.", "sources": SRC},
              facts="; ".join(f"{r['Rank']} {r['Company']} {r['Score /100']:.0f}/100 ({r['Assessment']})" for r in rows))
-    ask_button("Financial performance ranking")
 
     top_id, last_id = t.index[0], t.index[-1]
     m1 = sc["metrics"][top_id]
@@ -125,7 +124,6 @@ def render():
                    "figure, so it is scored within the six.")
     register("Scorecard by dimension", kind="table", note={"text": "Dimension scores 0 to 100 against the industry.", "sources": SRC},
              facts="; ".join(f"{c}: " + ", ".join(f"{d} {t.set_index('Company').loc[c, d]:.0f}" for d in R.DIMENSIONS) for c in t["Company"]))
-    ask_button("Scorecard by dimension")
 
     # ── What-if ──────────────────────────────────────────────────────────────
     T.section("Hire a consultant: what-if", "pick a company, move the levers, see FY29 and the new rank")
@@ -196,7 +194,6 @@ This is an illustrative model for discussion, not a forecast.""")
              facts=f"Levers: " + ", ".join(f"{R.LEVERS[k][0]} {v:+g}" for k, v in lv.items() if v and k != "rnd_success")
                    + f". FY29 likely: revenue ₹{lk.loc['FY29', 'Revenue']:,.0f} Cr, EBITDA margin {lk.loc['FY29', 'EBITDA margin %']:.1f}%, ROCE {lk.loc['FY29', 'ROCE %']:.1f}% "
                      f"(no action {base.loc['FY29', 'ROCE %']:.1f}%), rank #{old_rank} → #{new_rank}. Biggest lever: {tor.iloc[-1]['Lever']}.")
-    ask_button(f"What-if for {names[cid]}")
 
     # ── Scenarios ────────────────────────────────────────────────────────────
     T.section("Base, Upside and Downside", "how the ranking changes if the market moves")
@@ -220,7 +217,6 @@ This is an illustrative model for discussion, not a forecast.""")
                    "US-heavy companies fall; India-focused ones hold up.")
     register("Base, Upside and Downside scenarios", kind="chart", note={"text": "Scenario shocks scale with each company's US and India revenue share.", "sources": SRC},
              facts="; ".join(f"{c}: base #{int(r_['Base rank'])}, upside #{int(r_['Upside rank'])}, downside #{int(r_['Downside rank'])}" for c, r_ in scn.iterrows()))
-    ask_button("Base, Upside and Downside scenarios")
 
     with st.expander("Method and sources"):
         st.markdown(f"""

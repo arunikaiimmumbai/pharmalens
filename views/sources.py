@@ -55,7 +55,7 @@ def render():
 - **CAGR** = 4-year compound growth FY22 → FY26. **Cost growth vs revenue growth** = cost growth per year ÷ revenue growth per year.
 - **Correlations:** one company's 5 years are directional only; the 30-point (six companies) and ~100-point (20 industry companies) views are sturdier.
 - **Ranking:** user framework (growth 20, profitability 25, cash 20, capital efficiency 15, balance sheet 10, operating efficiency 10), each metric scored 1 to 5 by its position among the 20 Nifty Pharma companies; lenses Current strength 40%, Momentum 30%, Quality 30%. Glenmark is scored on normalised FY26 numbers by default.
-- **Analyst notes** under each chart are written from the data, filings and news in this app and cite their sources. They are not generated live, so they load instantly and don't use the AI quota. The 'Ask the analyst' panel answers follow-up questions live.
+- **Analyst notes** (the 💡 button under key charts, shown only where they matter for a consultant) are written from the data, filings and news in this app and cite their sources. They are not generated live, so they load instantly and don't use the AI quota. The 'Ask the analyst' panel answers follow-up questions live.
 - **Sentiment:** curated news hand-scored (+1 / 0 / −1); live headlines scored with a pharma keyword list.
 - **Digital maturity** scores are outside-in estimates from annual reports, investor presentations and news. 'No public evidence' means nothing was disclosed, not that nothing exists.
 - **Brands** are ranked from public evidence (investor presentations, annual reports); exact market shares are IQVIA paid data.

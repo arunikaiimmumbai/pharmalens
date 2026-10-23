@@ -144,6 +144,12 @@ div[data-testid="stMetric"] {{ background:#fff; border:1px solid var(--line); bo
 .note b {{ color:#0F1B33; }}
 .note .src {{ color:#64748B; font-size:.76rem; margin-top:5px; }}
 .note .src a {{ color:#1D4ED8; text-decoration:none; }}
+.pop-h {{ font-weight:700; color:#0F1B33; font-size:.95rem; margin-bottom:6px; }}
+.pop-l {{ font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#64748B; margin-top:10px; }}
+.pop-t {{ font-size:.9rem; color:#0F1B33; line-height:1.45; }}
+.pop-s {{ font-size:.75rem; color:#64748B; margin-top:12px; }}
+.pop-s a {{ color:#1D4ED8; text-decoration:none; }}
+[data-testid="stPopoverBody"] {{ max-width:520px; }}
 .stButton > button[kind="tertiary"] {{ border:none; background:transparent; color:#1D4ED8; font-size:.8rem; padding:0 2px; min-height:0; }}
 .stButton > button[kind="tertiary"]:hover {{ background:transparent; color:#0A2A66; text-decoration:underline; }}
 .impact {{ display:grid; grid-template-columns: repeat(5, 1fr); gap:8px; margin:4px 0 12px 0; }}

@@ -9,7 +9,7 @@ from core import theme as T
 from views.common import IND_LABEL, compare_bar, multi_line, note_box
 
 GROUPS = {
-    "Growth": ["sales", "sales_cagr", "ebitda_cagr", "pat_cagr"],
+    "Growth": ["sales", "sales_growth", "sales_cagr", "ebitda_cagr", "pat_cagr"],
     "Profitability": ["gross_margin", "ebitda_margin", "ebit_margin", "pat_margin"],
     "Returns": ["roce", "roic", "roe", "roa"],
     "Cost structure": ["material_pct", "employee_pct", "indirect_pct", "rnd_pct"],
@@ -85,7 +85,10 @@ def render():
     T.section("Five-year ratio trends", "pick any ratio · dashed line = industry average")
     t = st.radio("Ratio", list(TRENDS), horizontal=True, key="trend_ratio")
     col, suf = TRENDS[t]
-    st.plotly_chart(multi_line(D.panel(col), f"{t} · FY22–26", suf, 420, highlight=cmp["companies"],
+    pnl_ = D.panel(col)
+    if cmp["companies"]:
+        pnl_ = pnl_[[c_ for c_ in pnl_.columns if c_ in cmp["companies"]]]
+    st.plotly_chart(multi_line(pnl_, f"{t} · FY22–26", suf, 420, highlight=None,
                                industry=cmp["industry"], metric=col), use_container_width=True)
     if cmp["industry"]:
         st.caption(IND.note(col))

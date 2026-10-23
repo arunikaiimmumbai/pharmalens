@@ -33,7 +33,7 @@ if "panel_open" not in st.session_state:
 st.logo(str(Path(__file__).parent / "assets" / "logo.svg"), size="large")
 
 pages = [
-    st.Page(command.render, title="Command Center", icon="🧬", url_path="command", default=True),
+    st.Page(command.render, title="Company Overview", icon="🧬", url_path="overview", default=True),
     st.Page(company.render, title="Company Deep-Dive", icon="🏢", url_path="company"),
     st.Page(pnl.render, title="P&L Lab", icon="📊", url_path="pnl"),
     st.Page(ratios.render, title="Ratio Benchmark", icon="⚖️", url_path="ratios"),

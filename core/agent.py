@@ -472,6 +472,8 @@ def structured_answer(item: dict, question: str = "") -> str:
         points.append(". ".join(first[2:]).rstrip("."))
     if note.get("doing"):
         points.append(f"Already doing: {note['doing']}")
+    if note.get("angle"):
+        points.append(f"Where a consultant can help: {note['angle']}")
     if c:
         p = _match_problem(c, theme)
         points.append(f"What more to do: {p['answer'].split('. ')[0].rstrip('.')}")

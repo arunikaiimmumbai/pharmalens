@@ -13,7 +13,7 @@ from core import data as D
 from core import glossary as G
 from core import industry as IND
 from core import theme as T
-from views.common import ask_button, register
+from views.common import register
 
 YEARS = ["FY22", "FY23", "FY24", "FY25", "FY26"]
 FIELDS = [
@@ -167,5 +167,4 @@ def render():
              note={"text": "Uploaded company benchmarked against the 20 Nifty Pharma companies.",
                    "sources": [{"title": "Nifty Pharma constituents", "url": IND.meta()["constituents_source"]["url"]}]},
              facts="; ".join(f"{x['Metric']}: {D.fmt(x['_m'], x['You'])} vs industry {D.fmt(x['_m'], x['Industry avg'])}" for x in rows if x["Industry avg"] is not None))
-    ask_button(f"Upload results: {label}")
     T.footer(D.meta())

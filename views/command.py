@@ -1,4 +1,4 @@
-"""Command Center: portfolio-level view of the six companies against the industry."""
+"""Company Overview: portfolio-level view of the six companies against the industry."""
 import numpy as np
 import plotly.graph_objects as go
 import streamlit as st
@@ -8,7 +8,7 @@ from core import industry as IND
 from core import insights as I
 from core import live as L
 from core import theme as T
-from views.common import IND_COLOR, IND_LABEL, bullets, compare_bar, kpi_help, news_html, note_box
+from views.common import IND_COLOR, IND_LABEL, bullets, compare_bar, comparison_block, kpi_help, note_box
 
 
 def _live_strip():
@@ -19,40 +19,37 @@ def _live_strip():
     return None if px.empty else px
 
 
-def _tile(label, value, delta, direction, metric, cmp, note=""):
-    extra = ""
-    if cmp["industry"] and metric:
-        iv = IND.industry_value(metric)
-        if iv["avg"] is not None:
-            extra = f"Industry avg {D.fmt(metric, iv['avg'])}"
+def _tile(label, value, delta, direction, metric, note=""):
     tip = kpi_help(metric) if metric else ""
-    html = T.kpi_card(label, value, delta, direction, " · ".join(x for x in (note, extra) if x))
-    return f'<div title="{tip}">{html}</div>'
+    return f'<div title="{tip}">' + T.kpi_card(label, value, delta, direction, note) + "</div>"
 
 
 def render():
     k = D.kpi_table()
     T.hero(
-        "Command Center",
+        "Company Overview",
         "Six companies, five years, one lens. Live market and news signals, consolidated financials, regulatory pipelines "
         "and strategy, benchmarked against the Nifty Pharma industry average.",
         [f'<span class="pulse"></span> Live feeds {"on" if st.session_state.get("live_on", True) else "off"}',
          "FY22 → FY26 + Q1 FY27", "Consolidated · ₹ Cr", "Industry = 20 Nifty Pharma companies"],
     )
-    cmp = compare_bar("command", help_text="Industry adds the Nifty Pharma average to the tiles and the map. "
-                                           "Picking companies highlights them on the map.")
+    cmp = compare_bar("command", help_text="Pick companies and/or Industry to open a side-by-side comparison below. "
+                                           "Selected companies are also highlighted on the map; Industry adds a star.")
+    cmp_view = {"industry": cmp["industry"], "companies": cmp["companies"] or (list(k.index) if cmp["industry"] else [])}
+    comparison_block("overview", None, cmp_view,
+                     ["sales_cagr", "ebitda_margin", "roce", "roic", "ccc", "cfo_pat", "net_debt_ebitda", "pe"])
 
     tot_sales = k["sales"].sum()
     tot_mcap = k["mcap_cr"].sum()
     w_growth = np.average(k["sales_cagr"], weights=k["sales"])
     st.markdown("<div style='height:6px'></div>", unsafe_allow_html=True)
     T.kpi_row([
-        _tile("Combined FY26 revenue", f"₹{tot_sales/1000:,.1f}k Cr", f"growing {w_growth:.1f}% a year", "up", "sales_cagr", cmp),
-        _tile("Combined market cap", f"₹{tot_mcap/100000:,.2f} L Cr", f"P/E median {k['pe'].median():.1f}x", "flat", "pe", cmp),
-        _tile("Median EBITDA margin", f"{k['ebitda_margin'].median():.1f}%", f"range {k['ebitda_margin'].min():.0f}–{k['ebitda_margin'].max():.0f}%", "flat", "ebitda_margin", cmp),
-        _tile("Median ROCE", f"{k['roce'].median():.0f}%", f"{k['roce'].idxmax()} {k['roce'].max():.0f}% best", "up", "roce", cmp,
+        _tile("Combined FY26 revenue", f"₹{tot_sales/1000:,.1f}k Cr", f"growing {w_growth:.1f}% a year", "up", "sales_cagr"),
+        _tile("Combined market cap", f"₹{tot_mcap/100000:,.2f} L Cr", f"P/E median {k['pe'].median():.1f}x", "flat", "pe"),
+        _tile("Median EBITDA margin", f"{k['ebitda_margin'].median():.1f}%", f"range {k['ebitda_margin'].min():.0f}–{k['ebitda_margin'].max():.0f}%", "flat", "ebitda_margin"),
+        _tile("Median ROCE", f"{k['roce'].median():.0f}%", f"{k['roce'].idxmax()} {k['roce'].max():.0f}% best", "up", "roce",
               "*incl. one-off licensing income" if k['roce'].idxmax() == "Glenmark" else ""),
-        _tile("Median cash cycle", f"{k['ccc'].median():.0f} d", f"{k['ccc'].idxmax()} worst at {k['ccc'].max():.0f} d", "down", "ccc", cmp),
+        _tile("Median cash cycle", f"{k['ccc'].median():.0f} d", f"{k['ccc'].idxmax()} worst at {k['ccc'].max():.0f} d", "down", "ccc"),
     ])
     note_box("Headline tiles (six-company medians)", peer="cmd_tiles", metric="roce",
              facts=f"Median EBITDA margin {k['ebitda_margin'].median():.1f}%, median ROCE {k['roce'].median():.0f}%, median cash cycle {k['ccc'].median():.0f} days. "
@@ -124,11 +121,5 @@ def render():
     # ── Key insights ─────────────────────────────────────────────────────────
     T.section("Key insights", "written automatically from the numbers")
     st.markdown(f'<div class="card">{bullets(I.cross_company_signals())}</div>', unsafe_allow_html=True)
-
-    # ── Latest news (top 3) ──────────────────────────────────────────────────
-    T.section("Latest news", "top 3 · full feed and financial impact on the News & Signals page")
-    nd = D.all_news().head(3)
-    for _, row in nd.iterrows():
-        st.markdown(news_html(row.to_dict(), row["Company"]), unsafe_allow_html=True)
 
     T.footer(D.meta())

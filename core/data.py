@@ -137,6 +137,7 @@ def _financial_frame(cid: str, mtime: float) -> pd.DataFrame:
 KPI_DEFS = {
     # key: (label, unit, higher_is_better, fmt)
     "sales": ("Revenue (₹ Cr)", "₹ Cr", True, "{:,.0f}"),
+    "sales_growth": ("Revenue growth (YoY)", "%", True, "{:.1f}%"),
     "sales_cagr": ("Revenue CAGR FY22–26", "%", True, "{:.1f}%"),
     "ebitda_cagr": ("EBITDA CAGR FY22–26", "%", True, "{:.1f}%"),
     "pat_cagr": ("PAT CAGR FY22–26", "%", True, "{:.1f}%"),
