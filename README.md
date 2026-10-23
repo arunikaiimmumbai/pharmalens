@@ -11,7 +11,7 @@ Every page has a **Compare with** bar (Industry = average of the 20 Nifty Pharma
 
 | Page | What it does |
 |---|---|
-| 🧬 Company Overview | Headline tiles, side-by-side comparison, Indian market growth (IQVIA), market pulse, positioning map, key insights |
+| 🧬 Overview | Headline tiles, side-by-side comparison, Indian market growth (IQVIA), market pulse, positioning map |
 | 🏢 Company Deep-Dive | Profile, brands & therapies ranked, geography, plants & R&D, cost drivers ranked, news impact on the statements, insights |
 | 📊 P&L Lab | P&L bridge, cost mix, cost drivers (margin impact and 1% sensitivity), cost growth check, growth by line, test any two numbers (6 or 20 companies) |
 | ⚖️ Ratio Benchmark | 36-KPI table with industry column and plain-English meaning, 5-year trends with industry line, DuPont |

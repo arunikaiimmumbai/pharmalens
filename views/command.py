@@ -1,14 +1,13 @@
-"""Company Overview: portfolio-level view of the six companies against the industry."""
+"""Overview: portfolio-level view of the six companies against the industry."""
 import numpy as np
 import plotly.graph_objects as go
 import streamlit as st
 
 from core import data as D
 from core import industry as IND
-from core import insights as I
 from core import live as L
 from core import theme as T
-from views.common import IND_COLOR, IND_LABEL, bullets, compare_bar, comparison_block, kpi_help, note_box
+from views.common import IND_COLOR, IND_LABEL, compare_bar, comparison_block, kpi_help, note_box
 
 
 def _live_strip():
@@ -27,7 +26,7 @@ def _tile(label, value, delta, direction, metric, note=""):
 def render():
     k = D.kpi_table()
     T.hero(
-        "Company Overview",
+        "Overview",
         "Six companies, five years, one lens. Live market and news signals, consolidated financials, regulatory pipelines "
         "and strategy, benchmarked against the Nifty Pharma industry average.",
         [f'<span class="pulse"></span> Live feeds {"on" if st.session_state.get("live_on", True) else "off"}',
@@ -117,9 +116,5 @@ def render():
     st.caption("Dotted lines = middle of the six companies. Star = industry average (choose 'Industry' in Compare with).")
     note_box("Strategic positioning map", peer="cmd_map", metric="ebitda_margin",
              facts="; ".join(f"{n}: growth {r['sales_cagr']:.1f}%/yr, margin {r['ebitda_margin']:.1f}%" for n, r in k.iterrows()))
-
-    # ── Key insights ─────────────────────────────────────────────────────────
-    T.section("Key insights", "written automatically from the numbers")
-    st.markdown(f'<div class="card">{bullets(I.cross_company_signals())}</div>', unsafe_allow_html=True)
 
     T.footer(D.meta())
