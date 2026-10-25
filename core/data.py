@@ -8,30 +8,78 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "companies.json"
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+
+# Two peer sets. Each is compared within itself and against the same Nifty Pharma industry benchmark.
+SEGMENTS = {
+    "mid": {"label": "Mid-size Pharma", "file": "companies.json", "notes": "notes.json",
+            "names": "Alembic, Ajanta, Ipca, Mankind, Alkem, Glenmark", "size": "FY26 sales ₹5,000 to 15,000 Cr"},
+    "major": {"label": "Pharma Majors", "file": "companies_majors.json", "notes": "notes_majors.json",
+              "names": "Sun Pharma, Dr Reddy's, Cipla, Lupin, Aurobindo, Zydus", "size": "FY26 sales above ₹27,000 Cr"},
+}
+DEFAULT_SEGMENT = "mid"
+
+
+def segment() -> str:
+    """Current peer set, chosen on the Overview page (falls back to mid-size outside a Streamlit session)."""
+    try:
+        seg = st.session_state.get("segment", DEFAULT_SEGMENT)
+    except Exception:
+        seg = DEFAULT_SEGMENT
+    return seg if seg in SEGMENTS and data_path(seg).exists() else DEFAULT_SEGMENT
+
+
+def segment_label(seg: str | None = None) -> str:
+    return SEGMENTS[seg or segment()]["label"]
+
+
+def data_path(seg: str | None = None) -> Path:
+    return DATA_DIR / SEGMENTS[seg or segment()]["file"]
+
+
+def available_segments() -> list[str]:
+    return [k for k in SEGMENTS if data_path(k).exists()]
+
+
+# Kept for older imports: the mid-size file.
+DATA_PATH = data_path(DEFAULT_SEGMENT)
 
 
 @st.cache_data(show_spinner=False)
-def _load_raw_cached(mtime: float) -> dict:
-    with open(DATA_PATH, encoding="utf-8") as f:
+def _load_raw_cached(path: str, mtime: float) -> dict:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
-def load_raw() -> dict:
-    """Re-reads companies.json whenever the file changes (e.g. after a GitHub update)."""
-    return _load_raw_cached(DATA_PATH.stat().st_mtime)
+def load_raw(seg: str | None = None) -> dict:
+    """Re-reads the segment file whenever it changes (e.g. after a GitHub update)."""
+    p = data_path(seg)
+    return _load_raw_cached(str(p), p.stat().st_mtime)
+
+
+def _mtime(seg: str | None = None) -> float:
+    return data_path(seg).stat().st_mtime
 
 
 def meta() -> dict:
     return load_raw()["meta"]
 
 
-def companies() -> list[dict]:
-    return load_raw()["companies"]
+def companies(seg: str | None = None) -> list[dict]:
+    return load_raw(seg)["companies"]
+
+
+def segment_of(cid: str) -> str:
+    """Which peer set a company id belongs to (current segment first)."""
+    order = [segment()] + [k for k in available_segments() if k != segment()]
+    for seg in order:
+        if any(c["id"] == cid for c in companies(seg)):
+            return seg
+    raise KeyError(cid)
 
 
 def company(cid: str) -> dict:
-    return next(c for c in companies() if c["id"] == cid)
+    return next(c for c in companies(segment_of(cid)) if c["id"] == cid)
 
 
 def names() -> dict[str, str]:
@@ -41,6 +89,11 @@ def names() -> dict[str, str]:
 def colors() -> dict[str, str]:
     """Colour follows the entity (keyed by short name), never by rank."""
     return {c["short"]: c["color"] for c in companies()}
+
+
+def symbol(cid: str) -> str:
+    """NSE symbol, used for Screener links."""
+    return company(cid)["ticker"].split(".")[0]
 
 
 def years() -> list[str]:
@@ -83,11 +136,12 @@ def add_return_metrics(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def financial_frame(cid: str) -> pd.DataFrame:
-    return _financial_frame(cid, DATA_PATH.stat().st_mtime)
+    seg = segment_of(cid)
+    return _financial_frame(cid, seg, _mtime(seg))
 
 
 @st.cache_data(show_spinner=False)
-def _financial_frame(cid: str, mtime: float) -> pd.DataFrame:
+def _financial_frame(cid: str, seg: str, mtime: float) -> pd.DataFrame:
     """Year-indexed frame of raw lines + derived ratios for one company."""
     c = company(cid)
     f = c["financials"]
@@ -181,16 +235,17 @@ INDIA_KEYS = ("India branded", "India", "Domestic formulations", "Domestic Rx (e
 
 
 def kpi_table(year: str = "FY26") -> pd.DataFrame:
-    return _kpi_table(year, DATA_PATH.stat().st_mtime)
+    seg = segment()
+    return _kpi_table(year, seg, _mtime(seg))
 
 
 @st.cache_data(show_spinner=False)
-def _kpi_table(year: str, mtime: float) -> pd.DataFrame:
+def _kpi_table(year: str, seg: str, mtime: float) -> pd.DataFrame:
     """One row per company, one column per KPI (latest year unless stated)."""
     rows = []
     yrs = years()
     n = len(yrs) - 1
-    for c in companies():
+    for c in companies(seg):
         df = financial_frame(c["id"])
         r = df.loc[year]
         geo = c["footprint"]["geography"]
@@ -220,14 +275,15 @@ def _kpi_table(year: str, mtime: float) -> pd.DataFrame:
 
 
 def panel(metric: str) -> pd.DataFrame:
-    return _panel(metric, DATA_PATH.stat().st_mtime)
+    seg = segment()
+    return _panel(metric, seg, _mtime(seg))
 
 
 @st.cache_data(show_spinner=False)
-def _panel(metric: str, mtime: float) -> pd.DataFrame:
+def _panel(metric: str, seg: str, mtime: float) -> pd.DataFrame:
     """Years × companies for a single metric (time-series comparisons)."""
     out = {}
-    for c in companies():
+    for c in companies(seg):
         df = financial_frame(c["id"])
         if metric in df.columns:
             out[c["short"]] = df[metric]

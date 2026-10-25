@@ -1,4 +1,4 @@
-"""Finance Lens: agentic intelligence dashboard for Indian mid-cap pharma.
+"""Finance Lens: agentic financial intelligence dashboard for Indian pharma (two peer sets: Mid-size Pharma and Pharma Majors).
 
 Run locally:  streamlit run app.py
 """
@@ -23,9 +23,13 @@ from views import (command, company, news, panel, pnl, ranking, ratios, regulato
 
 T.inject_css()
 T.register_plotly_template()
+
+if "segment" not in st.session_state:  # a link ending in ?segment=major opens straight on the Pharma Majors
+    _qs = st.query_params.get("segment")
+    st.session_state.segment = _qs if _qs in D.available_segments() else D.DEFAULT_SEGMENT
 meta = D.meta()
 
-if "focus" not in st.session_state:
+if "focus" not in st.session_state or st.session_state.focus not in D.names():
     st.session_state.focus = None
 if "panel_open" not in st.session_state:
     st.session_state.panel_open = False
@@ -48,6 +52,10 @@ nav = st.navigation(pages, position="sidebar")
 
 with st.sidebar:
     st.markdown("---")
+    seg = D.SEGMENTS[D.segment()]
+    st.markdown(f'''<div class="segchip"><div class="muted" style="font-size:.7rem;letter-spacing:.05em;text-transform:uppercase">Peer set</div>
+        <b>{seg["label"]}</b><div style="font-size:.72rem;opacity:.85">{seg["names"]}</div>
+        <div style="font-size:.68rem;opacity:.7;margin-top:3px">Change it on the Overview page</div></div>''', unsafe_allow_html=True)
     ids = [None] + list(D.names().keys())
     st.selectbox("Focus company", ids, format_func=lambda x: "Select" if x is None else D.names()[x], key="focus", placeholder="Select",
                  help="Pick a company to open the Deep-Dive, P&L Lab and Strategy Room on it. Leave on Select for no focus.")

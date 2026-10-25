@@ -17,7 +17,8 @@ def render():
     for c in D.companies():
         rg = c["regulatory"]
         st_txt = rg["status"].lower()
-        risk = "Open issue" if "oai" in st_txt else "Clean / remediated"
+        open_issue = rg["fda_open"] if "fda_open" in rg else ("oai" in st_txt)
+        risk = "Open issue" if open_issue else "Clean / remediated"
         rows.append({"Company": c["short"], "ANDA filed": rg["anda_filed"], "ANDA approved": rg["anda_approved"],
                      "Tentative": rg["anda_tentative"], "Pending": rg["anda_pending"],
                      "US products": rg["us_products_commercialised"], "US DMFs": rg["dmf_us"],
@@ -46,7 +47,10 @@ def render():
                                  hovertemplate=f"{lab}: %{{y}}<extra></extra>"))
         fig.update_layout(barmode="group", title="ANDA filed / approved / pending & US products")
         st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
-        st.caption("Ipca and Mankind don't publish their total number of US filings, so they have no bars here. That means 'not published', not zero.")
+        nopub = [r["Company"] for _, r in rdf.iterrows() if pd.isna(r["ANDA filed"]) and pd.isna(r["Pending"]) and pd.isna(r["US products"])]
+        if nopub:
+            st.caption(f"{' and '.join(nopub)} {'does' if len(nopub) == 1 else 'do'} not publish total US filings, so no bars appear here. "
+                       "That means 'not published', not zero.")
         note_box("ANDA engine (US filings)", peer="rg_anda",
                  facts="; ".join(f"{r['Company']}: filed {r['ANDA filed']}, approved {r['ANDA approved']}, pending {r['Pending']}, US products {r['US products']}" for _, r in rdf.iterrows()))
     with b:
@@ -65,15 +69,8 @@ def render():
                  facts=f"Link strength {rr:+.2f}. " + "; ".join(f"{r['Company']}: R&D {r['R&D %']:.1f}%, margin {r['EBITDA %']:.1f}%, US {r['US share %']:.0f}%" for _, r in rdf.iterrows()))
 
     T.section("What the regulatory data says", "what the filings and news tell us")
-    st.markdown(f"""<div class="card"><ul style="margin:0;padding-left:18px;font-size:.92rem">
-    <li><b>Approvals ≠ revenue.</b> Alembic has the deepest book (244 approvals, 185 marketed) → ~₹3,100 Cr annualised US revenue (Q1 FY27 ×4); Ajanta earns ~₹1,950 Cr annualised
-    from ~51 products, about 2.3x more revenue per product. Picking products with few competitors beats filing more of them.</li>
-    <li><b>Companies spending more on R&D have lower margins today</b> (link strength {rr:+.2f}): Alembic (9% R&D) and Glenmark (6–7%) carry the heaviest pipelines;
-    the payoff is visible in US growth (Alembic US +49%, Glenmark NA +41% in Q1 FY27) but not yet in margin.</li>
-    <li><b>Compliance is a revenue variable.</b> Alkem's Daman OAI (Aug-2026) covers ~45% of its US sales and coincided with a US guidance cut and a 52-week low;
-    Glenmark's Goa warning-letter closeout (Sep-2026) and Monroe VAI remove overhangs ahead of 2–3 respiratory approvals.</li>
-    <li><b>Tariff lens.</b> Generics are outside the Sep-2026 Section 232 tariff, but the Jul-2026 proposal (0% → 100% → 200%) makes US-share a
-    strategic-risk KPI: Alembic 36%, Ajanta 30%, Glenmark 27%, Alkem 20%.</li></ul></div>""", unsafe_allow_html=True)
+    pts = "".join(f"<li>{p.format(rr=f'{rr:+.2f}')}</li>" for p in D.meta().get("regulatory_takeaways", []))
+    st.markdown(f'<div class="card"><ul style="margin:0;padding-left:18px;font-size:.92rem">{pts}</ul></div>', unsafe_allow_html=True)
 
     register("What the regulatory data says", kind="text", facts="Approvals are not revenue; R&D spenders have lower margins today; compliance moves revenue; US share is a tariff-risk number.")
     with st.expander("Regulatory data table (all numbers above in one table)"):

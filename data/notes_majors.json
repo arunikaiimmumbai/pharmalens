@@ -1,0 +1,1278 @@
+{
+ "company": {
+  "sun": {
+   "growth": {
+    "text": "Sales grew about 11% a year (FY22 to FY26). India (+16% in Q1 FY27) and innovative medicines (+12.8%) are growing, while US generics shrink (−9.7%) as lenalidomide fades.",
+    "doing": "Guiding high single-digit growth for FY27; buying Organon (about US$6.2 bn of sales) to add scale.",
+    "angle": "Organon integration and a clear plan for the shrinking US generics book.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Sun Pharma investor presentation, Sep 2026",
+      "url": "https://sunpharma.com/wp-content/uploads/2026/09/SPIL-IR-Presentation-Sept-2026-INR-1.pdf"
+     },
+     {
+      "title": "Q1 FY27: sales +10.1% to ₹15,184 Cr; PAT +27% to ₹2,895 Cr; US sales −9.7% to US",
+      "url": "https://www.business-standard.com/companies/quarterly-results/quarterly-results-sun-pharma-q1fy27-profit-revenue-ebitda-results-126073100858_1.html"
+     },
+     {
+      "title": "Sun Pharma agrees to buy Organon for US$11.75 bn (US$14 a share), its largest-ev",
+      "url": "https://www.fiercepharma.com/pharma/sun-pharma-strikes-biopharmas-largest-deal-26-1175b-buyout-organon"
+     }
+    ]
+   },
+   "margin": {
+    "text": "Margin is high (about 28%) because India brands and innovative medicines earn more than generics. Raw material cost fell from 36% to 26% of sales. Launch spending on Leqselvi and Unloxcyt held Q1 FY27 profit growth to under 3%.",
+    "doing": "Spending to launch innovative products; tax rate about 27.8% until Organon closes.",
+    "angle": "Launch payback review: scale or stop each innovative product on clear milestones.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Investing.com: Sun Pharma Q1 FY27 earnings call",
+      "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-sun-pharma-q1-2026-sales-rise-101-as-specialty-gains-offset-us-weakness-93CH-4828753"
+     },
+     {
+      "title": "Q1 FY27: sales +10.1% to ₹15,184 Cr; PAT +27% to ₹2,895 Cr; US sales −9.7% to US",
+      "url": "https://www.business-standard.com/companies/quarterly-results/quarterly-results-sun-pharma-q1fy27-profit-revenue-ebitda-results-126073100858_1.html"
+     }
+    ]
+   },
+   "returns": {
+    "text": "ROCE rose from 17% to 21% as margins improved. Sun holds about ₹12,400 Cr of net cash, which lowers returns on paper; Organon will add large debt and goodwill.",
+    "doing": "Using cash and debt for Organon.",
+    "angle": "Post-deal returns plan so ROCE does not fall the way Mankind's did after BSV.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Organon shareholders approve the merger with Sun Pharma",
+      "url": "https://sunpharma.com/wp-content/uploads/2026/07/PRforOrganonShareholderapproval.pdf"
+     },
+     {
+      "title": "Sun Pharma agrees to buy Organon for US$11.75 bn (US$14 a share), its largest-ev",
+      "url": "https://www.fiercepharma.com/pharma/sun-pharma-strikes-biopharmas-largest-deal-26-1175b-buyout-organon"
+     }
+    ]
+   },
+   "wc": {
+    "text": "Sun holds 363 days of stock, high for a company this size, and it has risen from 315 days in FY22. Suppliers are paid in 232 days, which hides some of it.",
+    "doing": "No public stock target.",
+    "angle": "Inventory programme across 40 sites with a cash target.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     }
+    ]
+   },
+   "cash": {
+    "text": "Cash from operations is about 1.1 times profit and the company had about ₹12,400 Cr net cash before Organon. Free cash flow dipped in FY26 as investments rose.",
+    "doing": "Holding cash for Organon.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Organon shareholders approve the merger with Sun Pharma",
+      "url": "https://sunpharma.com/wp-content/uploads/2026/07/PRforOrganonShareholderapproval.pdf"
+     }
+    ]
+   },
+   "cost": {
+    "text": "Staff cost rose from about 11.7% to 14.0% of sales over FY24 to FY26 as Sun built US specialty teams. Other expenses (27% of sales) include heavy launch marketing.",
+    "doing": "Investing in specialty sales teams in the US.",
+    "angle": "Specialty sales force sizing and marketing return review.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     }
+    ]
+   },
+   "geo": {
+    "text": "India is 33% of sales, US formulations 29%, emerging markets 19% and rest of world 15%. The US generics share keeps falling while innovative medicines rise.",
+    "doing": "Organon adds women's health and biosimilars in about 140 countries.",
+    "angle": "Country portfolio review after Organon: where to invest, where to exit.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: sales +10.1% to ₹15,184 Cr; PAT +27% to ₹2,895 Cr; US sales −9.7% to US",
+      "url": "https://www.business-standard.com/companies/quarterly-results/quarterly-results-sun-pharma-q1fy27-profit-revenue-ebitda-results-126073100858_1.html"
+     }
+    ]
+   },
+   "brands": {
+    "text": "Sun leads India with 8.5% share and 30 brands in the top 300. It is #1 with psychiatrists, neurologists, cardiologists, gastroenterologists, diabetologists and dermatologists.",
+    "doing": "Growing India share (8.1% to 8.5%).",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Sun Pharma investor presentation, Sep 2026",
+      "url": "https://sunpharma.com/wp-content/uploads/2026/09/SPIL-IR-Presentation-Sept-2026-INR-1.pdf"
+     }
+    ]
+   },
+   "rnd": {
+    "text": "R&D is 6.1% of sales, with 30% on innovative medicines. 40 plants worldwide; Halol is still OAI with the US FDA and under an import alert.",
+    "doing": "Specialty pipeline: Leqselvi, Unloxcyt, Ilumya; semaglutide in India and South Africa.",
+    "angle": "Halol remediation and an R&D portfolio review.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Sun Pharma investor presentation, Sep 2026",
+      "url": "https://sunpharma.com/wp-content/uploads/2026/09/SPIL-IR-Presentation-Sept-2026-INR-1.pdf"
+     }
+    ]
+   },
+   "quarter": {
+    "text": "Q1 FY27 sales +10.1% and profit +27%, but EBITDA only +2.7% as launch costs rose.",
+    "doing": "Guidance unchanged.",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: sales +10.1% to ₹15,184 Cr; PAT +27% to ₹2,895 Cr; US sales −9.7% to US",
+      "url": "https://www.business-standard.com/companies/quarterly-results/quarterly-results-sun-pharma-q1fy27-profit-revenue-ebitda-results-126073100858_1.html"
+     }
+    ]
+   },
+   "debt": {
+    "text": "Almost no net debt today. Organon (US$11.75 bn) will change that at close.",
+    "doing": "Planning deal financing.",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Sun Pharma consolidated financials",
+      "url": "https://www.screener.in/company/SUNPHARMA/consolidated/"
+     },
+     {
+      "title": "Sun Pharma agrees to buy Organon for US$11.75 bn (US$14 a share), its largest-ev",
+      "url": "https://www.fiercepharma.com/pharma/sun-pharma-strikes-biopharmas-largest-deal-26-1175b-buyout-organon"
+     }
+    ]
+   }
+  },
+  "drreddy": {
+   "growth": {
+    "text": "Sales grew about 12% a year to FY25, then only 3% in FY26 as US lenalidomide (generic Revlimid) ended. India (+16%) and emerging markets (+23%) are growing; North America fell 22%.",
+    "doing": "Semaglutide relaunch in Nov 2026; biosimilars (abatacept goal date 22 Dec 2026).",
+    "angle": "Size the lenalidomide gap and rank the replacements by value and timing.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Kotak Neo: Dr. Reddy's Q2 FY27 results",
+      "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/"
+     },
+     {
+      "title": "Q2 FY27: revenue −1.5% to ₹8,671 Cr; PAT −36% to ₹925 Cr; India +17%, emerging m",
+      "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/"
+     },
+     {
+      "title": "Semaglutide API scale-up problem fixed; relaunch planned for November 2026",
+      "url": "https://www.fool.com/earnings/call-transcripts/2026/10/23/dr-reddys-rdy-q2-2027-earnings-call-transcript/"
+     }
+    ]
+   },
+   "margin": {
+    "text": "Margin fell from 28% (FY24) to 19% (FY26), and to 5% in Q4 FY26 and 11% in Q1 FY27. The high-profit US product ended and a semaglutide API problem cost ₹240 Cr.",
+    "doing": "Guiding 20%+ EBITDA margin for FY27.",
+    "angle": "Cost reset for a smaller US business, plus supply-risk control for launches.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Dr. Reddy's Q4 and FY26 results (SEC filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm"
+     },
+     {
+      "title": "Q2 FY27: revenue −1.5% to ₹8,671 Cr; PAT −36% to ₹925 Cr; India +17%, emerging m",
+      "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/"
+     }
+    ]
+   },
+   "returns": {
+    "text": "ROCE halved from 27% to 13% as profit fell while capital stayed. Returns recover only if new launches replace lenalidomide profit.",
+    "doing": "Cut capex to ₹1,600 to 1,700 Cr.",
+    "angle": "Capital allocation review: which bets earn above the cost of capital.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Dr. Reddy's Q4 and FY26 results (SEC filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm"
+     }
+    ]
+   },
+   "wc": {
+    "text": "Cash cycle is about 247 days. Debtor days (110) are high because US and emerging-market customers take longer to pay.",
+    "doing": "No public target.",
+    "angle": "Collections and inventory programme by market.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     }
+    ]
+   },
+   "cash": {
+    "text": "Cash from operations is 1.4 times profit and Dr Reddy's still holds net cash (US$261 M in Sep 2026), but free cash flow has been negative for two years.",
+    "doing": "Lowered capex.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Dr. Reddy's Q4 and FY26 results (SEC filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm"
+     }
+    ]
+   },
+   "cost": {
+    "text": "Staff cost is about 17% of sales and other expenses rose to 20%. Costs were built for a larger US business.",
+    "doing": "No public cost programme.",
+    "angle": "Zero-based cost review across SG&A and US infrastructure.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Dr. Reddy's Q4 and FY26 results (SEC filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm"
+     }
+    ]
+   },
+   "geo": {
+    "text": "North America is 34% of sales (down from about 45%), emerging markets 20%, India 19%, Europe 17% (with acquired NRT brands) and API 10%.",
+    "doing": "Shifting growth to India and emerging markets.",
+    "angle": "Market prioritisation and India sales-force productivity.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Q2 FY27: revenue −1.5% to ₹8,671 Cr; PAT −36% to ₹925 Cr; India +17%, emerging m",
+      "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/"
+     }
+    ]
+   },
+   "brands": {
+    "text": "India rank #9 to #10 with 15 brands in the top 300. New engines: semaglutide (Obeda), NRT brands in Europe, QDENGA dengue vaccine.",
+    "doing": "Launched semaglutide in India on day one.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Dr. Reddy's Q4 and FY26 results (SEC filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm"
+     }
+    ]
+   },
+   "rnd": {
+    "text": "R&D was cut 12% to 7.2% of sales in FY26 and is guided back to 7 to 8%. Pipeline: semaglutide (10 countries), abatacept and rituximab biosimilars.",
+    "doing": "Abatacept FDA decision 22 Dec 2026.",
+    "angle": "Biosimilar launch plan with a backup if the FDA asks for more data.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Dr. Reddy's Q4 and FY26 results (SEC filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm"
+     },
+     {
+      "title": "Kotak Neo: Dr. Reddy's Q2 FY27 results",
+      "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/"
+     }
+    ]
+   },
+   "quarter": {
+    "text": "Q1 FY27 profit fell 69% and Q2 FY27 profit fell 36%; Q2 margin recovered to 20.6%.",
+    "doing": "Semaglutide relaunch in Nov 2026.",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     },
+     {
+      "title": "Kotak Neo: Dr. Reddy's Q2 FY27 results",
+      "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/"
+     },
+     {
+      "title": "Semaglutide API scale-up problem fixed; relaunch planned for November 2026",
+      "url": "https://www.fool.com/earnings/call-transcripts/2026/10/23/dr-reddys-rdy-q2-2027-earnings-call-transcript/"
+     }
+    ]
+   },
+   "debt": {
+    "text": "Still net cash, though borrowings rose to about ₹7,700 Cr.",
+    "doing": "Holding net cash.",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Dr Reddy's consolidated financials",
+      "url": "https://www.screener.in/company/DRREDDY/consolidated/"
+     }
+    ]
+   }
+  },
+  "cipla": {
+   "growth": {
+    "text": "Sales grew only about 7% a year. India is strong (record ₹3,452 Cr in Q1 FY27, +12%), but US sales fell 28% in dollars as lenalidomide ended and lanreotide supply broke.",
+    "doing": "Generic Advair (Jul 2026) and Ventolin approvals; target US$1 bn US run-rate by end FY27.",
+    "angle": "US launch excellence for inhalers and a supply fix for lanreotide.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "US FDA re-inspects Pithampur: Form 483 with 7 observations (plant under warning ",
+      "url": "https://www.sahi.com/news/cipla-gets-usfda-form-483-with-seven-observations-at-pithampur-facility-62-PE1_CORPO"
+     },
+     {
+      "title": "US FDA approves generic Advair Diskus (all strengths) made at InvaGen, New York;",
+      "url": "https://www.sahi.com/news/cipla-receives-usfda-approval-for-generic-advair-diskus-in-all-three-strengths-62-PE1_CORPO"
+     },
+     {
+      "title": "Q1 FY27: revenue +2% to ₹7,119 Cr; EBITDA −33%; margin 16.7%; PAT −39%; shares f",
+      "url": "https://www.indiainfoline.com/news/earnings/cipla-share-price-falls-over-3-after-q1-fy27-results-disappoint-investors-profit-drops-39"
+     }
+    ]
+   },
+   "margin": {
+    "text": "Margin dropped from about 26% to 16.7% (Q1 FY27): the high-profit US products fell away and gross margin fell 6 points.",
+    "doing": "Guiding 18.5 to 20% for FY27, weighted to H2.",
+    "angle": "Margin bridge and procurement programme.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +2% to ₹7,119 Cr; EBITDA −33%; margin 16.7%; PAT −39%; shares f",
+      "url": "https://www.indiainfoline.com/news/earnings/cipla-share-price-falls-over-3-after-q1-fy27-results-disappoint-investors-profit-drops-39"
+     }
+    ]
+   },
+   "returns": {
+    "text": "ROCE fell from 23% to 15% as US profit fell. Over ₹10,500 Cr of net cash also lowers returns.",
+    "doing": "Holding large cash.",
+    "angle": "Capital allocation plan: in-licensing, M&A or payouts.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "FY26: revenue ₹28,163 Cr; PAT ₹3,879 Cr; India crosses ₹12,680 Cr; net cash abov",
+      "url": "https://www.businesstoday.in/industry/pharma/story/cipla-focuses-on-respiratory-therapies-specialty-drugs-and-complex-generics-531356-2026-05-13"
+     }
+    ]
+   },
+   "wc": {
+    "text": "Inventory rose from 217 to 252 days (FY24 to FY26); cash cycle 202 days, the second-lowest of the six but rising.",
+    "doing": "No public target.",
+    "angle": "Inventory release with S&OP, especially Africa and US launch stock.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     }
+    ]
+   },
+   "cash": {
+    "text": "Cash from operations is about equal to profit and Cipla has over ₹10,500 Cr net cash.",
+    "doing": "Debt-free.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "FY26: revenue ₹28,163 Cr; PAT ₹3,879 Cr; India crosses ₹12,680 Cr; net cash abov",
+      "url": "https://www.businesstoday.in/industry/pharma/story/cipla-focuses-on-respiratory-therapies-specialty-drugs-and-complex-generics-531356-2026-05-13"
+     }
+    ]
+   },
+   "cost": {
+    "text": "Staff cost rose from 13.9% to 17.6% of sales (FY22 to FY26), the biggest rise of the six, as sales grew slowly.",
+    "doing": "New CEO from Apr 2026.",
+    "angle": "Organisation and cost review under the new CEO.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "Achin Gupta takes over as MD and Global CEO from Umang Vohra",
+      "url": "https://bestmediainfo.com/mediainfo/mediainfo-marketing/achin-gupta-succeeds-umang-vohra-as-cipla-md-and-ceo-11441701"
+     }
+    ]
+   },
+   "geo": {
+    "text": "India is 45% of sales, North America 24%, Africa 15% and emerging markets and Europe 13%.",
+    "doing": "Building a US-made inhaler franchise (InvaGen, New York).",
+    "angle": "Tariff-proof US supply plan.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "US FDA approves generic Advair Diskus (all strengths) made at InvaGen, New York;",
+      "url": "https://www.sahi.com/news/cipla-receives-usfda-approval-for-generic-advair-diskus-in-all-three-strengths-62-PE1_CORPO"
+     }
+    ]
+   },
+   "brands": {
+    "text": "India respiratory leader; Foracort crossed ₹1,000 Cr. Branded Rx grew 15.4% in Q1 FY27.",
+    "doing": "Partnerships: Lilly (Yurpeak), MannKind (inhaled insulin).",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "Business Today: Cipla FY26 and focus areas",
+      "url": "https://www.businesstoday.in/industry/pharma/story/cipla-focuses-on-respiratory-therapies-specialty-drugs-and-complex-generics-531356-2026-05-13"
+     }
+    ]
+   },
+   "rnd": {
+    "text": "R&D is about 7% of sales. Pithampur, a key inhaler plant, has been under an FDA warning letter since Nov 2023 and got 7 new observations in Aug 2026.",
+    "doing": "Responding to the FDA; Goa VAI.",
+    "angle": "Remediation PMO and a second site for key inhalers.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "US FDA re-inspects Pithampur: Form 483 with 7 observations (plant under warning ",
+      "url": "https://www.sahi.com/news/cipla-gets-usfda-form-483-with-seven-observations-at-pithampur-facility-62-PE1_CORPO"
+     }
+    ]
+   },
+   "quarter": {
+    "text": "Q1 FY27 profit fell 39% on the US drop; India hit a record.",
+    "doing": "H2 recovery guided.",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +2% to ₹7,119 Cr; EBITDA −33%; margin 16.7%; PAT −39%; shares f",
+      "url": "https://www.indiainfoline.com/news/earnings/cipla-share-price-falls-over-3-after-q1-fy27-results-disappoint-investors-profit-drops-39"
+     }
+    ]
+   },
+   "debt": {
+    "text": "Debt-free with over ₹10,500 Cr net cash.",
+    "doing": "",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Cipla consolidated financials",
+      "url": "https://www.screener.in/company/CIPLA/consolidated/"
+     },
+     {
+      "title": "FY26: revenue ₹28,163 Cr; PAT ₹3,879 Cr; India crosses ₹12,680 Cr; net cash abov",
+      "url": "https://www.businesstoday.in/industry/pharma/story/cipla-focuses-on-respiratory-therapies-specialty-drugs-and-complex-generics-531356-2026-05-13"
+     }
+    ]
+   }
+  },
+  "lupin": {
+   "growth": {
+    "text": "Sales grew about 14% a year and 23% in FY26, led by US products with few competitors (tolvaptan, mirabegron). Those now face competition, so FY27 growth is guided to high single digits.",
+    "doing": "FY28 launches: ranibizumab, Dulera, a new apixaban form.",
+    "angle": "Launch sequencing to bridge FY27 to FY28.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Lupin FY2026 and Q4 FY2026 results (7 May 2026)",
+      "url": "https://www.lupin.com/media/press-releases/lupin-fy-2026-and-q4-fy-2026-results"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "margin": {
+    "text": "Lupin's margin went from about 1% in FY22 to 29% in FY26, one of the biggest turnarounds among large Indian drugmakers. Material cost fell from 38% to 25% of sales. FY27 margin is guided to about 25%.",
+    "doing": "Guiding about 25% margin.",
+    "angle": "Margin bridge by product so the reset is no worse than guided.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Lupin FY2026 and Q4 FY2026 results (7 May 2026)",
+      "url": "https://www.lupin.com/media/press-releases/lupin-fy-2026-and-q4-fy-2026-results"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     },
+     {
+      "title": "Q1 FY27: sales +33% to ₹8,217 Cr; EBITDA margin 30%; US US$366 M (+30%); PAT ₹1,",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "returns": {
+    "text": "ROCE of 30% is the best of the six, at the lowest P/E (14.8x). The market expects the US profit to fade.",
+    "doing": "Paid a 900% dividend.",
+    "angle": "Investor story on FY28 launches to close the valuation gap.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: sales +33% to ₹8,217 Cr; EBITDA margin 30%; US US$366 M (+30%); PAT ₹1,",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "wc": {
+    "text": "Inventory rose from 261 to 303 days, but suppliers are paid in 208 days, so the cash cycle fell to 181 days, the best of the six.",
+    "doing": "Working capital 90 days on company basis (Q1 FY27).",
+    "angle": "Inventory programme before supplier terms tighten.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "cash": {
+    "text": "Cash from operations is 1.4 times profit. Net cash fell from ₹4,636 Cr to ₹2,831 Cr after buying VISUfarma.",
+    "doing": "Acquired VISUfarma.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "cost": {
+    "text": "Staff cost fell from 16.3% to 13.0% of sales as sales grew faster than headcount: classic operating leverage.",
+    "doing": "Holding costs while sales grew.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     }
+    ]
+   },
+   "geo": {
+    "text": "US is 42% of sales, India 30%, emerging markets 13%, other developed markets 11% and API 4%. High US share means high tariff and price-erosion risk.",
+    "doing": "Guiding US sales above US$1 bn in FY27.",
+    "angle": "US price-erosion and tariff scenarios.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: sales +33% to ₹8,217 Cr; EBITDA margin 30%; US US$366 M (+30%); PAT ₹1,",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "brands": {
+    "text": "India #8 with chronic at about 67% of India sales; diabetes grew 31.8% (1.8x the market) in Q1 FY27.",
+    "doing": "Pushing chronic therapies.",
+    "angle": "India field-force productivity to lift growth above the market.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "rnd": {
+    "text": "R&D is 7.5% of sales; pipeline of 30+ injectables and 20+ respiratory products. Pithampur Unit II is OAI with the US FDA.",
+    "doing": "Remediation in progress; Ankleshwar and Somerset VAI.",
+    "angle": "Remediation PMO for Pithampur.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "quarter": {
+    "text": "Q1 FY27 sales +33%, margin 30%; competition expected from Q2.",
+    "doing": "",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "debt": {
+    "text": "Net cash about ₹2,831 Cr after VISUfarma.",
+    "doing": "",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Lupin consolidated financials",
+      "url": "https://www.screener.in/company/LUPIN/consolidated/"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   }
+  },
+  "aurobindo": {
+   "growth": {
+    "text": "Sales grew about 9% a year; Q1 FY27 +16% led by Europe (+25.6%) and growth markets (+37.7%). US grew 8%.",
+    "doing": "Bought Lannett (US) for US$250 M; target US$2 bn US sales.",
+    "angle": "Lannett integration and plant-loading plan.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Aurobindo Q4 FY26 earnings presentation",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_EarningsPresentation_Q4FY26.pdf"
+     },
+     {
+      "title": "Q1 FY27: revenue +16.3% to ₹9,150 Cr; EBITDA margin 21%; PAT +25% to ₹1,032 Cr; ",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf"
+     },
+     {
+      "title": "Completes US$250 M Lannett acquisition, adding about 4 bn doses of US manufactur",
+      "url": "https://www.sahi.com/news/aurobindo-pharma-completes-250m-lannett-acquisition-to-boost-us-capacity-by-4b-doses-1839-PE1_COR"
+     }
+    ]
+   },
+   "margin": {
+    "text": "Margin is about 20%, among the lowest of the six, because Aurobindo sells high-volume, low-price generics and API. Material cost is 48% of sales, the highest in the set.",
+    "doing": "Steady 20 to 21% margin.",
+    "angle": "Procurement programme on APIs and intermediates.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +16.3% to ₹9,150 Cr; EBITDA margin 21%; PAT +25% to ₹1,032 Cr; ",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf"
+     }
+    ]
+   },
+   "returns": {
+    "text": "ROCE is 13% and ROIC about 8%, the lowest of the six and below a typical 12% cost of capital. Lots of plants and stock earn modest margins.",
+    "doing": "Buyback of US$85 M.",
+    "angle": "Returns programme: prune low-margin products and consolidate sites.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +16.3% to ₹9,150 Cr; EBITDA margin 21%; PAT +25% to ₹1,032 Cr; ",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf"
+     }
+    ]
+   },
+   "wc": {
+    "text": "Inventory rose from 272 to 326 days, the highest of the six. Cash cycle 252 days.",
+    "doing": "No public target.",
+    "angle": "Inventory diagnostic and S&OP across the global network.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     }
+    ]
+   },
+   "cash": {
+    "text": "Cash from operations is 1.6 times profit and free cash flow was US$98 M in Q1 FY27. Net cash shrank to US$42 M after Lannett and the buyback.",
+    "doing": "Cash discipline maintained.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +16.3% to ₹9,150 Cr; EBITDA margin 21%; PAT +25% to ₹1,032 Cr; ",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf"
+     }
+    ]
+   },
+   "cost": {
+    "text": "Staff cost is only about 10% of sales, the lowest of the six; material cost (48%) is the line that matters.",
+    "doing": "",
+    "angle": "Spend analytics on API and packaging.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     }
+    ]
+   },
+   "geo": {
+    "text": "US formulations are 43% of sales, Europe 31%, API 12%, growth markets 10% and ARV 4%. Europe is now the growth engine.",
+    "doing": "Top-10 generic company in 8 European countries.",
+    "angle": "Europe biosimilars go-to-market.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Aurobindo Q4 FY26 earnings presentation",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_EarningsPresentation_Q4FY26.pdf"
+     }
+    ]
+   },
+   "brands": {
+    "text": "A generics company rather than a brand company: almost no India branded business. Biosimilars (Zefylti, Dyrupeg, Dazublys, Bevqolva) are the new value layer.",
+    "doing": "Biosimilars approved in the EU, UK and Canada; STADA licensing deal.",
+    "angle": "Biosimilar pricing and partner strategy by country.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Aurobindo Q4 FY26 earnings presentation",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_EarningsPresentation_Q4FY26.pdf"
+     }
+    ]
+   },
+   "rnd": {
+    "text": "R&D is about 4.5% of sales, the lowest of the six. 896 ANDAs filed and 737 approved. Eugia Unit-I got an FDA warning letter in Aug 2026.",
+    "doing": "Says US supply continues.",
+    "angle": "Quality programme for sterile injectables.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "US FDA warning letter for Eugia Unit-I injectables plant; shares fall 2%",
+      "url": "https://www.whalesbook.com/news/English/healthcarebiotech/Aurobindo-Pharma-Falls-2percent-After-USFDA-Warning-Letter/6a7ed4576ffbe1e6461b5708"
+     }
+    ]
+   },
+   "quarter": {
+    "text": "Q1 FY27 revenue +16% and profit +25%.",
+    "doing": "",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +16.3% to ₹9,150 Cr; EBITDA margin 21%; PAT +25% to ₹1,032 Cr; ",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf"
+     }
+    ]
+   },
+   "debt": {
+    "text": "Close to net cash (US$42 M) after Lannett.",
+    "doing": "",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Aurobindo consolidated financials",
+      "url": "https://www.screener.in/company/AUROPHARMA/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +16.3% to ₹9,150 Cr; EBITDA margin 21%; PAT +25% to ₹1,032 Cr; ",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf"
+     }
+    ]
+   }
+  },
+  "zydus": {
+   "growth": {
+    "text": "Sales grew about 15.5% a year, the fastest of the six, helped by acquisitions (Amplitude, Assertio, consumer brands). India branded +15%; US generics fell 2.6% in Q1 FY27.",
+    "doing": "Guiding strong double-digit growth; 30 to 40 US launches.",
+    "angle": "Split bought growth from own growth and track each deal.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +22% to ₹8,017 Cr; EBITDA margin 24.1% (−7.7 points); PAT −36% ",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     },
+     {
+      "title": "First US biosimilar of ranibizumab (Nufymco) launched; saroglitazar gets FDA pri",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     },
+     {
+      "title": "Completes US$166 M acquisition of Assertio (US specialty and oncology supportive",
+      "url": "https://medicaldialogues.in/news/industry/pharma/zydus-completes-usd-1664-million-acquisition-of-us-based-assertio-holdings-173050"
+     }
+    ]
+   },
+   "margin": {
+    "text": "FY26 margin of 31% was the best of the six, but Q1 FY27 fell to 24.1% as acquired businesses added staff, other costs, amortisation and interest.",
+    "doing": "Guiding 24%+ for FY27 and 28 to 30% by FY30.",
+    "angle": "Synergy and cost plan for the acquired businesses.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +22% to ₹8,017 Cr; EBITDA margin 24.1% (−7.7 points); PAT −36% ",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   },
+   "returns": {
+    "text": "ROCE fell from 24% to 21% and ROIC from 23% to 17% as acquisitions added capital before profit.",
+    "doing": "Buyback of ₹1,100 Cr.",
+    "angle": "Deal-by-deal return tracking.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "FY26: revenue +16.8%; EBITDA margin 31.2%; adjusted PAT +15%; ₹1,100 Cr buyback ",
+      "url": "https://www.zyduslife.com/investor/admin/uploads/21/83/Press-Release---19-05-2026.pdf"
+     }
+    ]
+   },
+   "wc": {
+    "text": "Inventory jumped from 227 to 282 days in FY26, partly from acquired businesses.",
+    "doing": "No public target.",
+    "angle": "Inventory programme across acquired units.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     }
+    ]
+   },
+   "cash": {
+    "text": "Cash from operations was only 0.4 times profit in FY26 and free cash flow was −21% of sales, as deals and capex used cash. Net debt is now 0.7x EBITDA.",
+    "doing": "Capex ₹1,500 to 1,600 Cr guided.",
+    "angle": "Capital allocation rules for deals, capex and buybacks.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +22% to ₹8,017 Cr; EBITDA margin 24.1% (−7.7 points); PAT −36% ",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   },
+   "cost": {
+    "text": "Staff cost rose to 17% of sales and jumped 38% in Q1 FY27 with acquisitions.",
+    "doing": "",
+    "angle": "Organisation design after the deals.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +22% to ₹8,017 Cr; EBITDA margin 24.1% (−7.7 points); PAT −36% ",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   },
+   "geo": {
+    "text": "North America 44%, India 25%, consumer wellness 15%, international 11%, medtech 3%.",
+    "doing": "Raising US specialty share from about 10% to 15%+.",
+    "angle": "US specialty launch excellence.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "First US biosimilar of ranibizumab (Nufymco) launched; saroglitazar gets FDA pri",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   },
+   "brands": {
+    "text": "Consumer brands lead their categories (Glucon-D, Nycil, Sugar Free); India chronic share 46.3%; first US ranibizumab biosimilar (Nufymco).",
+    "doing": "Launching biosimilars in the US and India.",
+    "angle": "",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Zydus FY26 results press release (19 May 2026)",
+      "url": "https://www.zyduslife.com/investor/admin/uploads/21/83/Press-Release---19-05-2026.pdf"
+     }
+    ]
+   },
+   "rnd": {
+    "text": "R&D is 8.4% of sales, the highest of the six. Saroglitazar (PBC) is under FDA priority review; Biotech Park injectables VAI.",
+    "doing": "Priority review; Phase III biosimilar ADC.",
+    "angle": "R&D portfolio analytics to rank bets.",
+    "show": true,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Investing.com: Zydus Q1 FY27 slides",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   },
+   "quarter": {
+    "text": "Q1 FY27 revenue +22% but profit −36%.",
+    "doing": "",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +22% to ₹8,017 Cr; EBITDA margin 24.1% (−7.7 points); PAT −36% ",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   },
+   "debt": {
+    "text": "Net debt 0.7x EBITDA after acquisitions.",
+    "doing": "",
+    "angle": "",
+    "show": false,
+    "sources": [
+     {
+      "title": "Screener.in: Zydus consolidated financials",
+      "url": "https://www.screener.in/company/ZYDUSLIFE/consolidated/"
+     },
+     {
+      "title": "Q1 FY27: revenue +22% to ₹8,017 Cr; EBITDA margin 24.1% (−7.7 points); PAT −36% ",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   }
+  }
+ },
+ "peer": {
+  "cmd_tiles": {
+   "text": "The majors are bigger and more global than the mid-size six, but their typical ROCE (about 18%) is close to the Nifty Pharma average. Inventory is the shared weak spot: four of six hold over 280 days.",
+   "doing": "",
+   "angle": "Working capital is the quickest cash win across the group.",
+   "show": true,
+   "sources": []
+  },
+  "cmd_map": {
+   "text": "Top right: Zydus (fast growth, high margin, partly bought) and Lupin (turnaround). Lower half on margin: Cipla and Dr Reddy's, both hit by the end of US lenalidomide, and Aurobindo (low-margin volume generics). Sun sits in the middle with the most scale.",
+   "doing": "",
+   "angle": "Cipla, Dr Reddy's and Aurobindo are the clearest consulting targets.",
+   "show": true,
+   "sources": []
+  },
+  "rt_table": {
+   "text": "Green and red mark the best and weakest of the six. A company can be best of six and still below the industry.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "rt_trend_roce": {
+   "text": "Lupin rose from a loss to 30%. Dr Reddy's fell from 27% to 13% and Cipla from 23% to 15% as US lenalidomide ended. Aurobindo stays at about 13%.",
+   "doing": "",
+   "angle": "Dr Reddy's, Cipla and Aurobindo need a returns plan.",
+   "show": true,
+   "sources": []
+  },
+  "rt_trend_roe": {
+   "text": "ROE follows ROCE; debt is low across the set.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "rt_trend_roic": {
+   "text": "ROIC is the after-tax return on money put into the business. Above about 12% a company creates value. Aurobindo (about 8%) and Dr Reddy's (about 9%) are below it.",
+   "doing": "",
+   "angle": "Below-12% companies need a returns plan before chasing growth.",
+   "show": true,
+   "sources": []
+  },
+  "rt_trend_ebitda_margin": {
+   "text": "Margins diverged in FY26: Zydus, Lupin and Sun near 28 to 31%; Dr Reddy's, Cipla and Aurobindo near 19 to 21%.",
+   "doing": "",
+   "angle": "The gap is mostly product mix: limited-competition and branded products earn more.",
+   "show": true,
+   "sources": []
+  },
+  "rt_trend_inventory_days": {
+   "text": "Sun (363 days) and Aurobindo (326 days) hold the most stock; all six hold more than 220 days.",
+   "doing": "",
+   "angle": "Each 30 days of stock cut frees cash worth about 8% of yearly material cost.",
+   "show": true,
+   "sources": []
+  },
+  "rt_trend_debtor_days": {
+   "text": "Dr Reddy's (110 days) and Sun (97 days) wait longest to be paid; Cipla (73) and Zydus (73) the least.",
+   "doing": "",
+   "angle": "Dr Reddy's is the clearest collections case.",
+   "show": true,
+   "sources": []
+  },
+  "rt_trend_ccc": {
+   "text": "Cash cycle = stock days + customer days − supplier days. Lupin's 181 days is the best; Aurobindo and Dr Reddy's (about 250) the worst.",
+   "doing": "",
+   "angle": "Aurobindo and Dr Reddy's have the most cash locked up.",
+   "show": true,
+   "sources": []
+  },
+  "rt_trend_de_ratio": {
+   "text": "Debt is low except Zydus, which rose to 0.5 after acquisitions. Sun will add large debt for Organon.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "rt_trend_cfo_pat": {
+   "text": "Below 1 means profit is not arriving as cash. Zydus fell to 0.4 in FY26 (acquisitions and working capital).",
+   "doing": "",
+   "angle": "Zydus needs a cash conversion review.",
+   "show": true,
+   "sources": []
+  },
+  "rt_trend_asset_turnover": {
+   "text": "Sales per rupee of assets is low (0.5 to 0.7) for all six: big plant networks and cash piles.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "rt_trend_interest_cover": {
+   "text": "Interest is small for all; Zydus's cover fell after deals.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "rt_trend_fcf_margin": {
+   "text": "Free cash flow = cash from operations minus all investing (plants, deals). Zydus (−21%) and Dr Reddy's were negative in FY26.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "rt_dupont": {
+   "text": "ROE = profit margin × sales per rupee of assets × borrowing. Lupin wins on margin; Aurobindo is held back by low margin; Sun by idle cash.",
+   "doing": "",
+   "angle": "Shows which lever to pull: price and cost, asset use, or funding.",
+   "show": true,
+   "sources": []
+  },
+  "rg_fda": {
+   "text": "Four of six have an open US FDA issue: Sun (Halol), Cipla (Pithampur), Lupin (Pithampur Unit II) and Aurobindo (Eugia Unit-I).",
+   "doing": "",
+   "angle": "Quality remediation is a group-wide consulting theme for the majors.",
+   "show": true,
+   "sources": []
+  },
+  "rg_anda": {
+   "text": "More approvals do not mean more profit: Aurobindo has the biggest US book (737 approvals) but the lowest returns; Lupin earns more from fewer, harder products.",
+   "doing": "",
+   "angle": "Product selection is worth more than filing volume.",
+   "show": true,
+   "sources": []
+  },
+  "rg_rnd": {
+   "text": "Higher R&D does not guarantee higher margin today: Zydus and Lupin show the payoff, Dr Reddy's shows the gap when a big product ends first.",
+   "doing": "",
+   "angle": "Ask for the payback on each R&D bet.",
+   "show": true,
+   "sources": []
+  },
+  "nw_timeline": {
+   "text": "Results misses (Dr Reddy's, Cipla) and FDA actions moved these stocks most in the last six months.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "nw_heat": {
+   "text": "US revenue and EBITDA margin are the numbers most affected by news.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "st_map": {
+   "text": "Each number counts how many of a company's five problems need that type of consulting help.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "pl_scatter": {
+   "text": "Each dot is one company in one year, so the pattern uses 30 points instead of 5.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  },
+  "market": {
+   "text": "The Indian pharma market grew about 10% in FY26, with chronic therapies ahead of acute.",
+   "doing": "",
+   "angle": "",
+   "show": false,
+   "sources": []
+  }
+ }
+}

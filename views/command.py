@@ -7,7 +7,7 @@ from core import data as D
 from core import industry as IND
 from core import live as L
 from core import theme as T
-from views.common import IND_COLOR, IND_LABEL, compare_bar, comparison_block, kpi_help, note_box
+from views.common import IND_COLOR, IND_LABEL, compare_bar, comparison_block, kpi_help, note_box, segment_picker
 
 
 def _live_strip():
@@ -24,14 +24,16 @@ def _tile(label, value, delta, direction, metric, note=""):
 
 
 def render():
-    k = D.kpi_table()
+    seg = D.SEGMENTS[D.segment()]
     T.hero(
-        "Overview",
-        "Six companies, five years, one lens. Live market and news signals, consolidated financials, regulatory pipelines "
-        "and strategy, benchmarked against the Nifty Pharma industry average.",
+        f"{seg['label']} · Overview",
+        f"{seg['names']}. Six companies, five years, one lens: live market and news signals, consolidated financials, "
+        "regulatory pipelines and strategy, compared with each other and with the Nifty Pharma industry average.",
         [f'<span class="pulse"></span> Live feeds {"on" if st.session_state.get("live_on", True) else "off"}',
          "FY22 → FY26 + Q1 FY27", "Consolidated · ₹ Cr", "Industry = 20 Nifty Pharma companies"],
     )
+    segment_picker()
+    k = D.kpi_table()
     cmp = compare_bar("command", help_text="Pick companies and/or Industry to open a side-by-side comparison below. "
                                            "Selected companies are also highlighted on the map; Industry adds a star.")
     cmp_view = {"industry": cmp["industry"], "companies": cmp["companies"] or (list(k.index) if cmp["industry"] else [])}

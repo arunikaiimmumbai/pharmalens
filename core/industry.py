@@ -72,20 +72,32 @@ def _member_frame(m: dict) -> pd.DataFrame:
     return df
 
 
-@st.cache_data(show_spinner=False)
-def _frames(mtime: float, dmtime: float) -> dict[str, tuple[str, pd.DataFrame, float | None]]:
+def _in_app() -> dict[str, str]:
+    """NSE symbol -> app company id, for every industry member that is one of the app's companies (either segment).
+    Those members use the app's own curated numbers so the company and the industry never disagree."""
     raw = _raw()
+    out = dict(raw["in_app_members"])
+    if "major" in D.available_segments():
+        out.update(raw.get("in_app_majors", {}))
+    return out
+
+
+@st.cache_data(show_spinner=False)
+def _frames(mtime: float, dmtimes: tuple) -> dict[str, tuple[str, pd.DataFrame, float | None]]:
+    raw = _raw()
+    in_app = _in_app()
     out = {}
     for m in raw["members"]:
-        out[m["symbol"]] = (m["name"], _member_frame(m), m.get("pe"))
-    for sym, cid in raw["in_app_members"].items():
+        if m["symbol"] not in in_app:
+            out[m["symbol"]] = (m["name"], _member_frame(m), m.get("pe"))
+    for sym, cid in in_app.items():
         c = D.company(cid)
         out[sym] = (c["short"], D.financial_frame(cid), c["market"].get("pe"))
     return out
 
 
 def frames() -> dict[str, tuple[str, pd.DataFrame, float | None]]:
-    return _frames(IND_PATH.stat().st_mtime, D.DATA_PATH.stat().st_mtime)
+    return _frames(IND_PATH.stat().st_mtime, tuple(D._mtime(k) for k in D.available_segments()))
 
 
 def member_values(metric: str, year: str = "FY26") -> pd.Series:
@@ -147,8 +159,10 @@ def market_note(i: int = 0) -> str:
 
 def members_table() -> pd.DataFrame:
     raw = _raw()
-    rows = [{"Company": m["name"], "NSE symbol": m["symbol"], "Accounts": m["basis"], "Source": m["url"]} for m in raw["members"]]
-    for sym, cid in raw["in_app_members"].items():
+    in_app = _in_app()
+    rows = [{"Company": m["name"], "NSE symbol": m["symbol"], "Accounts": m["basis"], "Source": m["url"]}
+            for m in raw["members"] if m["symbol"] not in in_app]
+    for sym, cid in in_app.items():
         rows.append({"Company": D.company(cid)["short"], "NSE symbol": sym, "Accounts": "consolidated",
                      "Source": f"https://www.screener.in/company/{sym}/consolidated/"})
     return pd.DataFrame(rows).sort_values("Company")

@@ -23,8 +23,15 @@ from core import notes as N
 
 DEFAULT_MODEL = "claude-sonnet-5-5"
 
+
+def system_prompt() -> str:
+    """System prompt for the active peer set."""
+    m = D.meta()
+    return SYSTEM_PROMPT.format(segment=D.segment_label(), names=D.SEGMENTS[D.segment()]["names"],
+                                one_offs=m.get("one_offs", "check the data notes for acquisitions and one-off income."))
+
 SYSTEM_PROMPT = """You are a financial analyst and senior strategy consultant specialising in Indian pharma.
-You analyse six listed companies: Alembic, Ajanta, Ipca, Mankind, Alkem, Glenmark (consolidated, FY22 to FY26 plus Q1 FY27; INR crore),
+You analyse six listed companies, the "{segment}" peer set: {names} (consolidated, FY22 to FY26 plus Q1 FY27; INR crore),
 and compare them with the industry: the average of the 20 Nifty Pharma companies (tool get_industry_benchmark) and
 published Indian pharma market growth (IQVIA, Pharmarack).
 
@@ -33,7 +40,7 @@ Rules:
 - Ground every number in tool results or the page context given to you. Call tools first; never invent figures or links.
 - Explain WHY a number is what it is (business model, mix, one-offs, acquisitions, regulators, costs), not just that it is high or low.
 - Always compare with the industry average and the other companies where it helps.
-- Flag one-offs: Glenmark FY26 includes AbbVie licensing income; Mankind includes BSV from Oct 2024; Ipca includes Unichem from FY24.
+- Flag one-offs: {one_offs}
 - Public-information analysis for an academic project: no buy/sell advice.
 - Plain, simple English. Explain any technical term in a few words. Never use the em dash character.
 
@@ -336,7 +343,7 @@ def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 
     prov = get_provider() or "gemini"
     cfg = PROVIDERS[prov]
     client = OpenAI(api_key=get_api_key(), base_url=cfg["base_url"])
-    convo = [{"role": "system", "content": SYSTEM_PROMPT}] + [{"role": m["role"], "content": m["content"]} for m in messages]
+    convo = [{"role": "system", "content": system_prompt()}] + [{"role": m["role"], "content": m["content"]} for m in messages]
     model = get_model()
     def call(choice: str):
         kw = dict(model=model, messages=convo, tools=OPENAI_TOOLS, tool_choice=choice, max_tokens=1000)
@@ -391,7 +398,7 @@ def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 4) -> st
     client = anthropic.Anthropic(api_key=get_api_key())
     convo = [{"role": m["role"], "content": m["content"]} for m in messages]
     for step in range(max_steps):
-        resp = client.messages.create(model=get_model(), max_tokens=1000, system=SYSTEM_PROMPT, tools=TOOLS, messages=convo)
+        resp = client.messages.create(model=get_model(), max_tokens=1000, system=system_prompt(), tools=TOOLS, messages=convo)
         if resp.stop_reason != "tool_use":
             return "".join(b.text for b in resp.content if b.type == "text")
         blocks = []

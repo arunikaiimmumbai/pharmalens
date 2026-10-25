@@ -22,13 +22,13 @@ def _tornado(cid: str, adj: bool) -> pd.DataFrame:
 
 
 @st.cache_data(show_spinner=False, ttl=3600)
-def _scenarios(adj: bool) -> pd.DataFrame:
+def _scenarios(adj: bool, seg: str = "") -> pd.DataFrame:
     R.ADJUST["on"] = adj
     return R.scenario_ranking()
 
 
 @st.cache_data(show_spinner=False, ttl=3600)
-def _score(dw: tuple, lw: tuple, adj: bool, ov_key: str = "", cid: str = "", lv: tuple = ()) -> dict:
+def _score(dw: tuple, lw: tuple, adj: bool, ov_key: str = "", cid: str = "", lv: tuple = (), seg: str = "") -> dict:
     R.ADJUST["on"] = adj
     ov = {cid: R.scenario_overrides(cid, dict(lv), 0.75)} if cid else None
     return R.scorecard(dict(dw), dict(lw), overrides=ov)
@@ -56,14 +56,17 @@ def render():
         dw = {d: cols[i].slider(d, 0, 50, cfg["weight"], 5, key=f"w_{d}") for i, (d, cfg) in enumerate(R.DIMENSIONS.items())}
         cols = st.columns(4)
         lw = {l_: cols[i].slider(l_, 0, 100, w, 5, key=f"l_{l_}") for i, (l_, w) in enumerate(R.LENSES.items())}
-        R.ADJUST["on"] = cols[3].toggle("Adjust Glenmark for one-off licensing income", value=True, key="adj_glen",
-                                         help="On: Glenmark FY26 is scored at its guided normal 21.5% margin with the AbbVie upfront removed. "
-                                              "Off: reported numbers, which inflate Glenmark's margin, cash and returns.")
+        if "glenmark" in D.names():
+            R.ADJUST["on"] = cols[3].toggle("Adjust Glenmark for one-off licensing income", value=True, key="adj_glen",
+                                             help="On: Glenmark FY26 is scored at its guided normal 21.5% margin with the AbbVie upfront removed. "
+                                                  "Off: reported numbers, which inflate Glenmark's margin, cash and returns.")
+        else:
+            R.ADJUST["on"] = True
     if sum(dw.values()) == 0 or sum(lw.values()) == 0:
         st.warning("Set at least one weight above zero.")
         return
     adj = R.ADJUST["on"]
-    sc = _score(tuple(dw.items()), tuple(lw.items()), adj)
+    sc = _score(tuple(dw.items()), tuple(lw.items()), adj, seg=D.segment())
     t = sc["table"]
 
     # ── Partner summary ──────────────────────────────────────────────────────
@@ -80,7 +83,7 @@ def render():
     st.caption("Current strength = your six-dimension scorecard on FY26. Momentum = is it getting better (margin, ROCE, cash cycle, debt since FY23, "
                "latest quarter growth). Quality = is it sustainable (cash conversion, margin stability, ROIC above a 12% cost of capital, "
                "organic growth, no one-offs, no open FDA issue)."
-               + (" Glenmark is scored on normalised FY26 numbers (licensing income removed)." if R.ADJUST["on"] else ""))
+               + (" Glenmark is scored on normalised FY26 numbers (licensing income removed)." if R.ADJUST["on"] and "glenmark" in D.names() else ""))
     register("Financial performance ranking", kind="table",
              note={"text": "Weighted scorecard on the user's framework, scored against the Nifty Pharma distribution.", "sources": SRC},
              facts="; ".join(f"{r['Rank']} {r['Company']} {r['Score /100']:.0f}/100 ({r['Assessment']})" for r in rows))
@@ -128,7 +131,7 @@ def render():
     # ── What-if ──────────────────────────────────────────────────────────────
     T.section("Hire a consultant: what-if", "pick a company, move the levers, see FY29 and the new rank")
     names = D.names()
-    default = st.session_state.get("focus") or "alkem"
+    default = st.session_state.get("focus") if st.session_state.get("focus") in names else list(names)[0]
     cid = st.selectbox("Company", list(names), index=list(names).index(default), format_func=lambda x: names[x], key="wi_company")
     lv = {}
     lc = st.columns(3)
@@ -140,7 +143,7 @@ def render():
     high = R.project(cid, lv, realisation=1.0, rnd_pays=1.0)["years"]
     lk = likely["years"]
     ev_mult = D.kpi_table().loc[names[cid], "ev_ebitda"]
-    new = _score(tuple(dw.items()), tuple(lw.items()), adj, cid=cid, lv=tuple(lv.items()))["table"]
+    new = _score(tuple(dw.items()), tuple(lw.items()), adj, cid=cid, lv=tuple(lv.items()), seg=D.segment())["table"]
     old_rank, new_rank = int(t.loc[cid, "Rank"]), int(new.loc[cid, "Rank"])
 
     def tile(lab, key, fmt, unit=""):
@@ -197,7 +200,7 @@ This is an illustrative model for discussion, not a forecast.""")
 
     # ── Scenarios ────────────────────────────────────────────────────────────
     T.section("Base, Upside and Downside", "how the ranking changes if the market moves")
-    scn = _scenarios(adj)
+    scn = _scenarios(adj, D.segment())
     a, b = st.columns([1, 1.2])
     with a:
         fig = go.Figure()
@@ -223,7 +226,7 @@ This is an illustrative model for discussion, not a forecast.""")
 - **Scorecard:** {", ".join(f"{d} {c['weight']}" for d, c in R.DIMENSIONS.items())} (your framework). Each metric scored 1 to 5 by its position among the 20 Nifty Pharma companies.
 - **Lenses:** Current strength {R.LENSES['Current strength']}%, Momentum {R.LENSES['Momentum']}%, Quality {R.LENSES['Quality']}%. Momentum and quality are scored within the six.
 - **Cost of capital:** {R.COST_OF_CAPITAL:.0f}% assumed for the ROIC spread.
-- **Glenmark adjustment:** one-off licensing income X is removed so FY26 margin equals the guided 21.5%: (EBITDA − X) ÷ (Sales − X) = 21.5%, about ₹1,170 Cr.
-- **Sources:** [Screener.in]({SRC[0]['url']}) consolidated accounts for all 25 companies; [Nifty Pharma constituents]({SRC[1]['url']}); company guidance and broker consensus from filings.
+{"- **Glenmark adjustment:** one-off licensing income X is removed so FY26 margin equals the guided 21.5%: (EBITDA − X) ÷ (Sales − X) = 21.5%, about ₹1,170 Cr." if "glenmark" in D.names() else ""}
+- **Sources:** [Screener.in]({SRC[0]['url']}) consolidated accounts for the six companies and the 20 Nifty Pharma companies; [Nifty Pharma constituents]({SRC[1]['url']}); company guidance and broker consensus from filings.
 """)
     T.footer(D.meta())

@@ -120,7 +120,7 @@ def company_insights(cid: str) -> dict:
 
     # ── Regulatory & news ────────────────────────────────────
     st_txt = c["regulatory"]["status"].lower()
-    if "oai" in st_txt or ("warning letter" in st_txt and "close" not in st_txt):
+    if c["regulatory"].get("fda_open", "oai" in st_txt or ("warning letter" in st_txt and "close" not in st_txt)):
         r.append("Open USFDA compliance issue (OAI or warning letter): US supply and new approvals are at risk.")
     news = pd.DataFrame(c.get("news", []))
     if not news.empty:
@@ -138,7 +138,8 @@ def cross_company_signals() -> list[str]:
     """Portfolio-level key insights across the six companies."""
     k = D.kpi_table()
     s = []
-    core = k.drop(index="Glenmark", errors="ignore")  # Glenmark FY26 ROCE inflated by AbbVie licensing income
+    one_off = [c["short"] for c in D.companies() if any("licensing" in n.lower() or "one-off" in n.lower() for n in c.get("data_notes", []))]
+    core = k.drop(index=one_off, errors="ignore")  # one-off income inflates FY26 returns
     best_roce, worst_roce = core["roce"].idxmax(), k["roce"].idxmin()
     fb = D.financial_frame(k.loc[best_roce, "id"]).loc["FY26"]
     fw = D.financial_frame(k.loc[worst_roce, "id"]).loc["FY26"]
@@ -146,8 +147,8 @@ def cross_company_signals() -> list[str]:
     t_b, t_w = fb["sales"] / fb["capital_employed"], fw["sales"] / fw["capital_employed"]
     s.append(f"Return dispersion is wide: {best_roce} earns {k.loc[best_roce, 'roce']:.0f}% ROCE vs {worst_roce} at "
              f"{k.loc[worst_roce, 'roce']:.0f}%. Decomposed, it is mostly margin (EBIT margin {m_b:.0f}% vs {m_w:.0f}%) rather than capital turnover "
-             f"({t_b:.2f}x vs {t_w:.2f}x), though {worst_roce}'s margin is itself held down by R&D and under-loaded new capacity "
-             f"(Glenmark's {k.loc['Glenmark', 'roce']:.0f}% is lifted by one-off licensing income).")
+             f"({t_b:.2f}x vs {t_w:.2f}x)."
+             + (f" {', '.join(one_off)} {'is' if len(one_off) == 1 else 'are'} left out of the best-ROCE pick because FY26 includes one-off income." if one_off else ""))
 
     def _strength(r):
         a = abs(r)
@@ -156,12 +157,15 @@ def cross_company_signals() -> list[str]:
     _, r_inv = D.pooled_correlation("inventory_days", "roce")
     s.append(f"Across 30 company-years, inventory days vs ROCE, link strength {r_inv:+.2f} ({_strength(r_inv)}). "
              + ("high-inventory models systematically earn lower returns." if r_inv <= -0.3 else
-                "Inventory alone doesn't explain returns; it matters most where it is extreme (Alembic 462 d, Ipca 353 d)."))
+                "Inventory alone doesn't explain returns; it matters most where it is extreme ("
+                + ", ".join(f"{n} {v:.0f} d" for n, v in k["inventory_days"].sort_values(ascending=False).head(2).items()) + ")."))
     _, r_cc = D.pooled_correlation("ccc", "roce")
-    s.append(f"Cash cycle vs ROCE, link strength {r_cc:+.2f} ({_strength(r_cc)}). Employee cost % rose for all six FY22–26 "
+    s.append(f"Cash cycle vs ROCE, link strength {r_cc:+.2f} ({_strength(r_cc)}). Employee cost % changed across the six FY22–26 "
              f"(+{(D.panel('employee_pct').iloc[-1] - D.panel('employee_pct').iloc[0]).mean():.1f} points on average). The key FY27 question is whether revenue can grow faster than costs.")
     us_heavy = k[k["us_share"] >= 25].index.tolist()
-    s.append(f"US-heavy names ({', '.join(us_heavy)}) carry the generics-tariff option risk (Jul-2026 proposal); domestic-heavy names (Mankind, Alkem) carry IPM price/volume risk instead.")
+    dom_heavy = k[k["india_share"] >= 50].index.tolist()
+    s.append(f"US-heavy names ({', '.join(us_heavy) or 'none'}) carry the generics-tariff risk (Jul-2026 proposal); "
+             f"India-heavy names ({', '.join(dom_heavy) or 'none'}) carry Indian price and volume risk instead.")
     mat = D.panel("material_pct")
     drop = (mat.iloc[0] - mat.iloc[-1]).sort_values(ascending=False)
     n_fell = int((drop > 0).sum())

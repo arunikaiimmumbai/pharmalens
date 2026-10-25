@@ -1,7 +1,13 @@
 # Finance Lens: Agentic Pharma Intelligence
 
-Live, interactive intelligence dashboard + AI analyst for six Indian pharma companies:
-**Alembic · Ajanta · Ipca · Mankind · Alkem · Glenmark** (consolidated, FY22–FY26 + Q1 FY27).
+Live, interactive intelligence dashboard + AI analyst for two peer sets of Indian pharma companies (consolidated, FY22–FY26 + Q1 FY27),
+chosen at the top of the Overview page. Each set is compared within itself and against the same industry benchmark (the 20 Nifty Pharma companies):
+
+- **Mid-size Pharma** (FY26 sales ₹5,000 to 15,000 Cr): Alembic · Ajanta · Ipca · Mankind · Alkem · Glenmark
+- **Pharma Majors** (FY26 sales above ₹27,000 Cr): Sun Pharma · Dr Reddy's · Cipla · Lupin · Aurobindo · Zydus
+
+The sets are named by size of sales rather than stock-market "cap" labels, which AMFI revises every six months
+(on the 2026 lists Dr Reddy's, Lupin, Zydus and Mankind sit in mid cap). Open `...?segment=major` to start on the Majors.
 
 Prepared by **Arunika Sherry** · IIM Mumbai Mentorship Program · Mentor: **Dr. Phalgun Rudrapatna**
 
@@ -22,7 +28,7 @@ Every page has a **Compare with** bar (Industry = average of the 20 Nifty Pharma
 | 📤 Data Upload | Demo: upload a company's own numbers (template) and benchmark them vs industry; nothing stored |
 | 📚 Sources & Method | Sources, industry members, method, caveats, glossary |
 
-Data files: `data/companies.json` (six companies), `data/industry.json` (Nifty Pharma benchmark), `data/notes.json` (analyst notes).
+Data files: `data/companies.json` (Mid-size Pharma), `data/companies_majors.json` (Pharma Majors, built by `research/build_majors.py`), `data/notes_majors.json`, `data/industry.json` (Nifty Pharma benchmark), `data/notes.json` (analyst notes).
 Rebuild scripts and raw extracts are in `research/`.
 
 ## Cost: ₹0

@@ -1,0 +1,4111 @@
+{
+ "meta": {
+  "title": "Finance Lens: Pharma Majors",
+  "author": "Arunika Sherry",
+  "program": "IIM Mumbai Mentorship Program",
+  "mentor": "Dr. Phalgun Rudrapatna",
+  "as_of": "2026-10-23",
+  "basis": "Consolidated, Indian fiscal year ending 31 March (FY22 = Mar-2022 ... FY26 = Mar-2026). Q1 FY27 = Apr-Jun 2026. All values INR crore unless stated.",
+  "years": [
+   "FY22",
+   "FY23",
+   "FY24",
+   "FY25",
+   "FY26"
+  ],
+  "quarters": [
+   "Q1 FY26",
+   "Q2 FY26",
+   "Q3 FY26",
+   "Q4 FY26",
+   "Q1 FY27"
+  ],
+  "sources": [
+   {
+    "name": "Screener.in consolidated financials (P&L, BS, CF, ratios, cost schedules)",
+    "url": "https://www.screener.in/"
+   },
+   {
+    "name": "NSE/BSE exchange filings: results, press releases, investor presentations, annual reports",
+    "url": "https://www.nseindia.com/companies-listing/corporate-filings-announcements"
+   },
+   {
+    "name": "Company investor relations pages (Sun Pharma, Dr Reddy's, Cipla, Lupin, Aurobindo, Zydus)",
+    "url": ""
+   },
+   {
+    "name": "US FDA warning letters / inspection classification database",
+    "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters"
+   },
+   {
+    "name": "News: Business Standard, Investing.com, Fierce Pharma, Medical Dialogues, Sahi, Kotak Neo, IIFL",
+    "url": ""
+   }
+  ],
+  "sector_news": [
+   {
+    "date": "2026-10-01",
+    "title": "Indian pharma market grew 13.5% in September 2026 (12-month 10.9%); volume only +2.9%, so growth is coming from price and mix",
+    "category": "Market",
+    "sentiment": 1,
+    "impact": "Supports domestic-heavy names (Mankind, Alkem, Ipca, Ajanta). Volume-light growth = pricing & new launches matter more than reach.",
+    "metrics": [
+     "India revenue growth"
+    ],
+    "url": "https://biospectrumindia.com/news/16/28664/astrazeneca-fdc-nutricia-lead-corporate-growth-as-pharma-market-strengthens-in-september-2026.html",
+    "statement_impact": {
+     "pl": "Market growth supports India revenues for all six.",
+     "bs": "No effect.",
+     "cf": "No effect.",
+     "doing": "Companies outgrowing the market: Ajanta, Ipca, Glenmark.",
+     "should": "Track share gains vs the market monthly, by therapy."
+    }
+   },
+   {
+    "date": "2026-09-29",
+    "title": "US Section 232 100% tariff on patented drugs widens; India gets zero-duty eligibility for select specialty categories; generics excluded",
+    "category": "Policy",
+    "sentiment": 0,
+    "impact": "Generic exporters (Alembic, Ajanta, Alkem, Glenmark US) largely outside scope. Specialty/branded (Alembic Pivya, Glenmark Ryaltris) need product-level review.",
+    "metrics": [
+     "US revenue",
+     "EBITDA margin"
+    ],
+    "url": "https://www.business-standard.com/world-news/trump-100-percent-pharma-tariff-india-select-drugs-exemption-126092900121_1.html",
+    "statement_impact": {
+     "pl": "Generics excluded for now; specialty brands may face tariffs.",
+     "bs": "No effect.",
+     "cf": "No effect.",
+     "doing": "Indian firms rely on the generics exclusion.",
+     "should": "Map each company's US product mix by tariff exposure."
+    }
+   },
+   {
+    "date": "2026-07-22",
+    "title": "US President signals generics tariff path: 0% for 2 years from Aug-1, then 100%, then 200% for firms not building US plants",
+    "category": "Policy",
+    "sentiment": -1,
+    "impact": "Medium-term overhang on US-heavy generics (Alembic 36% US, Ajanta 30%, Glenmark 27%, Alkem 20%). Triggers US-footprint / CDMO-partnering strategy questions.",
+    "metrics": [
+     "US revenue",
+     "Valuation"
+    ],
+    "url": "https://www.business-standard.com/industry/news/us-proposal-to-impose-tariffs-on-generic-medicines-could-impact-india-gtri-126072200704_1.html",
+    "statement_impact": {
+     "pl": "If applied, US margins fall sharply after 2 years unless companies build US plants.",
+     "bs": "Possible US plant capex.",
+     "cf": "Capex for US manufacturing.",
+     "doing": "0% for 2 years gives time to adapt.",
+     "should": "US footprint options study: contract manufacturing, partner plants, price strategy."
+    }
+   },
+   {
+    "date": "2026-08-15",
+    "title": "API, solvent & logistics inflation from Middle-East conflict flagged by Glenmark, Mankind, Alkem, Ipca on Q1 calls",
+    "category": "Cost",
+    "sentiment": -1,
+    "impact": "Gross-margin pressure expected for 2+ quarters; backward-integrated players (Ipca, Alembic API) relatively insulated.",
+    "metrics": [
+     "Material cost %",
+     "Gross margin"
+    ],
+    "url": "",
+    "statement_impact": {
+     "pl": "Material and freight costs up, so gross margin falls.",
+     "bs": "Higher inventory value.",
+     "cf": "More cash tied up in stock.",
+     "doing": "Flagged on Q1 calls; API-integrated firms (Alembic, Ipca) are cushioned.",
+     "should": "Procurement and price-pass-through programme; dual sourcing."
+    }
+   }
+  ],
+  "one_offs": "Dr Reddy's and Cipla lost US lenalidomide (generic Revlimid) sales in FY26; Dr Reddy's FY26 includes a ₹450 Cr shelf-stock adjustment; Lupin's FY26 was lifted by limited-competition US products (tolvaptan, mirabegron) that face competition in FY27; Zydus growth includes acquisitions (Amplitude, Assertio); Sun's Organon deal (US$11.75 bn) is pending; Sun (Halol), Cipla (Pithampur), Lupin (Pithampur Unit II) and Aurobindo (Eugia Unit-I) have open US FDA issues.",
+  "regulatory_takeaways": [
+   "<b>Approvals are not revenue.</b> Aurobindo has by far the biggest US book (737 approvals) but the lowest margin and returns of the six; Lupin earns a 30% margin from fewer, harder products. Picking limited-competition products beats volume.",
+   "<b>R&D and margin</b> (link strength {rr}): Zydus (8.4%), Lupin (7.5%) and Dr Reddy's (7.2%) spend the most. Lupin shows the payoff; Dr Reddy's shows the risk when a big product (lenalidomide) ends before the next wave arrives.",
+   "<b>Four of six have an open US FDA issue:</b> Sun (Halol OAI and import alert), Cipla (Pithampur warning letter, 7 new observations Aug 2026), Lupin (Pithampur Unit II OAI) and Aurobindo (Eugia Unit-I warning letter, Aug 2026). Quality is a growth constraint for the majors, not a one-company problem.",
+   "<b>The lenalidomide cliff is visible in the numbers:</b> Dr Reddy's North America fell 22% in FY26 and Cipla's US sales 28% in Q1 FY27, while Sun's US generics fell 9.7%. Biosimilars, GLP-1s and inhalers are the replacements."
+  ]
+ },
+ "companies": [
+  {
+   "id": "sun",
+   "name": "Sun Pharmaceutical Industries",
+   "short": "Sun Pharma",
+   "ticker": "SUNPHARMA.NS",
+   "tagline": "India's largest drugmaker, shifting from US generics to global innovative medicines, now buying Organon",
+   "profile": {
+    "founded": "1983",
+    "hq": "Mumbai, Maharashtra",
+    "leadership": "Dilip Shanghvi (Chairman); Kirti Ganorkar (Managing Director)",
+    "business_model": "India branded formulations (#1, 8.5% share), global innovative medicines (dermatology, ophthalmology, onco-derma), US and emerging-market generics, API.",
+    "description": "Largest pharma company in India (8.5% share, MAT Jun 2026) and #1 by prescriptions across 12 specialist groups. Innovative medicines reached US$1.42 bn in FY26 (about 21% of sales). Net cash about ₹12,400 Cr before the US$11.75 bn Organon deal (announced Apr 2026, close expected Q4 FY27).",
+    "employees_note": "47,000+ employees; India field force 16,000+ (Jun 2026)"
+   },
+   "market": {
+    "mcap_cr": 419404,
+    "price": 1748,
+    "pe": 33.2,
+    "pb": 5.0,
+    "book_value": 348,
+    "div_yield": 0.92,
+    "high_52w": 2048,
+    "low_52w": 1584,
+    "price_date": "2026-10-23",
+    "shareholding": {
+     "Promoters": 52.68,
+     "FIIs": 14.36,
+     "DIIs": 22.27,
+     "Public": 10.7
+    }
+   },
+   "footprint": {
+    "market": "India #1 with 8.5% share (AIOCD MAT Jun 2026), 30 brands in India's top 300. #1 by prescriptions with psychiatrists, neurologists, cardiologists, gastroenterologists, diabetologists and dermatologists. 13th largest in US generics.",
+    "geography": {
+     "India": 33,
+     "US formulations": 29,
+     "Emerging markets": 19,
+     "Rest of world": 15,
+     "API & others": 4
+    },
+    "geography_basis": "FY26 revenue mix (%)",
+    "manufacturing": "40 sites: formulations in India (12), US (3), Bangladesh (2) and 10 other countries; API in India (8), Australia (2), Israel, US and Hungary. Halol (Gujarat) is OAI with the US FDA and under import alert.",
+    "rnd": "FY26 R&D ₹3,554 Cr (6.1% of sales); Q1 FY27 5.4%, with 30% of R&D on innovative medicines. Pipeline: Leqselvi (alopecia), Unloxcyt (skin cancer), Ilumya, Odomzo; semaglutide launched in India and South Africa.",
+    "rnd_pct": 6.1,
+    "therapies": {
+     "Neuro-psychiatry": 19,
+     "Cardiology": 17,
+     "Gastro": 14,
+     "Diabetes": 9,
+     "Pain": 7,
+     "Anti-infectives": 6,
+     "Dermatology": 4,
+     "Others": 24
+    },
+    "therapies_basis": "India therapy mix (%), Sun investor presentation Sep 2026",
+    "plants": 40,
+    "field_force": 16000
+   },
+   "regulatory": {
+    "anda_filed": 677,
+    "anda_approved": 558,
+    "anda_tentative": null,
+    "anda_pending": 119,
+    "us_products_commercialised": null,
+    "dmf_us": null,
+    "q_launches": null,
+    "q_approvals": null,
+    "fda_open": true,
+    "status": "Halol: OAI after the Jun 2025 inspection (8 observations) and still under US import alert. NDAs: 70 filed, 57 approved, 13 pending. 13th largest in US generics.",
+    "as_of": "30-Jun-2026"
+   },
+   "financials": {
+    "sales": [
+     38654.0,
+     43886.0,
+     48497.0,
+     52578.0,
+     58462.0
+    ],
+    "ebitda": [
+     10258.0,
+     11650.0,
+     13018.0,
+     15114.0,
+     16501.0
+    ],
+    "other_income": [
+     -3505.0,
+     459.0,
+     865.0,
+     1444.0,
+     1895.0
+    ],
+    "interest": [
+     127.0,
+     172.0,
+     238.0,
+     231.0,
+     339.0
+    ],
+    "depreciation": [
+     2144.0,
+     2529.0,
+     2557.0,
+     2575.0,
+     2938.0
+    ],
+    "pbt": [
+     4481.0,
+     9408.0,
+     11088.0,
+     13752.0,
+     15119.0
+    ],
+    "tax_pct": [
+     24.0,
+     9.0,
+     13.0,
+     20.0,
+     24.0
+    ],
+    "pat": [
+     3389.0,
+     8513.0,
+     9610.0,
+     10965.0,
+     11509.0
+    ],
+    "equity_capital": [
+     240.0,
+     240.0,
+     240.0,
+     240.0,
+     240.0
+    ],
+    "reserves": [
+     47771.0,
+     55755.0,
+     63427.0,
+     71978.0,
+     83330.0
+    ],
+    "borrowings": [
+     1290.0,
+     6886.0,
+     3274.0,
+     2362.0,
+     4627.0
+    ],
+    "other_liabilities": [
+     20474.0,
+     17831.0,
+     18387.0,
+     17328.0,
+     20210.0
+    ],
+    "total_assets": [
+     69776.0,
+     80712.0,
+     85328.0,
+     91908.0,
+     108407.0
+    ],
+    "fixed_assets": [
+     22665.0,
+     24065.0,
+     23248.0,
+     22586.0,
+     32822.0
+    ],
+    "cwip": [
+     1287.0,
+     4973.0,
+     5354.0,
+     6644.0,
+     3052.0
+    ],
+    "investments": [
+     12849.0,
+     14824.0,
+     15026.0,
+     18354.0,
+     24723.0
+    ],
+    "other_assets": [
+     32975.0,
+     36849.0,
+     41700.0,
+     44324.0,
+     47811.0
+    ],
+    "cfo": [
+     8985.0,
+     4959.0,
+     12135.0,
+     14072.0,
+     12419.0
+    ],
+    "cfi": [
+     -5556.0,
+     -7220.0,
+     -763.0,
+     -5183.0,
+     -10405.0
+    ],
+    "cff": [
+     -5193.0,
+     2376.0,
+     -6710.0,
+     -7906.0,
+     -2513.0
+    ],
+    "debtor_days": [
+     99.0,
+     95.0,
+     85.0,
+     91.0,
+     97.0
+    ],
+    "inventory_days": [
+     315.0,
+     360.0,
+     338.0,
+     348.0,
+     363.0
+    ],
+    "payable_days": [
+     158.0,
+     194.0,
+     194.0,
+     210.0,
+     232.0
+    ],
+    "ccc": [
+     255.0,
+     261.0,
+     229.0,
+     228.0,
+     228.0
+    ],
+    "wc_days": [
+     47.0,
+     40.0,
+     55.0,
+     65.0,
+     54.0
+    ],
+    "roce": [
+     17.0,
+     16.0,
+     17.0,
+     20.0,
+     21.0
+    ],
+    "material_pct": [
+     36.25,
+     29.09,
+     27.64,
+     24.9,
+     26.35
+    ],
+    "employee_pct": [
+     12.84,
+     10.37,
+     11.72,
+     11.73,
+     14.05
+    ],
+    "manufacturing_pct": [
+     9.54,
+     7.36,
+     8.12,
+     7.76,
+     9.27
+    ],
+    "other_cost_pct": [
+     24.24,
+     22.31,
+     25.32,
+     26.97,
+     27.05
+    ],
+    "cash": [
+     535.0,
+     421.0,
+     338.0,
+     911.0,
+     437.0
+    ],
+    "expenses": [
+     28396,
+     32236,
+     35479,
+     37464,
+     41961
+    ],
+    "eps": [
+     13.64,
+     35.32,
+     39.91,
+     45.55,
+     47.84
+    ],
+    "div_payout": [
+     73,
+     33,
+     34,
+     35,
+     33
+    ]
+   },
+   "ttm": {
+    "sales": 59911,
+    "ebitda": 17847,
+    "pat": 12117
+   },
+   "quarterly": {
+    "sales": [
+     13851,
+     14478,
+     15521,
+     14612,
+     15300
+    ],
+    "ebitda": [
+     4302,
+     4527,
+     4948,
+     3954,
+     4418
+    ],
+    "opm": [
+     31,
+     31,
+     32,
+     27,
+     29
+    ],
+    "pat": [
+     2293,
+     3125,
+     3381,
+     2710,
+     2901
+    ]
+   },
+   "guidance": "FY27: revenue growth in high single digits (reiterated after Q1); continued launch spend on Leqselvi and Unloxcyt; tax rate about 27.8% until Organon closes; Organon close expected in Q4 FY27.",
+   "consensus": {
+    "broker": "Not compiled",
+    "rating": "n/a"
+   },
+   "data_notes": [
+    "Organon (US$11.75 bn, about US$6.2 bn of sales) is not in these numbers; close expected Q4 FY27.",
+    "Q1 FY27 includes a ₹167 Cr exceptional charge for Organon deal costs."
+   ],
+   "news": [
+    {
+     "date": "2026-07-31",
+     "title": "Q1 FY27: sales +10.1% to ₹15,184 Cr; PAT +27% to ₹2,895 Cr; US sales −9.7% to US$427 M on lenalidomide erosion",
+     "category": "Results",
+     "sentiment": 1,
+     "impact": "India +16% and innovative medicines +12.8% (US$351 M) offset a weaker US generics book.",
+     "metrics": [
+      "US revenue",
+      "India revenue growth",
+      "EBITDA margin"
+     ],
+     "url": "https://www.business-standard.com/companies/quarterly-results/quarterly-results-sun-pharma-q1fy27-profit-revenue-ebitda-results-126073100858_1.html",
+     "statement_impact": {
+      "pl": "Sales +10.1%; EBITDA margin 28.9% (EBITDA only +2.7% as launch costs rise).",
+      "bs": "No major effect.",
+      "cf": "Strong cash; net cash about US$3.4 bn.",
+      "doing": "Spending to launch Leqselvi and Unloxcyt; guidance kept at high single digits.",
+      "should": "Track launch payback by product; plan US generics decline."
+     }
+    },
+    {
+     "date": "2026-07-24",
+     "title": "Organon shareholders approve the merger with Sun Pharma",
+     "category": "M&A",
+     "sentiment": 0,
+     "impact": "Regulatory approvals still pending; close expected Q4 FY27.",
+     "metrics": [
+      "Capital allocation"
+     ],
+     "url": "https://sunpharma.com/wp-content/uploads/2026/07/PRforOrganonShareholderapproval.pdf",
+     "statement_impact": {
+      "pl": "No effect until close.",
+      "bs": "No effect until close.",
+      "cf": "No effect until close.",
+      "doing": "Completing regulatory filings.",
+      "should": "Integration plan ready for day one."
+     }
+    },
+    {
+     "date": "2026-05-22",
+     "title": "FY26: revenue +11.9% to ₹58,220 Cr; net profit +5% to ₹11,479 Cr; innovative medicines US$1.42 bn",
+     "category": "Results",
+     "sentiment": 1,
+     "impact": "India share rose from 8.1% to 8.4%; US generics flat to down.",
+     "metrics": [
+      "India revenue growth",
+      "PAT"
+     ],
+     "url": "https://www.indianpharmapost.com/news/sun-pharma-reports-fy26-revenue-of-rs-58220-crore-net-profit-at-rs-11479-crore-20314",
+     "statement_impact": {
+      "pl": "Revenue +11.9%; profit +5%.",
+      "bs": "Net cash about ₹12,400 Cr.",
+      "cf": "Strong operating cash.",
+      "doing": "Growing innovative medicines.",
+      "should": "Show returns on innovative R&D separately."
+     }
+    },
+    {
+     "date": "2026-04-27",
+     "title": "Sun Pharma agrees to buy Organon for US$11.75 bn (US$14 a share), its largest-ever deal",
+     "category": "M&A",
+     "sentiment": 0,
+     "impact": "Adds about US$6.2 bn of sales (women's health, biosimilars, Nexplanon); shares +7% on the day.",
+     "metrics": [
+      "Capital allocation",
+      "Debt"
+     ],
+     "url": "https://www.fiercepharma.com/pharma/sun-pharma-strikes-biopharmas-largest-deal-26-1175b-buyout-organon",
+     "statement_impact": {
+      "pl": "Sales would roughly double after close; deal costs hit profit.",
+      "bs": "Large debt and goodwill will be added at close.",
+      "cf": "Cash out at close; Organon brings its own debt.",
+      "doing": "Building global scale in women's health and biosimilars.",
+      "should": "Synergy plan and a fast debt pay-down path; Nexplanon patent-expiry plan."
+     }
+    }
+   ],
+   "working": [
+    "#1 in India with 8.5% share and rising; #1 by prescriptions in six specialist groups",
+    "Innovative medicines reached US$1.42 bn (about 21% of sales) and keep growing double digits",
+    "Net cash about ₹12,400 Cr and almost no debt before Organon",
+    "Highest margin and returns scale in the set: EBITDA about 28%, ROCE 21%"
+   ],
+   "not_working": [
+    "US generics shrinking: US sales −9.7% in Q1 FY27 as lenalidomide fades",
+    "Halol plant still OAI and under import alert",
+    "Launch costs (Leqselvi, Unloxcyt) hold EBITDA growth to +2.7% in Q1 FY27",
+    "Inventory of 363 days is high for a company this size",
+    "Organon adds debt, integration risk and a patent cliff (Nexplanon)"
+   ],
+   "problems": [
+    {
+     "title": "Integrate Organon and protect the balance sheet",
+     "evidence": "US$11.75 bn deal; Organon sales about US$6.2 bn, flat for four years; Nexplanon faces loss of exclusivity.",
+     "answer": "Integration office with a 100-day plan, synergy tracking by function, portfolio pruning of Organon's mature brands and a debt pay-down plan.",
+     "investigate": "Overlap by country and product; Nexplanon erosion curve; manufacturing network across Organon's six EU sites.",
+     "service": "Strategy: M&A integration and synergy capture"
+    },
+    {
+     "title": "Make innovative medicines pay back faster",
+     "evidence": "Innovative sales US$1.42 bn; Q1 FY27 EBITDA +2.7% only, as launch spend on Leqselvi and Unloxcyt rises.",
+     "answer": "Launch excellence: payer access, prescriber targeting and a stop-or-scale rule for each launch.",
+     "investigate": "Sales and spend per brand; payer coverage; prescriber growth curves.",
+     "service": "Commercial excellence: specialty launch"
+    },
+    {
+     "title": "Plan for a shrinking US generics book",
+     "evidence": "US formulations US$427 M in Q1 FY27, down 9.7%; lenalidomide fading; 13th in US generics.",
+     "answer": "Portfolio triage: keep complex, differentiated generics; exit or out-license low-margin products; shift plant capacity.",
+     "investigate": "Product-level margin and erosion; plant loading by product.",
+     "service": "Strategy: portfolio and network"
+    },
+    {
+     "title": "Clear Halol with the US FDA",
+     "evidence": "OAI after the Jun 2025 inspection (8 observations); still under import alert.",
+     "answer": "Quality remediation programme with data-integrity controls and independent readiness audits; move key US products to clean sites.",
+     "investigate": "Observation themes; product-to-site map; FDA timeline.",
+     "service": "Risk: quality and regulatory remediation"
+    },
+    {
+     "title": "Free cash from 363 days of inventory",
+     "evidence": "Inventory days rose from 315 (FY22) to 363 (FY26); cash cycle 228 days.",
+     "answer": "Inventory diagnostic by business, S&OP and SKU rationalisation; target 30 to 60 fewer days.",
+     "investigate": "Inventory by business and stage; SKU tail.",
+     "service": "Operations: working capital"
+    }
+   ],
+   "digital": {
+    "Commercial & omnichannel": 3,
+    "Supply chain & S&OP": 3,
+    "Manufacturing 4.0 & quality": 2,
+    "R&D & regulatory": 3,
+    "Finance & ERP": 3,
+    "Data & AI": 3
+   },
+   "consulting": [
+    "Organon integration and synergies",
+    "Specialty launch excellence",
+    "US generics portfolio triage",
+    "Halol remediation",
+    "Inventory release"
+   ],
+   "swot": {
+    "strengths": [
+     "#1 in India (8.5% share)",
+     "Innovative medicines US$1.42 bn",
+     "Net cash before Organon",
+     "Global scale: 40 sites, 100+ countries"
+    ],
+    "weaknesses": [
+     "US generics declining",
+     "Halol OAI and import alert",
+     "Inventory 363 days",
+     "Launch costs slow profit growth"
+    ],
+    "opportunities": [
+     "Organon adds women's health and biosimilars",
+     "Leqselvi and Unloxcyt ramp",
+     "Semaglutide in India and emerging markets",
+     "India chronic growth"
+    ],
+    "threats": [
+     "Organon debt and integration risk",
+     "Nexplanon patent expiry",
+     "US price erosion and tariffs",
+     "FDA actions at more sites"
+    ]
+   },
+   "brands": {
+    "summary": "India #1 with 8.5% share and 30 brands in India's top 300. Strongest in brain and nerve (19% of India sales), heart (17%) and stomach (14%).",
+    "therapy_basis": "Share of Sun's India sales (%), investor presentation Sep 2026",
+    "therapies": [
+     {
+      "therapy": "Neuro-psychiatry",
+      "value": 19,
+      "detail": "19% of India sales; #1 with psychiatrists and neurologists"
+     },
+     {
+      "therapy": "Cardiology",
+      "value": 17,
+      "detail": "17%; #1 with cardiologists"
+     },
+     {
+      "therapy": "Gastro",
+      "value": 14,
+      "detail": "14%; #1 with gastroenterologists"
+     },
+     {
+      "therapy": "Diabetes",
+      "value": 9,
+      "detail": "9%; #1 with diabetologists"
+     },
+     {
+      "therapy": "Pain",
+      "value": 7,
+      "detail": "7%"
+     },
+     {
+      "therapy": "Anti-infectives",
+      "value": 6,
+      "detail": "6%"
+     },
+     {
+      "therapy": "Dermatology",
+      "value": 4,
+      "detail": "4%; #1 with dermatologists"
+     }
+    ],
+    "brand_basis": "Company disclosures (global innovative medicines)",
+    "brands": [
+     {
+      "name": "Ilumya",
+      "therapy": "Psoriasis (global)",
+      "evidence": "Lead innovative brand; growing in new markets",
+      "basis": "Company"
+     },
+     {
+      "name": "Leqselvi",
+      "therapy": "Alopecia (US)",
+      "evidence": "1,000+ prescribers by Jun 2026",
+      "basis": "Company"
+     },
+     {
+      "name": "Unloxcyt",
+      "therapy": "Skin cancer (US)",
+      "evidence": "Gaining formulary access at cancer centres",
+      "basis": "Company"
+     },
+     {
+      "name": "Cequa",
+      "therapy": "Dry eye (US)",
+      "evidence": "Named a growth driver for FY27",
+      "basis": "Company"
+     },
+     {
+      "name": "Odomzo",
+      "therapy": "Skin cancer",
+      "evidence": "Launched 2026, growing month on month",
+      "basis": "Company"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Sun Pharma investor presentation, Sep 2026",
+      "url": "https://sunpharma.com/wp-content/uploads/2026/09/SPIL-IR-Presentation-Sept-2026-INR-1.pdf"
+     },
+     {
+      "title": "Investing.com: Sun Pharma Q1 FY27 earnings call",
+      "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-sun-pharma-q1-2026-sales-rise-101-as-specialty-gains-offset-us-weakness-93CH-4828753"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "16,000+ reps plus specialty launches in the US need precise targeting.",
+     "consultant": "Omnichannel and rep-targeting analytics for India and US specialty.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Sun Pharma investor presentation, Sep 2026",
+       "url": "https://sunpharma.com/wp-content/uploads/2026/09/SPIL-IR-Presentation-Sept-2026-INR-1.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Inventory 363 days across 40 sites.",
+     "consultant": "Network S&OP and inventory optimisation.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 2,
+     "status": "Weak",
+     "doing": "Halol remains OAI with an import alert.",
+     "gap": "Repeat FDA findings at Halol.",
+     "consultant": "Electronic quality systems and data-integrity monitoring across US-facing sites.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Bajaj Broking: FDA classifies Sun Pharma Halol as OAI, import alert stays",
+       "url": "https://www.bajajbroking.in/share-market-news/fda-classifies-sun-pharma-halol-facility-as-oai-import-alert-stays"
+      }
+     ]
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Innovative pipeline plus 119 pending ANDAs.",
+     "consultant": "Regulatory operations automation and AI-assisted dossiers.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Organon doubles the company: two finance systems to merge.",
+     "consultant": "Finance and ERP integration for Organon.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "No disclosed data or AI programme at this scale.",
+     "consultant": "Enterprise data foundation and AI use cases (launch analytics, demand).",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ],
+   "color": "#1D4ED8"
+  },
+  {
+   "id": "drreddy",
+   "name": "Dr. Reddy's Laboratories",
+   "short": "Dr Reddy's",
+   "ticker": "DRREDDY.NS",
+   "tagline": "Global generics and API player rebuilding growth after the US lenalidomide cliff, betting on semaglutide and biosimilars",
+   "profile": {
+    "founded": "1984",
+    "hq": "Hyderabad, Telangana",
+    "leadership": "K. Satish Reddy (Chairman); G. V. Prasad (Co-Chairman and MD); Erez Israeli (CEO)",
+    "business_model": "North America generics, emerging markets, India branded, Europe (incl. acquired NRT brands), API and services (PSAI, Aurigene CDMO).",
+    "description": "FY26 revenue ₹33,594 Cr (+3.2%) as US lenalidomide (generic Revlimid) faded; North America fell 22%. Emerging markets (+23%), India (+16%) and Europe (+55% with NRT) grew. Net cash ₹3,270 Cr. Semaglutide launched in India (Obeda) and Canada; abatacept biosimilar FDA goal date 22 Dec 2026.",
+    "employees_note": "India rank #9 by quarter, #10 by year (IQVIA Mar 2026)"
+   },
+   "market": {
+    "mcap_cr": 102624,
+    "price": 1230,
+    "pe": 36.6,
+    "pb": 2.6,
+    "book_value": 465,
+    "div_yield": 0.65,
+    "high_52w": 1415,
+    "low_52w": 1080,
+    "price_date": "2026-10-23",
+    "shareholding": {
+     "Promoters": 26.63,
+     "FIIs": 20.3,
+     "DIIs": 31.87,
+     "Public": 21.18
+    }
+   },
+   "footprint": {
+    "market": "India #9 to #10 (IQVIA Mar 2026), 15 brands in India's top 300. North America is the largest market but shrinking without lenalidomide; Europe boosted by acquired nicotine-replacement (NRT) brands.",
+    "geography": {
+     "North America": 34,
+     "Emerging markets": 20,
+     "India": 19,
+     "Europe": 17,
+     "PSAI (API & services)": 10
+    },
+    "geography_basis": "FY26 revenue mix (%)",
+    "manufacturing": "Formulation and API plants in India (Hyderabad, Visakhapatnam, Baddi), plus sites in the US, UK and Mexico. Aurigene CDMO earned over US$100 M in the 12 months to Sep 2026.",
+    "rnd": "FY26 R&D ₹2,406 Cr (7.2% of sales, down 12%); guided back to 7 to 8%. Pipeline: semaglutide (India, Canada, 10 countries approved), abatacept biosimilar (FDA goal 22 Dec 2026), rituximab biosimilar (FDA approved), denosumab.",
+    "rnd_pct": 7.2,
+    "therapies": {
+     "North America generics": 34,
+     "Emerging markets": 20,
+     "India branded": 19,
+     "Europe": 17,
+     "API & services": 10
+    },
+    "therapies_basis": "Business mix (%); therapy split not disclosed",
+    "plants": null,
+    "field_force": null
+   },
+   "regulatory": {
+    "anda_filed": null,
+    "anda_approved": null,
+    "anda_tentative": null,
+    "anda_pending": 75,
+    "us_products_commercialised": null,
+    "dmf_us": null,
+    "q_launches": null,
+    "q_approvals": null,
+    "fda_open": false,
+    "status": "75 ANDAs pending (43 Paragraph IV) plus 2 NDAs (31-Mar-2026); 15 ANDAs filed in FY26. No plant-level FDA action disclosed in the Q2 FY27 call. Abatacept biosimilar goal date 22 Dec 2026.",
+    "as_of": "30-Sep-2026"
+   },
+   "financials": {
+    "sales": [
+     21545.0,
+     24670.0,
+     28011.0,
+     32644.0,
+     33700.0
+    ],
+    "ebitda": [
+     3768.0,
+     6470.0,
+     7933.0,
+     8547.0,
+     6454.0
+    ],
+    "other_income": [
+     555.0,
+     971.0,
+     909.0,
+     1119.0,
+     1372.0
+    ],
+    "interest": [
+     96.0,
+     143.0,
+     171.0,
+     283.0,
+     374.0
+    ],
+    "depreciation": [
+     1165.0,
+     1250.0,
+     1470.0,
+     1704.0,
+     2059.0
+    ],
+    "pbt": [
+     3061.0,
+     6048.0,
+     7201.0,
+     7680.0,
+     5393.0
+    ],
+    "tax_pct": [
+     29.0,
+     25.0,
+     23.0,
+     25.0,
+     23.0
+    ],
+    "pat": [
+     2182.0,
+     4507.0,
+     5578.0,
+     5725.0,
+     4158.0
+    ],
+    "equity_capital": [
+     83.0,
+     83.0,
+     83.0,
+     83.0,
+     84.0
+    ],
+    "reserves": [
+     19129.0,
+     23203.0,
+     28171.0,
+     33466.0,
+     37808.0
+    ],
+    "borrowings": [
+     3384.0,
+     1347.0,
+     2002.0,
+     4677.0,
+     7734.0
+    ],
+    "other_liabilities": [
+     7149.0,
+     7576.0,
+     8523.0,
+     9797.0,
+     10951.0
+    ],
+    "total_assets": [
+     29746.0,
+     32209.0,
+     38780.0,
+     48023.0,
+     56577.0
+    ],
+    "fixed_assets": [
+     8122.0,
+     9219.0,
+     10426.0,
+     18226.0,
+     22063.0
+    ],
+    "cwip": [
+     1293.0,
+     1030.0,
+     1419.0,
+     2466.0,
+     1460.0
+    ],
+    "investments": [
+     2616.0,
+     4986.0,
+     4930.0,
+     4051.0,
+     5285.0
+    ],
+    "other_assets": [
+     17715.0,
+     16974.0,
+     22004.0,
+     23280.0,
+     27768.0
+    ],
+    "cfo": [
+     2811.0,
+     5888.0,
+     4543.0,
+     4643.0,
+     5674.0
+    ],
+    "cfi": [
+     -2565.0,
+     -4109.0,
+     -4034.0,
+     -5785.0,
+     -6425.0
+    ],
+    "cff": [
+     -242.0,
+     -2686.0,
+     -376.0,
+     1891.0,
+     829.0
+    ],
+    "debtor_days": [
+     113.0,
+     107.0,
+     105.0,
+     101.0,
+     110.0
+    ],
+    "inventory_days": [
+     250.0,
+     232.0,
+     283.0,
+     260.0,
+     228.0
+    ],
+    "payable_days": [
+     111.0,
+     108.0,
+     116.0,
+     97.0,
+     91.0
+    ],
+    "ccc": [
+     252.0,
+     231.0,
+     271.0,
+     264.0,
+     247.0
+    ],
+    "wc_days": [
+     61.0,
+     84.0,
+     118.0,
+     69.0,
+     68.0
+    ],
+    "roce": [
+     14.0,
+     27.0,
+     27.0,
+     23.0,
+     13.0
+    ],
+    "material_pct": [
+     35.03,
+     29.89,
+     25.86,
+     26.24,
+     32.81
+    ],
+    "employee_pct": [
+     16.98,
+     16.76,
+     15.91,
+     14.28,
+     17.36
+    ],
+    "manufacturing_pct": [
+     9.48,
+     9.76,
+     10.32,
+     10.51,
+     10.51
+    ],
+    "other_cost_pct": [
+     20.44,
+     18.6,
+     17.49,
+     16.85,
+     20.24
+    ],
+    "cash": [
+     2030.0,
+     646.0,
+     1217.0,
+     977.0,
+     1958.0
+    ],
+    "expenses": [
+     17777,
+     18200,
+     20078,
+     24097,
+     27246
+    ],
+    "eps": [
+     26.23,
+     54.14,
+     66.87,
+     67.77,
+     50.27
+    ],
+    "div_payout": [
+     23,
+     15,
+     12,
+     12,
+     16
+    ]
+   },
+   "ttm": {
+    "sales": 33097,
+    "ebitda": 4853,
+    "pat": 2760
+   },
+   "quarterly": {
+    "sales": [
+     8545,
+     8828,
+     8753,
+     7546,
+     8100
+    ],
+    "ebitda": [
+     2278,
+     2010,
+     1888,
+     382,
+     860
+    ],
+    "opm": [
+     27,
+     23,
+     22,
+     5,
+     11
+    ],
+    "pat": [
+     1418,
+     1337,
+     1190,
+     221,
+     436
+    ]
+   },
+   "guidance": "FY27: EBITDA margin 20%+ (freight and raw-material costs about 1 point drag); R&D 7 to 8% of sales; capex ₹1,600 to 1,700 Cr; semaglutide relaunch Nov 2026; abatacept FDA decision 22 Dec 2026.",
+   "consensus": {
+    "broker": "Not compiled",
+    "rating": "n/a"
+   },
+   "data_notes": [
+    "FY24 and FY25 were lifted by US lenalidomide (generic Revlimid) sales, which ended in FY26.",
+    "FY26 includes a ₹450 Cr one-time shelf-stock adjustment in North America; Q4 FY26 margin 5%.",
+    "Europe includes nicotine-replacement (NRT) brands acquired from Haleon."
+   ],
+   "news": [
+    {
+     "date": "2026-10-23",
+     "title": "Q2 FY27: revenue −1.5% to ₹8,671 Cr; PAT −36% to ₹925 Cr; India +17%, emerging markets +24%",
+     "category": "Results",
+     "sentiment": -1,
+     "impact": "Lenalidomide loss still weighs on North America; base business grew double digits.",
+     "metrics": [
+      "US revenue",
+      "EBITDA margin",
+      "PAT"
+     ],
+     "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/",
+     "statement_impact": {
+      "pl": "EBITDA −24% to ₹1,783 Cr (20.6% margin).",
+      "bs": "Net cash US$261 M.",
+      "cf": "Capex cut to ₹1,600 to 1,700 Cr.",
+      "doing": "Growing India and emerging markets; semaglutide relaunch in Nov.",
+      "should": "Margin plan for the post-lenalidomide base."
+     }
+    },
+    {
+     "date": "2026-10-23",
+     "title": "Semaglutide API scale-up problem fixed; relaunch planned for November 2026",
+     "category": "Regulatory",
+     "sentiment": 0,
+     "impact": "Some API batches were out of specification; launches paused.",
+     "metrics": [
+      "New launches"
+     ],
+     "url": "https://www.fool.com/earnings/call-transcripts/2026/10/23/dr-reddys-rdy-q2-2027-earnings-call-transcript/",
+     "statement_impact": {
+      "pl": "Lost semaglutide sales in Q1 and Q2.",
+      "bs": "No major effect.",
+      "cf": "No major effect.",
+      "doing": "Fixed the API scale-up.",
+      "should": "Supply-assurance plan before relaunch."
+     }
+    },
+    {
+     "date": "2026-07-22",
+     "title": "Q1 FY27: PAT −69% to ₹444 Cr; revenue −6%; ₹240 Cr semaglutide API impact; shares hit 52-week low",
+     "category": "Results",
+     "sentiment": -1,
+     "impact": "Worst quarter in years: lenalidomide gone and semaglutide delayed.",
+     "metrics": [
+      "PAT",
+      "EBITDA margin",
+      "US revenue"
+     ],
+     "url": "https://www.freepressjournal.in/business/dr-reddys-q1-fy27-consolidated-profit-declines-69-to-4435-crore-revenues-dip-6",
+     "statement_impact": {
+      "pl": "EBITDA margin about 11%.",
+      "bs": "Write-downs on semaglutide API.",
+      "cf": "Lower cash generation.",
+      "doing": "Remediating the API process.",
+      "should": "Cost reset and launch-risk controls."
+     }
+    },
+    {
+     "date": "2026-05-12",
+     "title": "FY26: revenue +3.2% to ₹33,594 Cr; PAT −24%; ₹450 Cr shelf-stock adjustment in North America",
+     "category": "Results",
+     "sentiment": -1,
+     "impact": "North America −22% as lenalidomide ended; Europe +55% with NRT.",
+     "metrics": [
+      "US revenue",
+      "PAT"
+     ],
+     "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm",
+     "statement_impact": {
+      "pl": "EBITDA margin 22.8% (company basis); PAT −24%.",
+      "bs": "Net cash ₹3,270 Cr.",
+      "cf": "Steady operating cash.",
+      "doing": "Launched semaglutide in India on day one (Obeda).",
+      "should": "Replace lenalidomide profit with biosimilars and GLP-1s."
+     }
+    }
+   ],
+   "working": [
+    "India (+16% FY26, +17% Q2 FY27) and emerging markets (+23%) growing fast",
+    "Net cash balance sheet (₹3,270 Cr at Mar 2026)",
+    "Biosimilar and GLP-1 pipeline: rituximab approved, abatacept goal date Dec 2026, semaglutide approved in 10 countries",
+    "Aurigene CDMO crossed US$100 M revenue"
+   ],
+   "not_working": [
+    "US lenalidomide cliff: North America −22% in FY26",
+    "Margins collapsed: Q4 FY26 5%, Q1 FY27 11%",
+    "Semaglutide API problem cost ₹240 Cr and delayed launches",
+    "ROCE fell from 27% (FY24) to 13% (FY26)",
+    "R&D cut 12% in FY26 while it needs new growth"
+   ],
+   "problems": [
+    {
+     "title": "Replace the lenalidomide profit pool",
+     "evidence": "North America −22% in FY26; ROCE 27% → 13%; EBITDA margin (Screener) 28% → 19%.",
+     "answer": "Portfolio strategy: size the gap, then prioritise biosimilars, GLP-1s and complex generics by value and timing.",
+     "investigate": "Product-level profit bridge FY25 to FY27; launch calendar.",
+     "service": "Strategy: growth and portfolio"
+    },
+    {
+     "title": "De-risk semaglutide supply and launches",
+     "evidence": "API batches out of specification; ₹240 Cr hit in Q1; relaunch Nov 2026.",
+     "answer": "Technical transfer and scale-up review; second-source API; launch readiness by country.",
+     "investigate": "Root cause; batch success rates; country launch plan.",
+     "service": "Operations: manufacturing and supply risk"
+    },
+    {
+     "title": "Reset the cost base for a smaller US business",
+     "evidence": "SG&A 32% of revenue in Q2 FY27; gross margin −254 bps.",
+     "answer": "Zero-based review of SG&A and US infrastructure; procurement and freight programme.",
+     "investigate": "Cost by function vs peers; US fixed costs.",
+     "service": "Operations: cost transformation"
+    },
+    {
+     "title": "Scale emerging markets and India profitably",
+     "evidence": "Emerging markets +23% (FY26) and India +16%; now 39% of sales.",
+     "answer": "Market prioritisation, India field-force productivity and in-licensing.",
+     "investigate": "Profit by country; rep productivity.",
+     "service": "Commercial excellence"
+    },
+    {
+     "title": "Win the abatacept biosimilar launch",
+     "evidence": "FDA goal 22 Dec 2026; management sees 15 to 25% share of the IV market; risk of a complete response letter.",
+     "answer": "Launch plan with payer contracting and a backup timeline.",
+     "investigate": "Payer mix; competitor timing; CRL scenarios.",
+     "service": "Commercial: launch excellence"
+    }
+   ],
+   "digital": {
+    "Commercial & omnichannel": 3,
+    "Supply chain & S&OP": 3,
+    "Manufacturing 4.0 & quality": 3,
+    "R&D & regulatory": 3,
+    "Finance & ERP": 3,
+    "Data & AI": 3
+   },
+   "consulting": [
+    "Post-lenalidomide portfolio strategy",
+    "Semaglutide supply de-risking",
+    "Cost transformation",
+    "India and EM commercial excellence",
+    "Biosimilar launch"
+   ],
+   "swot": {
+    "strengths": [
+     "Net cash balance sheet",
+     "India and emerging markets growing fast",
+     "Biosimilar and GLP-1 pipeline",
+     "API and CDMO capability"
+    ],
+    "weaknesses": [
+     "Lenalidomide cliff: North America −22%",
+     "Margins at multi-year lows",
+     "Semaglutide API failure",
+     "ROCE halved to 13%"
+    ],
+    "opportunities": [
+     "Semaglutide across 10+ countries",
+     "Abatacept and rituximab biosimilars",
+     "Dengue vaccine (QDENGA) in India",
+     "Aurigene CDMO growth"
+    ],
+    "threats": [
+     "US price erosion and tariffs",
+     "Biosimilar CRL risk",
+     "Freight and raw-material inflation",
+     "GLP-1 price competition"
+    ]
+   },
+   "brands": {
+    "summary": "India #9 to #10 with 15 brands in India's top 300. Fast growth in India (+16%) and emerging markets (+23%) while North America shrinks.",
+    "therapy_basis": "Business mix (% of FY26 sales); therapy split not disclosed",
+    "therapies": [
+     {
+      "therapy": "North America generics",
+      "value": 34,
+      "detail": "34%, down 22% in FY26"
+     },
+     {
+      "therapy": "Emerging markets",
+      "value": 20,
+      "detail": "20%, up 23%"
+     },
+     {
+      "therapy": "India branded",
+      "value": 19,
+      "detail": "19%, up 16%"
+     },
+     {
+      "therapy": "Europe",
+      "value": 17,
+      "detail": "17%, up 55% with NRT"
+     },
+     {
+      "therapy": "API and services",
+      "value": 10,
+      "detail": "10%, up 3%"
+     }
+    ],
+    "brand_basis": "Company disclosures",
+    "brands": [
+     {
+      "name": "Obeda (semaglutide)",
+      "therapy": "Diabetes and weight (India)",
+      "evidence": "Launched on day one of loss of exclusivity",
+      "basis": "Company"
+     },
+     {
+      "name": "Nicotinell and NRT brands",
+      "therapy": "Smoking cessation (Europe)",
+      "evidence": "Drove Europe +55% in FY26",
+      "basis": "Company"
+     },
+     {
+      "name": "Progynova",
+      "therapy": "Hormone therapy (India)",
+      "evidence": "Acquired; entry into hormone therapy",
+      "basis": "Company"
+     },
+     {
+      "name": "QDENGA",
+      "therapy": "Dengue vaccine (India, with Takeda)",
+      "evidence": "Approved; launch planned H1 2027",
+      "basis": "Company"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Dr. Reddy's Q4 and FY26 results (SEC filing)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000301/rdy0894_ex99-2.htm"
+     },
+     {
+      "title": "Kotak Neo: Dr. Reddy's Q2 FY27 results",
+      "url": "https://www.kotakneo.com/news/stocks/dr-reddys-q2-fy-27-results-share-price-in-focus/"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "India and EM are now the growth engine; rep productivity matters.",
+     "consultant": "Omnichannel and targeting analytics for India and EM.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Semaglutide API failure shows scale-up and supply-risk gaps.",
+     "consultant": "Supply-risk control tower and S&OP for launches.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Motley Fool: Dr. Reddy's Q2 FY27 earnings call transcript",
+       "url": "https://www.fool.com/earnings/call-transcripts/2026/10/23/dr-reddys-rdy-q2-2027-earnings-call-transcript/"
+      }
+     ]
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Out-of-spec API batches at scale-up.",
+     "consultant": "Process analytics and digital batch release for complex APIs and peptides.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Biosimilar and GLP-1 filings in many countries at once.",
+     "consultant": "Regulatory operations automation for multi-country filings.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Cost base built for a bigger US business.",
+     "consultant": "Zero-based budgeting with cost analytics.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "No disclosed enterprise AI programme.",
+     "consultant": "AI use cases in demand, pricing and portfolio selection.",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ],
+   "color": "#0E9F9A"
+  },
+  {
+   "id": "cipla",
+   "name": "Cipla",
+   "short": "Cipla",
+   "ticker": "CIPLA.NS",
+   "tagline": "India's respiratory leader with a debt-free balance sheet, rebuilding US growth through complex inhalers",
+   "profile": {
+    "founded": "1935",
+    "hq": "Mumbai, Maharashtra",
+    "leadership": "Y. K. Hamied (Chairman); Achin Gupta (MD and Global CEO since Apr 2026)",
+    "business_model": "One India (branded Rx, trade generics, consumer health), North America (complex generics, inhalers, peptides), South Africa and Africa, emerging markets and Europe, API.",
+    "description": "FY26 revenue ₹28,163 Cr; India about 45% (crossed ₹12,680 Cr). Respiratory leader: Foracort crossed ₹1,000 Cr. Net cash over ₹10,500 Cr. US hit by the end of lenalidomide and a lanreotide supply break; generic Advair (Jul 2026) and Ventolin approvals rebuild the inhaler pipeline.",
+    "employees_note": "R&D about 7% of revenue (nearly ₹2,000 Cr in FY26)"
+   },
+   "market": {
+    "mcap_cr": 108093,
+    "price": 1338,
+    "pe": 30.2,
+    "pb": 3.1,
+    "book_value": 426,
+    "div_yield": 0.97,
+    "high_52w": 1599,
+    "low_52w": 1166,
+    "price_date": "2026-10-23",
+    "shareholding": {
+     "Promoters": 29.2,
+     "FIIs": 20.24,
+     "DIIs": 34.61,
+     "Public": 15.93
+    }
+   },
+   "footprint": {
+    "market": "India is about 45% of sales; record India quarter of ₹3,452 Cr in Q1 FY27 (+12%), branded Rx +15.4%. Respiratory leader in India (Foracort above ₹1,000 Cr). US about 24% of sales.",
+    "geography": {
+     "India": 45,
+     "North America": 24,
+     "Africa": 15,
+     "Emerging markets & Europe": 13,
+     "Others": 3
+    },
+    "geography_basis": "FY26 revenue mix (%)",
+    "manufacturing": "Plants in India (Goa, Pithampur, Indore, Bengaluru, Patalganga, Kurkumbh), US (InvaGen, New York; Fall River) and Africa. Pithampur under FDA warning letter (Nov 2023); re-inspection Aug 2026 gave 7 observations. Goa, Bengaluru and Navi Mumbai VAI or NAI.",
+    "rnd": "FY26 R&D nearly ₹2,000 Cr (about 7% of revenue). Pipeline: respiratory (generic Advair, Ventolin, Dulera), peptides (lanreotide), inhaled insulin partnership with MannKind.",
+    "rnd_pct": 7.0,
+    "therapies": {
+     "Respiratory": 30,
+     "Anti-infectives": 15,
+     "Cardio and diabetes": 15,
+     "Urology": 8,
+     "Consumer health": 10,
+     "Others": 22
+    },
+    "therapies_basis": "Indicative India mix (company commentary; exact split not disclosed)",
+    "plants": null,
+    "field_force": null
+   },
+   "regulatory": {
+    "anda_filed": null,
+    "anda_approved": null,
+    "anda_tentative": null,
+    "anda_pending": null,
+    "us_products_commercialised": null,
+    "dmf_us": null,
+    "q_launches": null,
+    "q_approvals": null,
+    "fda_open": true,
+    "status": "Pithampur: under US FDA warning letter (Nov 2023); re-inspection 17 to 25 Aug 2026 gave a Form 483 with 7 observations. Goa VAI; InvaGen (NY) 1 observation; Indore re-inspection due.",
+    "as_of": "25-Aug-2026"
+   },
+   "financials": {
+    "sales": [
+     21763.0,
+     22753.0,
+     25774.0,
+     27548.0,
+     28163.0
+    ],
+    "ebitda": [
+     4553.0,
+     5027.0,
+     6291.0,
+     7128.0,
+     5883.0
+    ],
+    "other_income": [
+     99.0,
+     293.0,
+     552.0,
+     862.0,
+     606.0
+    ],
+    "interest": [
+     106.0,
+     110.0,
+     90.0,
+     62.0,
+     54.0
+    ],
+    "depreciation": [
+     1052.0,
+     1172.0,
+     1051.0,
+     1107.0,
+     1211.0
+    ],
+    "pbt": [
+     3493.0,
+     4038.0,
+     5702.0,
+     6821.0,
+     5224.0
+    ],
+    "tax_pct": [
+     27.0,
+     30.0,
+     27.0,
+     22.0,
+     26.0
+    ],
+    "pat": [
+     2547.0,
+     2833.0,
+     4154.0,
+     5269.0,
+     3862.0
+    ],
+    "equity_capital": [
+     161.0,
+     161.0,
+     161.0,
+     162.0,
+     162.0
+    ],
+    "reserves": [
+     20680.0,
+     23246.0,
+     26545.0,
+     31032.0,
+     34270.0
+    ],
+    "borrowings": [
+     1056.0,
+     803.0,
+     559.0,
+     438.0,
+     614.0
+    ],
+    "other_liabilities": [
+     4960.0,
+     5089.0,
+     5267.0,
+     5702.0,
+     7297.0
+    ],
+    "total_assets": [
+     26857.0,
+     29300.0,
+     32533.0,
+     37334.0,
+     42343.0
+    ],
+    "fixed_assets": [
+     9683.0,
+     9160.0,
+     9607.0,
+     10006.0,
+     12434.0
+    ],
+    "cwip": [
+     766.0,
+     1093.0,
+     1153.0,
+     1566.0,
+     2042.0
+    ],
+    "investments": [
+     2551.0,
+     3662.0,
+     5449.0,
+     7933.0,
+     8223.0
+    ],
+    "other_assets": [
+     13857.0,
+     15384.0,
+     16323.0,
+     17828.0,
+     19643.0
+    ],
+    "cfo": [
+     3326.0,
+     3238.0,
+     4134.0,
+     5005.0,
+     3940.0
+    ],
+    "cfi": [
+     -1858.0,
+     -2376.0,
+     -2982.0,
+     -3682.0,
+     -2234.0
+    ],
+    "cff": [
+     -1600.0,
+     -958.0,
+     -1200.0,
+     -1293.0,
+     -1234.0
+    ],
+    "debtor_days": [
+     57.0,
+     65.0,
+     68.0,
+     73.0,
+     73.0
+    ],
+    "inventory_days": [
+     230.0,
+     228.0,
+     217.0,
+     231.0,
+     252.0
+    ],
+    "payable_days": [
+     108.0,
+     112.0,
+     102.0,
+     116.0,
+     123.0
+    ],
+    "ccc": [
+     180.0,
+     181.0,
+     182.0,
+     188.0,
+     202.0
+    ],
+    "wc_days": [
+     95.0,
+     113.0,
+     120.0,
+     128.0,
+     106.0
+    ],
+    "roce": [
+     17.0,
+     18.0,
+     23.0,
+     23.0,
+     15.0
+    ],
+    "material_pct": [
+     38.53,
+     34.4,
+     30.66,
+     28.72,
+     31.53
+    ],
+    "employee_pct": [
+     13.87,
+     16.67,
+     16.31,
+     16.04,
+     17.65
+    ],
+    "manufacturing_pct": [
+     7.59,
+     6.75,
+     7.66,
+     8.74,
+     9.74
+    ],
+    "other_cost_pct": [
+     15.89,
+     18.81,
+     18.32,
+     16.15,
+     17.71
+    ],
+    "cash": [
+     1428.0,
+     966.0,
+     333.0,
+     278.0,
+     519.0
+    ],
+    "expenses": [
+     17210,
+     17726,
+     19483,
+     20420,
+     22280
+    ],
+    "eps": [
+     31.19,
+     34.71,
+     51.05,
+     65.28,
+     48.02
+    ],
+    "div_payout": [
+     16,
+     24,
+     25,
+     25,
+     27
+    ]
+   },
+   "ttm": {
+    "sales": 28324,
+    "ebitda": 5297,
+    "pat": 3356
+   },
+   "quarterly": {
+    "sales": [
+     6957,
+     7589,
+     7074,
+     6541,
+     7119
+    ],
+    "ebitda": [
+     1778,
+     1895,
+     1255,
+     955,
+     1192
+    ],
+    "opm": [
+     26,
+     25,
+     18,
+     15,
+     17
+    ],
+    "pat": [
+     1292,
+     1353,
+     674,
+     543,
+     786
+    ]
+   },
+   "guidance": "FY27: EBITDA margin 18.5 to 20% (recovery weighted to H2); US exit run-rate of US$1 bn by end FY27 on complex launches (generic Advair, Ventolin).",
+   "consensus": {
+    "broker": "Axis Securities (Aug 2026) BUY ₹1,532",
+    "rating": "Buy",
+    "target": 1532
+   },
+   "data_notes": [
+    "FY24 and FY25 were lifted by US lenalidomide (generic Revlimid) sales, which ended in FY26.",
+    "Q4 FY26 and Q1 FY27 margins hit by a lanreotide supply disruption in North America."
+   ],
+   "news": [
+    {
+     "date": "2026-08-25",
+     "title": "US FDA re-inspects Pithampur: Form 483 with 7 observations (plant under warning letter since Nov 2023)",
+     "category": "Regulatory",
+     "sentiment": -1,
+     "impact": "Pithampur is key to US respiratory products; generic Advair filing is from this site.",
+     "metrics": [
+      "US revenue",
+      "ANDA approvals"
+     ],
+     "url": "https://www.sahi.com/news/cipla-gets-usfda-form-483-with-seven-observations-at-pithampur-facility-62-PE1_CORPO",
+     "statement_impact": {
+      "pl": "Delays to inhaler launches from Pithampur.",
+      "bs": "No major effect.",
+      "cf": "Remediation spend.",
+      "doing": "Responding within FDA timelines.",
+      "should": "Remediation PMO and a second site for key inhalers."
+     }
+    },
+    {
+     "date": "2026-07-27",
+     "title": "US FDA approves generic Advair Diskus (all strengths) made at InvaGen, New York; US market about US$908 M",
+     "category": "Regulatory",
+     "sentiment": 1,
+     "impact": "First dry-powder inhaler approval from Cipla's US network; launch planned Q2 FY27.",
+     "metrics": [
+      "US revenue",
+      "New launches"
+     ],
+     "url": "https://www.sahi.com/news/cipla-receives-usfda-approval-for-generic-advair-diskus-in-all-three-strengths-62-PE1_CORPO",
+     "statement_impact": {
+      "pl": "New US sales from Q2 FY27.",
+      "bs": "Inventory build for launch.",
+      "cf": "Launch working capital.",
+      "doing": "Building a US-made inhaler franchise.",
+      "should": "Launch plan and capacity ramp at InvaGen."
+     }
+    },
+    {
+     "date": "2026-07-23",
+     "title": "Q1 FY27: revenue +2% to ₹7,119 Cr; EBITDA −33%; margin 16.7%; PAT −39%; shares fall 3%",
+     "category": "Results",
+     "sentiment": -1,
+     "impact": "US sales US$162 M (−28% in USD) on lenalidomide loss and lanreotide disruption; India record ₹3,452 Cr (+12%).",
+     "metrics": [
+      "US revenue",
+      "EBITDA margin",
+      "PAT"
+     ],
+     "url": "https://www.indiainfoline.com/news/earnings/cipla-share-price-falls-over-3-after-q1-fy27-results-disappoint-investors-profit-drops-39",
+     "statement_impact": {
+      "pl": "Margin down 8.8 points to 16.7%.",
+      "bs": "No major effect.",
+      "cf": "Lower operating cash.",
+      "doing": "Guiding 18.5 to 20% margin with H2 recovery.",
+      "should": "Restore lanreotide supply; cost actions."
+     }
+    },
+    {
+     "date": "2026-05-13",
+     "title": "FY26: revenue ₹28,163 Cr; PAT ₹3,879 Cr; India crosses ₹12,680 Cr; net cash above ₹10,500 Cr",
+     "category": "Results",
+     "sentiment": 0,
+     "impact": "Foracort crossed ₹1,000 Cr; R&D about 7% of revenue.",
+     "metrics": [
+      "India revenue growth",
+      "PAT"
+     ],
+     "url": "https://www.businesstoday.in/industry/pharma/story/cipla-focuses-on-respiratory-therapies-specialty-drugs-and-complex-generics-531356-2026-05-13",
+     "statement_impact": {
+      "pl": "Profit lower on US losses.",
+      "bs": "Net cash above ₹10,500 Cr.",
+      "cf": "Strong cash.",
+      "doing": "Investing in respiratory, peptides and complex generics.",
+      "should": "Capital allocation plan for the cash."
+     }
+    },
+    {
+     "date": "2026-04-01",
+     "title": "Achin Gupta takes over as MD and Global CEO from Umang Vohra",
+     "category": "Management",
+     "sentiment": 0,
+     "impact": "Leadership change as the US business resets.",
+     "metrics": [
+      "Strategy"
+     ],
+     "url": "https://bestmediainfo.com/mediainfo/mediainfo-marketing/achin-gupta-succeeds-umang-vohra-as-cipla-md-and-ceo-11441701",
+     "statement_impact": {
+      "pl": "No direct effect.",
+      "bs": "No direct effect.",
+      "cf": "No direct effect.",
+      "doing": "New CEO's first year.",
+      "should": "Clear 3-year plan for US and India."
+     }
+    }
+   ],
+   "working": [
+    "India record quarter (₹3,452 Cr, +12%); branded Rx +15.4%",
+    "Respiratory leadership: Foracort above ₹1,000 Cr",
+    "Net cash above ₹10,500 Cr",
+    "US-made generic Advair and Ventolin approvals rebuild the inhaler pipeline"
+   ],
+   "not_working": [
+    "US sales −28% in USD (Q1 FY27): lenalidomide gone, lanreotide supply broken",
+    "EBITDA margin fell from about 26% to 16.7%",
+    "Pithampur still under warning letter; 7 new observations",
+    "Revenue grew only about 6% a year FY22 to FY26",
+    "Inventory days rose to 252 (FY26)"
+   ],
+   "problems": [
+    {
+     "title": "Rebuild US sales to a US$1 bn run-rate",
+     "evidence": "US$162 M in Q1 FY27 (−28%); target US$1 bn exit run-rate by end FY27.",
+     "answer": "Launch excellence for generic Advair and Ventolin, payer and channel contracting, and capacity ramp at InvaGen.",
+     "investigate": "Launch curves; capacity; channel share.",
+     "service": "Commercial: US launch excellence"
+    },
+    {
+     "title": "Fix Pithampur and protect inhaler approvals",
+     "evidence": "Warning letter since Nov 2023; 7 observations in Aug 2026.",
+     "answer": "Remediation PMO with data-integrity controls; move key filings to clean sites.",
+     "investigate": "Observation themes; filing-to-site map.",
+     "service": "Risk: quality remediation"
+    },
+    {
+     "title": "Restore margin to 20%+",
+     "evidence": "EBITDA margin 25.6% → 16.7% (Q1 FY27); gross margin −626 bps.",
+     "answer": "Margin bridge, procurement and supply reliability programme (lanreotide), SKU and cost review.",
+     "investigate": "Product-level gross margin; supply failures.",
+     "service": "Operations: margin improvement"
+    },
+    {
+     "title": "Put ₹10,500 Cr of net cash to work",
+     "evidence": "Net cash above ₹10,500 Cr; ROCE 15% in FY26.",
+     "answer": "Capital allocation framework: in-licensing, India M&A, specialty assets and payout policy.",
+     "investigate": "Target screen; hurdle rates.",
+     "service": "Strategy: corporate development"
+    },
+    {
+     "title": "Release cash from inventory",
+     "evidence": "Inventory days 230 → 252 (FY22 to FY26); cash cycle 202 days.",
+     "answer": "S&OP and SKU rationalisation, especially for Africa and US launch stock.",
+     "investigate": "Inventory by market; slow movers.",
+     "service": "Operations: working capital"
+    }
+   ],
+   "digital": {
+    "Commercial & omnichannel": 3,
+    "Supply chain & S&OP": 2,
+    "Manufacturing 4.0 & quality": 2,
+    "R&D & regulatory": 3,
+    "Finance & ERP": 3,
+    "Data & AI": 3
+   },
+   "consulting": [
+    "US launch excellence (inhalers)",
+    "Pithampur remediation",
+    "Margin recovery",
+    "Capital allocation",
+    "Inventory release"
+   ],
+   "swot": {
+    "strengths": [
+     "India respiratory leader",
+     "Net cash above ₹10,500 Cr",
+     "US-made inhaler approvals",
+     "Strong India brand engine"
+    ],
+    "weaknesses": [
+     "US sales falling fast",
+     "Margin down to 16.7%",
+     "Pithampur warning letter",
+     "Slow 6% sales growth"
+    ],
+    "opportunities": [
+     "Generic Advair and Ventolin",
+     "Peptides and inhaled insulin",
+     "India consumer health",
+     "M&A with spare cash"
+    ],
+    "threats": [
+     "More FDA findings",
+     "US price erosion and tariffs",
+     "Lanreotide supply risk",
+     "Africa currency swings"
+    ]
+   },
+   "brands": {
+    "summary": "India respiratory leader; Foracort crossed ₹1,000 Cr. India is about 45% of sales, with branded Rx growing 15.4% in Q1 FY27.",
+    "therapy_basis": "Indicative India mix (exact split not disclosed)",
+    "therapies": [
+     {
+      "therapy": "Respiratory",
+      "value": 30,
+      "detail": "Leader; Foracort above ₹1,000 Cr"
+     },
+     {
+      "therapy": "Anti-infectives",
+      "value": 15,
+      "detail": "Indicative"
+     },
+     {
+      "therapy": "Cardio and diabetes",
+      "value": 15,
+      "detail": "Indicative"
+     },
+     {
+      "therapy": "Consumer health",
+      "value": 10,
+      "detail": "Indicative"
+     },
+     {
+      "therapy": "Urology",
+      "value": 8,
+      "detail": "Indicative"
+     }
+    ],
+    "brand_basis": "Company disclosures",
+    "brands": [
+     {
+      "name": "Foracort",
+      "therapy": "Respiratory",
+      "evidence": "Crossed ₹1,000 Cr in FY26",
+      "basis": "Company"
+     },
+     {
+      "name": "Generic Advair Diskus",
+      "therapy": "Respiratory (US)",
+      "evidence": "Approved Jul 2026; US market about US$908 M",
+      "basis": "Company"
+     },
+     {
+      "name": "Generic Ventolin",
+      "therapy": "Respiratory (US)",
+      "evidence": "First AB-rated generic; launched Q1 FY27",
+      "basis": "Company"
+     },
+     {
+      "name": "Yurpeak (with Lilly)",
+      "therapy": "Diabetes and weight (India)",
+      "evidence": "Distribution rights",
+      "basis": "Company"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Business Today: Cipla FY26 and focus areas",
+      "url": "https://www.businesstoday.in/industry/pharma/story/cipla-focuses-on-respiratory-therapies-specialty-drugs-and-complex-generics-531356-2026-05-13"
+     },
+     {
+      "title": "Sahi: Cipla gets USFDA approval for generic Advair Diskus",
+      "url": "https://www.sahi.com/news/cipla-receives-usfda-approval-for-generic-advair-diskus-in-all-three-strengths-62-PE1_CORPO"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "India is 45% of sales; record growth needs rep productivity.",
+     "consultant": "Omnichannel and targeting analytics for India Rx.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 2,
+     "status": "Weak",
+     "doing": "Lanreotide supply broke in Q4 FY26 and Q1 FY27.",
+     "gap": "Supply reliability for complex US products.",
+     "consultant": "Supply-risk control tower and S&OP.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Axis Direct: Cipla Q1 FY27 result update",
+       "url": "https://www.axisdirect.in/blogs/cipla-q1fy27-results-update-domestic-growth-vs-us-headwinds-and-target-price"
+      }
+     ]
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 2,
+     "status": "Weak",
+     "doing": "Pithampur under warning letter; 7 new observations in Aug 2026.",
+     "gap": "Repeat FDA findings at a key inhaler site.",
+     "consultant": "Electronic quality systems and data-integrity monitoring.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Sahi: Cipla gets Form 483 with 7 observations at Pithampur",
+       "url": "https://www.sahi.com/news/cipla-gets-usfda-form-483-with-seven-observations-at-pithampur-facility-62-PE1_CORPO"
+      }
+     ]
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Complex inhaler and peptide filings.",
+     "consultant": "Regulatory operations and dossier automation.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Large cash pile and margin pressure.",
+     "consultant": "Margin analytics and capital allocation tools.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "No disclosed enterprise AI programme.",
+     "consultant": "AI for demand forecasting and launch analytics.",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ],
+   "color": "#7C3AED"
+  },
+  {
+   "id": "lupin",
+   "name": "Lupin",
+   "short": "Lupin",
+   "ticker": "LUPIN.NS",
+   "tagline": "The turnaround story: from a loss in FY22 to a 30% margin on US limited-competition launches, now facing the FY27 reset",
+   "profile": {
+    "founded": "1968",
+    "hq": "Mumbai, Maharashtra",
+    "leadership": "Manju D. Gupta (Chairperson); Vinita Gupta and Nilesh Gupta (CEO and MD)",
+    "business_model": "US generics and complex products (inhalers, injectables), India branded (8th in India), other developed markets incl. Europe (VISUfarma), emerging markets, API.",
+    "description": "FY26 sales ₹27,488 Cr (+23.9%), EBITDA margin 33.6% (company basis), PAT +62%. US +46% on tolvaptan and mirabegron. 3rd in the US by filled generic prescriptions; 444 ANDAs and NDAs filed. FY27 guided as a reset year as those products face competition.",
+    "employees_note": "India #8 (IQVIA MAT Mar 2026); 52 first-to-file US opportunities"
+   },
+   "market": {
+    "mcap_cr": 88207,
+    "price": 1929,
+    "pe": 14.8,
+    "pb": 3.9,
+    "book_value": 491,
+    "div_yield": 0.93,
+    "high_52w": 2530,
+    "low_52w": 1893,
+    "price_date": "2026-10-23",
+    "shareholding": {
+     "Promoters": 46.84,
+     "FIIs": 23.28,
+     "DIIs": 23.78,
+     "Public": 6.08
+    }
+   },
+   "footprint": {
+    "market": "India #8 (IQVIA MAT Mar 2026); chronic about 67% of India sales; diabetes +31.8% in Q1 FY27. US: 3rd by filled generic prescriptions, 151 generic products marketed.",
+    "geography": {
+     "US": 42,
+     "India": 30,
+     "Emerging markets": 13,
+     "Other developed markets": 11,
+     "API": 4
+    },
+    "geography_basis": "FY26 revenue mix (%)",
+    "manufacturing": "Plants in India (Pithampur, Goa, Nagpur, Ankleshwar, Aurangabad) and the US (Somerset, Coral Springs). Pithampur Unit II is OAI with the US FDA; Ankleshwar and Somerset VAI.",
+    "rnd": "FY26 R&D ₹2,063 Cr (7.5% of sales); Q1 FY27 7.4%; guided about 8% for FY27. Pipeline: 30+ injectables, 20+ respiratory products, biosimilars (ranibizumab), Dulera, apixaban new dosage form.",
+    "rnd_pct": 7.5,
+    "therapies": {
+     "Cardiology": 22,
+     "Diabetes": 20,
+     "Respiratory": 15,
+     "Gastro": 8,
+     "Anti-TB and anti-infectives": 10,
+     "CNS": 8,
+     "Others": 17
+    },
+    "therapies_basis": "Indicative India mix (chronic about 67%; exact split not disclosed)",
+    "plants": null,
+    "field_force": null
+   },
+   "regulatory": {
+    "anda_filed": 444,
+    "anda_approved": null,
+    "anda_tentative": null,
+    "anda_pending": null,
+    "us_products_commercialised": 151,
+    "dmf_us": null,
+    "q_launches": 3,
+    "q_approvals": 3,
+    "fda_open": true,
+    "status": "Pithampur Unit II: OAI, responses submitted and remediation in progress. Ankleshwar and Somerset: VAI (EIRs received). 444 ANDAs and NDAs filed in total; 52 first-to-file opportunities.",
+    "as_of": "30-Jun-2026"
+   },
+   "financials": {
+    "sales": [
+     16405.0,
+     16642.0,
+     20011.0,
+     22708.0,
+     27958.0
+    ],
+    "ebitda": [
+     219.0,
+     1721.0,
+     3800.0,
+     5278.0,
+     8160.0
+    ],
+    "other_income": [
+     210.0,
+     151.0,
+     131.0,
+     202.0,
+     523.0
+    ],
+    "interest": [
+     143.0,
+     274.0,
+     312.0,
+     295.0,
+     434.0
+    ],
+    "depreciation": [
+     1659.0,
+     881.0,
+     1197.0,
+     1169.0,
+     1376.0
+    ],
+    "pbt": [
+     -1372.0,
+     716.0,
+     2422.0,
+     4015.0,
+     6873.0
+    ],
+    "tax_pct": [
+     10.0,
+     38.0,
+     20.0,
+     18.0,
+     22.0
+    ],
+    "pat": [
+     -1528.0,
+     448.0,
+     1936.0,
+     3306.0,
+     5355.0
+    ],
+    "equity_capital": [
+     91.0,
+     91.0,
+     91.0,
+     91.0,
+     91.0
+    ],
+    "reserves": [
+     12062.0,
+     12374.0,
+     14199.0,
+     17112.0,
+     22357.0
+    ],
+    "borrowings": [
+     4158.0,
+     4542.0,
+     2922.0,
+     5448.0,
+     6616.0
+    ],
+    "other_liabilities": [
+     5340.0,
+     5794.0,
+     6539.0,
+     6327.0,
+     9082.0
+    ],
+    "total_assets": [
+     21651.0,
+     22800.0,
+     23751.0,
+     28978.0,
+     38146.0
+    ],
+    "fixed_assets": [
+     7382.0,
+     8355.0,
+     8878.0,
+     9719.0,
+     10994.0
+    ],
+    "cwip": [
+     1146.0,
+     1238.0,
+     773.0,
+     517.0,
+     1016.0
+    ],
+    "investments": [
+     900.0,
+     517.0,
+     1075.0,
+     1146.0,
+     3670.0
+    ],
+    "other_assets": [
+     12224.0,
+     12690.0,
+     13026.0,
+     17596.0,
+     22466.0
+    ],
+    "cfo": [
+     367.0,
+     1897.0,
+     3648.0,
+     3000.0,
+     7334.0
+    ],
+    "cfi": [
+     1292.0,
+     -1287.0,
+     -1712.0,
+     -4172.0,
+     -3865.0
+    ],
+    "cff": [
+     -1572.0,
+     -337.0,
+     -2184.0,
+     1732.0,
+     -846.0
+    ],
+    "debtor_days": [
+     95.0,
+     98.0,
+     86.0,
+     88.0,
+     86.0
+    ],
+    "inventory_days": [
+     261.0,
+     242.0,
+     272.0,
+     292.0,
+     303.0
+    ],
+    "payable_days": [
+     129.0,
+     136.0,
+     163.0,
+     158.0,
+     208.0
+    ],
+    "ccc": [
+     227.0,
+     204.0,
+     195.0,
+     223.0,
+     181.0
+    ],
+    "wc_days": [
+     45.0,
+     32.0,
+     53.0,
+     58.0,
+     28.0
+    ],
+    "roce": [
+     -7.0,
+     6.0,
+     16.0,
+     21.0,
+     30.0
+    ],
+    "material_pct": [
+     37.95,
+     42.61,
+     34.26,
+     29.03,
+     24.99
+    ],
+    "employee_pct": [
+     16.3,
+     17.18,
+     14.29,
+     13.63,
+     13.04
+    ],
+    "manufacturing_pct": [
+     13.83,
+     14.24,
+     11.09,
+     9.92,
+     10.13
+    ],
+    "other_cost_pct": [
+     30.13,
+     17.41,
+     16.83,
+     15.64,
+     15.06
+    ],
+    "cash": [
+     65.0,
+     101.0,
+     139.0,
+     459.0,
+     128.0
+    ],
+    "expenses": [
+     16186,
+     14921,
+     16211,
+     17430,
+     19798
+    ],
+    "eps": [
+     -33.62,
+     9.45,
+     42.01,
+     71.88,
+     116.65
+    ],
+    "div_payout": [
+     0,
+     42,
+     19,
+     17,
+     15
+    ]
+   },
+   "ttm": {
+    "sales": 29967,
+    "ebitda": 9538,
+    "pat": 5552
+   },
+   "quarterly": {
+    "sales": [
+     6268,
+     7048,
+     7168,
+     7475,
+     8277
+    ],
+    "ebitda": [
+     1727,
+     2341,
+     2262,
+     2486,
+     2450
+    ],
+    "opm": [
+     28,
+     33,
+     32,
+     33,
+     30
+    ],
+    "pat": [
+     1221,
+     1485,
+     1181,
+     1469,
+     1417
+    ]
+   },
+   "guidance": "FY27: high single-digit revenue growth; EBITDA margin about 25% (from 33.6%); US sales US$1.1 to 1.2 bn; R&D about 8% of sales; price pressure on tolvaptan and mirabegron from Q2 FY27.",
+   "consensus": {
+    "broker": "Not compiled",
+    "rating": "n/a"
+   },
+   "data_notes": [
+    "FY22 was a loss year (one-time charges and US price erosion).",
+    "FY26 was lifted by limited-competition US launches (tolvaptan, mirabegron) that face competition in FY27.",
+    "VISUfarma (Europe ophthalmology) consolidated from Q1 FY27."
+   ],
+   "news": [
+    {
+     "date": "2026-08-06",
+     "title": "Q1 FY27: sales +33% to ₹8,217 Cr; EBITDA margin 30%; US US$366 M (+30%); PAT ₹1,415 Cr",
+     "category": "Results",
+     "sentiment": 1,
+     "impact": "Strong quarter, but management expects US competition to bite from Q2.",
+     "metrics": [
+      "US revenue",
+      "EBITDA margin"
+     ],
+     "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429",
+     "statement_impact": {
+      "pl": "Margin 30%, up 3.4 points.",
+      "bs": "Net cash down to ₹2,831 Cr after VISUfarma.",
+      "cf": "Cash used for VISUfarma.",
+      "doing": "Guiding high single-digit growth and about 25% margin for FY27.",
+      "should": "Plan the margin bridge from 30% to 25% and protect it."
+     }
+    },
+    {
+     "date": "2026-05-11",
+     "title": "Guides US sales above US$1 bn in FY27 despite about 10% generic erosion",
+     "category": "Guidance",
+     "sentiment": 0,
+     "impact": "Tolvaptan and mirabegron face competition; FY28 launches (ranibizumab, Dulera) are the recovery.",
+     "metrics": [
+      "US revenue",
+      "EBITDA margin"
+     ],
+     "url": "https://www.sahi.com/news/lupin-targets-1-billion-us-revenue-in-fy27-despite-10-projected-generic-erosion-1179-PE1_COR",
+     "statement_impact": {
+      "pl": "Lower US margin in FY27.",
+      "bs": "No major effect.",
+      "cf": "No major effect.",
+      "doing": "Shifting R&D to biosimilars and complex generics.",
+      "should": "Launch sequencing and cost plan for the transition year."
+     }
+    },
+    {
+     "date": "2026-05-07",
+     "title": "FY26: sales +23.9% to ₹27,488 Cr; EBITDA margin 33.6%; PAT +62% to ₹5,356 Cr",
+     "category": "Results",
+     "sentiment": 1,
+     "impact": "Best year in a decade; US +46%.",
+     "metrics": [
+      "US revenue",
+      "PAT"
+     ],
+     "url": "https://www.lupin.com/media/press-releases/lupin-fy-2026-and-q4-fy-2026-results",
+     "statement_impact": {
+      "pl": "PAT +62%.",
+      "bs": "Net cash ₹4,636 Cr.",
+      "cf": "Strong cash.",
+      "doing": "900% dividend.",
+      "should": "Decide how to deploy cash before the US peak fades."
+     }
+    }
+   ],
+   "working": [
+    "Turnaround: EBITDA margin from about 1% (FY22) to 29% (FY26, Screener)",
+    "US +46% in FY26 and +30% in Q1 FY27; 3rd by US generic prescriptions",
+    "India chronic about 67%; diabetes +31.8%",
+    "Highest ROCE of the six (30%) at the lowest P/E (14.8x)"
+   ],
+   "not_working": [
+    "FY27 reset: margin guided down from 33.6% to about 25%",
+    "Tolvaptan and mirabegron face competition",
+    "Pithampur Unit II OAI",
+    "India grew only 7% in FY26",
+    "Inventory rose to 303 days"
+   ],
+   "problems": [
+    {
+     "title": "Manage the FY27 margin reset",
+     "evidence": "EBITDA margin 33.6% (FY26) guided to about 25%; tolvaptan and mirabegron eroding.",
+     "answer": "Margin bridge by product, cost programme and launch sequencing for FY28 products.",
+     "investigate": "Product-level erosion curves; cost base.",
+     "service": "Strategy and operations: margin management"
+    },
+    {
+     "title": "Build the next US growth wave",
+     "evidence": "FY28 launches: ranibizumab, Dulera, apixaban new form; 52 first-to-file opportunities.",
+     "answer": "Portfolio and launch readiness; capacity planning for complex products.",
+     "investigate": "Pipeline value by year; capacity.",
+     "service": "Strategy: portfolio"
+    },
+    {
+     "title": "Clear Pithampur Unit II",
+     "evidence": "OAI; remediation in progress.",
+     "answer": "Remediation PMO with data-integrity controls; site transfer plan for key products.",
+     "investigate": "Observations; product-to-site map.",
+     "service": "Risk: quality remediation"
+    },
+    {
+     "title": "Re-accelerate India",
+     "evidence": "India +7% in FY26, then +13.9% in Q1 FY27; market about 13.5%.",
+     "answer": "Field-force productivity and chronic portfolio push (diabetes, cardio).",
+     "investigate": "Rep productivity; brand growth vs market.",
+     "service": "Commercial excellence"
+    },
+    {
+     "title": "Release cash from 303 inventory days",
+     "evidence": "Inventory days 261 → 303 (FY22 to FY26).",
+     "answer": "Inventory diagnostic and S&OP across US and India.",
+     "investigate": "Inventory by stage and market.",
+     "service": "Operations: working capital"
+    }
+   ],
+   "digital": {
+    "Commercial & omnichannel": 3,
+    "Supply chain & S&OP": 3,
+    "Manufacturing 4.0 & quality": 2,
+    "R&D & regulatory": 3,
+    "Finance & ERP": 3,
+    "Data & AI": 3
+   },
+   "consulting": [
+    "FY27 margin bridge",
+    "US launch portfolio",
+    "Pithampur remediation",
+    "India commercial excellence",
+    "Inventory release"
+   ],
+   "swot": {
+    "strengths": [
+     "30% ROCE, best of the six",
+     "3rd in US generic prescriptions",
+     "India chronic 67%",
+     "Net cash"
+    ],
+    "weaknesses": [
+     "Profit tied to a few US products",
+     "Pithampur OAI",
+     "India growth slowed in FY26",
+     "Inventory 303 days"
+    ],
+    "opportunities": [
+     "Biosimilars (ranibizumab)",
+     "Respiratory (Dulera)",
+     "52 first-to-file filings",
+     "Europe via VISUfarma"
+    ],
+    "threats": [
+     "US price erosion (10% assumed)",
+     "FDA actions",
+     "Tariffs",
+     "Competition on tolvaptan and mirabegron"
+    ]
+   },
+   "brands": {
+    "summary": "India #8 with chronic about 67% of sales; diabetes grew 31.8% and cardiology 1.2x the market in Q1 FY27.",
+    "therapy_basis": "Indicative India mix (exact split not disclosed)",
+    "therapies": [
+     {
+      "therapy": "Cardiology",
+      "value": 22,
+      "detail": "Grew 1.2x the market (Q1 FY27)"
+     },
+     {
+      "therapy": "Diabetes",
+      "value": 20,
+      "detail": "+31.8%, 1.8x the market (Q1 FY27)"
+     },
+     {
+      "therapy": "Respiratory",
+      "value": 15,
+      "detail": "Indicative"
+     },
+     {
+      "therapy": "Anti-TB and anti-infectives",
+      "value": 10,
+      "detail": "Global leader in anti-TB"
+     },
+     {
+      "therapy": "CNS",
+      "value": 8,
+      "detail": "Indicative"
+     }
+    ],
+    "brand_basis": "Company disclosures (US)",
+    "brands": [
+     {
+      "name": "Tolvaptan (generic)",
+      "therapy": "Kidney (US)",
+      "evidence": "Key FY26 growth driver; competition from Q2 FY27",
+      "basis": "Company"
+     },
+     {
+      "name": "Mirabegron (generic)",
+      "therapy": "Bladder (US)",
+      "evidence": "Facing competition",
+      "basis": "Company"
+     },
+     {
+      "name": "VISUfarma",
+      "therapy": "Ophthalmology (Europe)",
+      "evidence": "Consolidated from Q1 FY27",
+      "basis": "Company"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Lupin FY2026 and Q4 FY2026 results (7 May 2026)",
+      "url": "https://www.lupin.com/media/press-releases/lupin-fy-2026-and-q4-fy-2026-results"
+     },
+     {
+      "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+      "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "India growth slowed to 7% in FY26.",
+     "consultant": "Omnichannel and rep-targeting analytics.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Inventory 303 days.",
+     "consultant": "S&OP and inventory optimisation.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 2,
+     "status": "Weak",
+     "doing": "Pithampur Unit II OAI.",
+     "gap": "FDA finding at a US-facing site.",
+     "consultant": "Electronic quality systems and data-integrity monitoring.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Multibagg: Lupin Q1 FY27, margins hold at 30%",
+       "url": "https://www.multibagg.ai/market-pulse/articles/lupin-q1fy27-97429"
+      }
+     ]
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "30+ injectables and 20+ respiratory products in the pipeline.",
+     "consultant": "Regulatory operations automation.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Lupin integrated report 2025-26",
+       "url": "https://www.lupin.com/integrated-report-2026/index.html"
+      }
+     ]
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Margin falls about 9 points in FY27.",
+     "consultant": "Product-level profitability analytics.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "No disclosed enterprise AI programme.",
+     "consultant": "AI for US price-erosion forecasting and portfolio selection.",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ],
+   "color": "#0284C7"
+  },
+  {
+   "id": "aurobindo",
+   "name": "Aurobindo Pharma",
+   "short": "Aurobindo",
+   "ticker": "AUROPHARMA.NS",
+   "tagline": "Largest US generics supplier by volume and a top-10 generic player in Europe, pushing into biosimilars and US manufacturing",
+   "profile": {
+    "founded": "1986",
+    "hq": "Hyderabad, Telangana",
+    "leadership": "K. Nithyananda Reddy (Vice-Chairman and MD)",
+    "business_model": "US formulations (orals and Eugia injectables), Europe generics, growth markets, ARV, API (beta-lactam heavy); biosimilars through CuraTeQ.",
+    "description": "FY26 revenue ₹33,653 Cr (+6.1%), EBITDA margin 20.4%. 896 ANDAs filed and 737 approved (Jun 2026), the largest book in India. Bought Lannett (US) for US$250 M in Jun 2026, adding about 4 bn doses of US capacity. Biosimilars approved in the EU, UK and Canada.",
+    "employees_note": "Top-10 generic company in 8 European countries"
+   },
+   "market": {
+    "mcap_cr": 90432,
+    "price": 1572,
+    "pe": 23.9,
+    "pb": 2.4,
+    "book_value": 652,
+    "div_yield": 0.25,
+    "high_52w": 1740,
+    "low_52w": 1081,
+    "price_date": "2026-10-23",
+    "shareholding": {
+     "Promoters": 51.88,
+     "FIIs": 17.41,
+     "DIIs": 24.37,
+     "Public": 6.34
+    }
+   },
+   "footprint": {
+    "market": "Little India branded business; a global generics model. US: the largest ANDA book from India. Europe: top-10 generic company in 8 countries; Europe grew 25.6% in Q1 FY27.",
+    "geography": {
+     "US formulations": 43,
+     "Europe": 31,
+     "API": 12,
+     "Growth markets": 10,
+     "ARV": 4
+    },
+    "geography_basis": "FY26 revenue mix (%)",
+    "manufacturing": "Many formulation and API sites in India (Hyderabad, Vizag, Telangana), Eugia injectables, Lannett (Seymour, Indiana) in the US, plus Europe. Eugia Unit-I got an FDA warning letter (Aug 2026, about 2% of revenue).",
+    "rnd": "R&D about 4.5% of sales (Q4 FY26, incl. depreciation). Biosimilars (CuraTeQ): Zefylti, Dyrupeg, Dazublys approved in the EU; Bevqolva in the UK and Canada; denosumab and omalizumab filings.",
+    "rnd_pct": 4.5,
+    "therapies": {
+     "US orals": 30,
+     "US injectables (Eugia)": 13,
+     "Europe generics": 31,
+     "API (beta-lactam)": 12,
+     "Growth markets": 10,
+     "ARV": 4
+    },
+    "therapies_basis": "Business mix (% of FY26 sales); US split indicative",
+    "plants": null,
+    "field_force": null
+   },
+   "regulatory": {
+    "anda_filed": 896,
+    "anda_approved": 737,
+    "anda_tentative": 33,
+    "anda_pending": 126,
+    "us_products_commercialised": null,
+    "dmf_us": null,
+    "q_launches": 10,
+    "q_approvals": 10,
+    "fda_open": true,
+    "status": "Eugia Unit-I (Telangana): US FDA warning letter (Aug 2026), about 2% of group revenue; US supply continues. 896 ANDAs filed, 737 final and 33 tentative approvals (30-Jun-2026).",
+    "as_of": "30-Jun-2026"
+   },
+   "financials": {
+    "sales": [
+     23455.0,
+     24855.0,
+     29002.0,
+     31724.0,
+     33653.0
+    ],
+    "ebitda": [
+     4396.0,
+     3707.0,
+     5826.0,
+     6560.0,
+     6870.0
+    ],
+    "other_income": [
+     152.0,
+     291.0,
+     366.0,
+     613.0,
+     404.0
+    ],
+    "interest": [
+     49.0,
+     140.0,
+     290.0,
+     457.0,
+     384.0
+    ],
+    "depreciation": [
+     1127.0,
+     1245.0,
+     1522.0,
+     1649.0,
+     1778.0
+    ],
+    "pbt": [
+     3373.0,
+     2612.0,
+     4380.0,
+     5066.0,
+     5112.0
+    ],
+    "tax_pct": [
+     22.0,
+     26.0,
+     28.0,
+     31.0,
+     31.0
+    ],
+    "pat": [
+     2647.0,
+     1928.0,
+     3169.0,
+     3484.0,
+     3503.0
+    ],
+    "equity_capital": [
+     59.0,
+     59.0,
+     59.0,
+     58.0,
+     58.0
+    ],
+    "reserves": [
+     24517.0,
+     26781.0,
+     29784.0,
+     32595.0,
+     37833.0
+    ],
+    "borrowings": [
+     2851.0,
+     5286.0,
+     6648.0,
+     8263.0,
+     8073.0
+    ],
+    "other_liabilities": [
+     6211.0,
+     7379.0,
+     8227.0,
+     8566.0,
+     12232.0
+    ],
+    "total_assets": [
+     33638.0,
+     39505.0,
+     44717.0,
+     49482.0,
+     58196.0
+    ],
+    "fixed_assets": [
+     10532.0,
+     11024.0,
+     14493.0,
+     14794.0,
+     17407.0
+    ],
+    "cwip": [
+     3747.0,
+     5390.0,
+     3869.0,
+     4900.0,
+     5214.0
+    ],
+    "investments": [
+     997.0,
+     543.0,
+     372.0,
+     252.0,
+     1051.0
+    ],
+    "other_assets": [
+     18362.0,
+     22549.0,
+     25983.0,
+     29536.0,
+     34525.0
+    ],
+    "cfo": [
+     5016.0,
+     2387.0,
+     2435.0,
+     3925.0,
+     5526.0
+    ],
+    "cfi": [
+     -3211.0,
+     -3971.0,
+     -4242.0,
+     -1866.0,
+     -2630.0
+    ],
+    "cff": [
+     -2969.0,
+     1814.0,
+     800.0,
+     120.0,
+     -1269.0
+    ],
+    "debtor_days": [
+     62.0,
+     66.0,
+     61.0,
+     66.0,
+     77.0
+    ],
+    "inventory_days": [
+     272.0,
+     275.0,
+     284.0,
+     295.0,
+     326.0
+    ],
+    "payable_days": [
+     97.0,
+     125.0,
+     129.0,
+     117.0,
+     151.0
+    ],
+    "ccc": [
+     237.0,
+     216.0,
+     216.0,
+     244.0,
+     252.0
+    ],
+    "wc_days": [
+     84.0,
+     55.0,
+     66.0,
+     49.0,
+     44.0
+    ],
+    "roce": [
+     13.0,
+     9.0,
+     14.0,
+     14.0,
+     13.0
+    ],
+    "material_pct": [
+     51.8,
+     53.12,
+     54.94,
+     51.29,
+     47.96
+    ],
+    "employee_pct": [
+     14.19,
+     10.54,
+     9.22,
+     9.74,
+     10.41
+    ],
+    "manufacturing_pct": [
+     10.49,
+     5.87,
+     5.69,
+     5.6,
+     5.34
+    ],
+    "other_cost_pct": [
+     10.2,
+     12.68,
+     9.26,
+     9.98,
+     8.61
+    ],
+    "cash": [
+     51.0,
+     373.0,
+     94.0,
+     298.0,
+     162.0
+    ],
+    "expenses": [
+     19059,
+     21148,
+     23176,
+     25164,
+     26783
+    ],
+    "eps": [
+     45.2,
+     32.9,
+     54.15,
+     60.02,
+     60.34
+    ],
+    "div_payout": [
+     20,
+     23,
+     8,
+     0,
+     7
+    ]
+   },
+   "ttm": {
+    "sales": 34935,
+    "ebitda": 7081,
+    "pat": 3711
+   },
+   "quarterly": {
+    "sales": [
+     7868,
+     8286,
+     8646,
+     8853,
+     9150
+    ],
+    "ebitda": [
+     1603,
+     1678,
+     1773,
+     1750,
+     1880
+    ],
+    "opm": [
+     20,
+     20,
+     21,
+     20,
+     21
+    ],
+    "pat": [
+     824,
+     848,
+     910,
+     921,
+     1032
+    ]
+   },
+   "guidance": "No numeric FY27 guidance in the Q1 release. Goal of US$2 bn US revenue (Lannett adds controlled-substance capacity); biosimilars scaling in Europe.",
+   "consensus": {
+    "broker": "Axis Securities (7 Aug 2026) HOLD ₹1,600",
+    "rating": "Hold",
+    "target": 1600
+   },
+   "data_notes": [
+    "Lannett (US, acquired 29 Jun 2026 for US$250 M) is not in FY26 numbers."
+   ],
+   "news": [
+    {
+     "date": "2026-08-14",
+     "title": "US FDA warning letter for Eugia Unit-I injectables plant; shares fall 2%",
+     "category": "Regulatory",
+     "sentiment": -1,
+     "impact": "Unit-I is about 2% of group revenue; supply of existing products continues.",
+     "metrics": [
+      "US revenue",
+      "ANDA approvals"
+     ],
+     "url": "https://www.whalesbook.com/news/English/healthcarebiotech/Aurobindo-Pharma-Falls-2percent-After-USFDA-Warning-Letter/6a7ed4576ffbe1e6461b5708",
+     "statement_impact": {
+      "pl": "Small revenue at risk; new approvals from the site on hold.",
+      "bs": "No major effect.",
+      "cf": "Remediation spend.",
+      "doing": "Says no immediate supply disruption.",
+      "should": "Injectables quality programme across Eugia sites."
+     }
+    },
+    {
+     "date": "2026-08-06",
+     "title": "Q1 FY27: revenue +16.3% to ₹9,150 Cr; EBITDA margin 21%; PAT +25% to ₹1,032 Cr; Europe +25.6%",
+     "category": "Results",
+     "sentiment": 1,
+     "impact": "Broad growth: growth markets +37.7%, API +14.6%, US +8.1%.",
+     "metrics": [
+      "Europe revenue",
+      "PAT"
+     ],
+     "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf",
+     "statement_impact": {
+      "pl": "PAT +25%; margin up 0.6 points.",
+      "bs": "Net cash US$42 M after Lannett and a US$85 M buyback.",
+      "cf": "Free cash flow US$98 M.",
+      "doing": "10 US launches and 10 approvals.",
+      "should": "Keep cash discipline as biosimilars scale."
+     }
+    },
+    {
+     "date": "2026-06-29",
+     "title": "Completes US$250 M Lannett acquisition, adding about 4 bn doses of US manufacturing",
+     "category": "M&A",
+     "sentiment": 1,
+     "impact": "US manufacturing hedge against tariffs; entry into ADHD and controlled substances.",
+     "metrics": [
+      "Capital allocation",
+      "US revenue"
+     ],
+     "url": "https://www.sahi.com/news/aurobindo-pharma-completes-250m-lannett-acquisition-to-boost-us-capacity-by-4b-doses-1839-PE1_COR",
+     "statement_impact": {
+      "pl": "Adds US sales; expected EPS-accretive.",
+      "bs": "Adds goodwill and US assets.",
+      "cf": "US$247 M cash out.",
+      "doing": "Building US-made supply.",
+      "should": "Integration and plant-loading plan."
+     }
+    }
+   ],
+   "working": [
+    "Largest ANDA book: 896 filed, 737 approved",
+    "Europe +25.6% in Q1 FY27; top-10 generic company in 8 European countries",
+    "Steady 20 to 21% margin; PAT +25% in Q1 FY27",
+    "US manufacturing (Lannett) as a tariff hedge"
+   ],
+   "not_working": [
+    "Lowest margin of the six (about 20%)",
+    "Lowest returns: ROCE 13%, ROIC about 8%",
+    "Inventory 326 days and rising",
+    "Material cost 48% of sales, highest in the set",
+    "Repeat FDA issues at Eugia injectables sites"
+   ],
+   "problems": [
+    {
+     "title": "Lift returns above the cost of capital",
+     "evidence": "ROCE 13%, ROIC about 8% (FY26), the lowest of the six.",
+     "answer": "Portfolio pruning of low-margin products, plant consolidation and capital-light growth.",
+     "investigate": "Product and site profitability; capital by business.",
+     "service": "Strategy: portfolio and capital efficiency"
+    },
+    {
+     "title": "Cut material cost and inventory",
+     "evidence": "Material cost 48% of sales; inventory days 272 → 326.",
+     "answer": "Procurement programme (API and intermediates), S&OP and SKU rationalisation.",
+     "investigate": "Spend cube; inventory by stage.",
+     "service": "Operations: procurement and working capital"
+    },
+    {
+     "title": "Fix injectables quality at Eugia",
+     "evidence": "Warning letter at Eugia Unit-I (Aug 2026).",
+     "answer": "Quality remediation and digital quality systems across sterile sites.",
+     "investigate": "Observation themes; product-to-site map.",
+     "service": "Risk: quality remediation"
+    },
+    {
+     "title": "Make biosimilars pay",
+     "evidence": "EU and UK approvals; STADA licensing deal; denosumab and omalizumab filings.",
+     "answer": "Go-to-market model by country (own vs partner), pricing and tender strategy.",
+     "investigate": "Market access by country; capacity utilisation.",
+     "service": "Strategy: biosimilars go-to-market"
+    },
+    {
+     "title": "Integrate Lannett and reach US$2 bn US sales",
+     "evidence": "Lannett adds about 4 bn doses; US$2 bn US target.",
+     "answer": "Integration office, plant loading and product transfer plan.",
+     "investigate": "Product transfer economics; capacity use.",
+     "service": "Strategy: M&A integration"
+    }
+   ],
+   "digital": {
+    "Commercial & omnichannel": 2,
+    "Supply chain & S&OP": 3,
+    "Manufacturing 4.0 & quality": 2,
+    "R&D & regulatory": 3,
+    "Finance & ERP": 3,
+    "Data & AI": 2
+   },
+   "consulting": [
+    "Returns improvement",
+    "Procurement and inventory",
+    "Eugia quality remediation",
+    "Biosimilars go-to-market",
+    "Lannett integration"
+   ],
+   "swot": {
+    "strengths": [
+     "896 ANDAs filed, 737 approved",
+     "Europe top-10 in 8 countries",
+     "Steady margins and cash discipline",
+     "US manufacturing (Lannett)"
+    ],
+    "weaknesses": [
+     "Lowest margin and returns",
+     "Material cost 48% of sales",
+     "Inventory 326 days",
+     "Repeat injectables FDA issues"
+    ],
+    "opportunities": [
+     "Biosimilars in Europe",
+     "Controlled substances via Lannett",
+     "Growth markets +38%",
+     "Tariff hedge from US plants"
+    ],
+    "threats": [
+     "US price erosion",
+     "FDA actions",
+     "Chinese API competition",
+     "Biosimilar price competition"
+    ]
+   },
+   "brands": {
+    "summary": "A generics company, not a brand company: little India branded business. Strength is breadth: 737 US approvals and a top-10 position in 8 European countries.",
+    "therapy_basis": "Business mix (% of FY26 sales)",
+    "therapies": [
+     {
+      "therapy": "US formulations",
+      "value": 43,
+      "detail": "43%; +8.1% in Q1 FY27"
+     },
+     {
+      "therapy": "Europe",
+      "value": 31,
+      "detail": "31%; +25.6% in Q1 FY27"
+     },
+     {
+      "therapy": "API",
+      "value": 12,
+      "detail": "12%; beta-lactam heavy"
+     },
+     {
+      "therapy": "Growth markets",
+      "value": 10,
+      "detail": "10%; +37.7% in Q1 FY27"
+     },
+     {
+      "therapy": "ARV",
+      "value": 4,
+      "detail": "4%; tender driven"
+     }
+    ],
+    "brand_basis": "Company disclosures (biosimilars)",
+    "brands": [
+     {
+      "name": "Zefylti",
+      "therapy": "Biosimilar (EU, UK)",
+      "evidence": "Approved",
+      "basis": "Company"
+     },
+     {
+      "name": "Dyrupeg",
+      "therapy": "Biosimilar (EU, UK, Canada)",
+      "evidence": "Approved",
+      "basis": "Company"
+     },
+     {
+      "name": "Dazublys",
+      "therapy": "Biosimilar (EU, UK)",
+      "evidence": "Approved",
+      "basis": "Company"
+     },
+     {
+      "name": "Bevqolva",
+      "therapy": "Biosimilar (UK, Canada)",
+      "evidence": "Approved; EMA filing",
+      "basis": "Company"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Aurobindo Q4 FY26 earnings presentation",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_EarningsPresentation_Q4FY26.pdf"
+     },
+     {
+      "title": "Aurobindo Q1 FY27 press release",
+      "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_PressRelease_Q1FY27.pdf"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 2,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Tender and distributor-led model in Europe and growth markets.",
+     "consultant": "Tender analytics and pricing tools.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Inventory 326 days and rising.",
+     "consultant": "Network S&OP and inventory optimisation.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 2,
+     "status": "Weak",
+     "doing": "Eugia Unit-I warning letter (Aug 2026).",
+     "gap": "Repeat FDA issues at sterile sites.",
+     "consultant": "Electronic quality systems for sterile manufacturing.",
+     "wave": "0–6 mo",
+     "sources": [
+      {
+       "title": "Whalesbook: Aurobindo falls after USFDA warning letter (Eugia Unit-I)",
+       "url": "https://www.whalesbook.com/news/English/healthcarebiotech/Aurobindo-Pharma-Falls-2percent-After-USFDA-Warning-Letter/6a7ed4576ffbe1e6461b5708"
+      }
+     ]
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "The largest ANDA book needs efficient filing.",
+     "consultant": "Regulatory operations automation.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Aurobindo Q4 FY26 earnings presentation",
+       "url": "https://www.aurobindo.com/api/uploads/resultsannouncement/APL_EarningsPresentation_Q4FY26.pdf"
+      }
+     ]
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Returns below cost of capital.",
+     "consultant": "Product and site profitability analytics.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 2,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "No disclosed AI programme.",
+     "consultant": "AI for portfolio selection and price-erosion forecasting.",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ],
+   "color": "#C2410C"
+  },
+  {
+   "id": "zydus",
+   "name": "Zydus Lifesciences",
+   "short": "Zydus",
+   "ticker": "ZYDUSLIFE.NS",
+   "tagline": "Diversified pharma with India brands, US generics, consumer wellness and medtech, buying its way into US specialty",
+   "profile": {
+    "founded": "1952 (as Cadila)",
+    "hq": "Ahmedabad, Gujarat",
+    "leadership": "Pankaj R. Patel (Chairman); Dr. Sharvil Patel (Managing Director)",
+    "business_model": "US formulations (3rd among US generics by prescriptions), India branded, consumer wellness (Glucon-D, Nycil, Sugar Free, Complan), international markets, medtech (Amplitude Surgical), API; US specialty via Assertio.",
+    "description": "FY26 revenue ₹27,148 Cr (+16.8%), EBITDA margin 31.2% (company basis). Acquisitions: Amplitude Surgical (France, medtech), Assertio (US, US$166 M, Jun 2026). First US ranibizumab biosimilar (Nufymco). Moved from net cash to net debt (0.5x EBITDA).",
+    "employees_note": "India chronic share 46.3%; 10 India brands above ₹100 Cr"
+   },
+   "market": {
+    "mcap_cr": 112658,
+    "price": 1129,
+    "pe": 23.1,
+    "pb": 4.2,
+    "book_value": 269,
+    "div_yield": 0.09,
+    "high_52w": 1232,
+    "low_52w": 836,
+    "price_date": "2026-10-23",
+    "shareholding": {
+     "Promoters": 75.01,
+     "FIIs": 7.05,
+     "DIIs": 11.28,
+     "Public": 6.66
+    }
+   },
+   "footprint": {
+    "market": "US: 3rd among US generic companies by prescriptions; India branded +15% in FY26 with chronic at 46.3%; consumer wellness #1 in Glucon-D, Nycil and Sugar Free.",
+    "geography": {
+     "North America": 44,
+     "India": 25,
+     "Consumer healthcare": 15,
+     "International markets": 11,
+     "MedTech": 3,
+     "API & others": 2
+    },
+    "geography_basis": "FY26 revenue mix (%)",
+    "manufacturing": "Formulation, injectable and biologics sites in Gujarat (Ahmedabad, Zydus Biotech Park), plus US and international sites; Amplitude Surgical plants in France. Biotech Park injectables VAI after the Apr to May 2026 inspection.",
+    "rnd": "FY26 R&D ₹2,273 Cr (8.4% of sales, highest of the six); Q1 FY27 8.0%. Pipeline: saroglitazar for PBC (FDA priority review), biosimilars (ranibizumab, nivolumab, aflibercept), a biosimilar ADC in Phase III.",
+    "rnd_pct": 8.4,
+    "therapies": {
+     "US generics and specialty": 44,
+     "India branded": 25,
+     "Consumer wellness": 15,
+     "International": 11,
+     "MedTech": 3,
+     "API": 2
+    },
+    "therapies_basis": "Business mix (% of FY26 sales)",
+    "plants": null,
+    "field_force": null
+   },
+   "regulatory": {
+    "anda_filed": null,
+    "anda_approved": null,
+    "anda_tentative": null,
+    "anda_pending": null,
+    "us_products_commercialised": null,
+    "dmf_us": null,
+    "q_launches": 11,
+    "q_approvals": 9,
+    "fda_open": false,
+    "status": "Zydus Biotech Park injectables: VAI after the Apr to May 2026 inspection. Saroglitazar (PBC) under FDA priority review, decision later in FY27. 9 ANDA approvals and 11 US launches in Q1 FY27.",
+    "as_of": "30-Jun-2026"
+   },
+   "financials": {
+    "sales": [
+     15265.0,
+     17237.0,
+     19547.0,
+     23242.0,
+     27148.0
+    ],
+    "ebitda": [
+     3342.0,
+     3860.0,
+     5384.0,
+     7058.0,
+     8475.0
+    ],
+    "other_income": [
+     2581.0,
+     -422.0,
+     293.0,
+     50.0,
+     -7.0
+    ],
+    "interest": [
+     127.0,
+     130.0,
+     81.0,
+     166.0,
+     439.0
+    ],
+    "depreciation": [
+     713.0,
+     723.0,
+     764.0,
+     916.0,
+     1408.0
+    ],
+    "pbt": [
+     5084.0,
+     2585.0,
+     4832.0,
+     6027.0,
+     6621.0
+    ],
+    "tax_pct": [
+     10.0,
+     23.0,
+     20.0,
+     23.0,
+     24.0
+    ],
+    "pat": [
+     4618.0,
+     2092.0,
+     3973.0,
+     4673.0,
+     5124.0
+    ],
+    "equity_capital": [
+     102.0,
+     101.0,
+     101.0,
+     101.0,
+     101.0
+    ],
+    "reserves": [
+     16897.0,
+     17415.0,
+     19729.0,
+     23852.0,
+     27011.0
+    ],
+    "borrowings": [
+     4221.0,
+     1195.0,
+     804.0,
+     3213.0,
+     12496.0
+    ],
+    "other_liabilities": [
+     6421.0,
+     6851.0,
+     8201.0,
+     9523.0,
+     11065.0
+    ],
+    "total_assets": [
+     27642.0,
+     25562.0,
+     28834.0,
+     36689.0,
+     50673.0
+    ],
+    "fixed_assets": [
+     12253.0,
+     11521.0,
+     12368.0,
+     13134.0,
+     24106.0
+    ],
+    "cwip": [
+     661.0,
+     1201.0,
+     2423.0,
+     2692.0,
+     3698.0
+    ],
+    "investments": [
+     3288.0,
+     1547.0,
+     1220.0,
+     6412.0,
+     7540.0
+    ],
+    "other_assets": [
+     11439.0,
+     11294.0,
+     12822.0,
+     14451.0,
+     15328.0
+    ],
+    "cfo": [
+     2104.0,
+     2689.0,
+     3228.0,
+     6781.0,
+     2117.0
+    ],
+    "cfi": [
+     1137.0,
+     1178.0,
+     -1492.0,
+     -8363.0,
+     -7895.0
+    ],
+    "cff": [
+     -868.0,
+     -4400.0,
+     -1810.0,
+     1995.0,
+     5807.0
+    ],
+    "debtor_days": [
+     80.0,
+     94.0,
+     97.0,
+     64.0,
+     73.0
+    ],
+    "inventory_days": [
+     245.0,
+     197.0,
+     202.0,
+     227.0,
+     282.0
+    ],
+    "payable_days": [
+     141.0,
+     123.0,
+     125.0,
+     131.0,
+     142.0
+    ],
+    "ccc": [
+     184.0,
+     168.0,
+     175.0,
+     160.0,
+     212.0
+    ],
+    "wc_days": [
+     19.0,
+     70.0,
+     88.0,
+     3.0,
+     -40.0
+    ],
+    "roce": [
+     13.0,
+     15.0,
+     22.0,
+     24.0,
+     21.0
+    ],
+    "material_pct": [
+     36.62,
+     36.32,
+     29.14,
+     null,
+     31.15
+    ],
+    "employee_pct": [
+     15.41,
+     15.17,
+     13.96,
+     null,
+     17.14
+    ],
+    "manufacturing_pct": [
+     7.99,
+     7.0,
+     5.97,
+     null,
+     6.9
+    ],
+    "other_cost_pct": [
+     15.46,
+     13.4,
+     13.42,
+     null,
+     10.63
+    ],
+    "cash": [
+     303.0,
+     248.0,
+     414.0,
+     144.0,
+     734.0
+    ],
+    "expenses": [
+     11923,
+     13377,
+     14163,
+     16184,
+     18673
+    ],
+    "eps": [
+     43.83,
+     19.37,
+     38.36,
+     44.97,
+     50.09
+    ],
+    "div_payout": [
+     6,
+     31,
+     8,
+     24,
+     2
+    ]
+   },
+   "ttm": {
+    "sales": 28592,
+    "ebitda": 8316,
+    "pat": 4593
+   },
+   "quarterly": {
+    "sales": [
+     6574,
+     6123,
+     6864,
+     7587,
+     8017
+    ],
+    "ebitda": [
+     2088,
+     2016,
+     1816,
+     2554,
+     1929
+    ],
+    "opm": [
+     32,
+     33,
+     26,
+     34,
+     24
+    ],
+    "pat": [
+     1521,
+     1239,
+     1023,
+     1341,
+     990
+    ]
+   },
+   "guidance": "FY27: strong double-digit revenue growth; EBITDA margin 24%+; India branded mid-teens growth; US generics single-digit; 30 to 40 US launches; capex ₹1,500 to 1,600 Cr; EBITDA margin 28 to 30% by FY30.",
+   "consensus": {
+    "broker": "Not compiled",
+    "rating": "n/a"
+   },
+   "data_notes": [
+    "Acquired: Amplitude Surgical (medtech) in FY26, Assertio (US) from Q2 FY27, plus consumer acquisitions; part of growth is bought.",
+    "Screener's FY25 cost split did not reconcile, so FY25 cost shares are left blank.",
+    "FY26 includes a ₹398 Cr exceptional charge for the mirabegron litigation settlement."
+   ],
+   "news": [
+    {
+     "date": "2026-08-11",
+     "title": "Q1 FY27: revenue +22% to ₹8,017 Cr; EBITDA margin 24.1% (−7.7 points); PAT −36% to ₹940 Cr",
+     "category": "Results",
+     "sentiment": -1,
+     "impact": "Acquisitions add sales but also costs, amortisation and interest; US −2.6%.",
+     "metrics": [
+      "EBITDA margin",
+      "PAT",
+      "US revenue"
+     ],
+     "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416",
+     "statement_impact": {
+      "pl": "Margin down 7.7 points; depreciation doubled; interest +84%.",
+      "bs": "Net debt 0.7x EBITDA.",
+      "cf": "Capex ₹585 Cr in the quarter.",
+      "doing": "Guiding 24%+ margin and 28 to 30% by FY30.",
+      "should": "Synergy and cost plan for the acquired businesses."
+     }
+    },
+    {
+     "date": "2026-08-11",
+     "title": "First US biosimilar of ranibizumab (Nufymco) launched; saroglitazar gets FDA priority review",
+     "category": "Regulatory",
+     "sentiment": 1,
+     "impact": "Moves the US business from generics towards specialty.",
+     "metrics": [
+      "New launches",
+      "US revenue"
+     ],
+     "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416",
+     "statement_impact": {
+      "pl": "New US specialty sales.",
+      "bs": "No major effect.",
+      "cf": "Launch costs.",
+      "doing": "Raising US specialty share from about 10% to 15%+.",
+      "should": "Specialty launch excellence."
+     }
+    },
+    {
+     "date": "2026-06-17",
+     "title": "Completes US$166 M acquisition of Assertio (US specialty and oncology supportive care)",
+     "category": "M&A",
+     "sentiment": 0,
+     "impact": "US specialty platform; contributes from Q2 FY27.",
+     "metrics": [
+      "Capital allocation"
+     ],
+     "url": "https://medicaldialogues.in/news/industry/pharma/zydus-completes-usd-1664-million-acquisition-of-us-based-assertio-holdings-173050",
+     "statement_impact": {
+      "pl": "Adds US specialty sales.",
+      "bs": "Adds goodwill.",
+      "cf": "US$166 M cash out.",
+      "doing": "Building US specialty.",
+      "should": "Integration plan."
+     }
+    },
+    {
+     "date": "2026-05-19",
+     "title": "FY26: revenue +16.8%; EBITDA margin 31.2%; adjusted PAT +15%; ₹1,100 Cr buyback at ₹1,150",
+     "category": "Results",
+     "sentiment": 1,
+     "impact": "India branded +15%; consumer wellness +46%; international +40%.",
+     "metrics": [
+      "PAT",
+      "India revenue growth"
+     ],
+     "url": "https://www.zyduslife.com/investor/admin/uploads/21/83/Press-Release---19-05-2026.pdf",
+     "statement_impact": {
+      "pl": "Margin up 0.8 points.",
+      "bs": "Net debt 0.5x EBITDA after acquisitions.",
+      "cf": "₹1,100 Cr buyback.",
+      "doing": "Diversifying beyond US generics.",
+      "should": "Clear capital allocation rules for deals and buybacks."
+     }
+    }
+   ],
+   "working": [
+    "Fastest-growing major: revenue +16.8% (FY26) and +22% (Q1 FY27)",
+    "India branded +15% with chronic at 46.3%",
+    "Consumer wellness #1 brands (Glucon-D, Nycil, Sugar Free)",
+    "Highest R&D (8.4%) with first-in-US biosimilar launch"
+   ],
+   "not_working": [
+    "Margin fell from 31.8% to 24.1% (Q1 FY27) as acquisitions add cost",
+    "PAT −36% in Q1 FY27",
+    "From net cash to net debt (0.7x EBITDA)",
+    "Free cash flow negative in FY25 and FY26",
+    "US generics shrinking (−2.6% in Q1 FY27)"
+   ],
+   "problems": [
+    {
+     "title": "Make acquisitions earn their price",
+     "evidence": "Amplitude, Assertio and consumer deals; Q1 FY27 margin −7.7 points, interest +84%, amortisation doubled.",
+     "answer": "Integration office, synergy tracking and a portfolio review of acquired assets.",
+     "investigate": "Deal-by-deal returns vs plan.",
+     "service": "Strategy: M&A integration"
+    },
+    {
+     "title": "Protect the margin path to 28 to 30%",
+     "evidence": "Guided 24%+ for FY27 and 28 to 30% by FY30.",
+     "answer": "Margin bridge by business, cost programme and mix shift to specialty.",
+     "investigate": "Business-level margins; cost base.",
+     "service": "Operations: margin improvement"
+    },
+    {
+     "title": "Turn free cash flow positive",
+     "evidence": "Free cash flow −21% of sales in FY26 (acquisitions); net debt 0.7x EBITDA.",
+     "answer": "Capital allocation rules, capex prioritisation and working-capital release (inventory 282 days).",
+     "investigate": "Capex returns; inventory by business.",
+     "service": "Finance: capital allocation"
+    },
+    {
+     "title": "Scale US specialty",
+     "evidence": "Specialty about 10% of US revenue, target 15%+; Nufymco, saroglitazar, Assertio.",
+     "answer": "Specialty launch excellence and payer access.",
+     "investigate": "Payer coverage; launch curves.",
+     "service": "Commercial: specialty launch"
+    },
+    {
+     "title": "Grow consumer wellness organically",
+     "evidence": "Consumer +46% in FY26 mostly via acquisition; domestic +5% in Q1 FY27.",
+     "answer": "Brand portfolio strategy, distribution and pricing.",
+     "investigate": "Organic vs acquired growth; distribution reach.",
+     "service": "Strategy: consumer growth"
+    }
+   ],
+   "digital": {
+    "Commercial & omnichannel": 3,
+    "Supply chain & S&OP": 3,
+    "Manufacturing 4.0 & quality": 3,
+    "R&D & regulatory": 3,
+    "Finance & ERP": 3,
+    "Data & AI": 3
+   },
+   "consulting": [
+    "M&A integration",
+    "Margin path to 28 to 30%",
+    "Capital allocation and cash",
+    "US specialty launch",
+    "Consumer growth"
+   ],
+   "swot": {
+    "strengths": [
+     "Fastest growth of the majors",
+     "Strong India and consumer brands",
+     "Highest R&D intensity",
+     "First-in-US ranibizumab biosimilar"
+    ],
+    "weaknesses": [
+     "Margin and profit falling after deals",
+     "Net debt rising",
+     "Negative free cash flow",
+     "US generics shrinking"
+    ],
+    "opportunities": [
+     "Saroglitazar (PBC) approval",
+     "Biosimilars (US and India)",
+     "US specialty via Assertio",
+     "Medtech via Amplitude"
+    ],
+    "threats": [
+     "Deal integration risk",
+     "US price erosion and tariffs",
+     "Consumer competition",
+     "Rising interest cost"
+    ]
+   },
+   "brands": {
+    "summary": "India chronic share 46.3% and 10 brands above ₹100 Cr; consumer wellness leads its categories with Glucon-D, Nycil and Sugar Free.",
+    "therapy_basis": "Business mix (% of FY26 sales)",
+    "therapies": [
+     {
+      "therapy": "US generics and specialty",
+      "value": 44,
+      "detail": "44%; 3rd among US generics by prescriptions"
+     },
+     {
+      "therapy": "India branded",
+      "value": 25,
+      "detail": "25%; +15% branded growth"
+     },
+     {
+      "therapy": "Consumer wellness",
+      "value": 15,
+      "detail": "15%; +46% (incl. acquisitions)"
+     },
+     {
+      "therapy": "International",
+      "value": 11,
+      "detail": "11%; +40%"
+     },
+     {
+      "therapy": "MedTech",
+      "value": 3,
+      "detail": "3%; Amplitude Surgical"
+     }
+    ],
+    "brand_basis": "Company disclosures",
+    "brands": [
+     {
+      "name": "Glucon-D",
+      "therapy": "Consumer",
+      "evidence": "#1 in its category",
+      "basis": "Company"
+     },
+     {
+      "name": "Sugar Free",
+      "therapy": "Consumer",
+      "evidence": "#1 in its category",
+      "basis": "Company"
+     },
+     {
+      "name": "Nycil",
+      "therapy": "Consumer",
+      "evidence": "#1 in its category",
+      "basis": "Company"
+     },
+     {
+      "name": "Nufymco (ranibizumab)",
+      "therapy": "Eye (US biosimilar)",
+      "evidence": "First US ranibizumab biosimilar",
+      "basis": "Company"
+     },
+     {
+      "name": "Tishtha (nivolumab)",
+      "therapy": "Oncology (India biosimilar)",
+      "evidence": "World's first nivolumab biosimilar",
+      "basis": "Company"
+     }
+    ],
+    "sources": [
+     {
+      "title": "Zydus FY26 results press release (19 May 2026)",
+      "url": "https://www.zyduslife.com/investor/admin/uploads/21/83/Press-Release---19-05-2026.pdf"
+     },
+     {
+      "title": "Investing.com: Zydus Q1 FY27 slides",
+      "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+     }
+    ]
+   },
+   "digital_roadmap": [
+    {
+     "area": "Commercial & omnichannel",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "India, consumer and US specialty need different channels.",
+     "consultant": "Omnichannel for India Rx and consumer.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Supply chain & S&OP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Inventory 282 days and many acquired networks.",
+     "consultant": "Integrated S&OP across acquired businesses.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Manufacturing 4.0 & quality",
+     "score": 3,
+     "status": "In progress",
+     "doing": "Biotech Park injectables VAI (Apr to May 2026 inspection).",
+     "gap": "Biologics and sterile scale-up.",
+     "consultant": "Digital quality for biologics.",
+     "wave": "6–18 mo",
+     "sources": [
+      {
+       "title": "Investing.com: Zydus Q1 FY27 slides",
+       "url": "https://www.investing.com/news/company-news/zydus-q1-fy27-slides-22-revenue-growth-offset-by-margin-pressure-93CH-4851416"
+      }
+     ]
+    },
+    {
+     "area": "R&D & regulatory",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Highest R&D intensity (8.4%); biosimilars in many markets.",
+     "consultant": "R&D portfolio analytics and regulatory automation.",
+     "wave": "6–18 mo",
+     "sources": []
+    },
+    {
+     "area": "Finance & ERP",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "Several acquisitions to integrate.",
+     "consultant": "Finance and ERP integration with synergy tracking.",
+     "wave": "0–6 mo",
+     "sources": []
+    },
+    {
+     "area": "Data & AI",
+     "score": 3,
+     "status": "No public evidence",
+     "doing": "No specific programme found in the annual report or investor presentations reviewed.",
+     "gap": "No disclosed enterprise AI programme.",
+     "consultant": "AI for consumer demand and launch analytics.",
+     "wave": "6–18 mo",
+     "sources": []
+    }
+   ],
+   "color": "#4F46E5"
+  }
+ ]
+}

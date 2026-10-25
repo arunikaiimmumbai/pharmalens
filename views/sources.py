@@ -27,7 +27,7 @@ def render():
   Constituent list: [{im['constituents_source']['title']}]({im['constituents_source']['url']}).
 - **Source C (market growth):** published Indian pharma market figures, used where company accounts can't answer (how fast the Indian market grows).
 - **Method:** {im['method']}
-- **Caveat:** Nifty Pharma is mostly large companies with scale advantages, so part of a mid-cap's gap to the industry average can be size, not management.""")
+- **Caveat:** Nifty Pharma is mostly large companies with scale advantages, so part of a mid-size company's gap to the industry average can be size, not management. The Pharma Majors are themselves part of the 20.""")
     st.dataframe(IND.members_table(), hide_index=True, use_container_width=True,
                  column_config={"Source": st.column_config.LinkColumn(display_text="open ↗")})
     st.markdown("**Published market figures (source C)**")

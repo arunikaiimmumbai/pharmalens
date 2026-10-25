@@ -3560,5 +3560,13 @@
     "url": "https://www.biospectrumindia.com/news/16/28658/indian-pharma-market-records-13-5-value-growth-volume-growth-rises-to-3-in-september-2026.html"
    }
   }
- ]
+ ],
+ "in_app_majors": {
+  "SUNPHARMA": "sun",
+  "DRREDDY": "drreddy",
+  "CIPLA": "cipla",
+  "LUPIN": "lupin",
+  "AUROPHARMA": "aurobindo",
+  "ZYDUSLIFE": "zydus"
+ }
 }

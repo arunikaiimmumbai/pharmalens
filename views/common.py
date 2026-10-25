@@ -18,6 +18,35 @@ ALL_LABEL = "All six companies"
 
 
 # ── Company picker ───────────────────────────────────────────────────────────
+KEEP_ON_SWITCH = {"segment", "segment_pick", "panel_open", "live_on", "user_api_key", "agent_log", "panel_chat", "ai_model"}
+
+
+def _switch_segment() -> None:
+    """New peer set: forget company picks and comparisons that belong to the old set."""
+    new = st.session_state["segment_pick"]
+    if new == st.session_state.get("segment"):
+        return
+    for k in list(st.session_state.keys()):
+        if k not in KEEP_ON_SWITCH and not str(k).startswith("FormSubmitter"):
+            del st.session_state[k]
+    st.session_state["segment"] = new
+    st.session_state["focus"] = None
+
+
+def segment_picker() -> str:
+    """Peer-set choice shown at the top of the Overview page."""
+    segs = D.available_segments()
+    if len(segs) < 2:
+        return D.segment()
+    st.session_state["segment_pick"] = D.segment()
+    st.radio("Choose the peer set to analyse", segs, key="segment_pick", horizontal=True, on_change=_switch_segment,
+             format_func=lambda k: f"{D.SEGMENTS[k]['label']}  ·  {D.SEGMENTS[k]['size']}",
+             captions=[D.SEGMENTS[k]["names"] for k in segs],
+             help="Each peer set is compared within itself and against the same industry benchmark (the 20 Nifty Pharma companies). "
+                  "The two sets are never mixed. Named by size of sales, not stock-market 'cap' labels, which change every six months.")
+    return D.segment()
+
+
 def focus_picker(key: str, label: str = "Company") -> str | None:
     """Company picker that follows the sidebar focus. Returns None while 'Select' is chosen."""
     ids = [None] + list(D.names().keys())

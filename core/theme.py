@@ -144,6 +144,11 @@ div[data-testid="stMetric"] {{ background:#fff; border:1px solid var(--line); bo
 .note b {{ color:#0F1B33; }}
 .note .src {{ color:#64748B; font-size:.76rem; margin-top:5px; }}
 .note .src a {{ color:#1D4ED8; text-decoration:none; }}
+.segchip {{ background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); border-radius:12px; padding:9px 11px; margin:0 0 12px 0; color:#fff; }}
+.segchip .muted {{ color:#DCE7FF !important; }}
+.st-key-segment_pick [role="radiogroup"] {{ gap:12px; }}
+.st-key-segment_pick [role="radiogroup"] > label {{ background:#fff; border:1.5px solid #D6E2F5; border-radius:14px; padding:12px 16px; min-width:300px; box-shadow:0 2px 8px rgba(13,59,138,.06); }}
+.st-key-segment_pick [role="radiogroup"] > label:has(input:checked) {{ border-color:#1D4ED8; background:#EEF4FF; box-shadow:0 4px 14px rgba(29,78,216,.15); }}
 .pop-h {{ font-weight:700; color:#0F1B33; font-size:.95rem; margin-bottom:6px; }}
 .pop-l {{ font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#64748B; margin-top:10px; }}
 .pop-t {{ font-size:.9rem; color:#0F1B33; line-height:1.45; }}
@@ -174,7 +179,15 @@ def inject_css() -> None:
 
 
 def hero(title: str, subtitle: str, chips: list[str] | None = None) -> None:
-    chips_html = "".join(f'<span class="chip">{c}</span>' for c in (chips or []))
+    chips = list(chips or [])
+    try:  # every page shows which peer set is on screen
+        from core import data as _D
+        lab = _D.segment_label()
+        if lab not in title:
+            chips = [f"Peer set: {lab}"] + chips
+    except Exception:
+        pass
+    chips_html = "".join(f'<span class="chip">{c}</span>' for c in chips)
     st.markdown(
         f"""<div class="hero">{HELIX_SVG}
         <div style="position:relative;z-index:2"><h1>{title}</h1><div class="sub">{subtitle}</div>{chips_html}</div></div>""",

@@ -32,8 +32,14 @@ LABELS = {"sales_cagr": "Revenue CAGR FY22–26", "sales_growth": "Revenue growt
           "ccc": "Cash conversion cycle", "asset_turnover": "Asset turnover"}
 COST_OF_CAPITAL = 12.0  # % (assumed; typical for Indian pharma)
 ONE_OFF = {"glenmark": "FY26 includes one-off AbbVie licensing income"}
-ACQUIRED = {"mankind": "Revenue includes Bharat Serums (BSV) from Oct 2024", "ipca": "Revenue includes Unichem from FY24"}
-OPEN_FDA = {"alkem": "Daman plant classified OAI by the US FDA (Aug 2026)"}
+ACQUIRED = {"mankind": "Revenue includes Bharat Serums (BSV) from Oct 2024", "ipca": "Revenue includes Unichem from FY24",
+            "zydus": "Revenue includes acquisitions (Amplitude Surgical, Assertio, consumer brands)",
+            "drreddy": "Europe includes acquired nicotine-replacement (NRT) brands"}
+OPEN_FDA = {"alkem": "Daman plant classified OAI by the US FDA (Aug 2026)",
+            "sun": "Halol plant OAI and under US import alert",
+            "cipla": "Pithampur plant under US FDA warning letter (7 new observations, Aug 2026)",
+            "lupin": "Pithampur Unit II classified OAI by the US FDA",
+            "aurobindo": "Eugia Unit-I US FDA warning letter (Aug 2026)"}
 
 
 # ── raw metric values ────────────────────────────────────────────────────────
@@ -329,8 +335,8 @@ SCENARIOS = {
     "Base": {"desc": "Company guidance and recent trends continue.", "shock": lambda c, us, ind: {}},
     "Upside": {"desc": "India market grows ~12% (2 pts faster); US price erosion eases; costs stable.",
                "shock": lambda c, us, ind: {"growth": 2.0 * ind / 100 + 1.5 * us / 100, "margin": 1.0}},
-    "Downside": {"desc": "US generics tariff starts after the 2-year grace period, input costs rise 1.5 pts, and Alkem's Daman issue drags on.",
-                 "shock": lambda c, us, ind: {"growth": -0.15 * us - (5.0 if c == "alkem" else 0.0), "margin": -1.5 - 0.06 * us}},
+    "Downside": {"desc": "US generics tariff starts after the 2-year grace period, input costs rise 1.5 pts, and any open US FDA plant issue drags on.",
+                 "shock": lambda c, us, ind: {"growth": -0.15 * us - (5.0 if c in OPEN_FDA else 0.0), "margin": -1.5 - 0.06 * us}},
 }
 
 
