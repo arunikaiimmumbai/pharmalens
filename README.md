@@ -35,6 +35,13 @@ Rebuild scripts and raw extracts are in `research/`.
 Everything runs on free tiers: GitHub (free), Streamlit Community Cloud (free hosting), Google Gemini API (free tier).
 Without any key the app still works fully; the AI Analyst then runs in free offline mode.
 
+**The analyst panel:** answers stream in as they are written, with each step shown live. The 16 tools cover the app's data
+(both peer sets), the industry benchmark, a calculator for "size of the prize", charts inside answers, reading a linked
+report (PDF or web page), and web search (Google Search through your Gemini key, DuckDuckGo as backup), used only when the
+app's data can't answer and always labelled "(web)". Repeat questions are answered instantly from a shared cache. If the free
+quota runs out it switches to a lighter Gemini model (or Groq if `GROQ_API_KEY` is set). Every answer gets an automatic
+number check against the data it used, and a 👍/👎 rating recorded in the agent history.
+
 ## Deploy (free) — GitHub + Streamlit Community Cloud
 1. Create a free GitHub account → New repository `pharmalens` (Public) → "uploading an existing file" → drag in everything inside this folder → Commit.
 2. Get a free Gemini key: https://aistudio.google.com/apikey → Create API key → copy it.
@@ -61,7 +68,8 @@ app.py                 navigation + sidebar
 core/data.py           data loader + ratio/KPI engine (CAGR, ROE, elasticity, correlations)
 core/insights.py       rule-based growth/opportunity/risk engine + financial score
 core/live.py           yfinance prices, Google News RSS, sentiment, event study
-core/agent.py          AI agent (free Gemini / Groq, optional Claude) with 10 tools + offline analyst
+core/agent.py          AI agent (free Gemini / Groq, optional Claude) with 16 tools, streaming, parallel tools, backup model + offline analyst
+core/agent_extras.py   web search, read a document, calculator and size of the prize, charts in answers, number check, answer cache
 core/theme.py          white/blue pharma design system (CSS, Plotly template, SVG motifs)
 views/*.py             one file per page
 data/companies.json    curated dataset with sources

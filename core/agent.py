@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import threading
 
 import numpy as np
 import pandas as pd
@@ -20,6 +21,7 @@ from core import industry as IND
 from core import insights as I
 from core import live as L
 from core import notes as N
+from core import agent_extras as AX
 
 DEFAULT_MODEL = "claude-sonnet-5-5"
 
@@ -27,7 +29,8 @@ DEFAULT_MODEL = "claude-sonnet-5-5"
 def system_prompt() -> str:
     """System prompt for the active peer set."""
     m = D.meta()
-    return SYSTEM_PROMPT.format(segment=D.segment_label(), names=D.SEGMENTS[D.segment()]["names"],
+    others = "; ".join(f"{D.SEGMENTS[k]['label']}: {D.SEGMENTS[k]['names']}" for k in D.available_segments() if k != D.segment())
+    return SYSTEM_PROMPT.format(segment=D.segment_label(), names=D.SEGMENTS[D.segment()]["names"], others=others or "none",
                                 one_offs=m.get("one_offs", "check the data notes for acquisitions and one-off income."))
 
 SYSTEM_PROMPT = """You are a financial analyst and senior strategy consultant specialising in Indian pharma.
@@ -35,8 +38,14 @@ You analyse six listed companies, the "{segment}" peer set: {names} (consolidate
 and compare them with the industry: the average of the 20 Nifty Pharma companies (tool get_industry_benchmark) and
 published Indian pharma market growth (IQVIA, Pharmarack).
 
+You can also answer about the other peer set ({others}); tools accept any of these company names.
+
 Rules:
-- Be fast. The page context usually already contains the numbers: if it does, answer straight away without tools. Otherwise call at most 2 tools, together in one round if you can.
+- Be fast. The page context already contains the chart's numbers and the company's key ratios with the industry average: if that is enough, answer straight away without tools. Otherwise call the tools you need together in one round (they run in parallel).
+- Use calculate for any arithmetic, and for 'size of the prize' questions (cash released or extra EBITDA if a metric reached the industry median, average, best peer or a target).
+- When the user asks to compare, show, plot, chart or rank, call make_chart (and mention the chart in one line).
+- Use search_web ONLY when the app's data and tools cannot answer: very recent events, facts outside the app, or companies not in the app. Mark every web fact with "(web)" and cite its link.
+- When the user gives a link to a report, results or web page, call read_document and quote page numbers.
 - Ground every number in tool results or the page context given to you. Call tools first; never invent figures or links.
 - Explain WHY a number is what it is (business model, mix, one-offs, acquisitions, regulators, costs), not just that it is high or low.
 - Always compare with the industry average and the other companies where it helps.
@@ -52,14 +61,15 @@ End with one line: Sources: followed by markdown links [title](url), taken ONLY 
 """
 
 TOOLS = [
-    {"name": "list_companies", "description": "List the six companies with ids, tickers and one-line positioning.",
+    {"name": "list_companies", "description": "List the companies of both peer sets with ids, tickers, peer set and one-line positioning.",
      "input_schema": {"type": "object", "properties": {}}},
     {"name": "get_company_profile", "description": "Profile & footprints (market, geography, manufacturing, R&D, therapy), regulatory/ANDA status, guidance, consensus, shareholding.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string", "description": "id or name, e.g. 'alkem'"}}, "required": ["company"]}},
     {"name": "get_financials", "description": "Five-year (FY22–FY26) series for one company. Metrics include sales, ebitda, pat, ebitda_margin, gross_margin, pat_margin, roce, roe, employee_pct, material_pct, indirect_pct, other_cost_pct, inventory_days, debtor_days, payable_days, ccc, wc_days, borrowings, de_ratio, debt_ebitda, interest_cover, cfo, cfo_pat, fcf_proxy, asset_turnover, fixed_asset_turnover, sales_growth, employee_growth, indirect_growth. Also returns quarterly (Q1 FY26–Q1 FY27).",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "metrics": {"type": "array", "items": {"type": "string"}}}, "required": ["company"]}},
     {"name": "compare_kpis", "description": "Cross-company KPI table for FY26 (or another year) with peer median and rank. Also accepts sales_cagr, ebitda_cagr, pat_cagr, pe, pb, ev_ebitda, mcap_cr, rnd_pct, us_share, india_share.",
-     "input_schema": {"type": "object", "properties": {"metrics": {"type": "array", "items": {"type": "string"}}, "year": {"type": "string", "default": "FY26"}}, "required": ["metrics"]}},
+     "input_schema": {"type": "object", "properties": {"metrics": {"type": "array", "items": {"type": "string"}}, "year": {"type": "string", "default": "FY26"},
+                                                     "companies": {"type": "array", "items": {"type": "string"}, "description": "optional; may mix both peer sets"}}, "required": ["metrics"]}},
     {"name": "correlate", "description": "Pearson correlation between two metrics. With a company: across its 5 years. Without: pooled 30 company-years. Also returns cost elasticity when x='sales'.",
      "input_schema": {"type": "object", "properties": {"x": {"type": "string"}, "y": {"type": "string"}, "company": {"type": "string"}}, "required": ["x", "y"]}},
     {"name": "get_insights", "description": "Rule-based growth / opportunity / risk insights vs peer median and financial pillar scores for one company.",
@@ -74,17 +84,47 @@ TOOLS = [
      "input_schema": {"type": "object", "properties": {"metric": {"type": "string", "description": "e.g. ebitda_margin, roce, roic, inventory_days, sales_cagr"}, "year": {"type": "string", "default": "FY26"}}, "required": ["metric"]}},
     {"name": "get_brands_and_digital", "description": "Top brands and therapy areas ranked by market share or success, and the digitisation roadmap by area (score 1-5, what the company is doing, gap, consultant entry point), with sources.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}}, "required": ["company"]}},
+    {"name": "search_web", "description": "Free web search (Google Search via Gemini, or DuckDuckGo). Use only when the app's data cannot answer: very recent news, facts outside the app, or other companies. Results are labelled as web results.",
+     "input_schema": {"type": "object", "properties": {"query": {"type": "string", "description": "a specific search query, e.g. 'Cipla Q2 FY27 results October 2026'"}}, "required": ["query"]}},
+    {"name": "read_document", "description": "Open a public link (annual report PDF, results release, investor presentation or web page) and return the passages most relevant to the question, with page numbers.",
+     "input_schema": {"type": "object", "properties": {"url": {"type": "string"}, "question": {"type": "string", "description": "what to look for in the document"}}, "required": ["url"]}},
+    {"name": "calculate", "description": "Calculator. Either give 'expression' (arithmetic only, e.g. '(462-282)/365*2330'), or give company + metric (+ target) for the size of the prize: cash released (inventory_days, debtor_days, payable_days) or extra EBITDA per year (employee_pct, material_pct, indirect_pct, other_cost_pct, manufacturing_pct, ebitda_margin) if the company reached the target. target: industry_median (default), industry_average, best_peer, or a number.",
+     "input_schema": {"type": "object", "properties": {"expression": {"type": "string"}, "company": {"type": "string"}, "metric": {"type": "string"},
+                                                     "target": {"type": "string", "description": "industry_median, industry_average, best_peer or a number"}}}},
+    {"name": "make_chart", "description": "Draw a chart in the answer. mode 'snapshot' = one bar per company for FY26 (with the industry line); mode 'trend' = FY22 to FY26 lines. companies: list of names, or ['all'] for the current peer set; names from the other peer set are allowed.",
+     "input_schema": {"type": "object", "properties": {"metric": {"type": "string", "description": "e.g. ebitda_margin, roce, inventory_days, ccc, employee_pct, sales_cagr"},
+                                                     "companies": {"type": "array", "items": {"type": "string"}},
+                                                     "mode": {"type": "string", "enum": ["snapshot", "trend"]},
+                                                     "include_industry": {"type": "boolean"}}, "required": ["metric"]}},
     {"name": "run_scenario", "description": "Simple 2-year projection (FY27E, FY28E) from FY26 base given revenue growth % and EBITDA margin %; returns EBITDA and an EV implied at a given EV/EBITDA multiple.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "revenue_growth_pct": {"type": "number"}, "ebitda_margin_pct": {"type": "number"}, "ev_ebitda_multiple": {"type": "number", "default": 20}}, "required": ["company", "revenue_growth_pct", "ebitda_margin_pct"]}},
 ]
 
 
 def resolve(company: str) -> str:
-    q = (company or "").lower().strip()
-    for c in D.companies():
-        if q in (c["id"], c["short"].lower(), c["name"].lower()) or q in c["name"].lower() or c["id"] in q:
+    """Company id from a name or id; searches the current peer set first, then the other set."""
+    q = (company or "").lower().strip().replace("’", "'")
+    if not q:
+        raise ValueError("No company given.")
+    for c in D.all_companies():
+        if q in (c["id"], c["short"].lower(), c["name"].lower()) or q in c["name"].lower() or c["id"] in q \
+                or c["short"].lower().replace("'", "") in q.replace("'", ""):
             return c["id"]
-    raise ValueError(f"Unknown company '{company}'. Use one of: {', '.join(D.names())}")
+    raise ValueError(f"Unknown company '{company}'. Use one of: {', '.join(c['short'] for c in D.all_companies())}")
+
+
+def _resolve_many(names) -> list[str]:
+    if not names or any(str(n).lower() in ("all", "all six", "everyone") for n in names):
+        return [c["id"] for c in D.companies()]
+    out = []
+    for n in names:
+        try:
+            cid = resolve(str(n))
+        except ValueError:
+            continue
+        if cid not in out:
+            out.append(cid)
+    return out or [c["id"] for c in D.companies()]
 
 
 def _clean(obj):
@@ -99,10 +139,45 @@ def _clean(obj):
     return obj
 
 
-def run_tool(name: str, args: dict) -> dict:
+def _web_key() -> tuple[str | None, str | None]:
+    """Gemini key for web search (works even when Groq or Claude answer)."""
+    key = _secret("GEMINI_API_KEY") or (st.session_state.get("user_api_key") if get_provider() == "gemini" else None)
+    model = st.session_state.get("_resolved_model_gemini") or _secret("GEMINI_MODEL") or PROVIDERS["gemini"]["default_model"]
+    return key, model
+
+
+def run_tool(name: str, args: dict, run: dict | None = None) -> dict:
     try:
         if name == "list_companies":
-            return {"companies": [{"id": c["id"], "name": c["name"], "ticker": c["ticker"], "tagline": c["tagline"]} for c in D.companies()]}
+            return {"companies": [{"id": c["id"], "name": c["name"], "ticker": c["ticker"], "peer_set": D.segment_label(D.segment_of(c["id"])),
+                                   "tagline": c["tagline"]} for c in D.all_companies()]}
+
+        if name == "search_web":
+            key, model = _web_key()
+            return AX.search_web(args.get("query", ""), api_key=key, model=model, provider="gemini" if key else None)
+
+        if name == "read_document":
+            return AX.read_document(args.get("url", ""), args.get("question", ""))
+
+        if name == "calculate":
+            if args.get("expression"):
+                return {"expression": args["expression"], "result": round(AX.safe_eval(args["expression"]), 4)}
+            cid = resolve(args.get("company", ""))
+            tgt = args.get("target") or "industry_median"
+            try:
+                tgt = float(tgt)
+            except (TypeError, ValueError):
+                pass
+            return AX.size_of_prize(cid, args.get("metric", ""), tgt)
+
+        if name == "make_chart":
+            cids = _resolve_many(args.get("companies"))
+            spec = AX.chart_spec(args.get("metric", "ebitda_margin"), cids, args.get("mode") or "snapshot",
+                                 args.get("include_industry", True) is not False)
+            if run is not None:
+                run.setdefault("charts", []).append(spec)
+            return {"chart": "drawn under the answer", "data": spec.get("values") or spec.get("series"), "industry": spec.get("industry"),
+                    "sources": [{"title": "Screener.in consolidated financials", "url": "https://www.screener.in/"}]}
 
         if name == "get_company_profile":
             c = D.company(resolve(args["company"]))
@@ -123,6 +198,10 @@ def run_tool(name: str, args: dict) -> dict:
 
         if name == "compare_kpis":
             k = D.kpi_table(args.get("year", "FY26"))
+            if args.get("companies"):
+                ka = D.kpi_table_all(args.get("year", "FY26"))
+                keep = [D.company(c)["short"] for c in _resolve_many(args["companies"])]
+                k = ka.loc[[x for x in keep if x in ka.index]]
             m = [x for x in args["metrics"] if x in k.columns]
             t = k[m]
             yr = args.get("year", "FY26")
@@ -283,11 +362,53 @@ def _no_em_dash(text: str) -> str:
     return re.sub(r"\s*\u2014\s*", ", ", text or "")
 
 
-def run_agent(messages: list[dict], on_step=None, max_steps: int = 4) -> str:
-    """Agentic loop over the configured provider. `messages` = [{role, content}] (strings)."""
+def run_agent(messages: list[dict], on_step=None, max_steps: int = 4, on_text=None, run: dict | None = None) -> str:
+    """Agentic loop over the configured provider. `messages` = [{role, content}] (strings).
+    on_step(step, tool, args) reports progress; on_text(delta) streams the answer (on_text(None) = clear);
+    `run` collects charts, the evidence the answer was built on, and which engine answered."""
+    run = run if run is not None else {}
+    run.setdefault("charts", [])
+    run.setdefault("evidence", [])
     if get_provider() == "anthropic":
-        return _no_em_dash(_run_anthropic(messages, on_step, max_steps))
-    return _no_em_dash(_run_openai_compatible(messages, on_step, max_steps))
+        return _no_em_dash(_run_anthropic(messages, on_step, max_steps, run))
+    return _no_em_dash(_run_openai_compatible(messages, on_step, max_steps, on_text, run))
+
+
+def _script_ctx():
+    for mod in ("streamlit.runtime.scriptrunner_utils.script_run_context", "streamlit.runtime.scriptrunner"):
+        try:
+            m = __import__(mod, fromlist=["get_script_run_ctx", "add_script_run_ctx"])
+            return m.get_script_run_ctx, m.add_script_run_ctx
+        except Exception:
+            continue
+    return (lambda: None), (lambda t, c=None: t)
+
+
+def _run_tools(calls: list[tuple[str, dict]], step: int, on_step, run: dict) -> list[dict]:
+    """Runs the requested tools at the same time (threads keep the Streamlit session so the peer set is right)."""
+    get_ctx, add_ctx = _script_ctx()
+    ctx = get_ctx()
+    results: list[dict] = [{} for _ in calls]
+
+    def work(i: int, name: str, args: dict) -> None:
+        results[i] = _clean(run_tool(name, args, run))
+
+    threads = []
+    for i, (name, args) in enumerate(calls):
+        if on_step:
+            on_step(step, name, args)
+        if len(calls) == 1:
+            work(0, name, args)
+            continue
+        t = threading.Thread(target=work, args=(i, name, args), daemon=True)
+        add_ctx(t, ctx)
+        t.start()
+        threads.append(t)
+    for t in threads:
+        t.join(timeout=60)
+    for r in results:
+        run["evidence"].append(AX.evidence_dump(r))
+    return results
 
 
 def _gemini_safe(schema: dict) -> dict:
@@ -337,69 +458,180 @@ def _pick_model(client, prov: str) -> str | None:
     return sorted(good, reverse=True)[0] if good else None
 
 
-def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 4) -> str:
-    from openai import BadRequestError, NotFoundError, OpenAI  # noqa: WPS433
+def _lite_model(client) -> str | None:
+    """A lighter, faster Gemini model with its own free quota, used as the first backup."""
+    try:
+        ids = [m.id.replace("models/", "") for m in client.models.list()]
+    except Exception:
+        return None
+    lite = [i for i in ids if "flash-lite" in i and not any(x in i for x in ("tts", "live", "image", "preview"))]
+    return sorted(lite, reverse=True)[0] if lite else None
 
+
+def _engines() -> list[dict]:
+    """Primary engine, then free backups: a lighter Gemini model, then Groq if a Groq key is set."""
     prov = get_provider() or "gemini"
-    cfg = PROVIDERS[prov]
-    client = OpenAI(api_key=get_api_key(), base_url=cfg["base_url"])
+    out = [{"prov": prov, "key": get_api_key(), "model": get_model()}]
+    if prov == "gemini":
+        out.append({"prov": "gemini", "key": get_api_key(), "model": "__lite__"})
+    if prov != "groq" and _secret("GROQ_API_KEY"):
+        out.append({"prov": "groq", "key": _secret("GROQ_API_KEY"), "model": _secret("GROQ_MODEL") or PROVIDERS["groq"]["default_model"]})
+    return out
+
+
+def _is_capacity_error(e: Exception) -> bool:
+    from openai import APIConnectionError, APITimeoutError, InternalServerError, RateLimitError  # noqa: WPS433
+
+    if isinstance(e, (RateLimitError, APIConnectionError, APITimeoutError, InternalServerError)):
+        return True
+    code = getattr(e, "status_code", None)
+    return code in (429, 500, 502, 503, 504) or "quota" in str(e).lower() or "exhausted" in str(e).lower()
+
+
+def _run_openai_compatible(messages: list[dict], on_step=None, max_steps: int = 4, on_text=None, run: dict | None = None) -> str:
+    from openai import OpenAI  # noqa: WPS433
+
+    run = run if run is not None else {"charts": [], "evidence": []}
+    last_err = None
+    for i, eng in enumerate(_engines()):
+        base = _secret(f"{eng['prov'].upper()}_BASE_URL") or PROVIDERS[eng["prov"]]["base_url"]  # override only for testing
+        client = OpenAI(api_key=eng["key"], base_url=base, timeout=40, max_retries=1)
+        model = eng["model"]
+        if model == "__lite__":
+            model = _lite_model(client)
+            if not model:
+                continue
+        stream = on_text is not None and not st.session_state.get("_no_stream")
+        for attempt in range(2):  # second attempt = same engine without streaming, if streaming misbehaves
+            try:
+                if on_text and attempt:
+                    on_text(None)
+                text = _openai_loop(client, eng["prov"], model, messages, on_step, max_steps, on_text if stream else None, run)
+                run["engine"] = f"{PROVIDERS[eng['prov']]['label']} · {model}" + (" (backup)" if i else "")
+                return text
+            except Exception as e:  # noqa: BLE001
+                last_err = e
+                if _is_capacity_error(e):
+                    break  # try the next engine
+                if stream and attempt == 0:
+                    st.session_state["_no_stream"] = True
+                    stream = False
+                    continue
+                raise
+    if last_err:
+        raise last_err
+    raise RuntimeError("No AI engine is configured.")
+
+
+def _stream_call(client, kw: dict, on_text) -> dict:
+    """Streams one model turn. Text goes to on_text as it arrives; tool calls are rebuilt piece by piece,
+    keeping every extra field (Gemini's thought_signature) so the turn can be replayed exactly."""
+    text, tools = [], {}
+    for chunk in client.chat.completions.create(**kw, stream=True):
+        if not chunk.choices:
+            continue
+        delta = chunk.choices[0].delta
+        if delta.content:
+            text.append(delta.content)
+            if on_text and not tools:
+                on_text(delta.content)
+        for tcd in delta.tool_calls or []:
+            d = tcd.model_dump(exclude_none=True)
+            idx = d.pop("index", len(tools))
+            acc = tools.setdefault(idx, {"id": None, "type": "function", "function": {"name": "", "arguments": ""}})
+            if d.get("id"):
+                acc["id"] = d["id"]
+            fn = d.pop("function", {}) or {}
+            if fn.get("name") and not acc["function"]["name"]:
+                acc["function"]["name"] = fn["name"]
+            if fn.get("arguments"):
+                acc["function"]["arguments"] += fn["arguments"]
+            for k_, v_ in d.items():
+                if k_ not in ("id", "type"):
+                    acc[k_] = v_
+        extra = getattr(delta, "model_extra", None) or {}
+        if extra.get("extra_content") and tools:
+            tools[max(tools)]["extra_content"] = extra["extra_content"]
+    calls = [tools[k_] for k_ in sorted(tools)]
+    for j, c in enumerate(calls):
+        c["id"] = c["id"] or f"call_{j}"
+    if calls and text and on_text:
+        on_text(None)  # the text was a preamble to tool calls, not the answer
+    turn = {"role": "assistant", "content": "".join(text)}
+    if calls:
+        turn["tool_calls"] = calls
+    return {"content": "".join(text), "calls": calls, "turn": turn}
+
+
+def _plain_call(client, kw: dict) -> dict:
+    msg = client.chat.completions.create(**kw).choices[0].message
+    turn = msg.model_dump(exclude_none=True)  # keeps Gemini's thought_signature on each tool call
+    turn["role"] = "assistant"
+    turn.setdefault("content", "")
+    calls = turn.get("tool_calls") or []
+    return {"content": msg.content or "", "calls": calls, "turn": turn}
+
+
+def _openai_loop(client, prov: str, model: str, messages: list[dict], on_step, max_steps: int, on_text, run: dict) -> str:
+    from openai import BadRequestError, NotFoundError  # noqa: WPS433
+
     convo = [{"role": "system", "content": system_prompt()}] + [{"role": m["role"], "content": m["content"]} for m in messages]
-    model = get_model()
-    def call(choice: str):
+
+    def call(choice: str) -> dict:
         kw = dict(model=model, messages=convo, tools=OPENAI_TOOLS, tool_choice=choice, max_tokens=1000)
         if prov == "gemini" and not st.session_state.get("_no_reasoning_param"):
-            try:
-                return client.chat.completions.create(**kw, extra_body={"reasoning_effort": "low"})
-            except BadRequestError:
-                st.session_state["_no_reasoning_param"] = True  # model doesn't accept it; don't try again
-        return client.chat.completions.create(**kw)
+            kw["extra_body"] = {"reasoning_effort": "low"}
+        try:
+            return _stream_call(client, kw, on_text) if on_text else _plain_call(client, kw)
+        except BadRequestError as e:
+            if "extra_body" not in kw or "reason" not in str(e).lower():
+                raise
+            st.session_state["_no_reasoning_param"] = True  # model doesn't accept it; don't try again
+            kw.pop("extra_body")
+            return _stream_call(client, kw, on_text) if on_text else _plain_call(client, kw)
 
     for step in range(max_steps):
         choice = "none" if step == max_steps - 1 else "auto"  # last round must answer, not research
         try:
             try:
-                resp = call(choice)
+                out = call(choice)
             except BadRequestError:
                 if choice != "none":
                     raise
-                resp = call("auto")  # provider doesn't accept tool_choice='none'
+                out = call("auto")  # provider doesn't accept tool_choice='none'
         except NotFoundError:
             alt = _pick_model(client, prov)
             if not alt or alt == model:
                 raise
             model = alt
             st.session_state[f"_resolved_model_{prov}"] = alt
-            resp = call(choice)
-        msg = resp.choices[0].message
-        calls = msg.tool_calls or []
-        if not calls:
-            return msg.content or ""
-        # Send the assistant turn back exactly as received: Gemini attaches a 'thought_signature' to each tool
-        # call (in extra_content) and rejects the next request if it is missing.
-        turn = msg.model_dump(exclude_none=True)
-        turn["role"] = "assistant"
-        turn.setdefault("content", "")
-        convo.append(turn)
-        for tc in calls:
+            out = call(choice)
+        if not out["calls"]:
+            return out["content"]
+        convo.append(out["turn"])
+        reqs = []
+        for tc in out["calls"]:
             try:
-                args = json.loads(tc.function.arguments or "{}")
+                args = json.loads(tc["function"].get("arguments") or "{}")
             except json.JSONDecodeError:
                 args = {}
-            if on_step:
-                on_step(step + 1, tc.function.name, args)
-            out = _clean(run_tool(tc.function.name, args))
-            convo.append({"role": "tool", "tool_call_id": tc.id, "content": json.dumps(out, default=str)[:7000]})
+            reqs.append((tc["function"]["name"], args))
+        results = _run_tools(reqs, step + 1, on_step, run)
+        for tc, res in zip(out["calls"], results):
+            convo.append({"role": "tool", "tool_call_id": tc["id"], "content": json.dumps(res, default=str)[:7000]})
     return "I hit the step limit while researching. Try a narrower question."
 
 
-def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 4) -> str:
+def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 4, run: dict | None = None) -> str:
     import anthropic  # noqa: WPS433
 
+    run = run if run is not None else {"charts": [], "evidence": []}
     client = anthropic.Anthropic(api_key=get_api_key())
     convo = [{"role": m["role"], "content": m["content"]} for m in messages]
     for step in range(max_steps):
         resp = client.messages.create(model=get_model(), max_tokens=1000, system=system_prompt(), tools=TOOLS, messages=convo)
         if resp.stop_reason != "tool_use":
+            run["engine"] = f"{PROVIDERS['anthropic']['label']} · {get_model()}"
             return "".join(b.text for b in resp.content if b.type == "text")
         blocks = []
         for b in resp.content:
@@ -408,14 +640,10 @@ def _run_anthropic(messages: list[dict], on_step=None, max_steps: int = 4) -> st
             elif b.type == "tool_use":
                 blocks.append({"type": "tool_use", "id": b.id, "name": b.name, "input": b.input})
         convo.append({"role": "assistant", "content": blocks})
-        results = []
-        for b in resp.content:
-            if b.type == "tool_use":
-                if on_step:
-                    on_step(step + 1, b.name, b.input)
-                out = _clean(run_tool(b.name, b.input))
-                results.append({"type": "tool_result", "tool_use_id": b.id, "content": json.dumps(out, default=str)[:7000]})
-        convo.append({"role": "user", "content": results})
+        uses = [b for b in resp.content if b.type == "tool_use"]
+        outs = _run_tools([(b.name, b.input) for b in uses], step + 1, on_step, run)
+        convo.append({"role": "user", "content": [{"type": "tool_result", "tool_use_id": b.id, "content": json.dumps(o, default=str)[:7000]}
+                                                   for b, o in zip(uses, outs)]})
     return "I hit the step limit while researching. Try a narrower question."
 
 

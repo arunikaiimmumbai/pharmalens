@@ -8,3 +8,6 @@ feedparser>=6.0
 openai>=1.40
 anthropic>=0.40
 openpyxl>=3.1
+requests>=2.31
+pypdf>=5.0
+ddgs>=9.10

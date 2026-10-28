@@ -186,8 +186,14 @@ def note_box(title: str, *, company: str | None = None, theme: str | None = None
     text = f"{note.get('text', '')} {extra}".strip()
     if not text or not note.get("show", True):
         return
-    a, b, _ = st.columns([1.5, 0.85, 6.5], vertical_alignment="center")
-    with a.popover("💡 Analyst note", use_container_width=True):
+    try:  # buttons sized to their label, side by side (needs Streamlit 1.46+)
+        row = st.container(horizontal=True, gap="small", vertical_alignment="center")
+        a = b = row
+        pop_kw, btn_kw = {"width": "content"}, {"width": "content"}
+    except TypeError:
+        a, b, _ = st.columns([1.5, 0.85, 6.5], vertical_alignment="center")
+        pop_kw, btn_kw = {"use_container_width": True}, {"use_container_width": True}
+    with a.popover("💡 Analyst note", **pop_kw):
         st.markdown(f'<div class="pop-h">{title}</div>', unsafe_allow_html=True)
         parts = [("What is happening", text), ("What the company is doing", note.get("doing")),
                  ("Where a consultant can help", note.get("angle"))]
@@ -197,8 +203,7 @@ def note_box(title: str, *, company: str | None = None, theme: str | None = None
         src = N.sources_md(note.get("sources", []))
         if src:
             st.markdown(f'<div class="pop-s">Sources: {src}</div>', unsafe_allow_html=True)
-    b.button("💬 Ask", key=f"ask_{title}", on_click=_open_panel, args=(title,), help="Ask the analyst about this chart",
-             use_container_width=True)
+    b.button("💬 Ask", key=f"ask_{title}", on_click=_open_panel, args=(title,), help="Ask the analyst about this chart", **btn_kw)
 
 
 # ── Comparison block (same on every page) ────────────────────────────────────

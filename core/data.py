@@ -274,6 +274,18 @@ def _kpi_table(year: str, seg: str, mtime: float) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("Company")
 
 
+def all_companies() -> list[dict]:
+    """Companies of every peer set (current set first), for questions that cross sets."""
+    order = [segment()] + [k for k in available_segments() if k != segment()]
+    return [c for seg in order for c in companies(seg)]
+
+
+def kpi_table_all(year: str = "FY26") -> pd.DataFrame:
+    """KPI table for both peer sets together, with a 'segment' column."""
+    frames = [_kpi_table(year, seg, _mtime(seg)).assign(segment=SEGMENTS[seg]["label"]) for seg in available_segments()]
+    return pd.concat(frames)
+
+
 def panel(metric: str) -> pd.DataFrame:
     seg = segment()
     return _panel(metric, seg, _mtime(seg))
