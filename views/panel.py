@@ -53,11 +53,11 @@ def _key_numbers(item: dict | None) -> str:
         r = k.loc[sh]
         parts = [f"{D.KPI_DEFS[m][0]} {D.fmt(m, r[m])}" + (f" (industry {D.fmt(m, ind[m])})" if ind[m] is not None else "")
                  for m in KEY_METRICS if m in r.index]
-        return f"Key FY26 numbers for {sh}: " + "; ".join(parts) + "."
+        return f"Key {D.latest_year()} numbers for {sh}: " + "; ".join(parts) + "."
     cols = ["sales_cagr", "ebitda_margin", "roce", "inventory_days", "ccc", "cfo_pat"]
     rows = [f"{n}: " + ", ".join(f"{D.KPI_DEFS[m][0]} {D.fmt(m, r[m])}" for m in cols) for n, r in k.iterrows()]
     rows.append("Industry: " + ", ".join(f"{D.KPI_DEFS[m][0]} {D.fmt(m, ind.get(m) or IND.industry_value(m)['avg'])}" for m in cols))
-    return "Key FY26 numbers (" + D.segment_label() + "): " + " | ".join(rows) + "."
+    return f"Key {D.latest_year()} numbers (" + D.segment_label() + "): " + " | ".join(rows) + "."
 
 
 def _context(item: dict | None, page: str) -> str:
@@ -167,13 +167,13 @@ def render() -> None:
     live = st.empty()  # live progress and streaming text appear here
     st.markdown('<div class="muted" style="font-size:.78rem;margin-top:4px">Suggested questions</div>', unsafe_allow_html=True)
     for j, q in enumerate(_suggestions(item)):
-        if st.button(q, key=f"sugg_{pick}_{j}", use_container_width=True):
+        if st.button(q, key=f"sugg_{pick}_{j}", width="stretch"):
             _ask(q, item, page, live)
 
     with st.form("panel_form", clear_on_submit=True, border=False):
         q = st.text_area("Or type your own question", height=80,
                          placeholder="e.g. Why is this lower than the industry? · Compare Alkem and Cipla on margin · Read <link> and summarise the US business")
-        if st.form_submit_button("Ask", type="primary", use_container_width=True) and q.strip():
+        if st.form_submit_button("Ask", type="primary", width="stretch") and q.strip():
             _ask(q.strip(), item, page, live)
 
     chat = st.session_state.get("panel_chat", [])
@@ -206,7 +206,7 @@ def render() -> None:
                 if aa.get("id"):
                     st.feedback("thumbs", key=f"fb_{aa['id']}", on_change=_rate, args=(aa["id"],))
                 st.markdown("---")
-        if st.button("🧹 Clear answers", use_container_width=True):
+        if st.button("🧹 Clear answers", width="stretch"):
             st.session_state["panel_chat"] = []
             st.rerun(scope="fragment")
 
@@ -216,7 +216,7 @@ def render() -> None:
             st.caption("Every question you ask is listed here with the tools the agent used, the time it took and your rating.")
         else:
             df = pd.DataFrame([{k: v for k, v in r.items() if k not in ("steps", "id")} for r in reversed(log)])
-            st.dataframe(df, hide_index=True, use_container_width=True)
+            st.dataframe(df, hide_index=True, width="stretch")
             for r in reversed(log[-10:]):
                 st.markdown(f"**{r['time']} · {r['about']}** {r.get('rating', '')}  \n{r['question']}")
                 if r["steps"]:

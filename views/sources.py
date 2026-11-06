@@ -8,6 +8,12 @@ from core import industry as IND
 from core import theme as T
 
 
+LIVE_NOTE = ("checked automatically every 6 hours from Screener.in, which compiles each company's results filed with NSE/BSE. "
+             "New numbers replace the saved ones only after checks (all core lines present, positive sales, cost shares that add up, past "
+             "years within 25% of the checked data). A company that fails a check keeps its saved numbers. Written analysis (notes, SWOT, "
+             "problems) is not rewritten automatically and stays dated to when it was researched.")
+
+
 def render():
     meta = D.meta()
     T.hero("Sources & Method", "How every number was built, where it came from, and what to be careful with.",
@@ -28,12 +34,12 @@ def render():
 - **Source C (market growth):** published Indian pharma market figures, used where company accounts can't answer (how fast the Indian market grows).
 - **Method:** {im['method']}
 - **Caveat:** Nifty Pharma is mostly large companies with scale advantages, so part of a mid-size company's gap to the industry average can be size, not management. The Pharma Majors are themselves part of the 20.""")
-    st.dataframe(IND.members_table(), hide_index=True, use_container_width=True,
+    st.dataframe(IND.members_table(), hide_index=True, width="stretch",
                  column_config={"Source": st.column_config.LinkColumn(display_text="open ↗")})
     st.markdown("**Published market figures (source C)**")
     st.dataframe(pd.DataFrame([{"Figure": m["metric"], "Value": f"{m['value']:.1f}%" + (f" / {m['value2']:.1f}%" if m.get("value2") else ""),
                                 "Detail": m["detail"], "Provider": m["provider"], "Source": m["source"]["url"]} for m in IND.market()]),
-                 hide_index=True, use_container_width=True, column_config={"Source": st.column_config.LinkColumn(display_text="open ↗")})
+                 hide_index=True, width="stretch", column_config={"Source": st.column_config.LinkColumn(display_text="open ↗")})
 
     T.section("Per-company source links", "news and filings used")
     rows = []
@@ -42,24 +48,53 @@ def render():
             rows.append({"Company": c["short"], "Date": n["date"], "Item": n["title"], "Source": n["url"]})
         for s in c["brands"]["sources"]:
             rows.append({"Company": c["short"], "Date": "", "Item": s["title"], "Source": s["url"]})
-    st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True,
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch",
                  column_config={"Source": st.column_config.LinkColumn(display_text="open ↗")})
+
+    T.section("Live financial statements feed", "checked automatically every 6 hours · source: Screener.in (results filed with NSE/BSE)")
+    ref = D.refresher()
+    if ref is None:
+        st.info("Live financial statements are switched off (LIVE_FINANCIALS = off), so every page uses the saved, checked data.")
+    else:
+        from core import live_fin as LF  # noqa: WPS433
+
+        rows = []
+        app_syms = {c["ticker"].split(".")[0] for seg in D.available_segments() for c in D.companies(seg)}
+        for sym, tgt in ref.targets.items():
+            stt = ref.status.get(sym, {})
+            state = stt.get("state", "waiting")
+            rows.append({"Company": tgt["name"], "In": "App companies" if sym in app_syms else "Industry benchmark",
+                         "Numbers used": {"live": "🟢 Live", "live (last good)": "🟢 Live (last good)", "saved": "⚪ Saved (checked)"}.get(state, "⏳ Waiting"),
+                         "Latest year": stt.get("latest_fy", D.latest_year()), "Latest quarter": stt.get("latest_quarter", "-"),
+                         "Last checked": LF.ist(stt.get("checked")), "New": "; ".join(stt.get("new", [])), "Note": stt.get("reason", ""),
+                         "Source": stt.get("source", f"https://www.screener.in/company/{sym}/")})
+        st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch",
+                     column_config={"Source": st.column_config.LinkColumn(display_text="open ↗"),
+                                    "Note": st.column_config.TextColumn(width="large"), "New": st.column_config.TextColumn(width="medium")})
+        c1, c2 = st.columns([1, 3], vertical_alignment="center")
+        if c1.button("🔄 Check for new results now", disabled=ref.running, help="Starts a fresh check in the background (takes a few minutes)."):
+            ref.trigger()
+            st.toast("Checking for new results in the background. Refresh this page in a few minutes.")
+        c2.caption(("Checking now… " if ref.running else "") + f"Last full check: {LF.ist(ref.last_cycle)}. Live numbers replace saved ones "
+                   "only after the checks below pass; otherwise the saved, checked numbers stay in use. The five-year window moves to a "
+                   "new year once every company has published it.")
 
     T.section("Methodology")
     st.markdown("""
-- **Basis:** consolidated, March year-end. FY26 = year ended 31 March 2026; Q1 FY27 = April to June 2026. ₹ crore.
+- **Basis:** consolidated, March year-end. Five financial years shown (@@SPAN@@). Quarters are each company's latest five reported. ₹ crore.
+- **Live financial statements:** @@LIVE@@
 - **EBITDA** = operating profit before other income (Screener definition). **ROCE** as reported by Screener; **ROE** = PAT ÷ average net worth.
 - **ROIC** = EBIT × (1 − tax rate) ÷ (net worth + net debt). **Net debt** = borrowings − cash equivalents − investments (bank deposits held in 'other assets' are not counted, so net cash can be understated, e.g. Alkem reports about ₹5,500 Cr net cash).
 - **Free cash flow** = cash from operations + cash from investing (all investing, including acquisitions).
 - **Cost lines** (material, employee, manufacturing, other) from Screener cost schedules (% of sales). *Indirect* = manufacturing + other.
-- **CAGR** = 4-year compound growth FY22 → FY26. **Cost growth vs revenue growth** = cost growth per year ÷ revenue growth per year.
+- **CAGR** = 4-year compound growth over the five-year window shown (now @@SPAN@@). **Cost growth vs revenue growth** = cost growth per year ÷ revenue growth per year.
 - **Correlations:** one company's 5 years are directional only; the 30-point (six companies) and ~100-point (20 industry companies) views are sturdier.
 - **Ranking:** user framework (growth 20, profitability 25, cash 20, capital efficiency 15, balance sheet 10, operating efficiency 10), each metric scored 1 to 5 by its position among the 20 Nifty Pharma companies; lenses Current strength 40%, Momentum 30%, Quality 30%. Glenmark is scored on normalised FY26 numbers by default.
 - **Analyst notes** (the 💡 button under key charts, shown only where they matter for a consultant) are written from the data, filings and news in this app and cite their sources. They are not generated live, so they load instantly and don't use the AI quota. The 'Ask the analyst' panel answers follow-up questions live.
 - **Sentiment:** curated news hand-scored (+1 / 0 / −1); live headlines scored with a pharma keyword list.
 - **Digital maturity** scores are outside-in estimates from annual reports, investor presentations and news. 'No public evidence' means nothing was disclosed, not that nothing exists.
 - **Brands** are ranked from public evidence (investor presentations, annual reports); exact market shares are IQVIA paid data.
-""")
+""".replace("@@SPAN@@", D.span_full(" → ")).replace("@@LIVE@@", LIVE_NOTE))
 
     T.section("Data caveats")
     for c in D.companies():
@@ -70,7 +105,7 @@ def render():
     gl = pd.DataFrame([{"Metric": D.KPI_DEFS.get(k, (k,))[0], "Plain meaning": v[0], "Formula": v[1],
                         "Better when": {True: "higher", False: "lower", None: "depends"}[D.KPI_DEFS[k][2]] if k in D.KPI_DEFS else "–"}
                        for k, v in G.GLOSSARY.items()])
-    st.dataframe(gl, hide_index=True, use_container_width=True, height=560,
+    st.dataframe(gl, hide_index=True, width="stretch", height=560,
                  column_config={"Plain meaning": st.column_config.TextColumn(width="large")})
     st.warning("Academic project using publicly available information. Not investment advice. Verify figures against company filings before external use.")
     T.footer(meta)

@@ -85,7 +85,7 @@ def company_chooser(key: str) -> None:
                 f'<div style="font-size:1.1rem;font-weight:800;color:#0A2A66">{c["short"]}</div>'
                 f'<div class="muted" style="font-size:.84rem;min-height:40px">{c["tagline"]}</div>'
                 f'<div style="display:flex;gap:16px;margin-top:10px">'
-                f'<div><div class="muted" style="font-size:.72rem">FY26 revenue</div>'
+                f'<div><div class="muted" style="font-size:.72rem">{D.latest_year()} revenue</div>'
                 f'<div style="font-weight:700;color:#0A2A66">₹{r["sales"]/1000:,.1f}k Cr</div></div>'
                 f'<div><div class="muted" style="font-size:.72rem">EBITDA margin</div>'
                 f'<div style="font-weight:700;color:#0A2A66">{r["ebitda_margin"]:.1f}%</div></div>'
@@ -95,7 +95,7 @@ def company_chooser(key: str) -> None:
                 + '</div>',
                 unsafe_allow_html=True)
             st.button(f"Open {c['short']}", key=f"choose_{key}_{c['id']}", on_click=_choose, args=(key, c["id"]),
-                      use_container_width=True)
+                      width="stretch")
 
 
 # ── Compare bar ──────────────────────────────────────────────────────────────
@@ -135,7 +135,8 @@ def series(name: str, metric: str) -> pd.Series:
     return p[name] if name in p.columns else pd.Series(dtype=float)
 
 
-def value(name: str, metric: str, year: str = "FY26"):
+def value(name: str, metric: str, year: str | None = None):
+    year = year or D.latest_year()
     if name == IND_LABEL:
         return IND.industry_value(metric, year)["avg"]
     k = D.kpi_table(year)
@@ -153,7 +154,8 @@ def color(name: str) -> str:
     return IND_COLOR if name == IND_LABEL else D.colors().get(name, T.SKY)
 
 
-def industry_caption(metric: str, year: str = "FY26") -> None:
+def industry_caption(metric: str, year: str | None = None) -> None:
+    year = year or D.latest_year()
     st.caption(IND.note(metric, year))
 
 
@@ -192,7 +194,7 @@ def note_box(title: str, *, company: str | None = None, theme: str | None = None
         pop_kw, btn_kw = {"width": "content"}, {"width": "content"}
     except TypeError:
         a, b, _ = st.columns([1.5, 0.85, 6.5], vertical_alignment="center")
-        pop_kw, btn_kw = {"use_container_width": True}, {"use_container_width": True}
+        pop_kw, btn_kw = {"width": "stretch"}, {"width": "stretch"}
     with a.popover("💡 Analyst note", **pop_kw):
         st.markdown(f'<div class="pop-h">{title}</div>', unsafe_allow_html=True)
         parts = [("What is happening", text), ("What the company is doing", note.get("doing")),
@@ -208,9 +210,10 @@ def note_box(title: str, *, company: str | None = None, theme: str | None = None
 
 # ── Comparison block (same on every page) ────────────────────────────────────
 def comparison_block(key: str, focus: str | None, cmp: dict, metrics: list[str], title: str = "Side-by-side comparison",
-                     year: str = "FY26") -> None:
+                     year: str | None = None) -> None:
     """Shown whenever 'Compare with' has a selection: a table of the chosen metrics for every selected company and the
     industry, best value highlighted, plus one chart that switches between this year's snapshot and the 5-year trend."""
+    year = year or D.latest_year()
     names = entities(focus, cmp)
     comps = [n for n in names if n != IND_LABEL]
     if len(names) < 2:
@@ -254,7 +257,7 @@ def comparison_block(key: str, focus: str | None, cmp: dict, metrics: list[str],
                 for n in names:
                     v = r[n]
                     disp.loc[idx, n] = "–" if v is None or pd.isna(v) else D.fmt(m, v)
-            st.dataframe(disp.style.apply(lambda r: style(tbl.loc[r.name]), axis=1), use_container_width=True,
+            st.dataframe(disp.style.apply(lambda r: style(tbl.loc[r.name]), axis=1), width="stretch",
                          height=38 + 35 * len(metrics))
             note = "Green = best of the companies shown."
             if IND_LABEL in names:
@@ -290,9 +293,9 @@ def comparison_block(key: str, focus: str | None, cmp: dict, metrics: list[str],
                 lo, hi = min(0, min(xs)), max(xs)
                 fig.update_layout(title=f"{D.KPI_DEFS[pick][0]}, {year} (best first)", yaxis=dict(autorange="reversed"),
                                   xaxis=dict(range=[lo * 1.25, hi * 1.3], ticksuffix=suf), hovermode="closest", showlegend=False)
-                st.plotly_chart(T.style_fig(fig, 90 + 52 * len(pts)), use_container_width=True)
+                st.plotly_chart(T.style_fig(fig, 90 + 52 * len(pts)), width="stretch")
             else:
-                st.plotly_chart(compare_line(names, pick, f"{D.KPI_DEFS[pick][0]}, FY22 to FY26", suf, 300), use_container_width=True)
+                st.plotly_chart(compare_line(names, pick, f"{D.KPI_DEFS[pick][0]}, {D.span_full()}", suf, 300), width="stretch")
             if IND_LABEL in names:
                 st.caption(IND.note(pick, year))
     register(f"{title} ({', '.join(names)})", kind="table",

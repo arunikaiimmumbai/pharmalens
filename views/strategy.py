@@ -121,7 +121,7 @@ def render():
                                xgap=3, ygap=3, text=m.values, texttemplate="%{text}", showscale=False,
                                hovertemplate="%{y} · %{x}: %{z}<extra></extra>"))
     fig.update_layout(xaxis=dict(side="top", tickangle=-20), yaxis=dict(autorange="reversed"), hovermode="closest")
-    st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
+    st.plotly_chart(T.style_fig(fig, 340), width="stretch")
     note_box("Consulting opportunity map", peer="st_map",
              facts="; ".join(f"{r_}: " + ", ".join(f"{col} {v:g}" for col, v in m.loc[r_].items() if v) for r_ in m.index))
 
@@ -154,7 +154,7 @@ def render():
     if cmp["companies"]:
         tbl = pd.DataFrame({cc["short"]: cc["digital"] for cc in D.companies() if cc["short"] in [c["short"]] + cmp["companies"]})
         st.markdown("**Digital maturity, side by side (1 = early, 5 = leading)**")
-        st.dataframe(tbl.style.background_gradient(cmap="Blues", vmin=1, vmax=5), use_container_width=True)
+        st.dataframe(tbl.style.background_gradient(cmap="Blues", vmin=1, vmax=5), width="stretch")
     register(f"{c['short']}: digitisation roadmap", company=cid, kind="text", theme="rnd",
              facts=" | ".join(f"{r['area']} {r['score']}/5 ({r['status']}): doing {r['doing']}; gap {r['gap']}; consultant {r['consultant']}" for r in c["digital_roadmap"]),
              note={"text": "Outside-in digital maturity from annual reports, investor presentations and news.",

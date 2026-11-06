@@ -79,7 +79,7 @@ def render():
     summ = pd.DataFrame(rows)
     st.dataframe(summ.style.format({"Score /100": "{:.0f}", "Current strength": "{:.0f}", "Momentum": "{:.0f}", "Quality": "{:.0f}"})
                  .background_gradient(subset=["Score /100", "Current strength", "Momentum", "Quality"], cmap="Blues", vmin=0, vmax=100),
-                 hide_index=True, use_container_width=True, column_config={"Assessment": st.column_config.TextColumn(width="large")})
+                 hide_index=True, width="stretch", column_config={"Assessment": st.column_config.TextColumn(width="large")})
     st.caption("Current strength = your six-dimension scorecard on FY26. Momentum = is it getting better (margin, ROCE, cash cycle, debt since FY23, "
                "latest quarter growth). Quality = is it sustainable (cash conversion, margin stability, ROIC above a 12% cost of capital, "
                "organic growth, no one-offs, no open FDA issue)."
@@ -110,7 +110,7 @@ def render():
     T.section("Scorecard by dimension", "0 to 100 · darker = closer to the top of the industry")
     det = t.set_index("Company")[list(R.DIMENSIONS)]
     det.columns = [f"{c} ({dw[c]})" for c in det.columns]
-    st.dataframe(det.style.format("{:.0f}").background_gradient(cmap="Blues", vmin=0, vmax=100), use_container_width=True)
+    st.dataframe(det.style.format("{:.0f}").background_gradient(cmap="Blues", vmin=0, vmax=100), width="stretch")
     with st.expander("See every metric, its value, the industry average and its 1 to 5 score"):
         ms = sc["metric_scores"]
         recs = []
@@ -122,14 +122,14 @@ def render():
                     rec[f"{D.names()[cid]} value"] = sc["metrics"][cid][mkey]
                     rec[f"{D.names()[cid]} score"] = ms.loc[cid, mkey]
                 recs.append(rec)
-        st.dataframe(pd.DataFrame(recs).style.format(precision=1, na_rep="–"), hide_index=True, use_container_width=True)
+        st.dataframe(pd.DataFrame(recs).style.format(precision=1, na_rep="–"), hide_index=True, width="stretch")
         st.caption("Score 1 to 5 = where the value sits among the 20 Nifty Pharma companies (5 = top). Latest-quarter growth has no industry "
                    "figure, so it is scored within the six.")
     register("Scorecard by dimension", kind="table", note={"text": "Dimension scores 0 to 100 against the industry.", "sources": SRC},
              facts="; ".join(f"{c}: " + ", ".join(f"{d} {t.set_index('Company').loc[c, d]:.0f}" for d in R.DIMENSIONS) for c in t["Company"]))
 
     # ── What-if ──────────────────────────────────────────────────────────────
-    T.section("Hire a consultant: what-if", "pick a company, move the levers, see FY29 and the new rank")
+    T.section("Hire a consultant: what-if", "pick a company, move the levers, see three years out and the new rank")
     names = D.names()
     default = st.session_state.get("focus") if st.session_state.get("focus") in names else list(names)[0]
     cid = st.selectbox("Company", list(names), index=list(names).index(default), format_func=lambda x: names[x], key="wi_company")
@@ -142,24 +142,25 @@ def render():
     low = R.project(cid, lv, realisation=0.5, rnd_pays=0.0)["years"]
     high = R.project(cid, lv, realisation=1.0, rnd_pays=1.0)["years"]
     lk = likely["years"]
+    END, START = lk.index[-1], lk.index[0]  # three years after the latest reported year
     ev_mult = D.kpi_table().loc[names[cid], "ev_ebitda"]
     new = _score(tuple(dw.items()), tuple(lw.items()), adj, cid=cid, lv=tuple(lv.items()), seg=D.segment())["table"]
     old_rank, new_rank = int(t.loc[cid, "Rank"]), int(new.loc[cid, "Rank"])
 
     def tile(lab, key, fmt, unit=""):
-        b_, l_, lo_, hi_ = base.loc["FY29", key], lk.loc["FY29", key], low.loc["FY29", key], high.loc["FY29", key]
+        b_, l_, lo_, hi_ = base.loc[END, key], lk.loc[END, key], low.loc[END, key], high.loc[END, key]
         d_ = l_ - b_
         return T.kpi_card(lab, fmt.format(l_) + unit, f"{d_:+,.1f}{unit} vs no action", "up" if d_ >= 0 else "down",
                           f"range {fmt.format(min(lo_, hi_))} to {fmt.format(max(lo_, hi_))}{unit}")
     T.kpi_row([
-        tile("FY29 revenue ₹ Cr", "Revenue", "{:,.0f}"), tile("FY29 EBITDA margin", "EBITDA margin %", "{:.1f}", "%"),
-        tile("FY29 ROCE", "ROCE %", "{:.1f}", "%"), tile("FY29 ROIC", "ROIC %", "{:.1f}", "%"),
-        tile("FY29 free cash flow ₹ Cr", "Free cash flow", "{:,.0f}"),
+        tile(f"{END} revenue ₹ Cr", "Revenue", "{:,.0f}"), tile(f"{END} EBITDA margin", "EBITDA margin %", "{:.1f}", "%"),
+        tile(f"{END} ROCE", "ROCE %", "{:.1f}", "%"), tile(f"{END} ROIC", "ROIC %", "{:.1f}", "%"),
+        tile(f"{END} free cash flow ₹ Cr", "Free cash flow", "{:,.0f}"),
         T.kpi_card("New rank (likely)", f"#{new_rank}", f"from #{old_rank}", "up" if new_rank < old_rank else "down" if new_rank > old_rank else "flat",
-                   f"value ≈ ₹{lk.loc['FY29', 'EBITDA'] * ev_mult:,.0f} Cr at {ev_mult:.0f}x EBITDA" if np.isfinite(ev_mult) else ""),
+                   f"value ≈ ₹{lk[END:END].iloc[0]['EBITDA'] * ev_mult:,.0f} Cr at {ev_mult:.0f}x EBITDA" if np.isfinite(ev_mult) else ""),
     ])
     st.caption(f"Likely = 75% of the lever benefits achieved and R&D paying off at the chance you set; low = 50% and R&D fails; high = 100% and R&D succeeds. "
-               f"Working capital released in FY27: ₹{(round(likely['wc_release']) + 0):,.0f} Cr.")
+               + (f"Working capital released in {START}: ₹{(round(likely['wc_release']) + 0):,.0f} Cr." if np.isfinite(likely["wc_release"]) else ""))
     a, b = st.columns(2)
     with a:
         fig = go.Figure()
@@ -168,35 +169,35 @@ def render():
         fig.add_trace(go.Scatter(x=list(low.index), y=low["ROCE %"], fill="tonexty", fillcolor="rgba(29,78,216,.15)", line=dict(width=0),
                                  name="Low to high range", hoverinfo="skip"))
         fig.add_trace(go.Scatter(x=list(lk.index), y=lk["ROCE %"], name="With the programme (likely)", line=dict(color=T.BLUE, width=3.5)))
-        fig.update_layout(title=f"{names[cid]} ROCE path, FY27 to FY29", yaxis_ticksuffix="%")
-        st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
+        fig.update_layout(title=f"{names[cid]} ROCE path, {START} to {END}", yaxis_ticksuffix="%")
+        st.plotly_chart(T.style_fig(fig, 340), width="stretch")
     with b:
         tor = _tornado(cid, adj)
         fig = go.Figure(go.Bar(y=tor["Lever"], x=tor["Δ overall score"], orientation="h",
                                marker_color=[T.GOOD if v >= 0 else T.BAD for v in tor["Δ overall score"]],
-                               customdata=tor[["Δ ROCE FY29 (pts)", "Δ EBITDA FY29 (₹ Cr)"]].values,
+                               customdata=tor[["Δ ROCE, year 3 (pts)", "Δ EBITDA, year 3 (₹ Cr)"]].values,
                                text=[f"{v:+.1f}" for v in tor["Δ overall score"]], textposition="outside",
                                hovertemplate="%{y}<br>score %{x:+.1f}<br>ROCE %{customdata[0]:+.2f} pts<br>EBITDA ₹%{customdata[1]:+,.0f} Cr<extra></extra>"))
         span = max(abs(tor["Δ overall score"]).max(), 1)
         fig.update_layout(title="Which lever matters most? (change in score from one step)", hovermode="closest", margin=dict(l=10),
                           xaxis=dict(range=[-span * 1.35 if (tor["Δ overall score"] < 0).any() else 0, span * 1.35]))
-        st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
+        st.plotly_chart(T.style_fig(fig, 340), width="stretch")
     with st.expander("Model assumptions (all editable in core/ranking.py)"):
         st.markdown(f"""
-- **Base case:** revenue grows at broker consensus for FY27 where available ({R.base_growth(cid):.1f}% a year for {names[cid]}), otherwise the FY23–26 trend; margin stays at FY26 (Glenmark at its guided 21.5%).
+- **Base case:** revenue grows at broker consensus for the next year where available ({R.base_growth(cid):.1f}% a year for {names[cid]}), otherwise the last three years' trend; margin stays at the latest year's (Glenmark at its guided 21.5%).
 - **Price:** +1 pt of price growth adds revenue and lifts margin by 0.6 pt (part of the price falls to profit).
-- **R&D:** every +1 pt of sales on R&D costs 1 pt of margin from year one; if it pays off, it adds about 3% to revenue in FY29 (the delay reflects filing and launch time).
+- **R&D:** every +1 pt of sales on R&D costs 1 pt of margin from year one; if it pays off, it adds about 3% to revenue in year 3 (the delay reflects filing and launch time).
 - **Costs:** employee and SG&A changes move margin point for point.
 - **Working capital:** fewer inventory days release cash at daily material cost; fewer debtor days at daily sales; the cash lowers capital employed.
 - **Capex:** adds capital and 10% a year depreciation; from the next year it adds sales at half the company's fixed-asset turnover.
 - **Debt:** interest at 9% on the change in borrowings.
-- **Rank:** the FY29 change against the no-action case is applied to today's metrics and re-scored against the industry.
+- **Rank:** the year-3 change against the no-action case is applied to today's metrics and re-scored against the industry.
 This is an illustrative model for discussion, not a forecast.""")
     register(f"What-if for {names[cid]}", company=cid, theme="returns", kind="chart",
-             note={"text": "Illustrative driver model FY27 to FY29 with consultant levers.", "sources": SRC},
+             note={"text": f"Illustrative driver model {START} to {END} with consultant levers.", "sources": SRC},
              facts=f"Levers: " + ", ".join(f"{R.LEVERS[k][0]} {v:+g}" for k, v in lv.items() if v and k != "rnd_success")
-                   + f". FY29 likely: revenue ₹{lk.loc['FY29', 'Revenue']:,.0f} Cr, EBITDA margin {lk.loc['FY29', 'EBITDA margin %']:.1f}%, ROCE {lk.loc['FY29', 'ROCE %']:.1f}% "
-                     f"(no action {base.loc['FY29', 'ROCE %']:.1f}%), rank #{old_rank} → #{new_rank}. Biggest lever: {tor.iloc[-1]['Lever']}.")
+                   + f". {END} likely: revenue ₹{lk[END:END].iloc[0]['Revenue']:,.0f} Cr, EBITDA margin {lk[END:END].iloc[0]['EBITDA margin %']:.1f}%, ROCE {lk[END:END].iloc[0]['ROCE %']:.1f}% "
+                     f"(no action {base[END:END].iloc[0]['ROCE %']:.1f}%), rank #{old_rank} → #{new_rank}. Biggest lever: {tor.iloc[-1]['Lever']}.")
 
     # ── Scenarios ────────────────────────────────────────────────────────────
     T.section("Base, Upside and Downside", "how the ranking changes if the market moves")
@@ -210,11 +211,11 @@ This is an illustrative model for discussion, not a forecast.""")
                                      line=dict(color=D.colors()[comp], width=3), marker=dict(size=10)))
         fig.update_layout(title="Rank under each scenario (1 = best)", yaxis=dict(autorange="reversed", dtick=1), showlegend=False,
                           xaxis=dict(range=[-0.2, 2.6]), hovermode="closest")
-        st.plotly_chart(T.style_fig(fig, 340), use_container_width=True)
+        st.plotly_chart(T.style_fig(fig, 340), width="stretch")
     with b:
         for nm, sc_ in R.SCENARIOS.items():
             st.markdown(f"**{nm}:** {sc_['desc']}")
-        st.dataframe(scn.style.format(precision=0), use_container_width=True)
+        st.dataframe(scn.style.format(precision=0), width="stretch")
         movers = (scn["Downside rank"] - scn["Base rank"])
         st.caption("Biggest move in the downside: " + ", ".join(f"{c} ({int(v):+d})" for c, v in movers[movers != 0].items()) + ". "
                    "US-heavy companies fall; India-focused ones hold up.")

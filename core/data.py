@@ -51,14 +51,123 @@ def _load_raw_cached(path: str, mtime: float) -> dict:
         return json.load(f)
 
 
+# ── live financial statements (refreshed in the background, see core/live_fin.py) ──
+def live_enabled() -> bool:
+    """On by default. Set LIVE_FINANCIALS = "off" in Streamlit Secrets (or the environment) to use only the saved data."""
+    import os  # noqa: WPS433
+
+    val = os.environ.get("LIVE_FINANCIALS")
+    if val is None:
+        try:
+            val = st.secrets.get("LIVE_FINANCIALS")
+        except Exception:
+            val = None
+    return str(val or "on").lower() not in ("off", "0", "false", "no")
+
+
+@st.cache_resource(show_spinner=False)
+def _refresher():
+    from core import live_fin as LF  # noqa: WPS433
+
+    targets, saved = {}, {}
+    for seg in available_segments():
+        p = data_path(seg)
+        raw = _load_raw_cached(str(p), p.stat().st_mtime)
+        for c in raw["companies"]:
+            sym = c["ticker"].split(".")[0]
+            targets[sym] = {"name": c["short"], "consolidated": True}
+            saved[sym] = {"financials": c["financials"], "years": raw["meta"]["years"], "quarter_labels": raw["meta"].get("quarters")}
+    ind = json.loads((DATA_DIR / "industry.json").read_text(encoding="utf-8"))
+    base_years = _load_raw_cached(str(data_path(DEFAULT_SEGMENT)), data_path(DEFAULT_SEGMENT).stat().st_mtime)["meta"]["years"]
+    for m in ind["members"]:
+        if m["symbol"] not in targets:
+            targets[m["symbol"]] = {"name": m["name"], "consolidated": m.get("basis", "consolidated") == "consolidated"}
+            saved[m["symbol"]] = {"financials": m["financials"], "years": base_years}
+    return LF.Refresher(targets, saved)
+
+
+def refresher():
+    """The background refresher, or None when live financials are switched off."""
+    if not live_enabled():
+        return None
+    try:
+        return _refresher()
+    except Exception:
+        return None
+
+
+def live_version() -> int:
+    r = refresher()
+    return r.version if r else 0
+
+
+def live_records() -> dict:
+    r = refresher()
+    return dict(r.records) if r else {}
+
+
+def window() -> list[str]:
+    """The five financial years shown everywhere (moves forward once every company has published a new year)."""
+    from core import live_fin as LF  # noqa: WPS433
+
+    base = _load_raw_cached(str(data_path(DEFAULT_SEGMENT)), data_path(DEFAULT_SEGMENT).stat().st_mtime)["meta"]["years"]
+    r = refresher()
+    if not r or not r.records:
+        return base
+    return LF.common_years([r.records.get(sym) for sym in r.targets], base)
+
+
+@st.cache_data(show_spinner=False)
+def _merged(path: str, mtime: float, version: int, years: tuple) -> dict:
+    from core import live_fin as LF  # noqa: WPS433
+
+    raw = _load_raw_cached(path, mtime)
+    saved_years = raw["meta"]["years"]
+    recs = live_records()
+    out = {"meta": dict(raw["meta"]), "companies": []}
+    for c in raw["companies"]:
+        out["companies"].append(LF.apply_to_company(c, recs.get(c["ticker"].split(".")[0]), saved_years, list(years)))
+    out["meta"]["years"] = list(years)
+    return out
+
+
 def load_raw(seg: str | None = None) -> dict:
-    """Re-reads the segment file whenever it changes (e.g. after a GitHub update)."""
+    """The segment's data: the checked saved file, with live financial statements laid over it where available."""
     p = data_path(seg)
-    return _load_raw_cached(str(p), p.stat().st_mtime)
+    v = live_version()
+    if not v:
+        return _load_raw_cached(str(p), p.stat().st_mtime)
+    yrs = tuple(window())
+    _relabel(list(yrs))
+    return _merged(str(p), p.stat().st_mtime, v, yrs)
 
 
 def _mtime(seg: str | None = None) -> float:
-    return data_path(seg).stat().st_mtime
+    """Cache key for anything built from the data: changes when the file or the live data changes."""
+    return data_path(seg).stat().st_mtime + live_version() * 1000.0
+
+
+def latest_year() -> str:
+    return years()[-1]
+
+
+def span(sep: str = "–") -> str:
+    """'FY22–26' for the current five-year window."""
+    y = years()
+    return f"{y[0]}{sep}{y[-1][2:]}"
+
+
+def span_full(sep: str = " to ") -> str:
+    """'FY22 to FY26' (or 'FY22 → FY26' with sep=' → ') for the current window."""
+    y = years()
+    return f"{y[0]}{sep}{y[-1]}"
+
+
+def _relabel(yrs: list[str]) -> None:
+    sp = f"{yrs[0]}–{yrs[-1][2:]}"
+    for k, base in (("sales_cagr", "Revenue CAGR"), ("ebitda_cagr", "EBITDA CAGR"), ("pat_cagr", "PAT CAGR")):
+        lab, unit, hib, fm = KPI_DEFS[k]
+        KPI_DEFS[k] = (f"{base} {sp}", unit, hib, fm)
 
 
 def meta() -> dict:
@@ -234,9 +343,9 @@ US_KEYS = ("US formulations", "US generics", "US", "North America")
 INDIA_KEYS = ("India branded", "India", "Domestic formulations", "Domestic Rx (ex-CH)", "Consumer healthcare")
 
 
-def kpi_table(year: str = "FY26") -> pd.DataFrame:
+def kpi_table(year: str | None = None) -> pd.DataFrame:
     seg = segment()
-    return _kpi_table(year, seg, _mtime(seg))
+    return _kpi_table(year or latest_year(), seg, _mtime(seg))
 
 
 @st.cache_data(show_spinner=False)
@@ -280,8 +389,9 @@ def all_companies() -> list[dict]:
     return [c for seg in order for c in companies(seg)]
 
 
-def kpi_table_all(year: str = "FY26") -> pd.DataFrame:
+def kpi_table_all(year: str | None = None) -> pd.DataFrame:
     """KPI table for both peer sets together, with a 'segment' column."""
+    year = year or latest_year()
     frames = [_kpi_table(year, seg, _mtime(seg)).assign(segment=SEGMENTS[seg]["label"]) for seg in available_segments()]
     return pd.concat(frames)
 

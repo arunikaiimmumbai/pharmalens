@@ -46,7 +46,7 @@ def render():
                                  text=sub[col].map(lambda v: "" if pd.isna(v) else f"{v:.0f}"), textposition="outside",
                                  hovertemplate=f"{lab}: %{{y}}<extra></extra>"))
         fig.update_layout(barmode="group", title="ANDA filed / approved / pending & US products")
-        st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
+        st.plotly_chart(T.style_fig(fig, 400), width="stretch")
         nopub = [r["Company"] for _, r in rdf.iterrows() if pd.isna(r["ANDA filed"]) and pd.isna(r["Pending"]) and pd.isna(r["US products"])]
         if nopub:
             st.caption(f"{' and '.join(nopub)} {'does' if len(nopub) == 1 else 'do'} not publish total US filings, so no bars appear here. "
@@ -64,7 +64,7 @@ def render():
         rr = rdf["R&D %"].corr(rdf["EBITDA %"])
         fig.update_layout(title=f"Bigger bubble = more US revenue · link between R&D and margin: {rr:+.2f}", xaxis_title="R&D % of sales", yaxis_title="EBITDA margin FY26 %",
                           showlegend=False, hovermode="closest")
-        st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
+        st.plotly_chart(T.style_fig(fig, 400), width="stretch")
         note_box("R&D intensity vs EBITDA margin", peer="rg_rnd", metric="rnd_pct",
                  facts=f"Link strength {rr:+.2f}. " + "; ".join(f"{r['Company']}: R&D {r['R&D %']:.1f}%, margin {r['EBITDA %']:.1f}%, US {r['US share %']:.0f}%" for _, r in rdf.iterrows()))
 
@@ -74,7 +74,7 @@ def render():
 
     register("What the regulatory data says", kind="text", facts="Approvals are not revenue; R&D spenders have lower margins today; compliance moves revenue; US share is a tariff-risk number.")
     with st.expander("Regulatory data table (all numbers above in one table)"):
-        st.dataframe(rdf.drop(columns=["Detail"]), hide_index=True, use_container_width=True,
+        st.dataframe(rdf.drop(columns=["Detail"]), hide_index=True, width="stretch",
                      column_config={"US share %": st.column_config.ProgressColumn(min_value=0, max_value=50, format="%.0f%%"),
                                     "R&D %": st.column_config.NumberColumn(format="%.1f%%"),
                                     "EBITDA %": st.column_config.NumberColumn(format="%.1f%%")})

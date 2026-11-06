@@ -42,6 +42,22 @@ app's data can't answer and always labelled "(web)". Repeat questions are answer
 quota runs out it switches to a lighter Gemini model (or Groq if `GROQ_API_KEY` is set). Every answer gets an automatic
 number check against the data it used, and a 👍/👎 rating recorded in the agent history.
 
+
+## Live financial statements (automatic)
+
+The financial statements refresh themselves in the background, the same way the news does. Every 6 hours the app checks
+**Screener.in** (which compiles each company's results filed with NSE/BSE) for all 21 companies: the 12 in the app plus the
+other Nifty Pharma members, so the industry benchmark stays current. It reads the annual P&L, balance sheet, cash flow,
+ratios, the last five quarters, market data and shareholding, plus Screener's expense and cash breakdowns.
+
+- **Checked before use:** core lines present for five years, positive sales, cost shares that add up, and past years within
+  25% of the checked data. A company that fails keeps its saved numbers; the reason shows on Sources & Method.
+- **Where you see it:** the sidebar ("Financials: live for N of 21 companies"), a "New results" banner on Overview, and the
+  "Live financial statements feed" table on Sources & Method (with a "Check for new results now" button).
+- **New year:** the five-year window moves forward (e.g. to FY23 to FY27) once every company has published the new year.
+- **Not automatic:** written analysis (notes, SWOT, problems, news impact) stays dated to when it was researched.
+- **Switch off:** set `LIVE_FINANCIALS = "off"` in Streamlit Secrets to use only the saved data.
+
 ## Deploy (free) — GitHub + Streamlit Community Cloud
 1. Create a free GitHub account → New repository `pharmalens` (Public) → "uploading an existing file" → drag in everything inside this folder → Commit.
 2. Get a free Gemini key: https://aistudio.google.com/apikey → Create API key → copy it.
@@ -69,6 +85,7 @@ core/data.py           data loader + ratio/KPI engine (CAGR, ROE, elasticity, co
 core/insights.py       rule-based growth/opportunity/risk engine + financial score
 core/live.py           yfinance prices, Google News RSS, sentiment, event study
 core/agent.py          AI agent (free Gemini / Groq, optional Claude) with 16 tools, streaming, parallel tools, backup model + offline analyst
+core/live_fin.py       live financial statements: background refresh from Screener.in, checks, merge
 core/agent_extras.py   web search, read a document, calculator and size of the prize, charts in answers, number check, answer cache
 core/theme.py          white/blue pharma design system (CSS, Plotly template, SVG motifs)
 views/*.py             one file per page

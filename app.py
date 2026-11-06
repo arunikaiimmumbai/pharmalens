@@ -56,6 +56,13 @@ with st.sidebar:
     st.markdown(f'''<div class="segchip"><div class="muted" style="font-size:.7rem;letter-spacing:.05em;text-transform:uppercase">Peer set</div>
         <b>{seg["label"]}</b><div style="font-size:.72rem;opacity:.85">{seg["names"]}</div>
         <div style="font-size:.68rem;opacity:.7;margin-top:3px">Change it on the Overview page</div></div>''', unsafe_allow_html=True)
+    _ref = D.refresher()
+    if _ref is not None:
+        from core import live_fin as _LF
+        _live = sum(1 for v in _ref.status.values() if str(v.get("state", "")).startswith("live"))
+        _txt = (f"📡 Financials: live for {_live} of {len(_ref.targets)} companies · checked {_LF.ist(_ref.last_cycle)}" if _ref.last_cycle
+                else "📡 Financials: checking for new results…" if _ref.running else "📡 Financials: saved data · live check starting")
+        st.markdown(f'<div style="font-size:.7rem;opacity:.85;margin:-4px 0 10px 2px">{_txt}</div>', unsafe_allow_html=True)
     ids = [None] + list(D.names().keys())
     st.selectbox("Focus company", ids, format_func=lambda x: "Select" if x is None else D.names()[x], key="focus", placeholder="Select",
                  help="Pick a company to open the Deep-Dive, P&L Lab and Strategy Room on it. Leave on Select for no focus.")

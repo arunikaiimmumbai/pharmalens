@@ -26,7 +26,7 @@ def render():
                                  text=g["title"], customdata=g["category"],
                                  hovertemplate="<b>%{y}</b> · %{x|%d %b %Y}<br>%{customdata}<br>%{text}<extra></extra>"))
     fig.update_layout(hovermode="closest", yaxis=dict(categoryorder="array", categoryarray=["Sector"] + [c["short"] for c in D.companies()][::-1]))
-    st.plotly_chart(T.style_fig(fig, 380), use_container_width=True)
+    st.plotly_chart(T.style_fig(fig, 380), width="stretch")
     bal = nd.groupby("Company")["sentiment"].agg(["sum", "count"])
     note_box("Signal timeline (6 months of news)", peer="nw_timeline",
              facts="; ".join(f"{c}: net {int(r['sum']):+d} from {int(r['count'])} items" for c, r in bal.iterrows()))
@@ -40,7 +40,7 @@ def render():
     fig = go.Figure(go.Heatmap(z=piv.values, x=piv.columns, y=piv.index, colorscale=T.DIVERGING, zmid=0, xgap=2, ygap=2,
                                text=piv.values.astype(int), texttemplate="%{text}", hovertemplate="%{x} · %{y}: net %{z}<extra></extra>"))
     fig.update_layout(hovermode="closest", yaxis=dict(autorange="reversed"))
-    st.plotly_chart(T.style_fig(fig, 460), use_container_width=True)
+    st.plotly_chart(T.style_fig(fig, 460), width="stretch")
     note_box("News to KPI heat", peer="nw_heat", facts="Net good-minus-bad news by company: " + "; ".join(f"{c} {int(v):+d}" for c, v in tot.items()))
 
     tabs = st.tabs(["🗂️ Curated feed", "📡 Live headlines", "📈 Price reaction (event study)"])
@@ -92,14 +92,14 @@ def render():
             for _, e in ev.iterrows():
                 fig.add_vline(x=e["date"], line_color={1: T.GOOD, 0: "#94A3B8", -1: T.BAD}[e["sentiment"]], line_width=1, opacity=0.6)
             fig.update_layout(title=f"{c['short']} vs Nifty Pharma (indexed to 100) · vertical lines = news events", yaxis_title="Index")
-            st.plotly_chart(T.style_fig(fig, 400), use_container_width=True)
+            st.plotly_chart(T.style_fig(fig, 400), width="stretch")
             es = L.event_study(px, c["ticker"], ev, window=3)
             if es.empty:
                 st.info("These news items are too recent to measure the share price reaction yet.")
             else:
                 st.dataframe(es.rename(columns={"date": "Date", "title": "News", "sentiment": "Good/bad (+1/−1)", "stock_ret_%": "Share move", "bench_ret_%": "Pharma index move", "abnormal_%": "Extra move"})
                              .style.format({"Share move": "{:+.1f}%", "Pharma index move": "{:+.1f}%", "Extra move": "{:+.1f}%"}),
-                             hide_index=True, use_container_width=True)
+                             hide_index=True, width="stretch")
                 hit = (es["sentiment"] * es["abnormal_%"] > 0).mean() * 100
                 st.caption(f"'Extra move' = how much the share moved beyond the pharma index, from the day before the news to three trading days after. "
                            f"The share moved in the direction the news suggested {hit:.0f}% of the time.")

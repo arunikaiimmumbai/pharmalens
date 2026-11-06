@@ -25,7 +25,8 @@ def _donut(d: dict, title: str):
     return T.style_fig(fig, 320)
 
 
-def _cmp_line(metric: str, names: list[str], year: str = "FY26") -> str:
+def _cmp_line(metric: str, names: list[str], year: str | None = None) -> str:
+    year = year or D.latest_year()
     parts = []
     for n in names:
         v = value(n, metric, year)
@@ -57,11 +58,11 @@ def render():
 
     yoy = df["sales_growth"].iloc[-1]
     tiles = [
-        ("FY26 revenue", f"₹{df['sales'].iloc[-1]/1000:,.1f}k Cr", f"{yoy:+.1f}% YoY", "up" if yoy > 0 else "down", "sales_growth"),
+        (f"{D.latest_year()} revenue", f"₹{df['sales'].iloc[-1]/1000:,.1f}k Cr", f"{yoy:+.1f}% YoY", "up" if yoy > 0 else "down", "sales_growth"),
         ("EBITDA margin", f"{df['ebitda_margin'].iloc[-1]:.1f}%", f"{df['ebitda_margin'].iloc[-1]-df['ebitda_margin'].iloc[0]:+.1f} pts vs FY22",
          "up" if df['ebitda_margin'].iloc[-1] >= df['ebitda_margin'].iloc[0] else "down", "ebitda_margin"),
         ("ROCE", f"{df['roce'].iloc[-1]:.0f}%", f"ROIC {df['roic'].iloc[-1]:.1f}%", "flat", "roce"),
-        ("Revenue CAGR FY22 to FY26", f"{k['sales_cagr']:.1f}%", f"PAT CAGR {k['pat_cagr']:.1f}%", "up", "sales_cagr"),
+        (f"Revenue CAGR {D.span_full()}", f"{k['sales_cagr']:.1f}%", f"PAT CAGR {k['pat_cagr']:.1f}%", "up", "sales_cagr"),
         ("Cash cycle", f"{df['ccc'].iloc[-1]:.0f} d", f"Inventory {df['inventory_days'].iloc[-1]:.0f} d", "down" if df['ccc'].iloc[-1] > 200 else "flat", "ccc"),
         ("Net debt / EBITDA", f"{df['net_debt_ebitda'].iloc[-1]:.2f}x", f"Borrowings ₹{df['borrowings'].iloc[-1]:,.0f} Cr", "flat", "net_debt_ebitda"),
     ]
@@ -69,7 +70,7 @@ def render():
     for col, (lab, val, dlt, dirn, met) in zip(cols, tiles):
         col.markdown(f'<div title="{kpi_help(met)}">' + T.kpi_card(lab, val, dlt, dirn) + "</div>", unsafe_allow_html=True)
     note_box(f"{c['short']}: headline numbers", company=cid, theme="growth", metric="sales_cagr",
-             facts=f"FY26 revenue ₹{df['sales'].iloc[-1]:,.0f} Cr ({yoy:+.1f}% YoY), EBITDA margin {df['ebitda_margin'].iloc[-1]:.1f}%, ROCE {df['roce'].iloc[-1]:.0f}%, "
+             facts=f"{D.latest_year()} revenue ₹{df['sales'].iloc[-1]:,.0f} Cr ({yoy:+.1f}% YoY), EBITDA margin {df['ebitda_margin'].iloc[-1]:.1f}%, ROCE {df['roce'].iloc[-1]:.0f}%, "
                    f"revenue CAGR {k['sales_cagr']:.1f}%, cash cycle {df['ccc'].iloc[-1]:.0f} days. Industry revenue CAGR {IND.industry_value('sales_cagr')['avg']:.1f}%.")
 
     tabs = st.tabs(["🏛️ Profile", "💊 Brands & therapies", "🌍 Market & geography", "🏭 Manufacturing & R&D", "💰 Cost drivers",
@@ -88,7 +89,7 @@ def render():
                                    hovertemplate="%{y}: %{x:.2f}%<extra></extra>"))
             fig.update_layout(title="Shareholding (latest quarter)", xaxis_ticksuffix="%", hovermode="closest", yaxis=dict(autorange="reversed"),
                               xaxis_range=[0, max(sh.values()) * 1.18])
-            st.plotly_chart(T.style_fig(fig, 260), use_container_width=True)
+            st.plotly_chart(T.style_fig(fig, 260), width="stretch")
             st.markdown(f"""<div class="card"><h4>Guidance</h4><div style="font-size:.88rem">{c['guidance']}</div>
             <div class="muted" style="margin-top:6px">Consensus: {c['consensus']['broker']} · {c['consensus']['rating']}
             {('· TP ₹' + format(c['consensus']['target'], ',')) if c['consensus'].get('target') else ''}</div></div>""", unsafe_allow_html=True)
@@ -107,14 +108,14 @@ def render():
             fig.update_layout(title=("Therapy rank in India (longer bar = better rank)" if rank_basis else "Therapy areas, biggest first"),
                               yaxis=dict(autorange="reversed"), hovermode="closest",
                               xaxis=dict(range=[0, th["bar"].max() * 1.6], showticklabels=False))
-            st.plotly_chart(T.style_fig(fig, 60 + 46 * len(th)), use_container_width=True)
+            st.plotly_chart(T.style_fig(fig, 60 + 46 * len(th)), width="stretch")
             st.caption(f"Basis: {br['therapy_basis']}.")
         with b:
             bt = pd.DataFrame(br["brands"])
             bt.insert(0, "#", range(1, len(bt) + 1))
             st.markdown("**Top brands, strongest first**")
             st.dataframe(bt.rename(columns={"name": "Brand", "therapy": "Therapy", "evidence": "Evidence", "basis": "Basis"}),
-                         hide_index=True, use_container_width=True, height=min(420, 38 + 35 * len(bt)))
+                         hide_index=True, width="stretch", height=min(420, 38 + 35 * len(bt)))
             st.caption(f"Basis: {br['brand_basis']}. Exact brand market shares are IQVIA paid data, so this ranking is indicative and built from public evidence.")
         note_box(f"{c['short']}: brands and therapies", company=cid, theme="brands",
                  facts=br["summary"] + " Therapies: " + "; ".join(f"{t['therapy']} {t['detail']}" for t in br["therapies"]))
@@ -122,18 +123,19 @@ def render():
     with tabs[2]:
         a, b = st.columns([1, 1])
         with a:
-            st.plotly_chart(_donut(fp["geography"], f"Revenue mix · {fp['geography_basis']}"), use_container_width=True)
+            st.plotly_chart(_donut(fp["geography"], f"Revenue mix · {fp['geography_basis']}"), width="stretch")
             note_box(f"{c['short']}: revenue by geography", company=cid, theme="geo",
                      facts="; ".join(f"{g} {v}%" for g, v in fp["geography"].items()))
         with b:
             st.markdown(f"""<div class="card"><h4>Market footprint</h4><div style="font-size:.92rem">{fp['market']}</div></div>""", unsafe_allow_html=True)
             q = c["quarterly"]
-            fig = go.Figure(go.Bar(x=D.meta()["quarters"], y=q["sales"], marker_color=c["color"], marker_cornerradius=6,
+            qlab = c.get("quarter_labels") or D.meta()["quarters"]
+            fig = go.Figure(go.Bar(x=qlab, y=q["sales"], marker_color=c["color"], marker_cornerradius=6,
                                    text=[f"₹{v:,}" for v in q["sales"]], textposition="outside", hovertemplate="%{x}: ₹%{y:,} Cr<extra></extra>"))
             fig.update_layout(title="Quarterly revenue (₹ Cr) · operating margin: " + " → ".join(f"{v}%" for v in q["opm"]), hovermode="closest")
-            st.plotly_chart(T.style_fig(fig, 280), use_container_width=True)
+            st.plotly_chart(T.style_fig(fig, 280), width="stretch")
             note_box(f"{c['short']}: quarterly revenue", company=cid, theme="quarter",
-                     facts="; ".join(f"{qq}: ₹{s:,} Cr ({o}%)" for qq, s, o in zip(D.meta()["quarters"], q["sales"], q["opm"])))
+                     facts="; ".join(f"{qq}: ₹{s:,.0f} Cr ({o}%)" for qq, s, o in zip(qlab, q["sales"], q["opm"]) if s is not None))
 
     with tabs[3]:
         a, b = st.columns(2)
@@ -148,7 +150,7 @@ def render():
             vals = [D.company(next(x["id"] for x in D.companies() if x["short"] == r))["footprint"]["rnd_pct"] for r in rows]
             fig = go.Figure(go.Bar(x=rows, y=vals, marker_color=[color(r) for r in rows], text=[f"{v:.1f}%" for v in vals], textposition="outside"))
             fig.update_layout(title="R&D as % of sales", yaxis_ticksuffix="%", hovermode="closest")
-            st.plotly_chart(T.style_fig(fig, 260), use_container_width=True)
+            st.plotly_chart(T.style_fig(fig, 260), width="stretch")
             st.caption("No industry average for R&D: Nifty Pharma companies don't report it consistently.")
         st.markdown(f"""<div class="card" style="margin-top:10px"><h4>🧪 Regulatory snapshot ({rg['as_of']})</h4>
             {T.pill(f"ANDAs filed: {rg['anda_filed'] or 'not published'}")}{T.pill(f"Approved: {rg['anda_approved'] or 'not published'}", 'good')}
@@ -159,7 +161,7 @@ def render():
                  facts=f"{fp.get('plants')} sites; R&D {fp['rnd_pct']:.1f}% of sales; {rg['status']}")
 
     with tabs[4]:
-        T.section("Cost drivers, biggest first", "FY26, each cost as % of sales")
+        T.section("Cost drivers, biggest first", f"{D.latest_year()}, each cost as % of sales")
         r = df.iloc[-1]
         rows = []
         for lab, key in COST_LINES:
@@ -179,10 +181,10 @@ def render():
                                  hovertemplate=f"{n}: %{{x:.1f}}% of sales<extra></extra>"))
         fig.update_layout(barmode="group", yaxis=dict(autorange="reversed"), xaxis_ticksuffix="%", hovermode="closest",
                           title=f"{c['short']} cost lines as % of sales" + (" vs comparison" if len(names) > 1 else ""))
-        st.plotly_chart(T.style_fig(fig, 120 + 50 * len(ct) + 18 * len(names)), use_container_width=True)
+        st.plotly_chart(T.style_fig(fig, 120 + 50 * len(ct) + 18 * len(names)), width="stretch")
         st.dataframe(ct.drop(columns="_k").style.format({"% of sales": "{:.1f}%", "₹ Cr": "{:,.0f}", "Industry %": "{:.1f}%",
                                                           "Gap vs industry (pts)": "{:+.1f}"}, na_rep="–"),
-                     hide_index=True, use_container_width=True)
+                     hide_index=True, width="stretch")
         st.caption(IND.note("employee_pct") + " Positive gap = this company spends more of each ₹100 of sales on that cost than the industry.")
         note_box(f"{c['short']}: cost drivers ranked", company=cid, theme="cost", metric="employee_pct",
                  facts="; ".join(f"{x['Cost line']} {x['% of sales']:.1f}% of sales" + (f" (industry {x['Industry %']:.1f}%)" if x['Industry %'] else "")

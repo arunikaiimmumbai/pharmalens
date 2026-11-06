@@ -73,7 +73,7 @@ def render():
         disp[col] = [D.fmt(m, v) if v is not None and not (isinstance(v, float) and pd.isna(v)) else "–" for v, m in zip(tbl[col], tbl["_m"])]
     styled = disp.style.apply(lambda r: color_row(tbl.loc[r.name]), axis=1)
     order = ["Group", "KPI"] + comps + ["Median of six"] + ([IND_LABEL] if cmp["industry"] else []) + ["Meaning"]
-    st.dataframe(styled, hide_index=True, use_container_width=True, height=600, column_order=order,
+    st.dataframe(styled, hide_index=True, width="stretch", height=600, column_order=order,
                  column_config={"Meaning": st.column_config.TextColumn(width="large")})
     st.caption(IND.meta()["method"] + " '–' = no consistent industry figure (e.g. R&D, US share, valuation multiples other than P/E).")
     note_box("KPI master table", peer="rt_table",
@@ -88,12 +88,12 @@ def render():
     pnl_ = D.panel(col)
     if cmp["companies"]:
         pnl_ = pnl_[[c_ for c_ in pnl_.columns if c_ in cmp["companies"]]]
-    st.plotly_chart(multi_line(pnl_, f"{t} · FY22–26", suf, 420, highlight=None,
-                               industry=cmp["industry"], metric=col), use_container_width=True)
+    st.plotly_chart(multi_line(pnl_, f"{t} · {D.span()}", suf, 420, highlight=None,
+                               industry=cmp["industry"], metric=col), width="stretch")
     if cmp["industry"]:
         st.caption(IND.note(col))
     p = D.panel(col)
-    note_box(f"{t} trend, FY22–26", peer=f"rt_trend_{col}", metric=col,
+    note_box(f"{t} trend, {D.span()}", peer=f"rt_trend_{col}", metric=col,
              facts="; ".join(f"{c}: {D.fmt(col, p[c].iloc[0])} → {D.fmt(col, p[c].iloc[-1])}" for c in p.columns)
              + f". Industry: {D.fmt(col, IND.industry_series(col)['Average'].iloc[0])} → {D.fmt(col, IND.industry_series(col)['Average'].iloc[-1])}.")
 
@@ -110,7 +110,7 @@ def render():
         pm, at = IND.industry_value("pat_margin", year)["avg"], IND.industry_value("asset_turnover", year)["avg"]
         rows.append({"Company": IND_LABEL, "PAT margin %": pm, "Asset turnover x": at, "Equity multiplier x": None, "ROE % (DuPont)": IND.industry_value("roe", year)["avg"]})
     st.dataframe(pd.DataFrame(rows).style.format({"PAT margin %": "{:.1f}", "Asset turnover x": "{:.2f}", "Equity multiplier x": "{:.2f}",
-                                                  "ROE % (DuPont)": "{:.1f}"}, na_rep="–"), hide_index=True, use_container_width=True)
+                                                  "ROE % (DuPont)": "{:.1f}"}, na_rep="–"), hide_index=True, width="stretch")
     st.caption("This table uses shareholders' funds at year end, while the main table uses the average across the year, so the numbers differ slightly.")
     note_box("DuPont: why ROE differs", peer="rt_dupont", metric="roe",
              facts="; ".join(f"{r['Company']}: {r['PAT margin %']:.1f}% × {r['Asset turnover x']:.2f}" for r in rows if r["Company"] != IND_LABEL))

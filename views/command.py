@@ -23,6 +23,20 @@ def _tile(label, value, delta, direction, metric, note=""):
     return f'<div title="{tip}">' + T.kpi_card(label, value, delta, direction, note) + "</div>"
 
 
+def _new_results_banner() -> None:
+    """Flags companies whose new annual or quarterly results were picked up automatically in the last three weeks."""
+    ref = D.refresher()
+    if ref is None:
+        return
+    from core import live_fin as LF  # noqa: WPS433
+
+    syms = [c["ticker"].split(".")[0] for c in D.companies()]
+    new = LF.recent_new(ref.status, syms)
+    if new:
+        st.success("🆕 **New results picked up automatically:** " + " · ".join(f"**{n}** ({w})" for n, w in new)
+                   + ". Every chart, ratio, ranking and the analyst now use them. Written notes are dated to when they were researched.")
+
+
 def render():
     seg = D.SEGMENTS[D.segment()]
     T.hero(
@@ -30,9 +44,10 @@ def render():
         f"{seg['names']}. Six companies, five years, one lens: live market and news signals, consolidated financials, "
         "regulatory pipelines and strategy, compared with each other and with the Nifty Pharma industry average.",
         [f'<span class="pulse"></span> Live feeds {"on" if st.session_state.get("live_on", True) else "off"}',
-         "FY22 → FY26 + Q1 FY27", "Consolidated · ₹ Cr", "Industry = 20 Nifty Pharma companies"],
+         f"{D.span_full(' → ')} + latest quarter", "Consolidated · ₹ Cr", "Industry = 20 Nifty Pharma companies"],
     )
     segment_picker()
+    _new_results_banner()
     k = D.kpi_table()
     cmp = compare_bar("command", help_text="Pick companies and/or Industry to open a side-by-side comparison below. "
                                            "Selected companies are also highlighted on the map; Industry adds a star.")
@@ -45,7 +60,7 @@ def render():
     w_growth = np.average(k["sales_cagr"], weights=k["sales"])
     st.markdown("<div style='height:6px'></div>", unsafe_allow_html=True)
     T.kpi_row([
-        _tile("Combined FY26 revenue", f"₹{tot_sales/1000:,.1f}k Cr", f"growing {w_growth:.1f}% a year", "up", "sales_cagr"),
+        _tile(f"Combined {D.latest_year()} revenue", f"₹{tot_sales/1000:,.1f}k Cr", f"growing {w_growth:.1f}% a year", "up", "sales_cagr"),
         _tile("Combined market cap", f"₹{tot_mcap/100000:,.2f} L Cr", f"P/E median {k['pe'].median():.1f}x", "flat", "pe"),
         _tile("Median EBITDA margin", f"{k['ebitda_margin'].median():.1f}%", f"range {k['ebitda_margin'].min():.0f}–{k['ebitda_margin'].max():.0f}%", "flat", "ebitda_margin"),
         _tile("Median ROCE", f"{k['roce'].median():.0f}%", f"{k['roce'].idxmax()} {k['roce'].max():.0f}% best", "up", "roce",
@@ -111,10 +126,10 @@ def render():
     for txt, x, y in [("Fast growth, high margin", 0.98, 0.98), ("High margin, slower growth", 0.02, 0.98), ("Fast growth, lower margin", 0.98, 0.04), ("Slower growth, lower margin", 0.02, 0.04)]:
         fig.add_annotation(text=txt, xref="paper", yref="paper", x=x, y=y, showarrow=False, font=dict(color=T.MUTED, size=11),
                            xanchor="right" if x > 0.5 else "left")
-    fig.update_layout(xaxis_title="Revenue CAGR FY22–26 (%)", yaxis_title="EBITDA margin FY26 (%)", showlegend=False, hovermode="closest",
+    fig.update_layout(xaxis_title=f"Revenue CAGR {D.span()} (%)", yaxis_title=f"EBITDA margin {D.latest_year()} (%)", showlegend=False, hovermode="closest",
                       yaxis_range=[k["ebitda_margin"].min() - 4, k["ebitda_margin"].max() + 4],
                       xaxis_range=[k["sales_cagr"].min() - 2.5, k["sales_cagr"].max() + 2.5])
-    st.plotly_chart(T.style_fig(fig, 440), use_container_width=True)
+    st.plotly_chart(T.style_fig(fig, 440), width="stretch")
     st.caption("Dotted lines = middle of the six companies. Star = industry average (choose 'Industry' in Compare with).")
     note_box("Strategic positioning map", peer="cmd_map", metric="ebitda_margin",
              facts="; ".join(f"{n}: growth {r['sales_cagr']:.1f}%/yr, margin {r['ebitda_margin']:.1f}%" for n, r in k.iterrows()))

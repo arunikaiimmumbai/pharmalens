@@ -63,10 +63,10 @@ def render():
 
     a, b = st.columns([1.1, 1])
     with a:
-        yr = st.select_slider("Year", options=D.years(), value="FY26", key="pnl_year")
-        st.plotly_chart(_waterfall(df, yr, name), use_container_width=True)
+        yr = st.select_slider("Year", options=D.years(), value=D.years()[-1], key="pnl_year")
+        st.plotly_chart(_waterfall(df, yr, name), width="stretch")
     with b:
-        st.plotly_chart(_common_size(df, name), use_container_width=True)
+        st.plotly_chart(_common_size(df, name), width="stretch")
         st.caption("'Other op. items (net)' is a small balancing figure so the costs add up to the company's reported total.")
     r = df.loc[yr]
     note_box(f"{name}: P&L bridge and cost mix", company=cid, theme="margin", metric="ebitda_margin",
@@ -97,8 +97,8 @@ def render():
                                  hovertemplate=f"{n}: %{{x:+.1f}} pts of sales<extra></extra>"))
         fig.add_vline(x=0, line_color=T.NAVY, line_width=1)
         fig.update_layout(barmode="group", yaxis=dict(autorange="reversed"), hovermode="closest",
-                          title="Margin impact FY22 → FY26 (points of sales; + = cost rose, margin fell)")
-        st.plotly_chart(T.style_fig(fig, 300 + 14 * len(names)), use_container_width=True)
+                          title=f"Margin impact {D.span_full(' → ')} (points of sales; + = cost rose, margin fell)")
+        st.plotly_chart(T.style_fig(fig, 300 + 14 * len(names)), width="stretch")
     with b:
         r26 = df.iloc[-1]
         sens = []
@@ -111,10 +111,10 @@ def render():
         fig = go.Figure(go.Bar(y=sens["Cost line"], x=sens["1% saving adds to EBITDA ₹ Cr"], orientation="h", marker_color=c["color"],
                                text=[f"₹{v:,.0f} Cr" for v in sens["1% saving adds to EBITDA ₹ Cr"]], textposition="outside",
                                hovertemplate="%{y}: ₹%{x:,.1f} Cr<extra></extra>"))
-        fig.update_layout(title="Sensitivity: EBITDA gained from a 1% saving on each cost (FY26)", yaxis=dict(autorange="reversed"), hovermode="closest")
-        st.plotly_chart(T.style_fig(fig, 300), use_container_width=True)
+        fig.update_layout(title=f"Sensitivity: EBITDA gained from a 1% saving on each cost ({D.latest_year()})", yaxis=dict(autorange="reversed"), hovermode="closest")
+        st.plotly_chart(T.style_fig(fig, 300), width="stretch")
     st.dataframe(sens.style.format({"Cost ₹ Cr": "{:,.0f}", "1% saving adds to EBITDA ₹ Cr": "{:,.1f}", "= % of EBITDA": "{:.2f}%",
-                                    "Margin gain (bps)": "{:.0f}"}), hide_index=True, use_container_width=True)
+                                    "Margin gain (bps)": "{:.0f}"}), hide_index=True, width="stretch")
     if cmp["industry"]:
         st.caption(IND.note("employee_pct"))
     el = D.cost_elasticity(cid)
@@ -122,27 +122,27 @@ def render():
         st.dataframe(el.style.format({"Extra cost since FY22 (₹ Cr)": "{:,.0f}", "Extra cost per ₹100 of extra revenue": "{:.1f}",
                                       "Cost growth per year %": "{:.1f}%", "Cost growth vs revenue growth": "{:.2f}x"}, na_rep="n/a")
                      .background_gradient(subset=["Cost growth vs revenue growth"], cmap="Reds", vmin=0.5, vmax=2.5),
-                     hide_index=True, use_container_width=True)
+                     hide_index=True, width="stretch")
         st.caption("Above 1.0x = the cost grows faster than revenue, so it eats margin. Interest often shows a big number because it starts from a tiny base.")
     top = imp.iloc[0]
     note_box(f"{name}: cost drivers", company=cid, theme="cost", metric="employee_pct",
-             facts=f"Biggest margin hit FY22–26: {top['line']} ({top[name]:+.1f} pts of sales). Biggest cost today: {sens.iloc[0]['Cost line']} "
+             facts=f"Biggest margin hit {D.span()}: {top['line']} ({top[name]:+.1f} pts of sales). Biggest cost today: {sens.iloc[0]['Cost line']} "
                    f"(₹{sens.iloc[0]['Cost ₹ Cr']:,.0f} Cr; a 1% saving adds ₹{sens.iloc[0]['1% saving adds to EBITDA ₹ Cr']:,.0f} Cr EBITDA). "
                    f"Employee cost {df['employee_pct'].iloc[0]:.1f}% → {df['employee_pct'].iloc[-1]:.1f}% of sales; industry {IND.industry_value('employee_pct')['avg']:.1f}%.")
 
     # ── Growth per year by line ──────────────────────────────────────────────
-    T.section("Growth per year by line", "FY22 → FY26 (CAGR)")
+    T.section("Growth per year by line", f"{D.span_full(' → ')} (CAGR)")
     keys = [("Revenue", "sales"), ("EBITDA", "ebitda"), ("PAT", "pat"), ("Employee cost", "employee_cost"), ("Material cost", "material_cost"),
             ("Indirect (mfg + other)", "indirect_cost"), ("Depreciation", "depreciation"), ("Interest", "interest")]
-    tbl = pd.DataFrame({"Line": [k_ for k_, _ in keys], "FY22 ₹ Cr": [df[x].iloc[0] for _, x in keys], "FY26 ₹ Cr": [df[x].iloc[-1] for _, x in keys]})
+    tbl = pd.DataFrame({"Line": [k_ for k_, _ in keys], f"{D.years()[0]} ₹ Cr": [df[x].iloc[0] for _, x in keys], f"{D.latest_year()} ₹ Cr": [df[x].iloc[-1] for _, x in keys]})
     tbl[f"{name} CAGR %"] = [D._cagr(df[x].iloc[0], df[x].iloc[-1], 4) * 100 for _, x in keys]
     for n in cmp["companies"]:
         f = D.financial_frame(next(x["id"] for x in D.companies() if x["short"] == n))
         tbl[f"{n} CAGR %"] = [D._cagr(f[x].iloc[0], f[x].iloc[-1], 4) * 100 for _, x in keys]
     if cmp["industry"]:
         tbl["Industry CAGR %"] = [IND.industry_value(m_)["avg"] if m_ else None for m_ in ("sales_cagr", "ebitda_cagr", "pat_cagr", None, None, None, None, None)]
-    st.dataframe(tbl.style.format({c_: "{:.1f}%" for c_ in tbl.columns if "CAGR" in c_} | {"FY22 ₹ Cr": "{:,.0f}", "FY26 ₹ Cr": "{:,.0f}"}, na_rep="–")
-                 .background_gradient(subset=[f"{name} CAGR %"], cmap="Blues"), hide_index=True, use_container_width=True)
+    st.dataframe(tbl.style.format({c_: "{:.1f}%" for c_ in tbl.columns if "CAGR" in c_} | {f"{D.years()[0]} ₹ Cr": "{:,.0f}", f"{D.latest_year()} ₹ Cr": "{:,.0f}"}, na_rep="–")
+                 .background_gradient(subset=[f"{name} CAGR %"], cmap="Blues"), hide_index=True, width="stretch")
     note_box(f"{name}: growth by P&L line", company=cid, theme="growth", metric="sales_cagr",
              facts="; ".join(f"{l_} {v:.1f}%/yr" for l_, v in zip(tbl["Line"], tbl[f"{name} CAGR %"]) if not pd.isna(v)))
 
@@ -183,7 +183,7 @@ def render():
     strength = "strong" if abs(rr) >= 0.6 else "moderate" if abs(rr) >= 0.3 else "weak"
     fig.update_layout(title=f"Link strength {rr:+.2f} ({strength}; +1 = move together, 0 = no link, −1 = opposite) · {len(pdf)} dots",
                       xaxis_title=x, yaxis_title=y, hovermode="closest", showlegend=not wide)
-    st.plotly_chart(T.style_fig(fig, 420), use_container_width=True)
+    st.plotly_chart(T.style_fig(fig, 420), width="stretch")
     if wide:
         st.caption("Grey dots = the other Nifty Pharma companies; coloured = the six in this study.")
     note_box("Test any two numbers", peer="pl_scatter", facts=f"{x} vs {y}: link strength {rr:+.2f} ({strength}) across {len(pdf)} company-years.")

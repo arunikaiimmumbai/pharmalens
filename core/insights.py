@@ -48,10 +48,10 @@ def company_insights(cid: str) -> dict:
     # ── Growth ────────────────────────────────────────────────
     cagr = me["sales_cagr"]
     rel = "above" if cagr > med["sales_cagr"] else "below"
-    g.append(f"Revenue compounded {cagr:.1f}% p.a. FY22–26 ({rel} peer median {med['sales_cagr']:.1f}%); "
+    g.append(f"Revenue compounded {cagr:.1f}% p.a. {D.span()} ({rel} peer median {med['sales_cagr']:.1f}%); "
              f"EBITDA CAGR {me['ebitda_cagr']:.1f}%.")
     qy = _q_yoy(c)
-    g.append(f"Q1 FY27 revenue {('+' if qy >= 0 else '')}{qy:.0f}% YoY, "
+    g.append(f"{(c.get('quarter_labels') or D.meta()['quarters'])[-1]} revenue {('+' if qy >= 0 else '')}{qy:.0f}% YoY, "
              + ("faster than its 5-year trend." if qy > cagr + 2 else "in line with its 5-year trend." if abs(qy - cagr) <= 2 else "slower than its 5-year trend."))
     geo = c["footprint"]["geography"]
     top_seg = max(geo, key=geo.get)
@@ -64,10 +64,10 @@ def company_insights(cid: str) -> dict:
     d_mat = _pts(df["material_pct"].iloc[0], df["material_pct"].iloc[-1])
     d_ind = _pts(df["indirect_pct"].iloc[0], df["indirect_pct"].iloc[-1])
     if d_mat < -3:
-        o.append(f"Cheaper materials helped: material cost fell {abs(d_mat):.1f} points of sales FY22–26. Protecting this as raw material "
+        o.append(f"Cheaper materials helped: material cost fell {abs(d_mat):.1f} points of sales {D.span()}. Protecting this as raw material "
                  f"prices rise again (for example by having two API suppliers) is the opportunity.")
     if d_emp > 2:
-        r.append(f"Rising people cost: employee cost up {d_emp:.1f} points of sales FY22–26 ({df['employee_pct'].iloc[0]:.1f}% to "
+        r.append(f"Rising people cost: employee cost up {d_emp:.1f} points of sales {D.span()} ({df['employee_pct'].iloc[0]:.1f}% to "
                  f"{df['employee_pct'].iloc[-1]:.1f}%). Sales-team productivity and organisation structure are worth reviewing.")
     if d_ind > 2:
         r.append(f"Overheads (manufacturing plus selling and admin) up {d_ind:.1f} points of sales. Worth a line-by-line cost review.")
@@ -92,7 +92,7 @@ def company_insights(cid: str) -> dict:
     # ── Cash & working capital ───────────────────────────────
     cfo_pat = me["cfo_pat"]
     if cfo_pat < 0.7:
-        r.append(f"Weak cash conversion: CFO/PAT {cfo_pat:.2f}x in FY26 (debtor days {me['debtor_days']:.0f}).")
+        r.append(f"Weak cash conversion: CFO/PAT {cfo_pat:.2f}x in {D.latest_year()} (debtor days {me['debtor_days']:.0f}).")
     elif cfo_pat > 1.2:
         g.append(f"Strong cash conversion: CFO/PAT {cfo_pat:.2f}x.")
     if me["inventory_days"] > 300:
@@ -103,7 +103,7 @@ def company_insights(cid: str) -> dict:
 
     # ── Balance sheet ────────────────────────────────────────
     if me["debt_ebitda"] > 1.5:
-        r.append(f"Leverage {me['debt_ebitda']:.1f}x debt/EBITDA; interest ₹{df['interest'].iloc[-1]:,.0f} Cr in FY26.")
+        r.append(f"Leverage {me['debt_ebitda']:.1f}x debt/EBITDA; interest ₹{df['interest'].iloc[-1]:,.0f} Cr in {D.latest_year()}.")
     b_growth = df["borrowings"].iloc[-1] / max(df["borrowings"].iloc[0], 1)
     if b_growth > 1.8 and df["borrowings"].iloc[-1] > 250:
         r.append(f"Borrowings up {b_growth:.1f}x since FY22 (₹{df['borrowings'].iloc[0]:,.0f} → ₹{df['borrowings'].iloc[-1]:,.0f} Cr).")
@@ -141,8 +141,8 @@ def cross_company_signals() -> list[str]:
     one_off = [c["short"] for c in D.companies() if any("licensing" in n.lower() or "one-off" in n.lower() for n in c.get("data_notes", []))]
     core = k.drop(index=one_off, errors="ignore")  # one-off income inflates FY26 returns
     best_roce, worst_roce = core["roce"].idxmax(), k["roce"].idxmin()
-    fb = D.financial_frame(k.loc[best_roce, "id"]).loc["FY26"]
-    fw = D.financial_frame(k.loc[worst_roce, "id"]).loc["FY26"]
+    fb = D.financial_frame(k.loc[best_roce, "id"]).loc[D.latest_year()]
+    fw = D.financial_frame(k.loc[worst_roce, "id"]).loc[D.latest_year()]
     m_b, m_w = (fb["ebitda"] - fb["depreciation"]) / fb["sales"] * 100, (fw["ebitda"] - fw["depreciation"]) / fw["sales"] * 100
     t_b, t_w = fb["sales"] / fb["capital_employed"], fw["sales"] / fw["capital_employed"]
     s.append(f"Return dispersion is wide: {best_roce} earns {k.loc[best_roce, 'roce']:.0f}% ROCE vs {worst_roce} at "
@@ -160,7 +160,7 @@ def cross_company_signals() -> list[str]:
                 "Inventory alone doesn't explain returns; it matters most where it is extreme ("
                 + ", ".join(f"{n} {v:.0f} d" for n, v in k["inventory_days"].sort_values(ascending=False).head(2).items()) + ")."))
     _, r_cc = D.pooled_correlation("ccc", "roce")
-    s.append(f"Cash cycle vs ROCE, link strength {r_cc:+.2f} ({_strength(r_cc)}). Employee cost % changed across the six FY22–26 "
+    s.append(f"Cash cycle vs ROCE, link strength {r_cc:+.2f} ({_strength(r_cc)}). Employee cost % changed across the six {D.span()} "
              f"(+{(D.panel('employee_pct').iloc[-1] - D.panel('employee_pct').iloc[0]).mean():.1f} points on average). The key FY27 question is whether revenue can grow faster than costs.")
     us_heavy = k[k["us_share"] >= 25].index.tolist()
     dom_heavy = k[k["india_share"] >= 50].index.tolist()
@@ -169,6 +169,6 @@ def cross_company_signals() -> list[str]:
     mat = D.panel("material_pct")
     drop = (mat.iloc[0] - mat.iloc[-1]).sort_values(ascending=False)
     n_fell = int((drop > 0).sum())
-    s.append(f"Material cost/sales fell at {n_fell} of {len(drop)} companies FY22–26 (largest: {drop.index[0]} −{drop.iloc[0]:.1f} points). "
+    s.append(f"Material cost/sales fell at {n_fell} of {len(drop)} companies {D.span()} (largest: {drop.index[0]} −{drop.iloc[0]:.1f} points). "
              f"The FY27 risk is that this reverses, as API and solvent prices rise (flagged on Q1 calls).")
     return s

@@ -4,9 +4,9 @@
 GLOSSARY = {
     "sales": ("All money earned from selling products in the year (also called revenue or turnover).", "Reported revenue from operations, ₹ Cr"),
     "sales_growth": ("How much revenue grew compared with last year.", "(This year − last year) ÷ last year × 100"),
-    "sales_cagr": ("Steady growth per year from FY22 to FY26.", "(FY26 ÷ FY22)^(1/4) − 1"),
-    "ebitda_cagr": ("Steady growth per year in operating profit, FY22 to FY26.", "(FY26 EBITDA ÷ FY22 EBITDA)^(1/4) − 1"),
-    "pat_cagr": ("Steady growth per year in final profit, FY22 to FY26.", "(FY26 PAT ÷ FY22 PAT)^(1/4) − 1"),
+    "sales_cagr": ("Steady growth per year over the last five financial years.", "(latest year ÷ first year)^(1/4) − 1"),
+    "ebitda_cagr": ("Steady growth per year in operating profit over the last five financial years.", "(latest EBITDA ÷ first-year EBITDA)^(1/4) − 1"),
+    "pat_cagr": ("Steady growth per year in final profit over the last five financial years.", "(latest PAT ÷ first-year PAT)^(1/4) − 1"),
     "ebitda_margin": ("₹ of operating profit kept from every ₹100 of sales, before interest, tax and depreciation.", "EBITDA ÷ revenue × 100"),
     "ebit_margin": ("₹ of operating profit kept from every ₹100 of sales after depreciation.", "(EBITDA − depreciation) ÷ revenue × 100"),
     "gross_margin": ("₹ left from every ₹100 of sales after paying for materials. Shows pricing power.", "(Revenue − material cost) ÷ revenue × 100"),

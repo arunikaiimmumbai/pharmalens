@@ -30,11 +30,11 @@ def system_prompt() -> str:
     """System prompt for the active peer set."""
     m = D.meta()
     others = "; ".join(f"{D.SEGMENTS[k]['label']}: {D.SEGMENTS[k]['names']}" for k in D.available_segments() if k != D.segment())
-    return SYSTEM_PROMPT.format(segment=D.segment_label(), names=D.SEGMENTS[D.segment()]["names"], others=others or "none",
+    return SYSTEM_PROMPT.format(years=D.span_full(), segment=D.segment_label(), names=D.SEGMENTS[D.segment()]["names"], others=others or "none",
                                 one_offs=m.get("one_offs", "check the data notes for acquisitions and one-off income."))
 
 SYSTEM_PROMPT = """You are a financial analyst and senior strategy consultant specialising in Indian pharma.
-You analyse six listed companies, the "{segment}" peer set: {names} (consolidated, FY22 to FY26 plus Q1 FY27; INR crore),
+You analyse six listed companies, the "{segment}" peer set: {names} (consolidated, {years} plus the latest quarter each has reported; INR crore),
 and compare them with the industry: the average of the 20 Nifty Pharma companies (tool get_industry_benchmark) and
 published Indian pharma market growth (IQVIA, Pharmarack).
 
@@ -65,7 +65,7 @@ TOOLS = [
      "input_schema": {"type": "object", "properties": {}}},
     {"name": "get_company_profile", "description": "Profile & footprints (market, geography, manufacturing, R&D, therapy), regulatory/ANDA status, guidance, consensus, shareholding.",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string", "description": "id or name, e.g. 'alkem'"}}, "required": ["company"]}},
-    {"name": "get_financials", "description": "Five-year (FY22–FY26) series for one company. Metrics include sales, ebitda, pat, ebitda_margin, gross_margin, pat_margin, roce, roe, employee_pct, material_pct, indirect_pct, other_cost_pct, inventory_days, debtor_days, payable_days, ccc, wc_days, borrowings, de_ratio, debt_ebitda, interest_cover, cfo, cfo_pat, fcf_proxy, asset_turnover, fixed_asset_turnover, sales_growth, employee_growth, indirect_growth. Also returns quarterly (Q1 FY26–Q1 FY27).",
+    {"name": "get_financials", "description": "Five-year series (the latest five financial years) for one company, live from the latest filings where available. Metrics include sales, ebitda, pat, ebitda_margin, gross_margin, pat_margin, roce, roe, employee_pct, material_pct, indirect_pct, other_cost_pct, inventory_days, debtor_days, payable_days, ccc, wc_days, borrowings, de_ratio, debt_ebitda, interest_cover, cfo, cfo_pat, fcf_proxy, asset_turnover, fixed_asset_turnover, sales_growth, employee_growth, indirect_growth. Also returns quarterly (Q1 FY26–Q1 FY27).",
      "input_schema": {"type": "object", "properties": {"company": {"type": "string"}, "metrics": {"type": "array", "items": {"type": "string"}}}, "required": ["company"]}},
     {"name": "compare_kpis", "description": "Cross-company KPI table for FY26 (or another year) with peer median and rank. Also accepts sales_cagr, ebitda_cagr, pat_cagr, pe, pb, ev_ebitda, mcap_cr, rnd_pct, us_share, india_share.",
      "input_schema": {"type": "object", "properties": {"metrics": {"type": "array", "items": {"type": "string"}}, "year": {"type": "string", "default": "FY26"},
@@ -91,7 +91,7 @@ TOOLS = [
     {"name": "calculate", "description": "Calculator. Either give 'expression' (arithmetic only, e.g. '(462-282)/365*2330'), or give company + metric (+ target) for the size of the prize: cash released (inventory_days, debtor_days, payable_days) or extra EBITDA per year (employee_pct, material_pct, indirect_pct, other_cost_pct, manufacturing_pct, ebitda_margin) if the company reached the target. target: industry_median (default), industry_average, best_peer, or a number.",
      "input_schema": {"type": "object", "properties": {"expression": {"type": "string"}, "company": {"type": "string"}, "metric": {"type": "string"},
                                                      "target": {"type": "string", "description": "industry_median, industry_average, best_peer or a number"}}}},
-    {"name": "make_chart", "description": "Draw a chart in the answer. mode 'snapshot' = one bar per company for FY26 (with the industry line); mode 'trend' = FY22 to FY26 lines. companies: list of names, or ['all'] for the current peer set; names from the other peer set are allowed.",
+    {"name": "make_chart", "description": "Draw a chart in the answer. mode 'snapshot' = one bar per company for the latest year (with the industry line); mode 'trend' = FY22 to FY26 lines. companies: list of names, or ['all'] for the current peer set; names from the other peer set are allowed.",
      "input_schema": {"type": "object", "properties": {"metric": {"type": "string", "description": "e.g. ebitda_margin, roce, inventory_days, ccc, employee_pct, sales_cagr"},
                                                      "companies": {"type": "array", "items": {"type": "string"}},
                                                      "mode": {"type": "string", "enum": ["snapshot", "trend"]},
@@ -190,21 +190,21 @@ def run_tool(name: str, args: dict, run: dict | None = None) -> dict:
             m = [x for x in (args.get("metrics") or ["sales", "ebitda", "ebitda_margin", "pat", "roce", "roic", "roe", "employee_pct", "inventory_days", "cfo_pat", "fcf_margin", "net_debt_ebitda", "borrowings"]) if x in df.columns]
             c = D.company(cid)
             return {"years": list(df.index), "series": {k: df[k].tolist() for k in m},
-                    "quarterly": {"labels": D.meta()["quarters"], **c["quarterly"]}, "ttm": c.get("ttm"), "notes": c.get("data_notes"),
-                    "industry_average_FY26": {x: IND.industry_value(x)["avg"] for x in m},
+                    "quarterly": {"labels": c.get("quarter_labels") or D.meta()["quarters"], **c["quarterly"]}, "ttm": c.get("ttm"), "notes": c.get("data_notes"),
+                    f"industry_average_{D.latest_year()}": {x: IND.industry_value(x)["avg"] for x in m},
                     "definitions": {x: G.tooltip(x) for x in m if G.tooltip(x)},
                     "analyst_notes": {th: N.company(cid, th)["text"] for th in ("growth", "margin", "returns", "wc", "cash", "cost") if N.company(cid, th)},
                     "sources": [N.screener(cid)]}
 
         if name == "compare_kpis":
-            k = D.kpi_table(args.get("year", "FY26"))
+            k = D.kpi_table(args.get("year") or D.latest_year())
             if args.get("companies"):
-                ka = D.kpi_table_all(args.get("year", "FY26"))
+                ka = D.kpi_table_all(args.get("year") or D.latest_year())
                 keep = [D.company(c)["short"] for c in _resolve_many(args["companies"])]
                 k = ka.loc[[x for x in keep if x in ka.index]]
             m = [x for x in args["metrics"] if x in k.columns]
             t = k[m]
-            yr = args.get("year", "FY26")
+            yr = args.get("year") or D.latest_year()
             return {"table": t.round(2).to_dict(orient="index"), "peer_median": t.median(numeric_only=True).round(2).to_dict(),
                     "industry_average": {x: IND.industry_value(x, yr)["avg"] for x in m},
                     "rank_1_is_best": {x: D.peer_rank(k, x).to_dict() for x in m if x in D.KPI_DEFS},
@@ -217,7 +217,7 @@ def run_tool(name: str, args: dict, run: dict | None = None) -> dict:
                 cid = resolve(args["company"])
                 df = D.financial_frame(cid)
                 r = df[x].corr(df[y])
-                out = {"scope": f"{D.company(cid)['short']} FY22–26 (n=5, directional only)", "r": r,
+                out = {"scope": f"{D.company(cid)['short']} {D.span()} (n=5, directional only)", "r": r,
                        "x": df[x].round(2).tolist(), "y": df[y].round(2).tolist()}
                 if x == "sales":
                     out["cost_elasticity"] = D.cost_elasticity(cid).round(2).to_dict(orient="records")
@@ -275,7 +275,7 @@ def run_tool(name: str, args: dict, run: dict | None = None) -> dict:
             return out
 
         if name == "get_industry_benchmark":
-            metric, yr = args["metric"], args.get("year", "FY26")
+            metric, yr = args["metric"], args.get("year") or D.latest_year()
             iv = IND.industry_value(metric, yr)
             vals = IND.member_values(metric, yr).dropna().round(2).sort_values(ascending=False)
             return {"metric": metric, "definition": G.tooltip(metric), "year": yr, "industry_average": iv["avg"], "industry_median": iv["median"],
@@ -732,7 +732,7 @@ def offline_answer(question: str, on_step=None, item: dict | None = None) -> str
         if on_step:
             on_step(1, "compare_kpis", {"metrics": metrics})
         k = D.kpi_table().loc[[c["short"] for c in hits], metrics]
-        lines.append("**What it's checking:** growth, profitability, returns and cash across the companies (FY26), against the industry.\n")
+        lines.append(f"**What it's checking:** growth, profitability, returns and cash across the companies ({D.latest_year()}), against the industry.\n")
         hdr = "| Company | " + " | ".join(D.KPI_DEFS[m][0] for m in metrics) + " |"
         lines += [hdr, "|" + "---|" * (len(metrics) + 1)]
         for name, row in k.iterrows():

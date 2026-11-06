@@ -264,7 +264,8 @@ PRIZE = {
 }
 
 
-def size_of_prize(cid: str, metric: str, target: str | float = "industry_median", year: str = "FY26") -> dict:
+def size_of_prize(cid: str, metric: str, target: str | float = "industry_median", year: str | None = None) -> dict:
+    year = year or D.latest_year()
     """Rupee value of moving one metric to a target (industry median/average, best peer, or a number)."""
     if metric not in PRIZE:
         return {"error": f"Size of the prize works for: {', '.join(PRIZE)}"}
@@ -303,7 +304,8 @@ def size_of_prize(cid: str, metric: str, target: str | float = "industry_median"
 
 
 # ── Charts in answers ────────────────────────────────────────────────────────
-def chart_spec(metric: str, cids: list[str], mode: str = "snapshot", include_industry: bool = True, year: str = "FY26") -> dict:
+def chart_spec(metric: str, cids: list[str], mode: str = "snapshot", include_industry: bool = True, year: str | None = None) -> dict:
+    year = year or D.latest_year()
     lab = D.KPI_DEFS.get(metric, (metric.replace("_", " "),))[0]
     names = [D.company(c)["short"] for c in cids]
     spec = {"metric": metric, "label": lab, "mode": mode, "names": names, "fmt": D.KPI_DEFS.get(metric, (0, 0, 0, "{:.1f}"))[3]}
@@ -330,7 +332,7 @@ def chart_spec(metric: str, cids: list[str], mode: str = "snapshot", include_ind
             iv = IND.industry_value(metric, year)["avg"]
             spec["industry"] = None if iv is None else round(iv, 2)
         spec["year"] = year
-    spec["title"] = f"{lab} · {'FY22 to FY26' if mode == 'trend' else year}"
+    spec["title"] = f"{lab} · {D.span_full() if mode == 'trend' else year}"
     return spec
 
 
@@ -369,7 +371,7 @@ def render_chart(spec: dict, key: str) -> None:
                           annotation_text=f"Industry {spec['fmt'].format(spec['industry'])}", annotation_font_color="#64748B")
         fig.update_layout(showlegend=False)
     fig.update_layout(title=spec.get("title", ""), hovermode="x unified" if spec.get("mode") == "trend" else "closest", margin=dict(l=8, r=8, t=48, b=8))
-    st.plotly_chart(T.style_fig(fig, 300), use_container_width=True, key=key)
+    st.plotly_chart(T.style_fig(fig, 300), width="stretch", key=key)
 
 
 # ── Number check ─────────────────────────────────────────────────────────────

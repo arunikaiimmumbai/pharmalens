@@ -85,8 +85,8 @@ def render():
 
     T.section("1 · Get the template", "one row per line item, one column per year, ₹ Cr")
     a, b, c = st.columns(3)
-    a.download_button("⬇️ Blank template (CSV)", template_csv(False), "finance_lens_template.csv", "text/csv", use_container_width=True)
-    b.download_button("⬇️ Filled sample: 'Company X' (CSV)", template_csv(True), "finance_lens_sample_company_x.csv", "text/csv", use_container_width=True)
+    a.download_button("⬇️ Blank template (CSV)", template_csv(False), "finance_lens_template.csv", "text/csv", width="stretch")
+    b.download_button("⬇️ Filled sample: 'Company X' (CSV)", template_csv(True), "finance_lens_sample_company_x.csv", "text/csv", width="stretch")
     use_sample = c.toggle("Use the sample instead of uploading", value=True, key="up_sample",
                           help="The sample is made-up data for a fictional 'Company X', for demonstrations.")
 
@@ -138,7 +138,7 @@ def render():
     for col in ["You", "Industry avg", "Industry median", "Six-company median"]:
         disp[col] = [D.fmt(m, v) if v is not None and np.isfinite(v) else "–" for v, m in zip(res[col], res["_m"])]
     disp["Better than % of industry"] = [f"{v:.0f}%" if v is not None and np.isfinite(v) else "–" for v in res["Better than % of industry"]]
-    st.dataframe(disp.drop(columns=["_m", "_gap", "_better"]), hide_index=True, use_container_width=True,
+    st.dataframe(disp.drop(columns=["_m", "_gap", "_better"]), hide_index=True, width="stretch",
                  column_config={"Meaning": st.column_config.TextColumn(width="large")})
     st.caption(IND.meta()["method"])
 
@@ -155,14 +155,14 @@ def render():
         fig.add_vline(x=50, line_dash="dot", line_color=T.MUTED, annotation_text="industry middle", annotation_font_color=T.MUTED)
         fig.update_layout(title="Where you stand: better than what % of the 20 Nifty Pharma companies", xaxis_range=[0, 115],
                           yaxis=dict(autorange="reversed"), hovermode="closest")
-        st.plotly_chart(T.style_fig(fig, 520), use_container_width=True)
+        st.plotly_chart(T.style_fig(fig, 520), width="stretch")
     with b:
         st.markdown('<div class="card"><h4>Where a consultant would focus first</h4>' + "".join(
             f'<div style="margin:8px 0;font-size:.9rem"><b>{w["Metric"]}</b>: {D.fmt(w["_m"], w["You"])} vs industry {D.fmt(w["_m"], w["Industry avg"])}. '
             f'<span class="muted">{w["Meaning"]}</span></div>' for _, w in worst.iterrows()) +
             ('<div class="muted">No metric is worse than the industry average.</div>' if worst.empty else "") + "</div>", unsafe_allow_html=True)
         with st.expander("Five-year ratios for the uploaded company"):
-            st.dataframe(r.T.style.format(precision=1), use_container_width=True)
+            st.dataframe(r.T.style.format(precision=1), width="stretch")
     register(f"Upload results: {label}", kind="table",
              note={"text": "Uploaded company benchmarked against the 20 Nifty Pharma companies.",
                    "sources": [{"title": "Nifty Pharma constituents", "url": IND.meta()["constituents_source"]["url"]}]},

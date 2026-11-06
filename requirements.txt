@@ -1,4 +1,4 @@
-streamlit>=1.40
+streamlit>=1.50
 plotly>=5.22
 pandas>=2.1
 numpy>=1.26
@@ -11,3 +11,5 @@ openpyxl>=3.1
 requests>=2.31
 pypdf>=5.0
 ddgs>=9.10
+beautifulsoup4>=4.12
+lxml>=5.0

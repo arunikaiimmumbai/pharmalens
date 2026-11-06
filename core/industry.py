@@ -29,7 +29,35 @@ BENCHMARKABLE = [
 
 
 def _raw() -> dict:
-    return _raw_cached(IND_PATH.stat().st_mtime)
+    """Saved benchmark data, with live financial statements laid over it where available."""
+    v = D.live_version()
+    if not v:
+        return _raw_cached(IND_PATH.stat().st_mtime)
+    return _raw_live(IND_PATH.stat().st_mtime, v, tuple(D.window()))
+
+
+@st.cache_data(show_spinner=False)
+def _raw_live(mtime: float, version: int, years: tuple) -> dict:
+    import copy  # noqa: WPS433
+
+    from core import live_fin as LF  # noqa: WPS433
+
+    raw = copy.deepcopy(_raw_cached(mtime))
+    recs = D.live_records()
+    mid = D.data_path(D.DEFAULT_SEGMENT)
+    base_years = D._load_raw_cached(str(mid), mid.stat().st_mtime)["meta"]["years"]
+    for m in raw["members"]:
+        rec = recs.get(m["symbol"])
+        m["financials"] = LF.merge_financials(m["financials"], base_years, rec, list(years))
+        if "cost_ok" in m["financials"]:
+            m["financials"]["cost_ok"] = [bool(x) for x in m["financials"]["cost_ok"]]
+        if rec and rec.get("ok"):
+            mk = rec.get("market", {})
+            if mk.get("pe"):
+                m["pe"] = mk["pe"]
+            if mk.get("mcap_cr"):
+                m["mcap_cr"] = mk["mcap_cr"]
+    return raw
 
 
 @st.cache_data(show_spinner=False)
@@ -100,7 +128,8 @@ def frames() -> dict[str, tuple[str, pd.DataFrame, float | None]]:
     return _frames(IND_PATH.stat().st_mtime, tuple(D._mtime(k) for k in D.available_segments()))
 
 
-def member_values(metric: str, year: str = "FY26") -> pd.Series:
+def member_values(metric: str, year: str | None = None) -> pd.Series:
+    year = year or D.latest_year()
     """One value per industry member for a metric (year-based or CAGR / P/E)."""
     vals = {}
     yrs = D.years()
@@ -119,7 +148,8 @@ def member_values(metric: str, year: str = "FY26") -> pd.Series:
     return pd.Series(vals, dtype=float)
 
 
-def industry_value(metric: str, year: str = "FY26") -> dict:
+def industry_value(metric: str, year: str | None = None) -> dict:
+    year = year or D.latest_year()
     """{'avg', 'median', 'n'} for one metric. avg is None when the metric can't be benchmarked."""
     if metric not in BENCHMARKABLE:
         return {"avg": None, "median": None, "n": 0}
@@ -138,7 +168,8 @@ def industry_series(metric: str) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("Year")
 
 
-def note(metric: str, year: str = "FY26") -> str:
+def note(metric: str, year: str | None = None) -> str:
+    year = year or D.latest_year()
     """Grey note text saying which industry source (A) is used and the median."""
     iv = industry_value(metric, year)
     if iv["avg"] is None:

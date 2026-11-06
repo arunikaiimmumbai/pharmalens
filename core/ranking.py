@@ -25,8 +25,8 @@ DIMENSIONS = {
     "Operating efficiency": {"weight": 10, "metrics": [("ccc", 5, False), ("asset_turnover", 5, True)]},
 }
 LENSES = {"Current strength": 40, "Momentum": 30, "Quality": 30}
-LABELS = {"sales_cagr": "Revenue CAGR FY22–26", "sales_growth": "Revenue growth FY26", "q1_growth": "Revenue growth Q1 FY27",
-          "ebitda_margin": "EBITDA margin", "margin_change_3y": "EBITDA margin change FY23→26 (pts)", "ebit_margin": "EBIT margin",
+LABELS = {"sales_cagr": "Revenue CAGR (5 years)", "sales_growth": "Revenue growth (latest year)", "q1_growth": "Revenue growth, latest quarter",
+          "ebitda_margin": "EBITDA margin", "margin_change_3y": "EBITDA margin change, last 3 years (pts)", "ebit_margin": "EBIT margin",
           "pat_margin": "PAT margin", "fcf_margin": "Free cash flow / sales", "cfo_ebitda": "CFO / EBITDA", "cfo_pat": "CFO / PAT",
           "roic": "ROIC", "roce": "ROCE", "roe": "ROE", "net_debt_ebitda": "Net debt / EBITDA", "interest_cover": "Interest cover",
           "ccc": "Cash conversion cycle", "asset_turnover": "Asset turnover"}
@@ -139,9 +139,9 @@ def momentum(cid: str, m: dict | None = None) -> dict:
 
 
 MOMENTUM_DIR = {"margin_change_3y": True, "roce_change_3y": True, "ccc_change_3y": False, "q1_growth": True, "netdebt_change_3y": False}
-MOMENTUM_LABELS = {"margin_change_3y": "EBITDA margin change FY23→26", "roce_change_3y": "ROCE change FY23→26",
-                   "ccc_change_3y": "Cash cycle change FY23→26 (days)", "q1_growth": "Latest quarter growth (Q1 FY27)",
-                   "netdebt_change_3y": "Net debt/EBITDA change FY23→26"}
+MOMENTUM_LABELS = {"margin_change_3y": "EBITDA margin change, last 3 years", "roce_change_3y": "ROCE change, last 3 years",
+                   "ccc_change_3y": "Cash cycle change, last 3 years (days)", "q1_growth": "Latest quarter growth (YoY)",
+                   "netdebt_change_3y": "Net debt/EBITDA change, last 3 years"}
 
 
 def quality(cid: str, m: dict | None = None) -> dict:
@@ -292,7 +292,7 @@ def project(cid: str, lv: dict | None = None, realisation: float = 1.0, rnd_pays
         ce = ce * (1 + growth * 0.5) + lv["capex"] - wc_release + (debt - r["borrowings"] if t == 1 else 0)
         # FCF = EBITDA - tax - maintenance capex (~D&A) - extra capex + working-capital release - working capital for growth
         fcf = ebitda - max(ebit - interest, 0) * tax - sales * da0 - lv["capex"] + wc_release - (sales - prev) * wc_int
-        out.append({"Year": f"FY{26 + t}", "Revenue": sales, "EBITDA": ebitda, "EBITDA margin %": margin, "EBIT": ebit, "PAT": pat,
+        out.append({"Year": f"FY{(int(D.latest_year()[2:]) + t) % 100:02d}", "Revenue": sales, "EBITDA": ebitda, "EBITDA margin %": margin, "EBIT": ebit, "PAT": pat,
                     "ROCE %": ebit / ce * 100, "ROIC %": ebit * (1 - tax) / ce * 100, "Free cash flow": fcf,
                     "Net debt / EBITDA": (debt - r["investments"] - r.get("cash", 0)) / ebitda, "Capital employed": ce})
     return {"years": pd.DataFrame(out).set_index("Year"), "wc_release": ((-lv["inventory"]) * mat_day + (-lv["debtor"]) * sales_day) * realisation}
@@ -326,8 +326,8 @@ def tornado(cid: str) -> pd.DataFrame:
         lv = {k: std}
         p = project(cid, lv)["years"].iloc[-1]
         sc = scorecard(overrides={cid: scenario_overrides(cid, lv)})["table"].loc[cid, "Overall"]
-        rows.append({"Lever": f"{label}: {std:+g}", "Δ ROCE FY29 (pts)": p["ROCE %"] - base_p["ROCE %"],
-                     "Δ EBITDA FY29 (₹ Cr)": p["EBITDA"] - base_p["EBITDA"], "Δ overall score": sc - base_score})
+        rows.append({"Lever": f"{label}: {std:+g}", "Δ ROCE, year 3 (pts)": p["ROCE %"] - base_p["ROCE %"],
+                     "Δ EBITDA, year 3 (₹ Cr)": p["EBITDA"] - base_p["EBITDA"], "Δ overall score": sc - base_score})
     return pd.DataFrame(rows).sort_values("Δ overall score", key=abs, ascending=True)
 
 
